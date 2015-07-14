@@ -84,16 +84,13 @@ public class ItemVendaBO {
 
     /**
      *
-     * @param item
+     * @param itemVO
      * @param quantidade
      * @param valor
      * @return
      */
-    public Boolean alterarItem(Itemvenda item, String quantidade, String valor) {
+    public Boolean alterarItem(Itemvenda itemVO, String quantidade, String valor) {
         try {
-            GenericDAO<Itemvenda> itemDAO = new GenericDAO<>();
-            Itemvenda itemVO = item;
-
             try {
                 itemVO.setQuantidadeItemVenda(new Integer(quantidade));
             } catch (Exception e) {

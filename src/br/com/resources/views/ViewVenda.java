@@ -6,6 +6,11 @@ import br.com.models.tabelas.TableModelRecebimento;
 import br.com.models.vo.Itemvenda;
 import br.com.models.vo.Recebimento;
 import br.com.models.vo.Venda;
+import java.awt.Cursor;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 /**
@@ -88,6 +93,39 @@ public class ViewVenda extends javax.swing.JDialog {
         btnVisualizarItem.setEnabled(false);
         btnAlterarItem.setEnabled(false);
         btnExcluirItem.setEnabled(false);
+
+        //Definindo valores da venda
+        tfTotalVenda.setText("0.0");
+        tfValorProdutos.setText("0.0");
+        if (cbCliente.getSelectedIndex() == 0) {
+            tfDesconto.setText("0.0");
+        }
+        calcularValores();
+    }
+
+    /**
+     * @see Método que calcula os valores da venda.
+     */
+    public void calcularValores() {
+        if (itens.size() > 0) {
+            BigDecimal aux = new BigDecimal(0);
+            for (Itemvenda iten : itens) {
+                aux = aux.add(iten.getValorItemVenda());
+            }
+            tfValorProdutos.setText(aux.toString());
+            aux.add(aux.multiply(new BigDecimal(-1)).multiply(new BigDecimal(tfDesconto.getText().replace(",", ".")).divide(new BigDecimal(100))));
+
+            tfTotalVenda.setText(aux.add(aux.multiply(new BigDecimal(-1)).multiply(new BigDecimal(tfDesconto.getText().replace(",", ".")).divide(new BigDecimal(100)))).setScale(2, RoundingMode.UP).toString());
+            rbAVista.doClick();
+            calcularPagamento();
+        }
+    }
+
+    /**
+     * @see Método que calcula os valores do pagamento da venda.
+     */
+    public void calcularPagamento() {
+
     }
 
     //Componentes padrões do JFrame.
@@ -129,12 +167,12 @@ public class ViewVenda extends javax.swing.JDialog {
         spnRecebimentos = new javax.swing.JScrollPane();
         tbRecebimentos = new javax.swing.JTable();
         pnAVista = new javax.swing.JPanel();
+        lbTotalAVista = new javax.swing.JLabel();
+        tfTotalAVista = new javax.swing.JFormattedTextField();
         lbTotalPago = new javax.swing.JLabel();
         tfTotalPago = new javax.swing.JFormattedTextField();
         lbTroco = new javax.swing.JLabel();
         tfTroco = new javax.swing.JFormattedTextField();
-        tfTroco1 = new javax.swing.JFormattedTextField();
-        lbTroco1 = new javax.swing.JLabel();
         sprRodape = new javax.swing.JSeparator();
         btnFinalizarVenda = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
@@ -231,6 +269,11 @@ public class ViewVenda extends javax.swing.JDialog {
         btnVisualizarItem.setFocusable(false);
         btnVisualizarItem.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
         btnVisualizarItem.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarItemActionPerformed(evt);
+            }
+        });
 
         btnAlterarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
         btnAlterarItem.setBorder(null);
@@ -240,6 +283,11 @@ public class ViewVenda extends javax.swing.JDialog {
         btnAlterarItem.setFocusable(false);
         btnAlterarItem.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
         btnAlterarItem.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarItemActionPerformed(evt);
+            }
+        });
 
         btnExcluirItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirUP.png"))); // NOI18N
         btnExcluirItem.setBorder(null);
@@ -249,6 +297,11 @@ public class ViewVenda extends javax.swing.JDialog {
         btnExcluirItem.setFocusable(false);
         btnExcluirItem.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
         btnExcluirItem.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
+        btnExcluirItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirItemActionPerformed(evt);
+            }
+        });
 
         spnItens.setBackground(new java.awt.Color(255, 255, 255));
         spnItens.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -500,6 +553,16 @@ public class ViewVenda extends javax.swing.JDialog {
 
         pnAVista.setBackground(new java.awt.Color(255, 255, 255));
 
+        lbTotalAVista.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbTotalAVista.setForeground(new java.awt.Color(102, 102, 102));
+        lbTotalAVista.setText("Total pagamento R$");
+
+        tfTotalAVista.setEditable(false);
+        tfTotalAVista.setForeground(new java.awt.Color(102, 102, 102));
+        tfTotalAVista.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
+        tfTotalAVista.setText("0,0");
+        tfTotalAVista.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         lbTotalPago.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbTotalPago.setForeground(new java.awt.Color(102, 102, 102));
         lbTotalPago.setText("Total pago R$");
@@ -524,16 +587,6 @@ public class ViewVenda extends javax.swing.JDialog {
         tfTroco.setText("0,0");
         tfTroco.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        tfTroco1.setEditable(false);
-        tfTroco1.setForeground(new java.awt.Color(102, 102, 102));
-        tfTroco1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
-        tfTroco1.setText("0,0");
-        tfTroco1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        lbTroco1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbTroco1.setForeground(new java.awt.Color(102, 102, 102));
-        lbTroco1.setText("Total pagamento R$");
-
         javax.swing.GroupLayout pnAVistaLayout = new javax.swing.GroupLayout(pnAVista);
         pnAVista.setLayout(pnAVistaLayout);
         pnAVistaLayout.setHorizontalGroup(
@@ -550,9 +603,9 @@ public class ViewVenda extends javax.swing.JDialog {
                             .addComponent(tfTotalPago, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAVistaLayout.createSequentialGroup()
-                        .addComponent(lbTroco1)
+                        .addComponent(lbTotalAVista)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tfTroco1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfTotalAVista, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnAVistaLayout.setVerticalGroup(
@@ -560,8 +613,8 @@ public class ViewVenda extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAVistaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnAVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfTroco1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTroco1))
+                    .addComponent(tfTotalAVista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTotalAVista))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnAVistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfTotalPago, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -728,7 +781,12 @@ public class ViewVenda extends javax.swing.JDialog {
     }//GEN-LAST:event_rbAPrazoActionPerformed
 
     private void cbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClienteActionPerformed
-        tfDesconto.setText(vendaBO.buscarCliente(cbCliente.getSelectedIndex() - 1).getDescontoCliente().toString());
+        if (cbCliente.getSelectedIndex() > 0) {
+            tfDesconto.setText(vendaBO.buscarCliente(cbCliente.getSelectedIndex() - 1).getDescontoCliente().toString());
+        } else {
+            tfDesconto.setText("0.0");
+        }
+        atualizarTabelas();
     }//GEN-LAST:event_cbClienteActionPerformed
 
     private void spnParcelasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spnParcelasMouseClicked
@@ -743,6 +801,27 @@ public class ViewVenda extends javax.swing.JDialog {
         viewItem = new ViewItemVenda(viewPrincipal, true, this, itens);
         viewItem.setVisible(true);
     }//GEN-LAST:event_btnNovoItemActionPerformed
+
+    private void btnVisualizarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarItemActionPerformed
+        if (tbItens.getSelectedRow() != -1) {
+            viewItem = new ViewItemVenda(viewPrincipal, true, this, itens.get(tbItens.getSelectedRow()), false);
+            viewItem.setVisible(true);
+        }
+    }//GEN-LAST:event_btnVisualizarItemActionPerformed
+
+    private void btnAlterarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarItemActionPerformed
+        if (tbItens.getSelectedRow() != -1) {
+            viewItem = new ViewItemVenda(viewPrincipal, true, this, itens.get(tbItens.getSelectedRow()), true);
+            viewItem.setVisible(true);
+        }
+    }//GEN-LAST:event_btnAlterarItemActionPerformed
+
+    private void btnExcluirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirItemActionPerformed
+        if (tbItens.getSelectedRow() != -1) {
+            itens.remove(tbItens.getSelectedRow());
+            atualizarTabelas();
+        }
+    }//GEN-LAST:event_btnExcluirItemActionPerformed
 
     //Declaração de variáveis(View).
     private final ViewPrincipal viewPrincipal;
@@ -777,10 +856,10 @@ public class ViewVenda extends javax.swing.JDialog {
     private javax.swing.JLabel lbParcelas;
     private javax.swing.JLabel lbPedido;
     private javax.swing.JLabel lbTitulo;
+    private javax.swing.JLabel lbTotalAVista;
     private javax.swing.JLabel lbTotalPago;
     private javax.swing.JLabel lbTotalVenda;
     private javax.swing.JLabel lbTroco;
-    private javax.swing.JLabel lbTroco1;
     private javax.swing.JLabel lbValorProdutos;
     private javax.swing.JLabel lbVencimento;
     private javax.swing.JPanel pnAPrazo;
@@ -801,10 +880,10 @@ public class ViewVenda extends javax.swing.JDialog {
     private javax.swing.table.JTableHeader cabecalho;
     private javax.swing.JTable tbRecebimentos;
     private javax.swing.JFormattedTextField tfDesconto;
+    private javax.swing.JFormattedTextField tfTotalAVista;
     private javax.swing.JFormattedTextField tfTotalPago;
     private javax.swing.JFormattedTextField tfTotalVenda;
     private javax.swing.JFormattedTextField tfTroco;
-    private javax.swing.JFormattedTextField tfTroco1;
     private javax.swing.JFormattedTextField tfValorProdutos;
     private javax.swing.JFormattedTextField tfVencimento;
     // End of variables declaration//GEN-END:variables

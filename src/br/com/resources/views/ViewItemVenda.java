@@ -37,12 +37,12 @@ public class ViewItemVenda extends javax.swing.JDialog {
      * @see Construtor padrão.
      * @param parent
      * @param modal
-     * @param viewCompra
+     * @param viewVenda
      */
-    public ViewItemVenda(java.awt.Frame parent, boolean modal, ViewCompra viewCompra, Itemvenda item, Boolean alterar) {
+    public ViewItemVenda(java.awt.Frame parent, boolean modal, ViewVenda viewVenda, Itemvenda item, Boolean alterar) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
-        this.viewVenda = null;
+        this.viewVenda = viewVenda;
         this.itemBO = new ItemVendaBO();
         this.itemVO = item;
         this.itens = null;
@@ -64,11 +64,12 @@ public class ViewItemVenda extends javax.swing.JDialog {
         //Definindo valores quantidade e valor
         tfQuantidade.setText(item.getQuantidadeItemVenda().toString());
         tfValor.setText(item.getValorItemVenda().toString());
-
-        if (!alterar) {
-            btnAlterar.setVisible(false);
-            tfQuantidade.setEditable(false);
-            tfValor.setEditable(false);
+        tfBuscarProduto.setText(item.getProduto().getCodigoProduto());
+        tfBuscarProduto.setEditable(false);
+        btnBuscarProduto.setEnabled(false);
+        if (alterar) {
+            tfQuantidade.setEnabled(true);
+            valor = new BigDecimal(tfValor.getText()).divide(new BigDecimal(tfQuantidade.getText()));
         }
     }
 
@@ -169,6 +170,7 @@ public class ViewItemVenda extends javax.swing.JDialog {
         btnBuscarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarUP.png"))); // NOI18N
         btnBuscarProduto.setBorder(null);
         btnBuscarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarProduto.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
         btnBuscarProduto.setFocusable(false);
         btnBuscarProduto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
         btnBuscarProduto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
@@ -314,6 +316,17 @@ public class ViewItemVenda extends javax.swing.JDialog {
         } catch (Exception e) {
 
         }
+        if (!cbProduto.isEnabled()) {
+            try {
+                if (tfValor.getText().length() > 0) {
+                    tfValor.setText(new BigDecimal(tfQuantidade.getText()).multiply(valor).toString());
+                } else {
+                    tfValor.setText("0,0");
+                }
+            } catch (Exception e) {
+
+            }
+        }
     }//GEN-LAST:event_tfQuantidadeKeyReleased
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -334,7 +347,7 @@ public class ViewItemVenda extends javax.swing.JDialog {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         btnCadastrar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        if (itemBO.validarCampos(pnItem) && cbProduto.getSelectedIndex() > 0) {
+        if (itemBO.validarCampos(pnItem)) {
             if (itemBO.alterarItem(itemVO, tfQuantidade.getText(), tfValor.getText())) {
                 viewVenda.atualizarTabelas();
                 this.dispose();
@@ -350,6 +363,7 @@ public class ViewItemVenda extends javax.swing.JDialog {
     //Declaração de variáveis(Value Object).
     private Itemvenda itemVO;
     private final ArrayList<Itemvenda> itens;
+    private BigDecimal valor;
 
     //Declaração de variáveis(Business Object).
     private final ItemVendaBO itemBO;
