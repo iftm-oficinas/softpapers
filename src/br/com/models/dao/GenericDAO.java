@@ -2,6 +2,7 @@ package br.com.models.dao;
 
 import br.com.models.util.HibernateUtil;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -13,7 +14,7 @@ import org.hibernate.criterion.Restrictions;
  * atualizar(), apagar(), consultar().
  *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
- * 
+ *
  * @param <T> obejeto genérico que substitui como parâmetro todos os objetos de
  * valores do sistema.
  */
@@ -27,9 +28,20 @@ public class GenericDAO<T> {
      * @see Método INSERT INTO.
      *
      * @param obj objeto de valor que abstrai uma linha do banco.
+     *
+     * @return T obj
      */
-    public void inserir(T obj) {
-        session.persist(obj);
+    public T inserir(T obj) {
+        try {
+            session.beginTransaction();
+            session.persist(obj);
+            session.getTransaction().commit();
+            return obj;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
 
     /**
@@ -37,9 +49,20 @@ public class GenericDAO<T> {
      * @see Método UPDATE.
      *
      * @param obj objeto de valor que abstrai uma linha do banco.
+     *
+     * @return T obj
      */
-    public void atualizar(T obj) {
-        session.saveOrUpdate(obj);
+    public T atualizar(T obj) {
+        try {
+            session.beginTransaction();
+            session.saveOrUpdate(obj);
+            session.getTransaction().commit();
+            return obj;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
 
     /**
@@ -47,9 +70,20 @@ public class GenericDAO<T> {
      * @see Método DELETE.
      *
      * @param obj objeto de valor que abstrai uma linha do banco.
+     *
+     * @return
      */
-    public void apagar(T obj) {
-        session.delete(obj);
+    public Boolean apagar(T obj) {
+        try {
+            session.beginTransaction();
+            session.delete(obj);
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
     }
 
     /**
@@ -57,6 +91,7 @@ public class GenericDAO<T> {
      * @see Método SELECT *.
      *
      * @param obj objeto de valor que abstrai uma linha do banco.
+     *
      * @return Lista de obejtos do parâmetro.
      */
     public List<T> consultar(T obj) {

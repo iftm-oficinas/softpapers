@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 15/06/2015 16:37:36 by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/06/2015 14:56:35 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.models.vo.Fornecedor" table="fornecedor" catalog="dbloja" optimistic-lock="version">
         <id name="idFornecedor" type="java.lang.Long">

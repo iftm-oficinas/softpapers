@@ -869,16 +869,28 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoFuncionarioActionPerformed
 
     private void btnVisualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarFuncionarioActionPerformed
-        viewFuncionario = new ViewFuncionario(viewPrincipal, true, this);
-        viewFuncionario.setVisible(true);
+        if (tbFuncionarios.getSelectedRow() != -1) {
+            TableModelFuncionario modelo = (TableModelFuncionario) tbFuncionarios.getModel();
+            viewFuncionario = new ViewFuncionario(viewPrincipal, true, this, modelo.getFuncionario(tbFuncionarios.getSelectedRow()), false);
+            viewFuncionario.setVisible(true);
+        }
     }//GEN-LAST:event_btnVisualizarFuncionarioActionPerformed
 
     private void btnAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncionarioActionPerformed
-        // TODO add your handling code here:
+        if (tbFuncionarios.getSelectedRow() != -1) {
+            TableModelFuncionario modelo = (TableModelFuncionario) tbFuncionarios.getModel();
+            viewFuncionario = new ViewFuncionario(viewPrincipal, true, this, modelo.getFuncionario(tbFuncionarios.getSelectedRow()), true);
+            viewFuncionario.setVisible(true);
+        }
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
     private void btnExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFuncionarioActionPerformed
-        // TODO add your handling code here:
+        if (tbFuncionarios.getSelectedRow() != -1) {
+            TableModelFuncionario modelo = (TableModelFuncionario) tbFuncionarios.getModel();
+            if(painelControleBO.excluirFuncionario(modelo.getFuncionario(tbFuncionarios.getSelectedRow()).getIdFuncionario())){
+                atualizarTabelas();
+            }
+        }
     }//GEN-LAST:event_btnExcluirFuncionarioActionPerformed
 
     //Declaração de variáveis(View).

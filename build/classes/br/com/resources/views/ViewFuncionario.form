@@ -98,7 +98,11 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="tfCpf" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnAlterarFuncionario" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="lbMaisEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lbCpf" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lbPessoaFisica" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -277,7 +281,10 @@
                   <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Component id="sprRodape" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAlterarFuncionario" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -315,6 +322,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCargoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbUsuario">
           <Properties>
@@ -336,6 +346,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfUsuarioKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbSenha">
           <Properties>
@@ -357,6 +370,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pfSenhaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbContato">
           <Properties>
@@ -389,6 +405,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfEmailKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbTelefone">
           <Properties>
@@ -493,6 +512,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfRgKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbNascimento">
           <Properties>
@@ -549,6 +571,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfEnderecoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbCep">
           <Properties>
@@ -594,6 +619,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfComplementoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbNumero">
           <Properties>
@@ -639,6 +667,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfBairroKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbCidade">
           <Properties>
@@ -660,6 +691,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCidadeKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbEstado">
           <Properties>
@@ -681,6 +715,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfEstadoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="sprRodape">
           <Properties>
@@ -735,6 +772,35 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNomeKeyTyped"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnAlterarFuncionario">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/com/resources/imagens/btnAlterarUP.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
+            <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/com/resources/imagens/btnAlterarDOWN.png"/>
+            </Property>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/com/resources/imagens/btnAlterarDOWN.png"/>
+            </Property>
+            <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/br/com/resources/imagens/btnAlterarDOWN.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarFuncionarioActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

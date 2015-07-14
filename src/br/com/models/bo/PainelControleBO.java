@@ -8,6 +8,7 @@ import br.com.models.vo.Funcionario;
 import br.com.models.vo.Produto;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -96,5 +97,35 @@ public class PainelControleBO {
         produtoDAO = new GenericDAO<>();
         produtosVO = new ArrayList<>(produtoDAO.consultar(new Produto()));
         return produtosVO;
+    }
+    
+    /**
+     *
+     * @see Método que exclui um objeto no banco de dados por meio da
+     * GenericDAO.
+     *
+     * @param idFuncionario
+     *
+     * @return
+     */
+    public Boolean excluirFuncionario(Long idFuncionario) {
+        try {
+            funcionarioDAO = new GenericDAO<>();
+            Funcionario funcionarioVO = new Funcionario();
+            funcionarioVO = funcionarioDAO.consultar("idFuncionario", idFuncionario, funcionarioVO);
+            if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este Funcionário?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+                if (funcionarioDAO.apagar(funcionarioVO)) {
+                    JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso.", "Secesso", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
     }
 }
