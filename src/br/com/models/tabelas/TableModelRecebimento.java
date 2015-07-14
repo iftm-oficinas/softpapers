@@ -15,12 +15,11 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelRecebimento extends AbstractTableModel {
 
     //Declaração de variáveis.
-
     private final List<Recebimento> linhas;
     private final String[] colunas;
 
     //Declaração de variáveis que compoem os campos da tabela.
-    private static final int descricaoRecebimento = 0;
+    private static final int statusRecebimento = 0;
     private static final int valorRecebimento = 1;
     private static final int dataRecebimento = 2;
 
@@ -62,7 +61,7 @@ public class TableModelRecebimento extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
-            case descricaoRecebimento:
+            case statusRecebimento:
                 return Boolean.class;
             case valorRecebimento:
                 return BigDecimal.class;
@@ -77,7 +76,7 @@ public class TableModelRecebimento extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Recebimento recebimento = linhas.get(rowIndex);
         switch (columnIndex) {
-            case descricaoRecebimento:
+            case statusRecebimento:
                 return recebimento.getStatusRecebimento();
             case valorRecebimento:
                 return recebimento.getValorRecebimento();
@@ -92,7 +91,7 @@ public class TableModelRecebimento extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         Recebimento recebimento = linhas.get(rowIndex);
         switch (columnIndex) {
-            case descricaoRecebimento:
+            case statusRecebimento:
                 recebimento.setStatusRecebimento((Boolean) aValue);
                 break;
             case valorRecebimento:

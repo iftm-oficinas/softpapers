@@ -729,6 +729,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
         if (acessoBO.validarCampos(pnAcesso)) {
             funcionarioVO = acessoBO.validarAcesso(tfUsuario.getText(), new String(pfSenha.getPassword()));
             if (funcionarioVO != null) {
+                viewPrincipal.setFuncionario(funcionarioVO);
                 viewPrincipal.mostrarMenu();
             }
         }

@@ -6,11 +6,14 @@ import br.com.models.tabelas.TableModelRecebimento;
 import br.com.models.vo.Itemvenda;
 import br.com.models.vo.Recebimento;
 import br.com.models.vo.Venda;
+import java.awt.Cursor;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  * @see Classe visual. JDialog que tem como objetivo cadastrar uma nova venda.
@@ -54,12 +57,33 @@ public final class ViewVenda extends javax.swing.JDialog {
         this.viewPrincipal = viewPrincipal;
         this.viewVendas = viewVendas;
         this.vendaBO = new VendaBO();
-        this.itens = new ArrayList<>();
+        this.vendaVO = venda;
+        this.itens = vendaBO.buscarItens(venda.getIdVenda());
         this.recebimentos = new ArrayList<>();
         initComponents();
         rbAVista.doClick();
         btnFinalizarVenda.setVisible(false);
 
+        //Definindo Modelo com Cliente para os JComboBox.
+        ArrayList<String> array = new ArrayList<>();
+        String[] Arr = new String[array.size()];
+        if (venda.getCliente() != null) {
+            array.add(venda.getCliente().getNomeCliente());
+            tfDesconto.setText(venda.getCliente().getDescontoCliente().toString());
+        } else {
+            array.add("CLIENTE");
+        }
+        Arr = array.toArray(Arr);
+        cbCliente.setModel(new javax.swing.DefaultComboBoxModel(Arr));
+        //Definindo como não editável
+        if (!alterar) {
+            btnAlterar.setVisible(false);
+            cbCliente.setEnabled(false);
+            btnNovoItem.setVisible(false);
+            btnAlterarItem.setVisible(false);
+            btnExcluirItem.setVisible(false);
+            pnPagamento.setVisible(false);
+        }
         atualizarPagina();
     }
 
@@ -160,9 +184,33 @@ public final class ViewVenda extends javax.swing.JDialog {
     public void gerarRecebimentos() {
         recebimentos.clear();
         try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date());
             if (rbAPrazo.isSelected()) {
                 for (int cont = 0; cont < (Integer) sldParcelas.getValue(); cont++) {
-                    recebimentos.add(new Recebimento(null, null, vendaVO, "Venda", new BigDecimal(tfTotalVenda.getText()).divide(new BigDecimal(sldParcelas.getValue()), MathContext.DECIMAL128), new Date(), false, new Date(), new Date()));
+                    calendar.add(Calendar.MONTH, +1);
+                    if (((calendar.getTime().getMonth() + 1) == 2) && ((cbVencimento.getSelectedIndex() + 1) > 28)) {
+                        calendar.set(Calendar.DAY_OF_MONTH, 28);
+                    } else {
+                        if (((calendar.getTime().getMonth() + 1) == 4) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
+                            calendar.set(Calendar.DAY_OF_MONTH, 30);
+                        } else {
+                            if (((calendar.getTime().getMonth() + 1) == 6) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
+                                calendar.set(Calendar.DAY_OF_MONTH, 30);
+                            } else {
+                                if (((calendar.getTime().getMonth() + 1) == 9) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
+                                    calendar.set(Calendar.DAY_OF_MONTH, 30);
+                                } else {
+                                    if (((calendar.getTime().getMonth() + 1) == 11) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
+                                        calendar.set(Calendar.DAY_OF_MONTH, 30);
+                                    } else {
+                                        calendar.set(Calendar.DAY_OF_MONTH, cbVencimento.getSelectedIndex() + 1);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    recebimentos.add(new Recebimento(null, null, vendaVO, "Venda", new BigDecimal(tfTotalVenda.getText()).divide(new BigDecimal(sldParcelas.getValue()), MathContext.DECIMAL128).setScale(2, RoundingMode.HALF_EVEN), calendar.getTime(), false, new Date(), new Date()));
                 }
             }
         } catch (Exception e) {
@@ -217,6 +265,7 @@ public final class ViewVenda extends javax.swing.JDialog {
         sprRodape = new javax.swing.JSeparator();
         btnFinalizarVenda = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
+        lbOpcional2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Venda");
@@ -293,6 +342,7 @@ public final class ViewVenda extends javax.swing.JDialog {
         btnNovoItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoItemUP.png"))); // NOI18N
         btnNovoItem.setBorder(null);
         btnNovoItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNovoItem.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoItemDOWN.png"))); // NOI18N
         btnNovoItem.setFocusable(false);
         btnNovoItem.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoItemDOWN.png"))); // NOI18N
         btnNovoItem.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoItemDOWN.png"))); // NOI18N
@@ -422,10 +472,10 @@ public final class ViewVenda extends javax.swing.JDialog {
             pnPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnPedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovoItem)
+                .addGroup(pnPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAlterarItem)
-                    .addComponent(btnExcluirItem))
+                    .addComponent(btnExcluirItem, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnNovoItem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spnItens, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -507,6 +557,11 @@ public final class ViewVenda extends javax.swing.JDialog {
         cbVencimento.setForeground(new java.awt.Color(102, 102, 102));
         cbVencimento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         cbVencimento.setFocusable(false);
+        cbVencimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbVencimentoActionPerformed(evt);
+            }
+        });
 
         spnRecebimentos.setBackground(new java.awt.Color(255, 255, 255));
         spnRecebimentos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -684,9 +739,15 @@ public final class ViewVenda extends javax.swing.JDialog {
         btnFinalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarVendaUP.png"))); // NOI18N
         btnFinalizarVenda.setBorder(null);
         btnFinalizarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFinalizarVenda.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarVendaDOWN.png"))); // NOI18N
         btnFinalizarVenda.setFocusable(false);
         btnFinalizarVenda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarVendaDOWN.png"))); // NOI18N
         btnFinalizarVenda.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarVendaDOWN.png"))); // NOI18N
+        btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarVendaActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
         btnAlterar.setBorder(null);
@@ -695,6 +756,15 @@ public final class ViewVenda extends javax.swing.JDialog {
         btnAlterar.setFocusable(false);
         btnAlterar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
         btnAlterar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+
+        lbOpcional2.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        lbOpcional2.setForeground(new java.awt.Color(102, 102, 102));
+        lbOpcional2.setText("(Opcional)");
 
         javax.swing.GroupLayout pnCorpoLayout = new javax.swing.GroupLayout(pnCorpo);
         pnCorpo.setLayout(pnCorpoLayout);
@@ -720,6 +790,8 @@ public final class ViewVenda extends javax.swing.JDialog {
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnCorpoLayout.createSequentialGroup()
                         .addComponent(lbPagamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbOpcional2)
                         .addContainerGap())
                     .addComponent(pnPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(pnCorpoLayout.createSequentialGroup()
@@ -737,7 +809,9 @@ public final class ViewVenda extends javax.swing.JDialog {
                         .addContainerGap()
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addComponent(lbPagamento)
+                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbPagamento)
+                                    .addComponent(lbOpcional2))
                                 .addGap(0, 0, 0)
                                 .addComponent(pnPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(pnCorpoLayout.createSequentialGroup()
@@ -853,6 +927,33 @@ public final class ViewVenda extends javax.swing.JDialog {
         sldParcelas.setEnabled(true);
     }//GEN-LAST:event_sldParcelasMouseReleased
 
+    private void cbVencimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbVencimentoActionPerformed
+        atualizarPagina();
+    }//GEN-LAST:event_cbVencimentoActionPerformed
+
+    private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
+        btnFinalizarVenda.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        if (tbItens.getModel().getRowCount() > 0) {
+            if (vendaBO.finalizarVenda(viewPrincipal.getFuncionario().getIdFuncionario(), cbCliente.getSelectedIndex(), tfTotalVenda.getText(), sldParcelas.getValue(), null, itens)) {
+                viewVendas.atualizarTabelas();
+                this.dispose();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Insira itens para a venda primeiro.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnFinalizarVenda.setEnabled(true);
+    }//GEN-LAST:event_btnFinalizarVendaActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        btnFinalizarVenda.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnFinalizarVenda.setEnabled(true);
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
     //Declaração de variáveis(View).
     private final ViewPrincipal viewPrincipal;
     private final ViewVendas viewVendas;
@@ -882,6 +983,7 @@ public final class ViewVenda extends javax.swing.JDialog {
     private javax.swing.JLabel lbCategoria;
     private javax.swing.JLabel lbDesconto;
     private javax.swing.JLabel lbOpcional1;
+    private javax.swing.JLabel lbOpcional2;
     private javax.swing.JLabel lbPagamento;
     private javax.swing.JLabel lbPedido;
     private javax.swing.JLabel lbTitulo;

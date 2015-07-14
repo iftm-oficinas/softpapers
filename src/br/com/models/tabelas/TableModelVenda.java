@@ -86,7 +86,11 @@ public class TableModelVenda extends AbstractTableModel {
         Venda venda = linhas.get(rowIndex);
         switch (columnIndex) {
             case clienteVenda:
-                return venda.getCliente().getNomeCliente();
+                if(venda.getCliente() != null){
+                    return venda.getCliente().getNomeCliente();
+                } else {
+                    return "CAIXA";
+                }
             case valorVenda:
                 return venda.getValorVenda();
             case parcelasVenda:

@@ -1,5 +1,6 @@
 package br.com.resources.views;
 
+import br.com.models.vo.Funcionario;
 import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -93,6 +94,14 @@ public class ViewPrincipal extends javax.swing.JFrame {
         viewRelatorios.setVisible(false);
         viewVendas.setVisible(false);
         viewVisaoGeral.setVisible(false);
+    }
+    
+    public void setFuncionario(Funcionario funcionario){
+        this.funcionarioVO = funcionario;
+    }
+    
+    public Funcionario getFuncionario(){
+        return this.funcionarioVO;
     }
 
     //Componentes padrões do JFrame
@@ -510,6 +519,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private ViewRelatorios viewRelatorios;
     private ViewVendas viewVendas;
     private ViewVisaoGeral viewVisaoGeral;
+    
+    //Declaração de variáveis(Value Object).
+    private Funcionario funcionarioVO;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnEstoque;

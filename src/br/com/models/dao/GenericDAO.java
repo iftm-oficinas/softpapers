@@ -1,6 +1,7 @@
 package br.com.models.dao;
 
 import br.com.models.util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
