@@ -8,8 +8,6 @@ import br.com.models.vo.Pessoa;
 import br.com.models.vo.Pessoafisica;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.HeadlessException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -62,7 +60,7 @@ public class FuncionarioBO {
             funcionarioVO.setSenhaFuncionario(senha);
             funcionarioVO.setCriacaoFuncionario(new Date());
             funcionarioVO.setAtualizacaoFuncionario(new Date());
-            
+
             GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
             Pessoa pessoaVO = new Pessoa();
             pessoaVO.setTipoPessoa("Fisica");
@@ -71,17 +69,21 @@ public class FuncionarioBO {
             if (pessoaDAO.inserir(pessoaVO)) {
                 funcionarioVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
             }
-            
+
             GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
             Pessoafisica pessoaFisicaVO = new Pessoafisica();
             pessoaFisicaVO.setCpfPessoaFisica(cpf);
             pessoaFisicaVO.setRgPessoaFisica(rg);
-            pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+            try {
+                pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+            } catch (Exception e) {
+                pessoaFisicaVO.setNascimentoPessoaFisica(new Date());
+            }
             pessoaFisicaVO.setCriacaoPessoaFisica(new Date());
             pessoaFisicaVO.setAtualizacaoPessoaFisica(new Date());
             pessoaFisicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
             pessoaFisicaDAO.inserir(pessoaFisicaVO);
-            
+
             GenericDAO<Contato> contatoDAO = new GenericDAO<>();
             Contato contatoVO = new Contato();
             contatoVO.setNomeContato(nome);
@@ -93,7 +95,7 @@ public class FuncionarioBO {
             if (contatoDAO.inserir(contatoVO)) {
                 funcionarioVO.setContato(contatoDAO.consultar("idContato", contatoVO.getIdContato(), contatoVO));
             }
-            
+
             GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
             Endereco enderecoVO = new Endereco();
             enderecoVO.setEnderecoEndereco(endereco);
@@ -115,7 +117,7 @@ public class FuncionarioBO {
             } else {
                 return false;
             }
-        } catch (ParseException | HeadlessException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
@@ -157,12 +159,16 @@ public class FuncionarioBO {
             funcionarioVO.setUsuarioFuncionario(usuario);
             funcionarioVO.setSenhaFuncionario(senha);
             funcionarioVO.setAtualizacaoFuncionario(new Date());
-            
+
             GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
             Pessoafisica pessoaFisicaVO = buscarPessoaFisica(idPessoa);
             pessoaFisicaVO.setCpfPessoaFisica(cpf);
             pessoaFisicaVO.setRgPessoaFisica(rg);
-            pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("dd/MM/yyyy").parse(nascimento));
+            try {
+                pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("dd/MM/yyyy").parse(nascimento));
+            } catch (Exception e) {
+                pessoaFisicaVO.setNascimentoPessoaFisica(new Date());
+            }
             pessoaFisicaVO.setAtualizacaoPessoaFisica(new Date());
             pessoaFisicaDAO.atualizar(pessoaFisicaVO);
 
@@ -176,7 +182,7 @@ public class FuncionarioBO {
             if (contatoDAO.atualizar(contatoVO)) {
                 funcionarioVO.setContato(contatoVO);
             }
-            
+
             GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
             Endereco enderecoVO = enderecoDAO.consultar("idEndereco", idEndereco, new Endereco());
             enderecoVO.setEnderecoEndereco(endereco);
@@ -197,7 +203,7 @@ public class FuncionarioBO {
             } else {
                 return false;
             }
-        } catch (ParseException | HeadlessException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }

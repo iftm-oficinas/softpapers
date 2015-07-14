@@ -9,8 +9,6 @@ import br.com.models.vo.Pessoafisica;
 import br.com.models.vo.Pessoajuridica;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.HeadlessException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -68,7 +66,7 @@ public class FornecedorBO {
             fornecedorVO.setNomeFornecedor(fornecedor);
             fornecedorVO.setCriacaoFornecedor(new Date());
             fornecedorVO.setAtualizacaoFornecedor(new Date());
-            
+
             if (pessoa) {
                 GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
                 Pessoa pessoaVO = new Pessoa();
@@ -82,7 +80,11 @@ public class FornecedorBO {
                 GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
                 pessoaFisicaVO.setCpfPessoaFisica(cpf);
                 pessoaFisicaVO.setRgPessoaFisica(rg);
-                pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+                try {
+                    pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+                } catch (Exception e) {
+                    pessoaFisicaVO.setNascimentoPessoaFisica(new Date());
+                }
                 pessoaFisicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
                 pessoaFisicaVO.setCriacaoPessoaFisica(new Date());
                 pessoaFisicaVO.setAtualizacaoPessoaFisica(new Date());
@@ -107,13 +109,17 @@ public class FornecedorBO {
                 pessoaJuridicaVO.setTributoSimplesPessoaJuridica(simples);
                 pessoaJuridicaVO.setImportacaoPessoaJuridica(taxa);
                 pessoaJuridicaVO.setIcmsPessoaJuridica(icms);
-                pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(fundacao));
+                try {
+                    pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(fundacao));
+                } catch (Exception e) {
+                    pessoaJuridicaVO.setFundacaoPessoaJuridica(new Date());
+                }
                 pessoaJuridicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
                 pessoaJuridicaVO.setCriacaoPessoaJuridica(new Date());
                 pessoaJuridicaVO.setAtualizacaoPessoaJuridica(new Date());
                 pessoaJuridicaDAO.inserir(pessoaJuridicaVO);
             }
-            
+
             GenericDAO<Contato> contatoDAO = new GenericDAO<>();
             Contato contatoVO = new Contato();
             contatoVO.setNomeContato(nome);
@@ -125,7 +131,7 @@ public class FornecedorBO {
             if (contatoDAO.inserir(contatoVO)) {
                 fornecedorVO.setContato(contatoDAO.consultar("idContato", contatoVO.getIdContato(), contatoVO));
             }
-            
+
             GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
             Endereco enderecoVO = new Endereco();
             enderecoVO.setEnderecoEndereco(endereco);
@@ -140,14 +146,14 @@ public class FornecedorBO {
             if (enderecoDAO.inserir(enderecoVO)) {
                 fornecedorVO.setEndereco(enderecoDAO.consultar("idEndereco", enderecoVO.getIdEndereco(), enderecoVO));
             }
-            
+
             if (fornecedorDAO.inserir(fornecedorVO)) {
                 JOptionPane.showMessageDialog(null, "Fornecedor inserido com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
                 return false;
             }
-        } catch (ParseException | HeadlessException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -191,13 +197,17 @@ public class FornecedorBO {
             Fornecedor fornecedorVO = fornecedorDAO.consultar("idFornecedor", idFornecedor, new Fornecedor());
             fornecedorVO.setNomeFornecedor(fornecedor);
             fornecedorVO.setAtualizacaoFornecedor(new Date());
-            
+
             if (pessoa) {
                 GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
                 Pessoafisica pessoaFisicaVO = buscarPessoaFisica(fornecedorVO.getPessoa().getIdPessoa());
                 pessoaFisicaVO.setCpfPessoaFisica(cpf);
                 pessoaFisicaVO.setRgPessoaFisica(rg);
-                pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+                try {
+                    pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+                } catch (Exception e) {
+                    pessoaFisicaVO.setNascimentoPessoaFisica(new Date());
+                }
                 pessoaFisicaVO.setAtualizacaoPessoaFisica(new Date());
                 pessoaFisicaDAO.atualizar(pessoaFisicaVO);
             } else {
@@ -212,11 +222,15 @@ public class FornecedorBO {
                 pessoaJuridicaVO.setTributoSimplesPessoaJuridica(simples);
                 pessoaJuridicaVO.setImportacaoPessoaJuridica(taxa);
                 pessoaJuridicaVO.setIcmsPessoaJuridica(icms);
-                pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(fundacao));
+                try {
+                    pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(fundacao));
+                } catch (Exception e) {
+                    pessoaJuridicaVO.setFundacaoPessoaJuridica(new Date());
+                }
                 pessoaJuridicaVO.setAtualizacaoPessoaJuridica(new Date());
                 pessoaJuridicaDAO.atualizar(pessoaJuridicaVO);
             }
-            
+
             GenericDAO<Contato> contatoDAO = new GenericDAO<>();
             Contato contatoVO = contatoDAO.consultar("idContato", fornecedorVO.getContato().getIdContato(), new Contato());
             contatoVO.setNomeContato(nome);
@@ -227,7 +241,7 @@ public class FornecedorBO {
             if (contatoDAO.atualizar(contatoVO)) {
                 fornecedorVO.setContato(contatoVO);
             }
-            
+
             GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
             Endereco enderecoVO = enderecoDAO.consultar("idEndereco", fornecedorVO.getEndereco().getIdEndereco(), new Endereco());
             enderecoVO.setEnderecoEndereco(endereco);
@@ -241,14 +255,14 @@ public class FornecedorBO {
             if (enderecoDAO.atualizar(enderecoVO)) {
                 fornecedorVO.setEndereco(enderecoVO);
             }
-            
+
             if (fornecedorDAO.atualizar(fornecedorVO)) {
                 JOptionPane.showMessageDialog(null, "Fornecedor alterado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
                 return false;
             }
-        } catch (ParseException | HeadlessException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }

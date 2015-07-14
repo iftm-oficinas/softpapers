@@ -1101,7 +1101,7 @@ public class ViewCliente extends javax.swing.JDialog {
         btnCadastrar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         clienteBO = new ClienteBO();
-        if (clienteBO.validarCampos(pnCorpo)) {
+        if (clienteBO.validarCampos(pnObrigatorio)) {
             if (clienteBO.inserirCliente(tfNomeCliente.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfSalario.getText(), tfLimite.getText(), tfDesconto.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText(), rbPessoaFisica.isSelected(), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfRazao.getText(), tfNomeFantasia.getText(), tfCnpj.getText(), tfEstadual.getText(), tfMunicipal.getText(), tfSuframa.getText(), rbSimples.isSelected(), rbTaxas.isSelected(), rbIcms.isSelected(), tfFundacao.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
@@ -1115,7 +1115,7 @@ public class ViewCliente extends javax.swing.JDialog {
         btnAlterar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         clienteBO = new ClienteBO();
-        if (clienteBO.validarCampos(pnCorpo)) {
+        if (clienteBO.validarCampos(pnObrigatorio)) {
             if (clienteBO.alterarCliente(clienteVO.getIdCliente(), tfNomeCliente.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfSalario.getText(), tfLimite.getText(), tfDesconto.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText(), rbPessoaFisica.isSelected(), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfRazao.getText(), tfNomeFantasia.getText(), tfCnpj.getText(), tfEstadual.getText(), tfMunicipal.getText(), tfSuframa.getText(), rbSimples.isSelected(), rbTaxas.isSelected(), rbIcms.isSelected(), tfFundacao.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();

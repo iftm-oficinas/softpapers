@@ -274,4 +274,34 @@ public class PainelControleBO {
             return false;
         }
     }
+    
+    /**
+     *
+     * @see Método que exclui um objeto no banco de dados por meio da
+     * GenericDAO.
+     *
+     * @param idCategoria
+     *
+     * @return
+     */
+    public Boolean excluirCategoria(Long idCategoria){
+        try {
+            if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esta Categoria?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+                try {
+                    GenericDAO<Categoria> categoriaDAO = new GenericDAO<>();
+                    Categoria categoriaVO = categoriaDAO.consultar("idCategoria", idCategoria, new Categoria());
+                    categoriaDAO.apagar(categoriaVO);
+                    JOptionPane.showMessageDialog(null, "Categoria excluida com sucesso.", "Secesso", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                } catch (Exception e) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
 }

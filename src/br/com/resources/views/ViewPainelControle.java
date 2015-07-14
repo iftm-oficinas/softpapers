@@ -1,6 +1,7 @@
 package br.com.resources.views;
 
 import br.com.models.bo.PainelControleBO;
+import br.com.models.tabelas.TableModelCategoria;
 import br.com.models.tabelas.TableModelCliente;
 import br.com.models.tabelas.TableModelFornecedor;
 import br.com.models.tabelas.TableModelProduto;
@@ -59,18 +60,21 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         tabelaCliente = new TableModelCliente(painelControleBO.buscarClientes());
         tabelaFornecedor = new TableModelFornecedor(painelControleBO.buscarFornecedores());
         tabelaProduto = new TableModelProduto(painelControleBO.buscarProdutos());
+        tabelaCategoria = new TableModelCategoria(painelControleBO.buscarCategorias());
 
         //Definindo modelo de tabelas para as tabelas.
         tbFuncionarios.setModel(tabelaFuncionario);
         tbClientes.setModel(tabelaCliente);
         tbFornecedores.setModel(tabelaFornecedor);
         tbProdutos.setModel(tabelaProduto);
+        tbCategorias.setModel(tabelaCategoria);
 
         //Definir tabelas como sem seleção.
         tbFuncionarios.clearSelection();
         tbClientes.clearSelection();
         tbFornecedores.clearSelection();
         tbProdutos.clearSelection();
+        tbCategorias.clearSelection();
 
         //Definindo botões Aleterar e Excluir como não habilitado.
         btnVisualizarFuncionario.setEnabled(false);
@@ -85,6 +89,9 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnVisualizarProduto.setEnabled(false);
         btnAlterarProduto.setEnabled(false);
         btnExcluirProduto.setEnabled(false);
+        btnVisualizarCategoria.setEnabled(false);
+        btnAlterarCategoria.setEnabled(false);
+        btnExcluirCategoria.setEnabled(false);
     }
 
     //Componentes padrões do JFrame
@@ -137,6 +144,17 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         lbResultadosProduto = new javax.swing.JLabel();
         spnProdutos = new javax.swing.JScrollPane();
         tbProdutos = new javax.swing.JTable();
+        pnCategoria = new javax.swing.JPanel();
+        btnNovaCategoria = new javax.swing.JButton();
+        btnVisualizarCategoria = new javax.swing.JButton();
+        btnAlterarCategoria = new javax.swing.JButton();
+        btnExcluirCategoria = new javax.swing.JButton();
+        pnBuscarCategoria = new javax.swing.JPanel();
+        tfBuscarCategoria = new javax.swing.JTextField();
+        btnBuscarCategoria = new javax.swing.JButton();
+        lbResultadosCategoria = new javax.swing.JLabel();
+        spnCategorias = new javax.swing.JScrollPane();
+        tbCategorias = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -830,6 +848,182 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
 
         tpnCorpo.addTab("Produto       ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/produto.png")), pnProduto); // NOI18N
 
+        pnCategoria.setBackground(new java.awt.Color(255, 255, 255));
+        pnCategoria.setPreferredSize(new java.awt.Dimension(642, 315));
+
+        btnNovaCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaCategoriaUP.png"))); // NOI18N
+        btnNovaCategoria.setBorder(null);
+        btnNovaCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNovaCategoria.setFocusable(false);
+        btnNovaCategoria.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaCategoriaDOWN.png"))); // NOI18N
+        btnNovaCategoria.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaCategoriaDOWN.png"))); // NOI18N
+        btnNovaCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovaCategoriaActionPerformed(evt);
+            }
+        });
+
+        btnVisualizarCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarUP.png"))); // NOI18N
+        btnVisualizarCategoria.setBorder(null);
+        btnVisualizarCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVisualizarCategoria.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarCategoria.setFocusable(false);
+        btnVisualizarCategoria.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarCategoria.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarCategoriaActionPerformed(evt);
+            }
+        });
+
+        btnAlterarCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
+        btnAlterarCategoria.setBorder(null);
+        btnAlterarCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlterarCategoria.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarCategoria.setFocusable(false);
+        btnAlterarCategoria.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarCategoria.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarCategoriaActionPerformed(evt);
+            }
+        });
+
+        btnExcluirCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirUP.png"))); // NOI18N
+        btnExcluirCategoria.setBorder(null);
+        btnExcluirCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluirCategoria.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
+        btnExcluirCategoria.setFocusable(false);
+        btnExcluirCategoria.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
+        btnExcluirCategoria.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
+        btnExcluirCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirCategoriaActionPerformed(evt);
+            }
+        });
+
+        pnBuscarCategoria.setBackground(new java.awt.Color(255, 255, 255));
+
+        tfBuscarCategoria.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfBuscarCategoria.setForeground(new java.awt.Color(102, 102, 102));
+        tfBuscarCategoria.setText("Pesquisa");
+        tfBuscarCategoria.setPreferredSize(new java.awt.Dimension(59, 19));
+
+        btnBuscarCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarUP.png"))); // NOI18N
+        btnBuscarCategoria.setBorder(null);
+        btnBuscarCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarCategoria.setFocusable(false);
+        btnBuscarCategoria.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
+        btnBuscarCategoria.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnBuscarCategoriaLayout = new javax.swing.GroupLayout(pnBuscarCategoria);
+        pnBuscarCategoria.setLayout(pnBuscarCategoriaLayout);
+        pnBuscarCategoriaLayout.setHorizontalGroup(
+            pnBuscarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnBuscarCategoriaLayout.createSequentialGroup()
+                .addComponent(tfBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnBuscarCategoria)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnBuscarCategoriaLayout.setVerticalGroup(
+            pnBuscarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnBuscarCategoriaLayout.createSequentialGroup()
+                .addComponent(btnBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(pnBuscarCategoriaLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(tfBuscarCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
+        );
+
+        lbResultadosCategoria.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbResultadosCategoria.setForeground(new java.awt.Color(102, 102, 102));
+        lbResultadosCategoria.setText("0 resultados, mostrando todos.");
+
+        spnCategorias.setBackground(new java.awt.Color(255, 255, 255));
+        spnCategorias.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        spnCategorias.setForeground(new java.awt.Color(102, 102, 102));
+        spnCategorias.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        tbCategorias.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tbCategorias.setForeground(new java.awt.Color(102, 102, 102));
+        tbCategorias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tbCategorias.setFocusable(false);
+        tbCategorias.setGridColor(new java.awt.Color(204, 204, 204));
+        tbCategorias.setRowHeight(30);
+        tbCategorias.setSelectionBackground(new java.awt.Color(95, 180, 25));
+        tbCategorias.setShowVerticalLines(false);
+        tbCategorias.getTableHeader().setReorderingAllowed(false);
+        tbCategorias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbCategoriasMouseClicked(evt);
+            }
+        });
+        spnCategorias.setViewportView(tbCategorias);
+        if (tbCategorias.getColumnModel().getColumnCount() > 0) {
+            tbCategorias.getColumnModel().getColumn(2).setHeaderValue("Categoria");
+            tbCategorias.getColumnModel().getColumn(3).setHeaderValue("Fornecedor");
+            tbCategorias.getColumnModel().getColumn(4).setHeaderValue("Valor");
+            tbCategorias.getColumnModel().getColumn(5).setHeaderValue("Quantidade Min");
+            tbCategorias.getColumnModel().getColumn(6).setHeaderValue("Criação");
+            tbCategorias.getColumnModel().getColumn(7).setHeaderValue("Atualização");
+        }
+        cabecalho = tbProdutos.getTableHeader();
+        cabecalho.setFont(new Font("Arial", Font.PLAIN, 12));
+        cabecalho.setForeground(new Color(102,102,102));
+
+        javax.swing.GroupLayout pnCategoriaLayout = new javax.swing.GroupLayout(pnCategoria);
+        pnCategoria.setLayout(pnCategoriaLayout);
+        pnCategoriaLayout.setHorizontalGroup(
+            pnCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnCategoriaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnCategoriaLayout.createSequentialGroup()
+                        .addComponent(lbResultadosCategoria)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCategoriaLayout.createSequentialGroup()
+                        .addComponent(spnCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(pnCategoriaLayout.createSequentialGroup()
+                        .addComponent(btnNovaCategoria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVisualizarCategoria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlterarCategoria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluirCategoria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        pnCategoriaLayout.setVerticalGroup(
+            pnCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCategoriaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnAlterarCategoria, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnExcluirCategoria, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnNovaCategoria))
+                    .addComponent(pnBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisualizarCategoria))
+                .addGap(18, 18, 18)
+                .addComponent(lbResultadosCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spnCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tpnCorpo.addTab("Categoria    ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/categoria.png")), pnCategoria); // NOI18N
+
         jScrollPane1.setViewportView(tpnCorpo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -879,7 +1073,7 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbProdutosMouseClicked
 
     private void btnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProdutoActionPerformed
-        viewProduto = new ViewProduto(viewPrincipal, true);
+        viewProduto = new ViewProduto(viewPrincipal, true, this);
         viewProduto.setVisible(true);
     }//GEN-LAST:event_btnNovoProdutoActionPerformed
 
@@ -973,6 +1167,44 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
 
+    private void tbCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCategoriasMouseClicked
+        if (tbCategorias.getSelectedRow() != -1) {
+            btnVisualizarCategoria.setEnabled(true);
+            btnAlterarCategoria.setEnabled(true);
+            btnExcluirCategoria.setEnabled(true);
+        }
+    }//GEN-LAST:event_tbCategoriasMouseClicked
+
+    private void btnNovaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaCategoriaActionPerformed
+        viewCategoria = new ViewCategoria(viewPrincipal, true, this);
+        viewCategoria.setVisible(true);
+    }//GEN-LAST:event_btnNovaCategoriaActionPerformed
+
+    private void btnVisualizarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarCategoriaActionPerformed
+        if (tbCategorias.getSelectedRow() != -1) {
+            TableModelCategoria modelo = (TableModelCategoria) tbCategorias.getModel();
+            viewCategoria = new ViewCategoria(viewPrincipal, true, this, modelo.getCategoria(tbCategorias.getSelectedRow()), false);
+            viewCategoria.setVisible(true);
+        }
+    }//GEN-LAST:event_btnVisualizarCategoriaActionPerformed
+
+    private void btnAlterarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarCategoriaActionPerformed
+        if (tbCategorias.getSelectedRow() != -1) {
+            TableModelCategoria modelo = (TableModelCategoria) tbCategorias.getModel();
+            viewCategoria = new ViewCategoria(viewPrincipal, true, this, modelo.getCategoria(tbCategorias.getSelectedRow()), true);
+            viewCategoria.setVisible(true);
+        }
+    }//GEN-LAST:event_btnAlterarCategoriaActionPerformed
+
+    private void btnExcluirCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCategoriaActionPerformed
+        if (tbCategorias.getSelectedRow() != -1) {
+            TableModelCategoria modelo = (TableModelCategoria) tbCategorias.getModel();
+            if (painelControleBO.excluirCategoria(modelo.getCategoria(tbCategorias.getSelectedRow()).getIdCategoria())) {
+                atualizarTabelas();
+            }
+        }
+    }//GEN-LAST:event_btnExcluirCategoriaActionPerformed
+
     //Declaração de variáveis(View).
     private ViewPrincipal viewPrincipal;
     private ViewFuncionario viewFuncionario;
@@ -989,50 +1221,62 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
     private TableModelCliente tabelaCliente;
     private TableModelFornecedor tabelaFornecedor;
     private TableModelProduto tabelaProduto;
+    private TableModelCategoria tabelaCategoria;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterarCategoria;
     private javax.swing.JButton btnAlterarCliente;
     private javax.swing.JButton btnAlterarFornecedor;
     private javax.swing.JButton btnAlterarFuncionario;
     private javax.swing.JButton btnAlterarProduto;
+    private javax.swing.JButton btnBuscarCategoria;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarFornecedor;
     private javax.swing.JButton btnBuscarFuncionario;
     private javax.swing.JButton btnBuscarProduto;
+    private javax.swing.JButton btnExcluirCategoria;
     private javax.swing.JButton btnExcluirCliente;
     private javax.swing.JButton btnExcluirFornecedor;
     private javax.swing.JButton btnExcluirFuncionario;
     private javax.swing.JButton btnExcluirProduto;
+    private javax.swing.JButton btnNovaCategoria;
     private javax.swing.JButton btnNovoCliente;
     private javax.swing.JButton btnNovoFornecedor;
     private javax.swing.JButton btnNovoFuncionario;
     private javax.swing.JButton btnNovoProduto;
+    private javax.swing.JButton btnVisualizarCategoria;
     private javax.swing.JButton btnVisualizarCliente;
     private javax.swing.JButton btnVisualizarFornecedor;
     private javax.swing.JButton btnVisualizarFuncionario;
     private javax.swing.JButton btnVisualizarProduto;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbResultadosCategoria;
     private javax.swing.JLabel lbResultadosCliente;
     private javax.swing.JLabel lbResultadosFornecedor;
     private javax.swing.JLabel lbResultadosFuncionario;
     private javax.swing.JLabel lbResultadosProduto;
+    private javax.swing.JPanel pnBuscarCategoria;
     private javax.swing.JPanel pnBuscarCliente;
     private javax.swing.JPanel pnBuscarFornecedor;
     private javax.swing.JPanel pnBuscarFuncionario;
     private javax.swing.JPanel pnBuscarProduto;
+    private javax.swing.JPanel pnCategoria;
     private javax.swing.JPanel pnCliente;
     private javax.swing.JPanel pnFornecedor;
     private javax.swing.JPanel pnFuncionario;
     private javax.swing.JPanel pnProduto;
+    private javax.swing.JScrollPane spnCategorias;
     private javax.swing.JScrollPane spnClientes;
     private javax.swing.JScrollPane spnFornecedores;
     private javax.swing.JScrollPane spnFuncionario;
     private javax.swing.JScrollPane spnProdutos;
+    private javax.swing.JTable tbCategorias;
     private javax.swing.JTable tbClientes;
     private javax.swing.JTable tbFornecedores;
     private javax.swing.JTable tbFuncionarios;
     private javax.swing.table.JTableHeader cabecalho;
     private javax.swing.JTable tbProdutos;
+    private javax.swing.JTextField tfBuscarCategoria;
     private javax.swing.JTextField tfBuscarCliente;
     private javax.swing.JTextField tfBuscarFornecedor;
     private javax.swing.JTextField tfBuscarFuncionario;

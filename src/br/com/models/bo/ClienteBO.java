@@ -9,9 +9,7 @@ import br.com.models.vo.Pessoafisica;
 import br.com.models.vo.Pessoajuridica;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.HeadlessException;
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -70,9 +68,21 @@ public class ClienteBO {
             GenericDAO<Cliente> clienteDAO = new GenericDAO<>();
             Cliente clienteVO = new Cliente();
             clienteVO.setNomeCliente(cliente);
-            clienteVO.setSalarioCliente(new BigDecimal(salario));
-            clienteVO.setLimiteCliente(new BigDecimal(limite));
-            clienteVO.setDescontoCliente(new BigDecimal(desconto));
+            try {
+                clienteVO.setSalarioCliente(new BigDecimal(salario));
+            } catch (Exception e) {
+                clienteVO.setSalarioCliente(new BigDecimal(0));
+            }
+            try {
+                clienteVO.setLimiteCliente(new BigDecimal(limite));
+            } catch (Exception e) {
+                clienteVO.setLimiteCliente(new BigDecimal(0));
+            }
+            try {
+                clienteVO.setDescontoCliente(new BigDecimal(desconto));
+            } catch (Exception e) {
+                clienteVO.setDescontoCliente(new BigDecimal(0));
+            }
             clienteVO.setCriacaoCliente(new Date());
             clienteVO.setAtualizacaoCliente(new Date());
 
@@ -89,7 +99,11 @@ public class ClienteBO {
                 GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
                 pessoaFisicaVO.setCpfPessoaFisica(cpf);
                 pessoaFisicaVO.setRgPessoaFisica(rg);
-                pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+                try {
+                    pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+                } catch (Exception e) {
+                    pessoaFisicaVO.setNascimentoPessoaFisica(new Date());
+                }
                 pessoaFisicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
                 pessoaFisicaVO.setCriacaoPessoaFisica(new Date());
                 pessoaFisicaVO.setAtualizacaoPessoaFisica(new Date());
@@ -114,7 +128,11 @@ public class ClienteBO {
                 pessoaJuridicaVO.setTributoSimplesPessoaJuridica(simples);
                 pessoaJuridicaVO.setImportacaoPessoaJuridica(taxa);
                 pessoaJuridicaVO.setIcmsPessoaJuridica(icms);
-                pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(fundacao));
+                try {
+                    pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(fundacao));
+                } catch (Exception e) {
+                    pessoaJuridicaVO.setFundacaoPessoaJuridica(new Date());
+                }
                 pessoaJuridicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
                 pessoaJuridicaVO.setCriacaoPessoaJuridica(new Date());
                 pessoaJuridicaVO.setAtualizacaoPessoaJuridica(new Date());
@@ -154,7 +172,7 @@ public class ClienteBO {
             } else {
                 return false;
             }
-        } catch (NumberFormatException | ParseException | HeadlessException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -200,9 +218,21 @@ public class ClienteBO {
             GenericDAO<Cliente> clienteDAO = new GenericDAO<>();
             Cliente clienteVO = clienteDAO.consultar("idCliente", idCliente, new Cliente());
             clienteVO.setNomeCliente(cliente);
-            clienteVO.setSalarioCliente(new BigDecimal(salario));
-            clienteVO.setLimiteCliente(new BigDecimal(limite));
-            clienteVO.setDescontoCliente(new BigDecimal(desconto));
+            try {
+                clienteVO.setSalarioCliente(new BigDecimal(salario));
+            } catch (Exception e) {
+                clienteVO.setSalarioCliente(new BigDecimal(0));
+            }
+            try {
+                clienteVO.setLimiteCliente(new BigDecimal(limite));
+            } catch (Exception e) {
+                clienteVO.setLimiteCliente(new BigDecimal(0));
+            }
+            try {
+                clienteVO.setDescontoCliente(new BigDecimal(desconto));
+            } catch (Exception e) {
+                clienteVO.setDescontoCliente(new BigDecimal(0));
+            }
             clienteVO.setAtualizacaoCliente(new Date());
 
             if (pessoa) {
@@ -210,7 +240,11 @@ public class ClienteBO {
                 Pessoafisica pessoaFisicaVO = buscarPessoaFisica(clienteVO.getPessoa().getIdPessoa());
                 pessoaFisicaVO.setCpfPessoaFisica(cpf);
                 pessoaFisicaVO.setRgPessoaFisica(rg);
-                pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+                try {
+                    pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+                } catch (Exception e) {
+                    pessoaFisicaVO.setNascimentoPessoaFisica(new Date());
+                }
                 pessoaFisicaVO.setAtualizacaoPessoaFisica(new Date());
                 pessoaFisicaDAO.atualizar(pessoaFisicaVO);
             } else {
@@ -225,7 +259,11 @@ public class ClienteBO {
                 pessoaJuridicaVO.setTributoSimplesPessoaJuridica(simples);
                 pessoaJuridicaVO.setImportacaoPessoaJuridica(taxa);
                 pessoaJuridicaVO.setIcmsPessoaJuridica(icms);
-                pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(fundacao));
+                try {
+                    pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(fundacao));
+                } catch (Exception e) {
+                    pessoaJuridicaVO.setFundacaoPessoaJuridica(new Date());
+                }
                 pessoaJuridicaVO.setAtualizacaoPessoaJuridica(new Date());
                 pessoaJuridicaDAO.atualizar(pessoaJuridicaVO);
             }
@@ -240,7 +278,7 @@ public class ClienteBO {
             if (contatoDAO.atualizar(contatoVO)) {
                 clienteVO.setContato(contatoVO);
             }
-            
+
             GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
             Endereco enderecoVO = enderecoDAO.consultar("idEndereco", clienteVO.getEndereco().getIdEndereco(), new Endereco());
             enderecoVO.setEnderecoEndereco(endereco);
@@ -261,7 +299,7 @@ public class ClienteBO {
             } else {
                 return false;
             }
-        } catch (NumberFormatException | ParseException | HeadlessException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }

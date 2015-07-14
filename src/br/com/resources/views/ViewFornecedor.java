@@ -1000,7 +1000,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         btnCadastrar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        if (fornecedorBO.validarCampos(pnCorpo)) {
+        if (fornecedorBO.validarCampos(pnObrigatorio)) {
             if (fornecedorBO.inserirFornecedor(tfNomeFornecedor.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText(), rbPessoaFisica.isSelected(), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfRazao.getText(), tfNomeFantasia.getText(), tfCnpj.getText(), tfEstadual.getText(), tfMunicipal.getText(), tfSuframa.getText(), rbSimples.isSelected(), rbTaxas.isSelected(), rbIcms.isSelected(), tfFundacao.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
@@ -1013,7 +1013,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         btnAlterar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        if (fornecedorBO.validarCampos(pnCorpo)) {
+        if (fornecedorBO.validarCampos(pnObrigatorio)) {
             if (fornecedorBO.alterarFornecedor(fornecedorVO.getIdFornecedor(), tfNomeFornecedor.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText(), rbPessoaFisica.isSelected(), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfRazao.getText(), tfNomeFantasia.getText(), tfCnpj.getText(), tfEstadual.getText(), tfMunicipal.getText(), tfSuframa.getText(), rbSimples.isSelected(), rbTaxas.isSelected(), rbIcms.isSelected(), tfFundacao.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();

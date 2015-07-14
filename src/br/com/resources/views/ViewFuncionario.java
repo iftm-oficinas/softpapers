@@ -809,7 +809,7 @@ public class ViewFuncionario extends javax.swing.JDialog {
         btnCadastrar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         funcionarioBO = new FuncionarioBO();
-        if (funcionarioBO.validarCampos(pnCorpo)) {
+        if (funcionarioBO.validarCampos(pnObrigatorio)) {
             if (funcionarioBO.inserirFuncionario(tfNomeFuncionario.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCargo.getText(), tfUsuario.getText(), tfSenha.getText(), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
@@ -823,7 +823,7 @@ public class ViewFuncionario extends javax.swing.JDialog {
         btnAlterar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         funcionarioBO = new FuncionarioBO();
-        if (funcionarioBO.validarCampos(pnCorpo)) {
+        if (funcionarioBO.validarCampos(pnObrigatorio)) {
             if (funcionarioBO.alterarFuncionario(funcionarioVO.getIdFuncionario(), funcionarioVO.getPessoa().getIdPessoa(), funcionarioVO.getContato().getIdContato(), funcionarioVO.getEndereco().getIdEndereco(), tfNomeFuncionario.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCargo.getText(), tfUsuario.getText(), tfSenha.getText(), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();

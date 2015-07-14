@@ -1,5 +1,9 @@
 package br.com.resources.views;
 
+import br.com.models.bo.ProdutoBO;
+import br.com.models.vo.Produto;
+import java.util.ArrayList;
+
 /**
  *
  * @see Classe visual. JDialog que tem como objetivo cadastrar um novo produto.
@@ -10,14 +14,71 @@ public class ViewProduto extends javax.swing.JDialog {
 
     /**
      * @see Construtor padrão.
-     *
      * @param parent
      * @param modal
+     * @param viewPainelControle
      */
-    public ViewProduto(java.awt.Frame parent, boolean modal) {
+    public ViewProduto(java.awt.Frame parent, boolean modal, ViewPainelControle viewPainelControle) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
+        this.produtoBO = new ProdutoBO();
         initComponents();
+        this.viewPainelControle = viewPainelControle;
+        btnAlterar.setVisible(false);
+    }
+
+    /**
+     * @see Construtor padrão.
+     * @param parent
+     * @param modal
+     * @param viewPainelControle
+     * @param produto
+     * @param alterar
+     */
+    public ViewProduto(java.awt.Frame parent, boolean modal, ViewPainelControle viewPainelControle, Produto produto, Boolean alterar) {
+        //Inicialização dos componentes padrões do JDialog.
+        super(parent, modal);
+        this.produtoBO = new ProdutoBO();
+        initComponents();
+        this.viewPainelControle = viewPainelControle;
+        btnAlterar.setVisible(false);
+        this.produtoVO = produto;
+        btnCadastrar.setVisible(false);
+        lbTitulo.setText("Alterar Produto");
+
+        //Definindo os atributos.
+        tfDescricao.setText(produto.getDescricaoProduto());
+        tfCodigo.setText(produto.getCodigoProduto());
+        tfValorCusto.setText(produto.getCustoProduto().toString());
+        tfValorVenda.setText(produto.getVendaProduto().toString());
+        tfMinimo.setText(produto.getMinimoProduto().toString());
+        tfMaximo.setText(produto.getMaximoProduto().toString());
+        tfEstoque.setText(produto.getEstoqueProduto().toString());
+        
+        ArrayList<String> array = new ArrayList<>();
+        String[] Arr = new String[array.size()];
+        array.add(produto.getCategoria().getDescricaoCategoria());
+        Arr = array.toArray(Arr);
+        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(Arr));
+        array.clear();
+        array.add(produto.getFornecedor().getNomeFornecedor());
+        Arr = array.toArray(Arr);
+        cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel(Arr));
+
+        //Definindo como não editável.
+        if (!alterar) {
+            btnAlterar.setVisible(false);
+            lbTitulo.setText("Produto");
+            tfDescricao.setEditable(false);
+            tfCodigo.setEditable(false);
+            tfValorCusto.setEditable(false);
+            tfValorVenda.setEditable(false);
+            tfMinimo.setEditable(false);
+            tfMaximo.setEditable(false);
+            tfEstoque.setEditable(false);
+            cbCategoria.setEnabled(false);
+            cbFornecedor.setEnabled(false);
+        }
     }
 
     //Componentes padrões do JFrame.
@@ -210,6 +271,7 @@ public class ViewProduto extends javax.swing.JDialog {
 
         cbCategoria.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cbCategoria.setForeground(new java.awt.Color(102, 102, 102));
+        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(produtoBO.buscarCategorias()));
         cbCategoria.setFocusable(false);
 
         lbFornecedor.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -222,6 +284,7 @@ public class ViewProduto extends javax.swing.JDialog {
 
         cbFornecedor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cbFornecedor.setForeground(new java.awt.Color(102, 102, 102));
+        cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel(produtoBO.buscarFornecedores()));
         cbFornecedor.setFocusable(false);
 
         javax.swing.GroupLayout pnProdutoLayout = new javax.swing.GroupLayout(pnProduto);
@@ -403,6 +466,14 @@ public class ViewProduto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
 
+    //Declaração de variáveis(View).
+    private final ViewPainelControle viewPainelControle;
+
+    //Declaração de variáveis(Value Object).
+    private Produto produtoVO;
+
+    //Declaração de variáveis(Business Object).
+    private ProdutoBO produtoBO;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

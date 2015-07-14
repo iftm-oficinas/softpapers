@@ -1,6 +1,7 @@
 package br.com.resources.views;
 
 import br.com.models.bo.CategoriaBO;
+import br.com.models.vo.Categoria;
 import java.awt.Cursor;
 
 /**
@@ -14,14 +15,46 @@ public class ViewCategoria extends javax.swing.JDialog {
 
     /**
      * @see Construtor padrão.
-     *
+     * @param viewPainelControle
      * @param parent
      * @param modal
      */
-    public ViewCategoria(java.awt.Frame parent, boolean modal) {
+    public ViewCategoria(java.awt.Frame parent, boolean modal, ViewPainelControle viewPainelControle) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         initComponents();
+        this.viewPainelControle = viewPainelControle;
+        btnAlterar.setVisible(false);
+    }
+
+    /**
+     * @see Construtor padrão.
+     * @param viewPainelControle
+     * @param parent
+     * @param modal
+     * @param categoria
+     * @param alterar
+     */
+    public ViewCategoria(java.awt.Frame parent, boolean modal, ViewPainelControle viewPainelControle, Categoria categoria, Boolean alterar) {
+        //Inicialização dos componentes padrões do JDialog.
+        super(parent, modal);
+        initComponents();
+        this.viewPainelControle = viewPainelControle;
+        btnCadastrar.setVisible(false);
+        this.categoriaVO = categoria;
+        this.categoriaBO = new CategoriaBO();
+        btnCadastrar.setVisible(false);
+        lbTitulo.setText("Alterar Categoria");
+        
+        //Definindo os atributos.
+        tfDescricao.setText(categoriaVO.getDescricaoCategoria());
+        
+        //Definindo como não editável
+        if(!alterar) {
+            lbTitulo.setText("Categoria");
+            btnAlterar.setVisible(false);
+            tfDescricao.setEditable(false);
+        }
     }
 
     //Componentes padrões do JFrame.
@@ -182,6 +215,7 @@ public class ViewCategoria extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         categoriaBO = new CategoriaBO();
         if (categoriaBO.inserirCategoria(tfDescricao.getText())) {
+            viewPainelControle.atualizarTabelas();
             this.dispose();
         }
         this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -189,11 +223,26 @@ public class ViewCategoria extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-
+        btnCadastrar.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        categoriaBO = new CategoriaBO();
+        if (categoriaBO.alterarCategoria(categoriaVO.getIdCategoria(), tfDescricao.getText())) {
+            viewPainelControle.atualizarTabelas();
+            this.dispose();
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    //Declaração de variáveis(View).
+    private final ViewPainelControle viewPainelControle;
+
+    //Declaração de variáveis(Value Object).
+    private Categoria categoriaVO;
 
     //Declaração de variáveis(Business Object).
     private CategoriaBO categoriaBO;
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
