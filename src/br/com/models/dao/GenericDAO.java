@@ -7,29 +7,77 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+/**
+ *
+ * @see @see Classe de objetos de acesso ao banco de dados. Métodos: inserir(),
+ * atualizar(), apagar(), consultar().
+ *
+ * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * @param <T> obejeto genérico que substitui como parâmetro todos os objetos de
+ * valores do sistema.
+ */
 public class GenericDAO<T> {
 
-    private final Session session = (Session) HibernateUtil.getSession();
+    //Declaração da sessão de conexão ao banco de dados.
+    private Session session;
 
+    /**
+     *
+     * @see Método INSERT INTO.
+     *
+     * @param obj objeto de valor que abstrai uma linha do banco.
+     */
     public void inserir(T obj) {
+        session = (Session) HibernateUtil.getSession();
         session.persist(obj);
     }
 
+    /**
+     *
+     * @see Método UPDATE.
+     *
+     * @param obj objeto de valor que abstrai uma linha do banco.
+     */
     public void atualizar(T obj) {
+        session = (Session) HibernateUtil.getSession();
         session.saveOrUpdate(obj);
     }
 
+    /**
+     *
+     * @see Método DELETE.
+     *
+     * @param obj objeto de valor que abstrai uma linha do banco.
+     */
     public void apagar(T obj) {
+        session = (Session) HibernateUtil.getSession();
         session.delete(obj);
     }
 
+    /**
+     *
+     * @see Método SELECT *.
+     *
+     * @param obj objeto de valor que abstrai uma linha do banco.
+     * @return Lista de obejtos do parâmetro.
+     */
     public List<T> consultar(T obj) {
+        session = (Session) HibernateUtil.getSession();
         Criteria c = session.createCriteria(obj.getClass());
         return c.list();
     }
 
-    //consulta pelo id.
+    /**
+     *
+     * @see Método SELECT WHERE(campo = valor).
+     *
+     * @param campo nome da linha no BD.
+     * @param valor valor da linha no BD.
+     * @param obj objeto de valor que abstrai uma linha do banco.
+     * @return obejeto do parâmetro que a consulta localizar.
+     */
     public T consultar(String campo, Long valor, T obj) {
+        session = (Session) HibernateUtil.getSession();
         Criteria c = session.createCriteria(obj.getClass());
         c.add(Restrictions.eq(campo, valor));
         if (c.list() == null) {
@@ -39,8 +87,20 @@ public class GenericDAO<T> {
         }
     }
 
-    //consulta de dois campos.
+    /**
+     *
+     * @see Método SELECT WHERE(campo1 = valor1 AND campo2 = valor2).
+     *
+     * @param campo1 primeiro nome da linha no BD.
+     * @param valor1 primeiro valor da linha no BD.
+     * @param campo2 segundo nome da linha no BD.
+     * @param valor2 segundo valor da linha no BD.
+     * @param obj objeto de valor que abstrai uma linha do banco.
+     * @return obejeto do parâmetro que a consulta localizar quando dos dois
+     * critérios forem verdadeiros.
+     */
     public T consultar(String campo1, String valor1, String campo2, String valor2, T obj) {
+        session = (Session) HibernateUtil.getSession();
         Criteria c = session.createCriteria(obj.getClass());
         c.add(Restrictions.eq(campo1, valor1));
         c.add(Restrictions.eq(campo2, valor2));
@@ -51,8 +111,17 @@ public class GenericDAO<T> {
         }
     }
 
-    //consulta do ultimo resulado.
+    /**
+     *
+     * @see Método SELECT ORDER BY(campo).
+     *
+     * @param campo nome da linha no BD.
+     * @param obj objeto de valor que abstrai uma linha do banco.
+     * @return único resultado de uma lista de objetos do parâmetro ordenados
+     * pelo campo do parâmetro.
+     */
     public T consultar(String campo, T obj) {
+        session = (Session) HibernateUtil.getSession();
         Criteria c = session.createCriteria(obj.getClass());
         c.addOrder(Order.desc(campo));
         c.setMaxResults(1);

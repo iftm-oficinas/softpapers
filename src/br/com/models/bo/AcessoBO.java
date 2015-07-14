@@ -10,9 +10,19 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+/**
+ *
+ * @see Classe de objetos de negócios. Métodos: validarCampos(),
+ * validarAcesso().
+ *
+ * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ */
 public class AcessoBO {
 
+    //Declaração de variáveis(Value Object).
     private Usuario usuarioVO;
+
+    //Declaração de variáveis(Data Access Object).
     private GenericDAO<Usuario> usuarioDAO;
 
     /**
@@ -22,9 +32,9 @@ public class AcessoBO {
      *
      * @param email
      * @param senha
-     * @return
+     * @return Usuario caso ele encontre.
      */
-    public Usuario verificarUsuario(String email, String senha) {
+    public Usuario validarAcesso(String email, String senha) {
         usuarioDAO = new GenericDAO();
         usuarioVO = new Usuario();
         usuarioVO = (Usuario) usuarioDAO.consultar("emailUsuario", email, "senhaUsuario", senha, usuarioVO);
@@ -38,11 +48,11 @@ public class AcessoBO {
 
     /**
      *
-     * @see Método que verifica se os elentos do JPanel são diferentes de null,
-     * usado para verificar se os campos estão preenchidos.
+     * @see Método que verifica se os elementos do JPanel são diferentes de
+     * null, usado para verificar se os campos estão preenchidos pelo usuário.
      *
      * @param panel
-     * @return
+     * @return false caso pelo menos um componente possuir getText() == null.
      */
     public boolean validarCampos(JPanel panel) {
         Component componentes[] = panel.getComponents();
@@ -53,6 +63,8 @@ public class AcessoBO {
                     if (((JTextField) c).getText().trim().equals("")) {
                         ((JTextField) c).setBorder(new LineBorder(Color.RED));
                         erro = false;
+                    } else {
+                        ((JTextField) c).setBorder(new LineBorder(Color.LIGHT_GRAY));
                     }
                 } else {
                     ((JTextField) c).setBorder(new LineBorder(Color.LIGHT_GRAY));
@@ -63,6 +75,8 @@ public class AcessoBO {
                     if (((JPasswordField) c).getText().trim().equals("")) {
                         ((JPasswordField) c).setBorder(new LineBorder(Color.RED));
                         erro = false;
+                    }  else {
+                        ((JPasswordField) c).setBorder(new LineBorder(Color.LIGHT_GRAY));
                     }
                 } else {
                     ((JPasswordField) c).setBorder(new LineBorder(Color.LIGHT_GRAY));

@@ -1,9 +1,19 @@
 package br.com.resources.views;
 
 import java.beans.PropertyVetoException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
+/**
+ *
+ * @see Classe visual. JFrame principal do programa que possui uma barra de menu
+ * (JPanel) que ao clicar em cada opção (JLabel) adiciona um JInternalFrame ao
+ * JDesktopPane.
+ *
+ * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ */
 public class ViewPrincipal extends javax.swing.JFrame {
 
     /**
@@ -20,40 +30,39 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         //Instanciando e adicionando todos os JInternalFrames no JDesktopPane(dpnCorpo) da viewPrincipal.
         dpnCorpo.add(viewAcesso = new ViewAcesso(this));
-        dpnCorpo.add(viewHome = new ViewHome(this));
-        dpnCorpo.add(viewCaixa = new ViewCaixa(this));
-        dpnCorpo.add(viewClientes = new ViewClientes(this));
-        dpnCorpo.add(viewFornecedores = new ViewFornecedores(this));
+        dpnCorpo.add(viewAjuda = new ViewAjuda(this));
+        dpnCorpo.add(viewCaixa = new ViewVendas(this));
         dpnCorpo.add(viewEstoque = new ViewEstoque(this));
         dpnCorpo.add(viewFinanceiro = new ViewFinanceiro(this));
-        dpnCorpo.add(viewRelatorios = new ViewRelatorios(this));
+        dpnCorpo.add(viewHome = new ViewVisaoGeral(this));
         dpnCorpo.add(viewPainelControle = new ViewPainelControle(this));
-        dpnCorpo.add(viewAjuda = new ViewAjuda(this));
-        dpnCorpo.add(viewTermosUso = new ViewTermosUso(this));
         dpnCorpo.add(viewPoliticaPrivacidade = new ViewPoliticaPrivacidade(this));
+        dpnCorpo.add(viewRelatorios = new ViewRelatorios(this));
+        dpnCorpo.add(viewTermosUso = new ViewTermosUso(this));
 
-        ocultarMenu();
-        viewAcesso.setVisible(true);
-        
         //Condição try que tenta definir a viewAcesso com tamanho maximo.
+        viewAcesso.setVisible(true);
         try {
             viewAcesso.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        //Atualiza JLabel (lbVersao).
+        lbVersao.setText("Versão 0." + (new Date().getYear() + 1900) + "." + (new Date().getMonth() + 1) + "." + new Date().getDate() + " Alfa");
+
+        //Define como não visível todos os elementos do menu (pnMenu).
+        ocultarMenu();
     }
 
     /**
      *
      * @see Método que define todos os elementos do menu como não visíveis para
-     * restringir o acesso antes do usuario logar.
+     * restringir o acesso antes do usuario acessar.
      */
     public final void ocultarMenu() {
-        lbHome.setVisible(false);
-        lbCaixa.setVisible(false);
-        lbClientes.setVisible(false);
-        lbClientes.setVisible(false);
-        lbFornecedores.setVisible(false);
+        lbVisaoGeral.setVisible(false);
+        lbVendas.setVisible(false);
         lbEstoque.setVisible(false);
         lbFinanceiro.setVisible(false);
         lbRelatorios.setVisible(false);
@@ -63,18 +72,15 @@ public class ViewPrincipal extends javax.swing.JFrame {
         lbTermosUso.setVisible(false);
         lbPoliticaPrivacidade.setVisible(false);
     }
-    
+
     /**
      *
-     * @see Método que define todos os elementos do menu como visíveis apos
-     * realizar o login.
+     * @see Método que define todos os elementos do menu como visíveis após
+     * realizar o acesso.
      */
     public final void mostrarMenu() {
-        lbHome.setVisible(true);
-        lbCaixa.setVisible(true);
-        lbClientes.setVisible(true);
-        lbClientes.setVisible(true);
-        lbFornecedores.setVisible(true);
+        lbVisaoGeral.setVisible(true);
+        lbVendas.setVisible(true);
         lbEstoque.setVisible(true);
         lbFinanceiro.setVisible(true);
         lbRelatorios.setVisible(true);
@@ -83,29 +89,36 @@ public class ViewPrincipal extends javax.swing.JFrame {
         lbAjuda.setVisible(true);
         lbTermosUso.setVisible(true);
         lbPoliticaPrivacidade.setVisible(true);
+
+        //Define como visível a viewHome que é a padrão ao acessar o programa.
+        LimparDesktop();
+        pnVisaoGeral.setBackground(new java.awt.Color(153, 204, 0));
+        viewHome.setVisible(true);
+        try {
+            viewHome.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
     /**
-     * @see Método que define como não visivel todos os JInternalFrames,
-     * utilizado sempre que uma nova view for definida como visível.
+     * @see Método que retorna a aparencia da viewPrincipal ao seu padrão e
+     * define como não visivel todos os JInternalFrames, utilizado sempre que
+     * uma nova view for definida como visível.
      */
     public final void LimparDesktop() {
         viewAcesso.setVisible(false);
-        viewHome.setVisible(false);
+        viewAjuda.setVisible(false);
         viewCaixa.setVisible(false);
-        viewClientes.setVisible(false);
-        viewFornecedores.setVisible(false);
         viewEstoque.setVisible(false);
         viewFinanceiro.setVisible(false);
-        viewRelatorios.setVisible(false);
+        viewHome.setVisible(false);
         viewPainelControle.setVisible(false);
-        viewAjuda.setVisible(false);
-        viewTermosUso.setVisible(false);
         viewPoliticaPrivacidade.setVisible(false);
-        pnHome.setBackground(new java.awt.Color(51, 51, 51));
-        pnCaixa.setBackground(new java.awt.Color(51, 51, 51));
-        pnClientes.setBackground(new java.awt.Color(51, 51, 51));
-        pnFornecedores.setBackground(new java.awt.Color(51, 51, 51));
+        viewRelatorios.setVisible(false);
+        viewTermosUso.setVisible(false);
+        pnVisaoGeral.setBackground(new java.awt.Color(51, 51, 51));
+        pnVendas.setBackground(new java.awt.Color(51, 51, 51));
         pnEstoque.setBackground(new java.awt.Color(51, 51, 51));
         pnFinanceiro.setBackground(new java.awt.Color(51, 51, 51));
         pnRelatorios.setBackground(new java.awt.Color(51, 51, 51));
@@ -121,25 +134,21 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         pnMenu = new javax.swing.JPanel();
-        pnHome = new javax.swing.JPanel();
-        lbHome = new javax.swing.JLabel();
-        pnCaixa = new javax.swing.JPanel();
-        lbCaixa = new javax.swing.JLabel();
-        pnClientes = new javax.swing.JPanel();
-        lbClientes = new javax.swing.JLabel();
-        pnFornecedores = new javax.swing.JPanel();
-        lbFornecedores = new javax.swing.JLabel();
+        pnVisaoGeral = new javax.swing.JPanel();
+        lbVisaoGeral = new javax.swing.JLabel();
+        lbNull = new javax.swing.JLabel();
+        pnPainelControle = new javax.swing.JPanel();
+        lbPainelControle = new javax.swing.JLabel();
+        pnSair = new javax.swing.JPanel();
+        lbSair = new javax.swing.JLabel();
+        pnVendas = new javax.swing.JPanel();
+        lbVendas = new javax.swing.JLabel();
         pnEstoque = new javax.swing.JPanel();
         lbEstoque = new javax.swing.JLabel();
         pnFinanceiro = new javax.swing.JPanel();
         lbFinanceiro = new javax.swing.JLabel();
         pnRelatorios = new javax.swing.JPanel();
         lbRelatorios = new javax.swing.JLabel();
-        lbNull = new javax.swing.JLabel();
-        pnPainelControle = new javax.swing.JPanel();
-        lbPainelControle = new javax.swing.JLabel();
-        pnSair = new javax.swing.JPanel();
-        lbSair = new javax.swing.JLabel();
         pnCorpo = new javax.swing.JPanel();
         lbFundoEsquerda = new javax.swing.JLabel();
         dpnCorpo = new javax.swing.JDesktopPane();
@@ -156,128 +165,134 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         pnMenu.setBackground(new java.awt.Color(51, 51, 51));
 
-        pnHome.setBackground(new java.awt.Color(51, 51, 51));
+        pnVisaoGeral.setBackground(new java.awt.Color(51, 51, 51));
 
-        lbHome.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbHome.setForeground(new java.awt.Color(255, 255, 255));
-        lbHome.setText("HOME");
-        lbHome.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbVisaoGeral.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lbVisaoGeral.setForeground(new java.awt.Color(255, 255, 255));
+        lbVisaoGeral.setText("VISÃO GERAL");
+        lbVisaoGeral.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbHomeMouseClicked(evt);
+                lbVisaoGeralMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbHomeMouseEntered(evt);
+                lbVisaoGeralMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbHomeMouseExited(evt);
+                lbVisaoGeralMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout pnHomeLayout = new javax.swing.GroupLayout(pnHome);
-        pnHome.setLayout(pnHomeLayout);
-        pnHomeLayout.setHorizontalGroup(
-            pnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnHomeLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnVisaoGeralLayout = new javax.swing.GroupLayout(pnVisaoGeral);
+        pnVisaoGeral.setLayout(pnVisaoGeralLayout);
+        pnVisaoGeralLayout.setHorizontalGroup(
+            pnVisaoGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnVisaoGeralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbHome)
+                .addComponent(lbVisaoGeral)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnHomeLayout.setVerticalGroup(
-            pnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+        pnVisaoGeralLayout.setVerticalGroup(
+            pnVisaoGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbVisaoGeral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
         );
 
-        pnCaixa.setBackground(new java.awt.Color(51, 51, 51));
+        lbNull.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lbNull.setForeground(new java.awt.Color(51, 51, 51));
+        lbNull.setText("NULL");
 
-        lbCaixa.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbCaixa.setForeground(new java.awt.Color(255, 255, 255));
-        lbCaixa.setText("CAIXA");
-        lbCaixa.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnPainelControle.setBackground(new java.awt.Color(51, 51, 51));
+
+        lbPainelControle.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lbPainelControle.setForeground(new java.awt.Color(255, 255, 255));
+        lbPainelControle.setText("PAINEL DE CONTROLE");
+        lbPainelControle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbCaixaMouseClicked(evt);
+                lbPainelControleMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbCaixaMouseEntered(evt);
+                lbPainelControleMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbCaixaMouseExited(evt);
+                lbPainelControleMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout pnCaixaLayout = new javax.swing.GroupLayout(pnCaixa);
-        pnCaixa.setLayout(pnCaixaLayout);
-        pnCaixaLayout.setHorizontalGroup(
-            pnCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCaixaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbCaixa)
-                .addContainerGap())
-        );
-        pnCaixaLayout.setVerticalGroup(
-            pnCaixaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-        );
-
-        pnClientes.setBackground(new java.awt.Color(51, 51, 51));
-
-        lbClientes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbClientes.setForeground(new java.awt.Color(255, 255, 255));
-        lbClientes.setText("CLIENTES");
-        lbClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbClientesMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbClientesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbClientesMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnClientesLayout = new javax.swing.GroupLayout(pnClientes);
-        pnClientes.setLayout(pnClientesLayout);
-        pnClientesLayout.setHorizontalGroup(
-            pnClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnClientesLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnPainelControleLayout = new javax.swing.GroupLayout(pnPainelControle);
+        pnPainelControle.setLayout(pnPainelControleLayout);
+        pnPainelControleLayout.setHorizontalGroup(
+            pnPainelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnPainelControleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbClientes)
+                .addComponent(lbPainelControle)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnClientesLayout.setVerticalGroup(
-            pnClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+        pnPainelControleLayout.setVerticalGroup(
+            pnPainelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnPainelControleLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lbPainelControle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        pnFornecedores.setBackground(new java.awt.Color(51, 51, 51));
+        pnSair.setBackground(new java.awt.Color(51, 51, 51));
 
-        lbFornecedores.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbFornecedores.setForeground(new java.awt.Color(255, 255, 255));
-        lbFornecedores.setText("FORNECEDORES");
-        lbFornecedores.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbSair.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lbSair.setForeground(new java.awt.Color(255, 255, 255));
+        lbSair.setText("SAIR");
+        lbSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbFornecedoresMouseClicked(evt);
+                lbSairMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbFornecedoresMouseEntered(evt);
+                lbSairMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbFornecedoresMouseExited(evt);
+                lbSairMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout pnFornecedoresLayout = new javax.swing.GroupLayout(pnFornecedores);
-        pnFornecedores.setLayout(pnFornecedoresLayout);
-        pnFornecedoresLayout.setHorizontalGroup(
-            pnFornecedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFornecedoresLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnSairLayout = new javax.swing.GroupLayout(pnSair);
+        pnSair.setLayout(pnSairLayout);
+        pnSairLayout.setHorizontalGroup(
+            pnSairLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnSairLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbSair)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnSairLayout.setVerticalGroup(
+            pnSairLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+        );
+
+        pnVendas.setBackground(new java.awt.Color(51, 51, 51));
+
+        lbVendas.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lbVendas.setForeground(new java.awt.Color(255, 255, 255));
+        lbVendas.setText("VENDAS");
+        lbVendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbVendasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbVendasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbVendasMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnVendasLayout = new javax.swing.GroupLayout(pnVendas);
+        pnVendas.setLayout(pnVendasLayout);
+        pnVendasLayout.setHorizontalGroup(
+            pnVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnVendasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbFornecedores)
+                .addComponent(lbVendas)
                 .addContainerGap())
         );
-        pnFornecedoresLayout.setVerticalGroup(
-            pnFornecedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbFornecedores, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+        pnVendasLayout.setVerticalGroup(
+            pnVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
         );
 
         pnEstoque.setBackground(new java.awt.Color(51, 51, 51));
@@ -373,87 +388,15 @@ public class ViewPrincipal extends javax.swing.JFrame {
             .addComponent(lbRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
         );
 
-        lbNull.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbNull.setForeground(new java.awt.Color(51, 51, 51));
-        lbNull.setText("NULL");
-
-        pnPainelControle.setBackground(new java.awt.Color(51, 51, 51));
-
-        lbPainelControle.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbPainelControle.setForeground(new java.awt.Color(255, 255, 255));
-        lbPainelControle.setText("PAINEL DE CONTROLE");
-        lbPainelControle.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbPainelControleMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbPainelControleMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbPainelControleMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnPainelControleLayout = new javax.swing.GroupLayout(pnPainelControle);
-        pnPainelControle.setLayout(pnPainelControleLayout);
-        pnPainelControleLayout.setHorizontalGroup(
-            pnPainelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnPainelControleLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbPainelControle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnPainelControleLayout.setVerticalGroup(
-            pnPainelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnPainelControleLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lbPainelControle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        pnSair.setBackground(new java.awt.Color(51, 51, 51));
-
-        lbSair.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbSair.setForeground(new java.awt.Color(255, 255, 255));
-        lbSair.setText("SAIR");
-        lbSair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbSairMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbSairMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbSairMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnSairLayout = new javax.swing.GroupLayout(pnSair);
-        pnSair.setLayout(pnSairLayout);
-        pnSairLayout.setHorizontalGroup(
-            pnSairLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnSairLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbSair)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnSairLayout.setVerticalGroup(
-            pnSairLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout pnMenuLayout = new javax.swing.GroupLayout(pnMenu);
         pnMenu.setLayout(pnMenuLayout);
         pnMenuLayout.setHorizontalGroup(
             pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnMenuLayout.createSequentialGroup()
                 .addGap(180, 180, 180)
-                .addComponent(pnHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnVisaoGeral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -473,17 +416,15 @@ public class ViewPrincipal extends javax.swing.JFrame {
             .addGroup(pnMenuLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnPainelControle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnPainelControle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(pnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnVisaoGeral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lbNull, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pnCorpo.setBackground(new java.awt.Color(153, 153, 153));
@@ -501,7 +442,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
         );
         dpnCorpoLayout.setVerticalGroup(
             dpnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
+            .addGap(0, 316, Short.MAX_VALUE)
         );
 
         lbFundoDireita.setBackground(new java.awt.Color(255, 255, 255));
@@ -513,7 +454,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCorpoLayout.createSequentialGroup()
                 .addComponent(lbFundoEsquerda)
+                .addGap(0, 0, 0)
                 .addComponent(dpnCorpo)
+                .addGap(0, 0, 0)
                 .addComponent(lbFundoDireita))
         );
         pnCorpoLayout.setVerticalGroup(
@@ -621,14 +564,14 @@ public class ViewPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnRodape, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 1145, Short.MAX_VALUE)
+            .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(pnRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -638,106 +581,60 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * 
-     * @ see Métodos que realizarão a interação entre todos os JInternalFrames 
-     * e o JDesktopPane da ViewPrincipal; MouseClicked chama a função 
-     * LimparDesktop e define como visível uma nova view no JDesktopPane; 
-     * MouseEntered acontece ao passar o mouse pela label, muda a cor da mesma; 
+     *
+     * @see Métodos que realizarão a interação entre todos os JInternalFrames e
+     * o JDesktopPane da ViewPrincipal, MouseClicked chama a função
+     * LimparDesktop e define como visível uma nova view no JDesktopPane.
+     * MouseEntered acontece ao passar o mouse pela label, muda a cor da mesma.
      * MouseExited acontece ao retirar o mouse da label, retorna a cor padrão.
      *
      * @param evt
      */
-    private void lbHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHomeMouseClicked
+    private void lbVisaoGeralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVisaoGeralMouseClicked
         LimparDesktop();
-        pnHome.setBackground(new java.awt.Color(153, 204, 0));
+        pnVisaoGeral.setBackground(new java.awt.Color(153, 204, 0));
         viewHome.setVisible(true);
         try {
             viewHome.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_lbHomeMouseClicked
+    }//GEN-LAST:event_lbVisaoGeralMouseClicked
 
-    private void lbHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHomeMouseEntered
+    private void lbVisaoGeralMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVisaoGeralMouseEntered
         if (viewHome.isVisible() == false) {
-            pnHome.setBackground(new java.awt.Color(00, 00, 00));
+            pnVisaoGeral.setBackground(new java.awt.Color(00, 00, 00));
         }
-    }//GEN-LAST:event_lbHomeMouseEntered
+    }//GEN-LAST:event_lbVisaoGeralMouseEntered
 
-    private void lbHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHomeMouseExited
+    private void lbVisaoGeralMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVisaoGeralMouseExited
         if (viewHome.isVisible() == false) {
-            pnHome.setBackground(new java.awt.Color(51, 51, 51));
+            pnVisaoGeral.setBackground(new java.awt.Color(51, 51, 51));
         }
-    }//GEN-LAST:event_lbHomeMouseExited
+    }//GEN-LAST:event_lbVisaoGeralMouseExited
 
-    private void lbCaixaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbCaixaMouseClicked
+    private void lbVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVendasMouseClicked
         LimparDesktop();
-        pnCaixa.setBackground(new java.awt.Color(153, 204, 0));
+        pnVendas.setBackground(new java.awt.Color(153, 204, 0));
         viewCaixa.setVisible(true);
         try {
             viewCaixa.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_lbCaixaMouseClicked
+    }//GEN-LAST:event_lbVendasMouseClicked
 
-    private void lbCaixaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbCaixaMouseEntered
+    private void lbVendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVendasMouseEntered
         if (viewCaixa.isVisible() == false) {
-            pnCaixa.setBackground(new java.awt.Color(00, 00, 00));
+            pnVendas.setBackground(new java.awt.Color(00, 00, 00));
         }
-    }//GEN-LAST:event_lbCaixaMouseEntered
+    }//GEN-LAST:event_lbVendasMouseEntered
 
-    private void lbCaixaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbCaixaMouseExited
+    private void lbVendasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVendasMouseExited
         if (viewCaixa.isVisible() == false) {
-            pnCaixa.setBackground(new java.awt.Color(51, 51, 51));
+            pnVendas.setBackground(new java.awt.Color(51, 51, 51));
         }
-    }//GEN-LAST:event_lbCaixaMouseExited
-
-    private void lbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbClientesMouseClicked
-        LimparDesktop();
-        pnClientes.setBackground(new java.awt.Color(153, 204, 0));
-        viewClientes.setVisible(true);
-        try {
-            viewClientes.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_lbClientesMouseClicked
-
-    private void lbClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbClientesMouseEntered
-        if (viewClientes.isVisible() == false) {
-            pnClientes.setBackground(new java.awt.Color(00, 00, 00));
-        }
-    }//GEN-LAST:event_lbClientesMouseEntered
-
-    private void lbClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbClientesMouseExited
-        if (viewClientes.isVisible() == false) {
-            pnClientes.setBackground(new java.awt.Color(51, 51, 51));
-        }
-    }//GEN-LAST:event_lbClientesMouseExited
-
-    private void lbFornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbFornecedoresMouseClicked
-        LimparDesktop();
-        pnFornecedores.setBackground(new java.awt.Color(153, 204, 0));
-        viewFornecedores.setVisible(true);
-        try {
-            viewFornecedores.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_lbFornecedoresMouseClicked
-
-    private void lbFornecedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbFornecedoresMouseEntered
-        if (viewFornecedores.isVisible() == false) {
-            pnFornecedores.setBackground(new java.awt.Color(00, 00, 00));
-        }
-    }//GEN-LAST:event_lbFornecedoresMouseEntered
-
-    private void lbFornecedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbFornecedoresMouseExited
-        if (viewFornecedores.isVisible() == false) {
-            pnFornecedores.setBackground(new java.awt.Color(51, 51, 51));
-        }
-    }//GEN-LAST:event_lbFornecedoresMouseExited
+    }//GEN-LAST:event_lbVendasMouseExited
 
     private void lbEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbEstoqueMouseClicked
         LimparDesktop();
@@ -832,13 +729,15 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_lbPainelControleMouseExited
 
     private void lbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSairMouseClicked
-        LimparDesktop();
-        ocultarMenu();
-        viewAcesso.setVisible(true);
-        try {
-            viewAcesso.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Alerta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            LimparDesktop();
+            ocultarMenu();
+            viewAcesso.setVisible(true);
+            try {
+                viewAcesso.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_lbSairMouseClicked
 
@@ -918,8 +817,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
     //FIM dos Métodos de interação entre todos os JInternalFrames e o JDesktopPane da ViewPrincipal.
 
     /**
-     * Método principal da classe, carrega lookAndFeel padrão como Windows e
-     * define a ViewPrincipal visivel.
+     *
+     * @see Método principal da classe, carrega lookAndFeel padrão como Windows
+     * e define a ViewPrincipal visível.
      *
      * @param args
      */
@@ -941,48 +841,42 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
     //Declaração de variáveis(Views).
     private ViewAcesso viewAcesso;
-    private ViewHome viewHome;
-    private ViewCaixa viewCaixa;
-    private ViewClientes viewClientes;
-    private ViewFornecedores viewFornecedores;
+    private ViewAjuda viewAjuda;
+    private ViewVendas viewCaixa;
     private ViewEstoque viewEstoque;
     private ViewFinanceiro viewFinanceiro;
-    private ViewRelatorios viewRelatorios;
+    private ViewVisaoGeral viewHome;
     private ViewPainelControle viewPainelControle;
-    private ViewAjuda viewAjuda;
-    private ViewTermosUso viewTermosUso;
     private ViewPoliticaPrivacidade viewPoliticaPrivacidade;
+    private ViewRelatorios viewRelatorios;
+    private ViewTermosUso viewTermosUso;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dpnCorpo;
     private javax.swing.JLabel lbAjuda;
-    private javax.swing.JLabel lbCaixa;
-    private javax.swing.JLabel lbClientes;
     private javax.swing.JLabel lbDireitos;
     private javax.swing.JLabel lbEstoque;
     private javax.swing.JLabel lbFinanceiro;
-    private javax.swing.JLabel lbFornecedores;
     private javax.swing.JLabel lbFundoDireita;
     private javax.swing.JLabel lbFundoEsquerda;
-    private javax.swing.JLabel lbHome;
     private javax.swing.JLabel lbNull;
     private javax.swing.JLabel lbPainelControle;
     private javax.swing.JLabel lbPoliticaPrivacidade;
     private javax.swing.JLabel lbRelatorios;
     private javax.swing.JLabel lbSair;
     private javax.swing.JLabel lbTermosUso;
+    private javax.swing.JLabel lbVendas;
     private javax.swing.JLabel lbVersao;
-    private javax.swing.JPanel pnCaixa;
-    private javax.swing.JPanel pnClientes;
+    private javax.swing.JLabel lbVisaoGeral;
     private javax.swing.JPanel pnCorpo;
     private javax.swing.JPanel pnEstoque;
     private javax.swing.JPanel pnFinanceiro;
-    private javax.swing.JPanel pnFornecedores;
-    private javax.swing.JPanel pnHome;
     private javax.swing.JPanel pnMenu;
     private javax.swing.JPanel pnPainelControle;
     private javax.swing.JPanel pnRelatorios;
     private javax.swing.JPanel pnRodape;
     private javax.swing.JPanel pnSair;
+    private javax.swing.JPanel pnVendas;
+    private javax.swing.JPanel pnVisaoGeral;
     // End of variables declaration//GEN-END:variables
 }
