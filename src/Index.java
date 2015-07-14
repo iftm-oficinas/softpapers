@@ -2,12 +2,14 @@
 import br.com.resources.views.ViewPrincipal;
 
 /**
- *
+ * 
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class Index {
 
     /**
+     * Classe utilizada para iniciar o programa, seleciona o look and feal e
+     * abre a tela principal.
      * @param args the command line arguments
      */
     public static void main(String[] args) {
@@ -23,6 +25,7 @@ public class Index {
             java.util.logging.Logger.getLogger(ViewPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
+        //Instancia o ViewPrincipal para setar sua visibilidade como verdadeira.
         ViewPrincipal viewPrincipal = new ViewPrincipal();
         viewPrincipal.setVisible(true);
     }

@@ -24,7 +24,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
         lbEmail = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
         lbSenha = new javax.swing.JLabel();
-        tfSenha = new javax.swing.JTextField();
+        pfSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -46,8 +46,8 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
         lbSenha.setForeground(new java.awt.Color(102, 102, 102));
         lbSenha.setText("Senha");
 
-        tfSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfSenha.setForeground(new java.awt.Color(102, 102, 102));
+        pfSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        pfSenha.setForeground(new java.awt.Color(102, 102, 102));
 
         btnEntrar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(102, 102, 102));
@@ -66,13 +66,13 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfEmail)
-                    .addComponent(tfSenha)
+                    .addComponent(btnEntrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                     .addGroup(pnAcessoLayout.createSequentialGroup()
                         .addGroup(pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbEmail)
                             .addComponent(lbSenha))
-                        .addGap(0, 236, Short.MAX_VALUE))
-                    .addComponent(btnEntrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(pfSenha))
                 .addContainerGap())
         );
         pnAcessoLayout.setVerticalGroup(
@@ -85,10 +85,10 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,7 +112,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        controllerPrincipal.realizarAcesso(tfEmail.getText(), tfSenha.getText());
+        controllerPrincipal.realizarAcesso(tfEmail.getText(), pfSenha.getText());
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private ViewPrincipal viewPrincipal;
@@ -122,8 +122,8 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbSenha;
+    private javax.swing.JPasswordField pfSenha;
     private javax.swing.JPanel pnAcesso;
     private javax.swing.JTextField tfEmail;
-    private javax.swing.JTextField tfSenha;
     // End of variables declaration//GEN-END:variables
 }
