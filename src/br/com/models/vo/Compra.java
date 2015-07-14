@@ -1,5 +1,5 @@
 package br.com.models.vo;
-// Generated 24/06/2015 14:14:02 by Hibernate Tools 4.3.1
+// Generated 25/06/2015 16:48:08 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -32,26 +32,26 @@ public class Compra  implements java.io.Serializable {
      private Long idCompra;
      private Fornecedor fornecedor;
      private Funcionario funcionario;
-     private Item item;
      private BigDecimal valorCompra;
      private Integer parcelasCompra;
      private Date vencimentoCompra;
      private Date criacaoCompra;
      private Date atualizacaoCompra;
+     private Set<Itemcompra> itemcompras = new HashSet<Itemcompra>(0);
      private Set<Pagamento> pagamentos = new HashSet<Pagamento>(0);
 
     public Compra() {
     }
 
-    public Compra(Fornecedor fornecedor, Funcionario funcionario, Item item, BigDecimal valorCompra, Integer parcelasCompra, Date vencimentoCompra, Date criacaoCompra, Date atualizacaoCompra, Set<Pagamento> pagamentos) {
+    public Compra(Fornecedor fornecedor, Funcionario funcionario, BigDecimal valorCompra, Integer parcelasCompra, Date vencimentoCompra, Date criacaoCompra, Date atualizacaoCompra, Set<Itemcompra> itemcompras, Set<Pagamento> pagamentos) {
        this.fornecedor = fornecedor;
        this.funcionario = funcionario;
-       this.item = item;
        this.valorCompra = valorCompra;
        this.parcelasCompra = parcelasCompra;
        this.vencimentoCompra = vencimentoCompra;
        this.criacaoCompra = criacaoCompra;
        this.atualizacaoCompra = atualizacaoCompra;
+       this.itemcompras = itemcompras;
        this.pagamentos = pagamentos;
     }
    
@@ -85,16 +85,6 @@ public class Compra  implements java.io.Serializable {
     
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="itemCompra")
-    public Item getItem() {
-        return this.item;
-    }
-    
-    public void setItem(Item item) {
-        this.item = item;
     }
 
     
@@ -145,6 +135,15 @@ public class Compra  implements java.io.Serializable {
     
     public void setAtualizacaoCompra(Date atualizacaoCompra) {
         this.atualizacaoCompra = atualizacaoCompra;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="compra")
+    public Set<Itemcompra> getItemcompras() {
+        return this.itemcompras;
+    }
+    
+    public void setItemcompras(Set<Itemcompra> itemcompras) {
+        this.itemcompras = itemcompras;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="compra")

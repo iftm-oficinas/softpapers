@@ -1,7 +1,12 @@
 package br.com.resources.views;
 
 import br.com.models.bo.VendaBO;
+import br.com.models.tabelas.TableModelItemVenda;
+import br.com.models.tabelas.TableModelRecebimento;
+import br.com.models.vo.Itemvenda;
+import br.com.models.vo.Recebimento;
 import br.com.models.vo.Venda;
+import java.util.ArrayList;
 
 /**
  * @see Classe visual. JDialog que tem como objetivo cadastrar uma nova venda.
@@ -19,10 +24,15 @@ public class ViewVenda extends javax.swing.JDialog {
     public ViewVenda(java.awt.Frame parent, boolean modal, ViewPrincipal viewPrincipal, ViewVendas viewVendas) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
-        initComponents();
         this.viewPrincipal = viewPrincipal;
         this.viewVendas = viewVendas;
         this.vendaBO = new VendaBO();
+        this.itens = new ArrayList<>();
+        initComponents();
+        rbAVista.doClick();
+        btnAlterar.setVisible(false);
+
+        atualizarTabelas();
     }
 
     /**
@@ -37,12 +47,49 @@ public class ViewVenda extends javax.swing.JDialog {
     public ViewVenda(java.awt.Frame parent, boolean modal, ViewPrincipal viewPrincipal, ViewVendas viewVendas, Venda venda, Boolean alterar) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
-        initComponents();
         this.viewPrincipal = viewPrincipal;
         this.viewVendas = viewVendas;
         this.vendaBO = new VendaBO();
+        this.itens = new ArrayList<>();
+        initComponents();
+        rbAVista.doClick();
+        btnFinalizarVenda.setVisible(false);
+
+        atualizarTabelas();
     }
-    
+
+    /**
+     * @see Método que Instancia a classe PainelControleBO para realizar buscas
+     * de Objetos de valores que compoem os modelos de tabelas.
+     */
+    public final void atualizarTabelas() {
+        //Inicialização dos modelos de tabelas.
+        vendaBO = new VendaBO();
+        try {
+            tabelaItens = new TableModelItemVenda(itens);
+        } catch (Exception e) {
+            tabelaItens = new TableModelItemVenda();
+        }
+        try {
+            tabelaRecebimento = new TableModelRecebimento(recebimentos);
+        } catch (Exception e) {
+            tabelaRecebimento = new TableModelRecebimento();
+        }
+
+        //Definindo modelo de tabelas para as tabelas.
+        tbItens.setModel(tabelaItens);
+        tbRecebimentos.setModel(tabelaRecebimento);
+
+        //Definir tabelas como sem seleção.
+        tbItens.clearSelection();
+        tbRecebimentos.clearSelection();
+
+        //Definindo botões Aleterar e Excluir como não habilitado.
+        btnVisualizarItem.setEnabled(false);
+        btnAlterarItem.setEnabled(false);
+        btnExcluirItem.setEnabled(false);
+    }
+
     //Componentes padrões do JFrame.
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -133,6 +180,7 @@ public class ViewVenda extends javax.swing.JDialog {
 
         cbCliente.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cbCliente.setForeground(new java.awt.Color(102, 102, 102));
+        cbCliente.setModel(new javax.swing.DefaultComboBoxModel(vendaBO.buscarNomeClientes()));
         cbCliente.setFocusable(false);
         cbCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,12 +211,12 @@ public class ViewVenda extends javax.swing.JDialog {
 
         pnPedido.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnNovoItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaVendaUP.png"))); // NOI18N
+        btnNovoItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoItemUP.png"))); // NOI18N
         btnNovoItem.setBorder(null);
         btnNovoItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNovoItem.setFocusable(false);
-        btnNovoItem.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaVendaDOWN.png"))); // NOI18N
-        btnNovoItem.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaVendaDOWN.png"))); // NOI18N
+        btnNovoItem.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoItemDOWN.png"))); // NOI18N
+        btnNovoItem.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoItemDOWN.png"))); // NOI18N
         btnNovoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovoItemActionPerformed(evt);
@@ -246,7 +294,7 @@ public class ViewVenda extends javax.swing.JDialog {
 
         lbDesconto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbDesconto.setForeground(new java.awt.Color(102, 102, 102));
-        lbDesconto.setText("Desconto (-)");
+        lbDesconto.setText("Desconto %");
 
         tfDesconto.setEditable(false);
         tfDesconto.setForeground(new java.awt.Color(102, 102, 102));
@@ -306,7 +354,7 @@ public class ViewVenda extends javax.swing.JDialog {
                         .addComponent(btnExcluirItem))
                     .addComponent(btnVisualizarItem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spnItens, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                .addComponent(spnItens, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfValorProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,35 +432,6 @@ public class ViewVenda extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout pnAPrazoLayout = new javax.swing.GroupLayout(pnAPrazo);
-        pnAPrazo.setLayout(pnAPrazoLayout);
-        pnAPrazoLayout.setHorizontalGroup(
-            pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnAPrazoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbVencimento)
-                    .addComponent(lbParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfVencimento)
-                    .addComponent(spnParcelas, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnAPrazoLayout.setVerticalGroup(
-            pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAPrazoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spnParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbParcelas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbVencimento))
-                .addContainerGap())
-        );
-
         spnRecebimentos.setBackground(new java.awt.Color(255, 255, 255));
         spnRecebimentos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         spnRecebimentos.setForeground(new java.awt.Color(102, 102, 102));
@@ -441,9 +460,43 @@ public class ViewVenda extends javax.swing.JDialog {
             }
         });
         spnRecebimentos.setViewportView(tbRecebimentos);
-        cabecalho = tbItens.getTableHeader();
+        cabecalho = tbRecebimentos.getTableHeader();
         cabecalho.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 12));
         cabecalho.setForeground(new java.awt.Color(102,102,102));
+
+        javax.swing.GroupLayout pnAPrazoLayout = new javax.swing.GroupLayout(pnAPrazo);
+        pnAPrazo.setLayout(pnAPrazoLayout);
+        pnAPrazoLayout.setHorizontalGroup(
+            pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnAPrazoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnAPrazoLayout.createSequentialGroup()
+                        .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbVencimento)
+                            .addComponent(lbParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfVencimento)
+                            .addComponent(spnParcelas, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
+                    .addComponent(spnRecebimentos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnAPrazoLayout.setVerticalGroup(
+            pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAPrazoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbParcelas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbVencimento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(spnRecebimentos, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
 
         pnAVista.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -531,14 +584,10 @@ public class ViewVenda extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(pnPagamentoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnPagamentoLayout.createSequentialGroup()
-                        .addComponent(rbAVista)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbAPrazo)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(spnRecebimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(rbAVista)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbAPrazo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnPagamentoLayout.setVerticalGroup(
             pnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -547,10 +596,8 @@ public class ViewVenda extends javax.swing.JDialog {
                 .addGroup(pnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbAVista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbAPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addComponent(pnAPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(spnRecebimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnAPrazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(pnAVista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -615,8 +662,7 @@ public class ViewVenda extends javax.swing.JDialog {
                             .addGroup(pnCorpoLayout.createSequentialGroup()
                                 .addComponent(lbPagamento)
                                 .addGap(0, 0, 0)
-                                .addComponent(pnPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(0, 0, 0))
+                                .addComponent(pnPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(pnCorpoLayout.createSequentialGroup()
                                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lbCategoria)
@@ -669,15 +715,20 @@ public class ViewVenda extends javax.swing.JDialog {
     }//GEN-LAST:event_tbRecebimentosMouseClicked
 
     private void rbAVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAVistaActionPerformed
-        // TODO add your handling code here:
+        if (rbAVista.isSelected()) {
+            pnAPrazo.setVisible(false);
+            pnAVista.setVisible(true);
+        }
     }//GEN-LAST:event_rbAVistaActionPerformed
 
     private void rbAPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAPrazoActionPerformed
-        // TODO add your handling code here:
+        if (rbAPrazo.isSelected()) {
+            pnAPrazo.setVisible(true);
+        }
     }//GEN-LAST:event_rbAPrazoActionPerformed
 
     private void cbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClienteActionPerformed
-        // TODO add your handling code here:
+        tfDesconto.setText(vendaBO.buscarCliente(cbCliente.getSelectedIndex() - 1).getDescontoCliente().toString());
     }//GEN-LAST:event_cbClienteActionPerformed
 
     private void spnParcelasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spnParcelasMouseClicked
@@ -689,20 +740,26 @@ public class ViewVenda extends javax.swing.JDialog {
     }//GEN-LAST:event_tfTotalPagoKeyTyped
 
     private void btnNovoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoItemActionPerformed
-        viewItem = new ViewItem(viewPrincipal, true, this);
+        viewItem = new ViewItemVenda(viewPrincipal, true, this, itens);
         viewItem.setVisible(true);
     }//GEN-LAST:event_btnNovoItemActionPerformed
 
     //Declaração de variáveis(View).
     private final ViewPrincipal viewPrincipal;
     private final ViewVendas viewVendas;
-    private ViewItem viewItem;
+    private ViewItemVenda viewItem;
 
     //Declaração de variáveis(Value Object).
     private Venda vendaVO;
+    private ArrayList<Itemvenda> itens;
+    private ArrayList<Recebimento> recebimentos;
 
     //Declaração de variáveis(Business Object).
     private VendaBO vendaBO;
+
+    //Declaração de variáveis(Tabelas).
+    private TableModelItemVenda tabelaItens;
+    private TableModelRecebimento tabelaRecebimento;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

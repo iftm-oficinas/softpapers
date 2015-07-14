@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/06/2015 16:48:09 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Itemcompra" table="itemcompra" catalog="dbloja" optimistic-lock="version">
+        <id name="idItemCompra" type="java.lang.Long">
+            <column name="idItemCompra" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="compra" class="br.com.models.vo.Compra" fetch="select">
+            <column name="compraItemCompra" />
+        </many-to-one>
+        <many-to-one name="produto" class="br.com.models.vo.Produto" fetch="select">
+            <column name="produtoItemCompra" />
+        </many-to-one>
+        <property name="quantidadeItemCompra" type="java.lang.Integer">
+            <column name="quantidadeItemCompra" />
+        </property>
+        <property name="valorItemCompra" type="big_decimal">
+            <column name="valorItemCompra" precision="10" />
+        </property>
+        <property name="criacaoItemCompra" type="timestamp">
+            <column name="criacaoItemCompra" length="19" />
+        </property>
+        <property name="atualizacaoItemCompra" type="timestamp">
+            <column name="atualizacaoItemCompra" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

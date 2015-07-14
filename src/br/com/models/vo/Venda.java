@@ -1,5 +1,5 @@
 package br.com.models.vo;
-// Generated 24/06/2015 14:14:02 by Hibernate Tools 4.3.1
+// Generated 25/06/2015 16:48:08 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -32,26 +32,26 @@ public class Venda  implements java.io.Serializable {
      private Long idVenda;
      private Cliente cliente;
      private Funcionario funcionario;
-     private Item item;
      private BigDecimal valorVenda;
      private Integer parcelasVenda;
      private Date vencimentoVenda;
      private Date criacaoVenda;
      private Date atualizacaoVenda;
+     private Set<Itemvenda> itemvendas = new HashSet<Itemvenda>(0);
      private Set<Recebimento> recebimentos = new HashSet<Recebimento>(0);
 
     public Venda() {
     }
 
-    public Venda(Cliente cliente, Funcionario funcionario, Item item, BigDecimal valorVenda, Integer parcelasVenda, Date vencimentoVenda, Date criacaoVenda, Date atualizacaoVenda, Set<Recebimento> recebimentos) {
+    public Venda(Cliente cliente, Funcionario funcionario, BigDecimal valorVenda, Integer parcelasVenda, Date vencimentoVenda, Date criacaoVenda, Date atualizacaoVenda, Set<Itemvenda> itemvendas, Set<Recebimento> recebimentos) {
        this.cliente = cliente;
        this.funcionario = funcionario;
-       this.item = item;
        this.valorVenda = valorVenda;
        this.parcelasVenda = parcelasVenda;
        this.vencimentoVenda = vencimentoVenda;
        this.criacaoVenda = criacaoVenda;
        this.atualizacaoVenda = atualizacaoVenda;
+       this.itemvendas = itemvendas;
        this.recebimentos = recebimentos;
     }
    
@@ -85,16 +85,6 @@ public class Venda  implements java.io.Serializable {
     
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="itemVenda")
-    public Item getItem() {
-        return this.item;
-    }
-    
-    public void setItem(Item item) {
-        this.item = item;
     }
 
     
@@ -145,6 +135,15 @@ public class Venda  implements java.io.Serializable {
     
     public void setAtualizacaoVenda(Date atualizacaoVenda) {
         this.atualizacaoVenda = atualizacaoVenda;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="venda")
+    public Set<Itemvenda> getItemvendas() {
+        return this.itemvendas;
+    }
+    
+    public void setItemvendas(Set<Itemvenda> itemvendas) {
+        this.itemvendas = itemvendas;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="venda")

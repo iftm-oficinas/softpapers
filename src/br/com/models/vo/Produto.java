@@ -1,5 +1,5 @@
 package br.com.models.vo;
-// Generated 24/06/2015 14:14:02 by Hibernate Tools 4.3.1
+// Generated 25/06/2015 16:48:08 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -41,12 +41,13 @@ public class Produto  implements java.io.Serializable {
      private Long estoqueProduto;
      private Date criacaoProduto;
      private Date atualizacaoProduto;
-     private Set<Item> items = new HashSet<Item>(0);
+     private Set<Itemcompra> itemcompras = new HashSet<Itemcompra>(0);
+     private Set<Itemvenda> itemvendas = new HashSet<Itemvenda>(0);
 
     public Produto() {
     }
 
-    public Produto(Categoria categoria, Fornecedor fornecedor, String descricaoProduto, String codigoProduto, BigDecimal custoProduto, BigDecimal vendaProduto, Long minimoProduto, Long maximoProduto, Long estoqueProduto, Date criacaoProduto, Date atualizacaoProduto, Set<Item> items) {
+    public Produto(Categoria categoria, Fornecedor fornecedor, String descricaoProduto, String codigoProduto, BigDecimal custoProduto, BigDecimal vendaProduto, Long minimoProduto, Long maximoProduto, Long estoqueProduto, Date criacaoProduto, Date atualizacaoProduto, Set<Itemcompra> itemcompras, Set<Itemvenda> itemvendas) {
        this.categoria = categoria;
        this.fornecedor = fornecedor;
        this.descricaoProduto = descricaoProduto;
@@ -58,7 +59,8 @@ public class Produto  implements java.io.Serializable {
        this.estoqueProduto = estoqueProduto;
        this.criacaoProduto = criacaoProduto;
        this.atualizacaoProduto = atualizacaoProduto;
-       this.items = items;
+       this.itemcompras = itemcompras;
+       this.itemvendas = itemvendas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -184,12 +186,21 @@ public class Produto  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="produto")
-    public Set<Item> getItems() {
-        return this.items;
+    public Set<Itemcompra> getItemcompras() {
+        return this.itemcompras;
     }
     
-    public void setItems(Set<Item> items) {
-        this.items = items;
+    public void setItemcompras(Set<Itemcompra> itemcompras) {
+        this.itemcompras = itemcompras;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="produto")
+    public Set<Itemvenda> getItemvendas() {
+        return this.itemvendas;
+    }
+    
+    public void setItemvendas(Set<Itemvenda> itemvendas) {
+        this.itemvendas = itemvendas;
     }
 
 

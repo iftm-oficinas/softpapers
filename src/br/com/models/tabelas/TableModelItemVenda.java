@@ -1,6 +1,6 @@
 package br.com.models.tabelas;
 
-import br.com.models.vo.Item;
+import br.com.models.vo.Itemvenda;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +11,10 @@ import javax.swing.table.AbstractTableModel;
  * do Item.
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
-public class TableModelItem extends AbstractTableModel {
+public class TableModelItemVenda extends AbstractTableModel {
 
     //Declaração de variáveis.
-    private final List<Item> linhas;
+    private final List<Itemvenda> linhas;
     private final String[] colunas;
 
     //Declaração de variáveis que compoem os campos da tabela.
@@ -25,7 +25,7 @@ public class TableModelItem extends AbstractTableModel {
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
      * as colunas com os valores do objeto.
      */
-    public TableModelItem() {
+    public TableModelItemVenda() {
         linhas = new ArrayList<>();
         colunas = new String[]{"Produto", "Valor"};
     }
@@ -35,7 +35,7 @@ public class TableModelItem extends AbstractTableModel {
      * pelo parâmetro e define as colunas com os valores do objeto.
      * @param itens
      */
-    public TableModelItem(List<Item> itens) {
+    public TableModelItemVenda(List<Itemvenda> itens) {
         linhas = new ArrayList<>(itens);
         colunas = new String[]{"Produto", "Valor"};
     }
@@ -70,12 +70,12 @@ public class TableModelItem extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Item item = linhas.get(rowIndex);
+        Itemvenda item = linhas.get(rowIndex);
         switch (columnIndex) {
             case produtoItem:
                 return item.getProduto().getDescricaoProduto();
             case valorItem:
-                return item.getValorItem();
+                return item.getValorItemVenda();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -83,13 +83,13 @@ public class TableModelItem extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        Item item = linhas.get(rowIndex);
+        Itemvenda item = linhas.get(rowIndex);
         switch (columnIndex) {
             case produtoItem:
                 item.getProduto().setDescricaoProduto((String) aValue);
                 break;
             case valorItem:
-                item.setValorItem((BigDecimal) (aValue));
+                item.setValorItemVenda((BigDecimal) (aValue));
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -97,7 +97,7 @@ public class TableModelItem extends AbstractTableModel {
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 
-    public Item getItem(int rowIndex) {
+    public Itemvenda getItem(int rowIndex) {
         return linhas.get(rowIndex);
     }
 
@@ -106,7 +106,7 @@ public class TableModelItem extends AbstractTableModel {
      * como parâmetro.
      * @param item Usuario que compoe uma linha da tabela.
      */
-    public void addItem(Item item) {
+    public void addItem(Itemvenda item) {
         linhas.add(item);
         int ultimoIndice = getRowCount() - 1;
         fireTableRowsInserted(ultimoIndice, ultimoIndice);
@@ -117,7 +117,7 @@ public class TableModelItem extends AbstractTableModel {
      * recebida como parâmetro.
      * @param itens
      */
-    public void addListaClientes(List<Item> itens) {
+    public void addListaItens(List<Itemvenda> itens) {
         int indice = getRowCount();
         linhas.addAll(itens);
         fireTableRowsInserted(indice, indice + itens.size());

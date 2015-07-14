@@ -1,6 +1,7 @@
 package br.com.models.bo;
 
 import br.com.models.dao.GenericDAO;
+import br.com.models.vo.Cliente;
 import br.com.models.vo.Venda;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,38 @@ import javax.swing.JOptionPane;
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class VendaBO {
-    
+
+    /**
+     * @param idCliente
+     * @see Método que realiza consulta ao banco de dados por todos os Clientes.
+     * @return Lista de Categorias composta por todas as linhas da tabela
+     * categoria do banco de dados.
+     */
+    public Cliente buscarCliente(Integer idCliente) {
+        GenericDAO<Cliente> clienteDAO = new GenericDAO<>();
+        ArrayList<Cliente> clientesVO = new ArrayList<>(clienteDAO.consultar(new Cliente()));
+        return clientesVO.get(idCliente);
+    }
+
+    /**
+     * @see Método que realiza consulta ao banco de dados por todos as
+     * Categorias.
+     * @return Lista de Categorias composta por todas as linhas da tabela
+     * categoria do banco de dados.
+     */
+    public String[] buscarNomeClientes() {
+        GenericDAO<Cliente> clienteDAO = new GenericDAO<>();
+        ArrayList<Cliente> clientesVO = new ArrayList<>(clienteDAO.consultar(new Cliente()));
+        ArrayList<String> array = new ArrayList<>();
+        array.add("CLIENTE");
+        clientesVO.stream().forEach((categoriasVO1) -> {
+            array.add(categoriasVO1.getNomeCliente());
+        });
+        String[] Arr = new String[array.size()];
+        Arr = array.toArray(Arr);
+        return Arr;
+    }
+
     /**
      * @see Método que realiza consulta ao banco de dados por todos as
      * Categorias.
@@ -23,7 +55,7 @@ public class VendaBO {
         ArrayList<Venda> vendasVO = new ArrayList<>(vendaDAO.consultar(new Venda()));
         return vendasVO;
     }
-    
+
     /**
      * @see Método que exclui um objeto no banco de dados por meio da
      * GenericDAO.

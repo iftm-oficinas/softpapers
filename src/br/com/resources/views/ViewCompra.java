@@ -160,12 +160,12 @@ public class ViewCompra extends javax.swing.JDialog {
 
         pnPedido.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnNovoItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaVendaUP.png"))); // NOI18N
+        btnNovoItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoItemUP.png"))); // NOI18N
         btnNovoItem.setBorder(null);
         btnNovoItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNovoItem.setFocusable(false);
-        btnNovoItem.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaVendaDOWN.png"))); // NOI18N
-        btnNovoItem.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaVendaDOWN.png"))); // NOI18N
+        btnNovoItem.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoItemDOWN.png"))); // NOI18N
+        btnNovoItem.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoItemDOWN.png"))); // NOI18N
         btnNovoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovoItemActionPerformed(evt);
@@ -552,12 +552,12 @@ public class ViewCompra extends javax.swing.JDialog {
 
         sprRodape.setForeground(new java.awt.Color(204, 204, 204));
 
-        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarVendaUP.png"))); // NOI18N
+        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarCompraUP.png"))); // NOI18N
         btnFinalizarVenda.setBorder(null);
         btnFinalizarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFinalizarVenda.setFocusable(false);
-        btnFinalizarVenda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarVendaDOWN.png"))); // NOI18N
-        btnFinalizarVenda.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarVendaDOWN.png"))); // NOI18N
+        btnFinalizarVenda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarCompraDOWN.png"))); // NOI18N
+        btnFinalizarVenda.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarCompraDOWN.png"))); // NOI18N
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
         btnAlterar.setBorder(null);
@@ -655,7 +655,7 @@ public class ViewCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_cbClienteActionPerformed
 
     private void btnNovoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoItemActionPerformed
-        viewItem = new ViewItem(viewPrincipal, true, this);
+        viewItem = new ViewItemCompra(viewPrincipal, true, this);
         viewItem.setVisible(true);
     }//GEN-LAST:event_btnNovoItemActionPerformed
 
@@ -690,7 +690,7 @@ public class ViewCompra extends javax.swing.JDialog {
     //Declaração de variáveis(View).
     private final ViewPrincipal viewPrincipal;
     private final ViewEstoque viewEstoque;
-    private ViewItem viewItem;
+    private ViewItemCompra viewItem;
 
     //Declaração de variáveis(Value Object).
     private Compra compraVO;

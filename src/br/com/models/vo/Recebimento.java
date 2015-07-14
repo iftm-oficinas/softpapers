@@ -1,5 +1,5 @@
 package br.com.models.vo;
-// Generated 24/06/2015 14:14:02 by Hibernate Tools 4.3.1
+// Generated 25/06/2015 16:48:08 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;

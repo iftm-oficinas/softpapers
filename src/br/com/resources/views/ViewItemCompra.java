@@ -1,14 +1,14 @@
 package br.com.resources.views;
 
-import br.com.models.bo.ItemBO;
-import br.com.models.vo.Item;
+import br.com.models.bo.ItemVendaBO;
+import br.com.models.vo.Itemcompra;
 
 /**
  * @see Classe visual. JDialog que tem como objetivo cadastrar um novo item de
  * produtos.
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
-public class ViewItem extends javax.swing.JDialog {
+public class ViewItemCompra extends javax.swing.JDialog {
 
     /**
      * @see Construtor padrão.
@@ -16,13 +16,13 @@ public class ViewItem extends javax.swing.JDialog {
      * @param modal
      * @param viewVenda
      */
-    public ViewItem(java.awt.Frame parent, boolean modal, ViewVenda viewVenda) {
+    public ViewItemCompra(java.awt.Frame parent, boolean modal, ViewVenda viewVenda) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         initComponents();
         this.viewVenda = viewVenda;
         this.viewCompra = null;
-        this.itemBO = new ItemBO();
+        this.itemBO = new ItemVendaBO();
     }
     
     /**
@@ -31,13 +31,13 @@ public class ViewItem extends javax.swing.JDialog {
      * @param modal
      * @param viewCompra
      */
-    public ViewItem(java.awt.Frame parent, boolean modal, ViewCompra viewCompra) {
+    public ViewItemCompra(java.awt.Frame parent, boolean modal, ViewCompra viewCompra) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         initComponents();
         this.viewCompra = viewCompra;
         this.viewVenda = null;
-        this.itemBO = new ItemBO();
+        this.itemBO = new ItemVendaBO();
     }
 
     //Componentes padrões do JFrame.
@@ -196,13 +196,13 @@ public class ViewItem extends javax.swing.JDialog {
             }
         });
 
-        btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarUP.png"))); // NOI18N
+        btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnInserirUP.png"))); // NOI18N
         btnCadastrar.setBorder(null);
         btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCadastrar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
+        btnCadastrar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnInserirDOWN.png"))); // NOI18N
         btnCadastrar.setFocusable(false);
-        btnCadastrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
-        btnCadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
+        btnCadastrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnInserirDOWN.png"))); // NOI18N
+        btnCadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnInserirDOWN.png"))); // NOI18N
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
@@ -281,10 +281,10 @@ public class ViewItem extends javax.swing.JDialog {
     private final ViewCompra viewCompra;
 
     //Declaração de variáveis(Value Object).
-    private Item itemVO;
+    private Itemcompra itemVO;
 
     //Declaração de variáveis(Business Object).
-    private ItemBO itemBO;
+    private ItemVendaBO itemBO;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

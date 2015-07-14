@@ -112,13 +112,13 @@ public class ViewEstoque extends javax.swing.JInternalFrame {
 
         pnInventario.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnAtualizarIventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarUP.png"))); // NOI18N
+        btnAtualizarIventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAtualizarUP.png"))); // NOI18N
         btnAtualizarIventario.setBorder(null);
         btnAtualizarIventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAtualizarIventario.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnAtualizarIventario.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAtualizarDOWN.png"))); // NOI18N
         btnAtualizarIventario.setFocusable(false);
-        btnAtualizarIventario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
-        btnAtualizarIventario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnAtualizarIventario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAtualizarDOWN.png"))); // NOI18N
+        btnAtualizarIventario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAtualizarDOWN.png"))); // NOI18N
         btnAtualizarIventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtualizarIventarioActionPerformed(evt);
@@ -228,12 +228,12 @@ public class ViewEstoque extends javax.swing.JInternalFrame {
 
         pnCompras.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnNovaCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoFuncionarioUP.png"))); // NOI18N
+        btnNovaCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaCompraUP.png"))); // NOI18N
         btnNovaCompra.setBorder(null);
         btnNovaCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNovaCompra.setFocusable(false);
-        btnNovaCompra.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoFuncionarioDOWN.png"))); // NOI18N
-        btnNovaCompra.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoFuncionarioDOWN.png"))); // NOI18N
+        btnNovaCompra.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaCompraDOWN.png"))); // NOI18N
+        btnNovaCompra.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaCompraDOWN.png"))); // NOI18N
         btnNovaCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovaCompraActionPerformed(evt);

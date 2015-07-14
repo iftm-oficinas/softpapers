@@ -123,7 +123,7 @@
                 <Component class="javax.swing.JButton" name="btnAtualizarIventario">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/br/com/resources/imagens/btnVisualizarUP.png"/>
+                      <Image iconType="3" name="/br/com/resources/imagens/btnAtualizarUP.png"/>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
@@ -132,14 +132,14 @@
                       <Color id="Cursor em Forma de M&#xe3;o"/>
                     </Property>
                     <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/br/com/resources/imagens/btnVisualizarDOWN.png"/>
+                      <Image iconType="3" name="/br/com/resources/imagens/btnAtualizarDOWN.png"/>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                     <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/br/com/resources/imagens/btnVisualizarDOWN.png"/>
+                      <Image iconType="3" name="/br/com/resources/imagens/btnAtualizarDOWN.png"/>
                     </Property>
                     <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/br/com/resources/imagens/btnVisualizarDOWN.png"/>
+                      <Image iconType="3" name="/br/com/resources/imagens/btnAtualizarDOWN.png"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -359,7 +359,7 @@
                 <Component class="javax.swing.JButton" name="btnNovaCompra">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/br/com/resources/imagens/btnNovoFuncionarioUP.png"/>
+                      <Image iconType="3" name="/br/com/resources/imagens/btnNovaCompraUP.png"/>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
@@ -369,10 +369,10 @@
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                     <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/br/com/resources/imagens/btnNovoFuncionarioDOWN.png"/>
+                      <Image iconType="3" name="/br/com/resources/imagens/btnNovaCompraDOWN.png"/>
                     </Property>
                     <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/br/com/resources/imagens/btnNovoFuncionarioDOWN.png"/>
+                      <Image iconType="3" name="/br/com/resources/imagens/btnNovaCompraDOWN.png"/>
                     </Property>
                   </Properties>
                   <Events>
