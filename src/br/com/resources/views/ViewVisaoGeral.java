@@ -20,7 +20,9 @@ public class ViewVisaoGeral extends javax.swing.JInternalFrame {
 
         spnCorpo = new javax.swing.JScrollPane();
         pnCorpo = new javax.swing.JPanel();
-        lbVisaoGeral = new javax.swing.JLabel();
+        lbFaturamento = new javax.swing.JLabel();
+        lbContasPagar = new javax.swing.JLabel();
+        lbContasReceber = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -29,11 +31,15 @@ public class ViewVisaoGeral extends javax.swing.JInternalFrame {
         setFrameIcon(null);
 
         spnCorpo.setBackground(new java.awt.Color(255, 255, 255));
-        spnCorpo.setBorder(null);
+        spnCorpo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         pnCorpo.setBackground(new java.awt.Color(255, 255, 255));
 
-        lbVisaoGeral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/1.VisaoGeral.png"))); // NOI18N
+        lbFaturamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/1.VisaoGeralFaturamento.png"))); // NOI18N
+
+        lbContasPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/1.VisaoGeralContasPagar.png"))); // NOI18N
+
+        lbContasReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/1.VisaoGeralContasReceber.png"))); // NOI18N
 
         javax.swing.GroupLayout pnCorpoLayout = new javax.swing.GroupLayout(pnCorpo);
         pnCorpo.setLayout(pnCorpoLayout);
@@ -41,14 +47,23 @@ public class ViewVisaoGeral extends javax.swing.JInternalFrame {
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCorpoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbVisaoGeral)
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                        .addComponent(lbContasPagar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbContasReceber))
+                    .addComponent(lbFaturamento))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnCorpoLayout.setVerticalGroup(
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCorpoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbVisaoGeral)
+                .addComponent(lbFaturamento)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbContasPagar)
+                    .addComponent(lbContasReceber))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -71,7 +86,9 @@ public class ViewVisaoGeral extends javax.swing.JInternalFrame {
     private ViewPrincipal viewPrincipal;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lbVisaoGeral;
+    private javax.swing.JLabel lbContasPagar;
+    private javax.swing.JLabel lbContasReceber;
+    private javax.swing.JLabel lbFaturamento;
     private javax.swing.JPanel pnCorpo;
     private javax.swing.JScrollPane spnCorpo;
     // End of variables declaration//GEN-END:variables

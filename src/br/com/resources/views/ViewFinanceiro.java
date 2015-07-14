@@ -18,214 +18,166 @@ public class ViewFinanceiro extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        tpnCorpo = new javax.swing.JTabbedPane();
+        pnExtrato = new javax.swing.JPanel();
+        lbExtrato = new javax.swing.JLabel();
+        pnContasPagar = new javax.swing.JPanel();
+        lbContasPagar = new javax.swing.JLabel();
+        pnContasReceber = new javax.swing.JPanel();
+        lbContasReceber = new javax.swing.JLabel();
+        pnHitorico = new javax.swing.JPanel();
+        lbHistorico = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
         setResizable(true);
         setFrameIcon(null);
 
-        jScrollPane2.setBorder(null);
+        tpnCorpo.setForeground(new java.awt.Color(102, 102, 102));
+        tpnCorpo.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        tpnCorpo.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        tpnCorpo.setFocusable(false);
+        tpnCorpo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        pnExtrato.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/2.FinanceiroContasPagar.png"))); // NOI18N
+        lbExtrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/4.FinanceiroExtrato.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnExtratoLayout = new javax.swing.GroupLayout(pnExtrato);
+        pnExtrato.setLayout(pnExtratoLayout);
+        pnExtratoLayout.setHorizontalGroup(
+            pnExtratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnExtratoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lbExtrato)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        pnExtratoLayout.setVerticalGroup(
+            pnExtratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnExtratoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap())
-        );
-
-        jScrollPane2.setViewportView(jPanel6);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("", jPanel2);
-
-        jScrollPane3.setBorder(null);
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/2.FinanceiroContasReceber.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(lbExtrato)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap())
-        );
 
-        jScrollPane3.setViewportView(jPanel7);
+        tpnCorpo.addTab("Extrato                  ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/meio.png")), pnExtrato); // NOI18N
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
-        );
+        pnContasPagar.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTabbedPane1.addTab("", jPanel3);
+        lbContasPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/4.FinanceiroContasPagar.png"))); // NOI18N
+        lbContasPagar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbContasPagarMouseClicked(evt);
+            }
+        });
 
-        jScrollPane4.setBorder(null);
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/2.FinanceiroExtrato.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnContasPagarLayout = new javax.swing.GroupLayout(pnContasPagar);
+        pnContasPagar.setLayout(pnContasPagarLayout);
+        pnContasPagarLayout.setHorizontalGroup(
+            pnContasPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnContasPagarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(lbContasPagar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        pnContasPagarLayout.setVerticalGroup(
+            pnContasPagarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnContasPagarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap())
-        );
-
-        jScrollPane4.setViewportView(jPanel8);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("", jPanel4);
-
-        jScrollPane5.setBorder(null);
-
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/2.FinanceiroHistorico.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
+                .addComponent(lbContasPagar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+
+        tpnCorpo.addTab("Contas a Pagar     ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/baixo.png")), pnContasPagar); // NOI18N
+
+        pnContasReceber.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbContasReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/4.FinanceiroContasReceber.png"))); // NOI18N
+        lbContasReceber.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbContasReceberMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnContasReceberLayout = new javax.swing.GroupLayout(pnContasReceber);
+        pnContasReceber.setLayout(pnContasReceberLayout);
+        pnContasReceberLayout.setHorizontalGroup(
+            pnContasReceberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnContasReceberLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbContasReceber)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnContasReceberLayout.setVerticalGroup(
+            pnContasReceberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnContasReceberLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap())
+                .addComponent(lbContasReceber)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane5.setViewportView(jPanel9);
+        tpnCorpo.addTab("Contas a Receber", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/cima.png")), pnContasReceber); // NOI18N
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
+        pnHitorico.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/4.FinanceiroHistorico.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnHitoricoLayout = new javax.swing.GroupLayout(pnHitorico);
+        pnHitorico.setLayout(pnHitoricoLayout);
+        pnHitoricoLayout.setHorizontalGroup(
+            pnHitoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnHitoricoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbHistorico)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+        pnHitoricoLayout.setVerticalGroup(
+            pnHitoricoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnHitoricoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbHistorico)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("", jPanel5);
+        tpnCorpo.addTab("Histórico               ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/bola.png")), pnHitorico); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tpnCorpo)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tpnCorpo)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lbContasPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbContasPagarMouseClicked
+        viewNovoPagamento = new ViewNovoPagamento(viewPrincipal, true);
+        viewNovoPagamento.setVisible(true);
+    }//GEN-LAST:event_lbContasPagarMouseClicked
+
+    private void lbContasReceberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbContasReceberMouseClicked
+        viewNovoRecebimento = new ViewNovoRecebimento(viewPrincipal, true);
+        viewNovoRecebimento.setVisible(true);
+    }//GEN-LAST:event_lbContasReceberMouseClicked
+
     private ViewPrincipal viewPrincipal;
+    private ViewNovoPagamento viewNovoPagamento;
+    private ViewNovoRecebimento viewNovoRecebimento;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lbContasPagar;
+    private javax.swing.JLabel lbContasReceber;
+    private javax.swing.JLabel lbExtrato;
+    private javax.swing.JLabel lbHistorico;
+    private javax.swing.JPanel pnContasPagar;
+    private javax.swing.JPanel pnContasReceber;
+    private javax.swing.JPanel pnExtrato;
+    private javax.swing.JPanel pnHitorico;
+    private javax.swing.JTabbedPane tpnCorpo;
     // End of variables declaration//GEN-END:variables
 }

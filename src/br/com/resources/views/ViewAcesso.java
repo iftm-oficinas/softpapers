@@ -48,6 +48,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        spnCorpo = new javax.swing.JScrollPane();
         pnCorpo = new javax.swing.JPanel();
         lbLogo = new javax.swing.JLabel();
         pnAcesso = new javax.swing.JPanel();
@@ -120,12 +121,17 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
         lbTextoControle5 = new javax.swing.JLabel();
         lbTextoControle6 = new javax.swing.JLabel();
         lbInfoControle = new javax.swing.JLabel();
+        pnRodape = new javax.swing.JPanel();
+        sprRodape = new javax.swing.JSeparator();
+        lbRodape = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
         setResizable(true);
         setTitle("Acesso");
         setFrameIcon(null);
+
+        spnCorpo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         pnCorpo.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -257,7 +263,6 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
             .addGroup(pnVendasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbTituloVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnVendasLayout.createSequentialGroup()
                         .addComponent(lbImagemVendas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -268,8 +273,11 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                             .addComponent(lbTextoVendas4)
                             .addComponent(lbTextoVendas5)
                             .addComponent(lbInfoVendas)))
-                    .addComponent(sprVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(sprVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnVendasLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(lbTituloVendas)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnVendasLayout.setVerticalGroup(
             pnVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,10 +344,11 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                             .addComponent(lbTextoEstoque3)
                             .addComponent(lbTextoEstoque4)
                             .addComponent(lbInfoEstoque)))
-                    .addGroup(pnEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lbTituloEstoque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                        .addComponent(sprEstoque, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap())
+                    .addComponent(sprEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnEstoqueLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(lbTituloEstoque)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnEstoqueLayout.setVerticalGroup(
             pnEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,9 +413,10 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                             .addComponent(lbTextoUsuairos3)
                             .addComponent(lbTextoUsuairos4)
                             .addComponent(lbInfoUsuarios)))
-                    .addGroup(pnUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lbTituloUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                        .addComponent(sprUsuarios, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(sprUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnUsuariosLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(lbTituloUsuarios)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnUsuariosLayout.setVerticalGroup(
@@ -469,9 +479,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
             .addGroup(pnFinanceiroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lbTituloFinanceiro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                        .addComponent(sprFinanceiro, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(sprFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnFinanceiroLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addGroup(pnFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -483,14 +491,17 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                             .addComponent(lbTextoFinanceiro6, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lnInfoFinanceiro, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbImagemFinanceiro)))
+                        .addComponent(lbImagemFinanceiro))
+                    .addGroup(pnFinanceiroLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(lbTituloFinanceiro)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnFinanceiroLayout.setVerticalGroup(
             pnFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFinanceiroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbTituloFinanceiro)
+                .addComponent(lbTituloFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sprFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -547,9 +558,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
             .addGroup(pnRelatoriosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lbTituloRelatorios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                        .addComponent(sprRelatorios, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(sprRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnRelatoriosLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(pnRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -560,7 +569,10 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                             .addComponent(lbTextoRelatorios5)
                             .addComponent(lbInfoRelatorios))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbImagemRelatorios)))
+                        .addComponent(lbImagemRelatorios))
+                    .addGroup(pnRelatoriosLayout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(lbTituloRelatorios)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnRelatoriosLayout.setVerticalGroup(
@@ -644,9 +656,11 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbImagemControle))
                     .addGroup(pnControleLayout.createSequentialGroup()
-                        .addGroup(pnControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lbTituloControle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addComponent(sprControle, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(pnControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sprControle, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnControleLayout.createSequentialGroup()
+                                .addComponent(lbTituloControle)
+                                .addGap(81, 81, 81)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -677,6 +691,33 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        pnRodape.setBackground(new java.awt.Color(255, 255, 255));
+
+        sprRodape.setForeground(new java.awt.Color(204, 204, 204));
+
+        lbRodape.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbRodape.setForeground(new java.awt.Color(204, 204, 204));
+        lbRodape.setText("SOFTPAPERS @2015 - Versão: 0.0000.00.00 Alfa - Todos direitos reservados.");
+
+        javax.swing.GroupLayout pnRodapeLayout = new javax.swing.GroupLayout(pnRodape);
+        pnRodape.setLayout(pnRodapeLayout);
+        pnRodapeLayout.setHorizontalGroup(
+            pnRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sprRodape, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(pnRodapeLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbRodape)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnRodapeLayout.setVerticalGroup(
+            pnRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnRodapeLayout.createSequentialGroup()
+                .addComponent(sprRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbRodape)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout pnCorpoLayout = new javax.swing.GroupLayout(pnCorpo);
         pnCorpo.setLayout(pnCorpoLayout);
         pnCorpoLayout.setHorizontalGroup(
@@ -688,16 +729,17 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                     .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(pnEstoque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pnVendas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnAcesso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnControle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnRodape, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnCorpoLayout.setVerticalGroup(
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,33 +753,31 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(pnControle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnCorpoLayout.createSequentialGroup()
-                        .addComponent(lbLogo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnCorpoLayout.createSequentialGroup()
                         .addComponent(pnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(pnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(pnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addComponent(pnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(lbLogo)
+                        .addGap(40, 40, 40)
+                        .addComponent(pnAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        spnCorpo.setViewportView(pnCorpo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnCorpo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(spnCorpo)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(spnCorpo)
         );
 
         pack();
@@ -792,6 +832,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbInfoUsuarios;
     private javax.swing.JLabel lbInfoVendas;
     private javax.swing.JLabel lbLogo;
+    private javax.swing.JLabel lbRodape;
     private javax.swing.JLabel lbSenha;
     private javax.swing.JLabel lbTextoControle1;
     private javax.swing.JLabel lbTextoControle2;
@@ -837,12 +878,15 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnEstoque;
     private javax.swing.JPanel pnFinanceiro;
     private javax.swing.JPanel pnRelatorios;
+    private javax.swing.JPanel pnRodape;
     private javax.swing.JPanel pnUsuarios;
     private javax.swing.JPanel pnVendas;
+    private javax.swing.JScrollPane spnCorpo;
     private javax.swing.JSeparator sprControle;
     private javax.swing.JSeparator sprEstoque;
     private javax.swing.JSeparator sprFinanceiro;
     private javax.swing.JSeparator sprRelatorios;
+    private javax.swing.JSeparator sprRodape;
     private javax.swing.JSeparator sprUsuarios;
     private javax.swing.JSeparator sprVendas;
     private javax.swing.JTextField tfEmail;

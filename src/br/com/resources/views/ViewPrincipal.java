@@ -1,7 +1,6 @@
 package br.com.resources.views;
 
 import java.beans.PropertyVetoException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,15 +29,12 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         //Instanciando e adicionando todos os JInternalFrames no JDesktopPane(dpnCorpo) da viewPrincipal.
         dpnCorpo.add(viewAcesso = new ViewAcesso(this));
-        dpnCorpo.add(viewAjuda = new ViewAjuda(this));
-        dpnCorpo.add(viewCaixa = new ViewVendas(this));
         dpnCorpo.add(viewEstoque = new ViewEstoque(this));
         dpnCorpo.add(viewFinanceiro = new ViewFinanceiro(this));
-        dpnCorpo.add(viewHome = new ViewVisaoGeral(this));
         dpnCorpo.add(viewPainelControle = new ViewPainelControle(this));
-        dpnCorpo.add(viewPoliticaPrivacidade = new ViewPoliticaPrivacidade(this));
         dpnCorpo.add(viewRelatorios = new ViewRelatorios(this));
-        dpnCorpo.add(viewTermosUso = new ViewTermosUso(this));
+        dpnCorpo.add(viewVendas = new ViewVendas(this));
+        dpnCorpo.add(viewVisaoGeral = new ViewVisaoGeral(this));
 
         //Condição try que tenta definir a viewAcesso com tamanho maximo.
         viewAcesso.setVisible(true);
@@ -47,9 +43,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //Atualiza JLabel (lbVersao).
-        lbVersao.setText("Versão 0." + (new Date().getYear() + 1900) + "." + (new Date().getMonth() + 1) + "." + new Date().getDate() + " Alfa");
 
         //Define como não visível todos os elementos do menu (pnMenu).
         ocultarMenu();
@@ -68,9 +61,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         lbRelatorios.setVisible(false);
         lbPainelControle.setVisible(false);
         lbSair.setVisible(false);
-        lbAjuda.setVisible(false);
-        lbTermosUso.setVisible(false);
-        lbPoliticaPrivacidade.setVisible(false);
     }
 
     /**
@@ -86,16 +76,13 @@ public class ViewPrincipal extends javax.swing.JFrame {
         lbRelatorios.setVisible(true);
         lbPainelControle.setVisible(true);
         lbSair.setVisible(true);
-        lbAjuda.setVisible(true);
-        lbTermosUso.setVisible(true);
-        lbPoliticaPrivacidade.setVisible(true);
 
-        //Define como visível a viewHome que é a padrão ao acessar o programa.
+        //Define como visível a viewVisaoGeral que é a padrão ao acessar o programa.
         LimparDesktop();
         pnVisaoGeral.setBackground(new java.awt.Color(153, 204, 0));
-        viewHome.setVisible(true);
+        viewVisaoGeral.setVisible(true);
         try {
-            viewHome.setMaximum(true);
+            viewVisaoGeral.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -108,15 +95,12 @@ public class ViewPrincipal extends javax.swing.JFrame {
      */
     public final void LimparDesktop() {
         viewAcesso.setVisible(false);
-        viewAjuda.setVisible(false);
-        viewCaixa.setVisible(false);
         viewEstoque.setVisible(false);
         viewFinanceiro.setVisible(false);
-        viewHome.setVisible(false);
         viewPainelControle.setVisible(false);
-        viewPoliticaPrivacidade.setVisible(false);
         viewRelatorios.setVisible(false);
-        viewTermosUso.setVisible(false);
+        viewVendas.setVisible(false);
+        viewVisaoGeral.setVisible(false);
         pnVisaoGeral.setBackground(new java.awt.Color(51, 51, 51));
         pnVendas.setBackground(new java.awt.Color(51, 51, 51));
         pnEstoque.setBackground(new java.awt.Color(51, 51, 51));
@@ -124,9 +108,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         pnRelatorios.setBackground(new java.awt.Color(51, 51, 51));
         pnPainelControle.setBackground(new java.awt.Color(51, 51, 51));
         pnSair.setBackground(new java.awt.Color(51, 51, 51));
-        lbAjuda.setForeground(new java.awt.Color(255, 255, 255));
-        lbTermosUso.setForeground(new java.awt.Color(255, 255, 255));
-        lbPoliticaPrivacidade.setForeground(new java.awt.Color(255, 255, 255));
     }
 
     //Componentes padrões do JFrame
@@ -153,12 +134,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         lbFundoEsquerda = new javax.swing.JLabel();
         dpnCorpo = new javax.swing.JDesktopPane();
         lbFundoDireita = new javax.swing.JLabel();
-        pnRodape = new javax.swing.JPanel();
-        lbDireitos = new javax.swing.JLabel();
-        lbAjuda = new javax.swing.JLabel();
-        lbTermosUso = new javax.swing.JLabel();
-        lbPoliticaPrivacidade = new javax.swing.JLabel();
-        lbVersao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pricipal");
@@ -442,7 +417,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
         );
         dpnCorpoLayout.setVerticalGroup(
             dpnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
+            .addGap(0, 329, Short.MAX_VALUE)
         );
 
         lbFundoDireita.setBackground(new java.awt.Color(255, 255, 255));
@@ -464,105 +439,16 @@ public class ViewPrincipal extends javax.swing.JFrame {
             .addGroup(pnCorpoLayout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbFundoDireita, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(lbFundoEsquerda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(dpnCorpo))
+                    .addComponent(dpnCorpo)
+                    .addComponent(lbFundoEsquerda, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lbFundoDireita, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(3, 3, 3))
-        );
-
-        pnRodape.setBackground(new java.awt.Color(51, 51, 51));
-
-        lbDireitos.setFont(new java.awt.Font("Arial", 0, 9)); // NOI18N
-        lbDireitos.setForeground(new java.awt.Color(255, 255, 255));
-        lbDireitos.setText("2015 - 2016 Controle de Papelaria");
-
-        lbAjuda.setFont(new java.awt.Font("Arial", 0, 9)); // NOI18N
-        lbAjuda.setForeground(new java.awt.Color(255, 255, 255));
-        lbAjuda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbAjuda.setText("Ajuda");
-        lbAjuda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbAjudaMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbAjudaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbAjudaMouseExited(evt);
-            }
-        });
-
-        lbTermosUso.setFont(new java.awt.Font("Arial", 0, 9)); // NOI18N
-        lbTermosUso.setForeground(new java.awt.Color(255, 255, 255));
-        lbTermosUso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTermosUso.setText("Termos de Uso");
-        lbTermosUso.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbTermosUsoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbTermosUsoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbTermosUsoMouseExited(evt);
-            }
-        });
-
-        lbPoliticaPrivacidade.setFont(new java.awt.Font("Arial", 0, 9)); // NOI18N
-        lbPoliticaPrivacidade.setForeground(new java.awt.Color(255, 255, 255));
-        lbPoliticaPrivacidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbPoliticaPrivacidade.setText("Política de Privacidade");
-        lbPoliticaPrivacidade.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbPoliticaPrivacidadeMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lbPoliticaPrivacidadeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lbPoliticaPrivacidadeMouseExited(evt);
-            }
-        });
-
-        lbVersao.setFont(new java.awt.Font("Arial", 0, 9)); // NOI18N
-        lbVersao.setForeground(new java.awt.Color(255, 255, 255));
-        lbVersao.setText("Versão 0.2015.05.06 Alfa");
-
-        javax.swing.GroupLayout pnRodapeLayout = new javax.swing.GroupLayout(pnRodape);
-        pnRodape.setLayout(pnRodapeLayout);
-        pnRodapeLayout.setHorizontalGroup(
-            pnRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnRodapeLayout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(lbDireitos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbAjuda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbTermosUso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbPoliticaPrivacidade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbVersao)
-                .addGap(170, 170, 170))
-        );
-        pnRodapeLayout.setVerticalGroup(
-            pnRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnRodapeLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(pnRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbAjuda)
-                        .addComponent(lbTermosUso)
-                        .addComponent(lbPoliticaPrivacidade)
-                        .addComponent(lbVersao))
-                    .addComponent(lbDireitos, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnRodape, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
         );
@@ -571,9 +457,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(pnRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -593,22 +478,22 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void lbVisaoGeralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVisaoGeralMouseClicked
         LimparDesktop();
         pnVisaoGeral.setBackground(new java.awt.Color(153, 204, 0));
-        viewHome.setVisible(true);
+        viewVisaoGeral.setVisible(true);
         try {
-            viewHome.setMaximum(true);
+            viewVisaoGeral.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lbVisaoGeralMouseClicked
 
     private void lbVisaoGeralMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVisaoGeralMouseEntered
-        if (viewHome.isVisible() == false) {
+        if (viewVisaoGeral.isVisible() == false) {
             pnVisaoGeral.setBackground(new java.awt.Color(00, 00, 00));
         }
     }//GEN-LAST:event_lbVisaoGeralMouseEntered
 
     private void lbVisaoGeralMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVisaoGeralMouseExited
-        if (viewHome.isVisible() == false) {
+        if (viewVisaoGeral.isVisible() == false) {
             pnVisaoGeral.setBackground(new java.awt.Color(51, 51, 51));
         }
     }//GEN-LAST:event_lbVisaoGeralMouseExited
@@ -616,22 +501,22 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void lbVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVendasMouseClicked
         LimparDesktop();
         pnVendas.setBackground(new java.awt.Color(153, 204, 0));
-        viewCaixa.setVisible(true);
+        viewVendas.setVisible(true);
         try {
-            viewCaixa.setMaximum(true);
+            viewVendas.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lbVendasMouseClicked
 
     private void lbVendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVendasMouseEntered
-        if (viewCaixa.isVisible() == false) {
+        if (viewVendas.isVisible() == false) {
             pnVendas.setBackground(new java.awt.Color(00, 00, 00));
         }
     }//GEN-LAST:event_lbVendasMouseEntered
 
     private void lbVendasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVendasMouseExited
-        if (viewCaixa.isVisible() == false) {
+        if (viewVendas.isVisible() == false) {
             pnVendas.setBackground(new java.awt.Color(51, 51, 51));
         }
     }//GEN-LAST:event_lbVendasMouseExited
@@ -748,72 +633,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void lbSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSairMouseExited
         pnSair.setBackground(new java.awt.Color(51, 51, 51));
     }//GEN-LAST:event_lbSairMouseExited
-
-    private void lbAjudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbAjudaMouseClicked
-        LimparDesktop();
-        viewAjuda.setVisible(true);
-        try {
-            viewAjuda.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_lbAjudaMouseClicked
-
-    private void lbAjudaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbAjudaMouseEntered
-        if (viewAjuda.isVisible() == false) {
-            lbAjuda.setForeground(new java.awt.Color(153, 204, 0));
-        }
-    }//GEN-LAST:event_lbAjudaMouseEntered
-
-    private void lbAjudaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbAjudaMouseExited
-        if (viewAjuda.isVisible() == false) {
-            lbAjuda.setForeground(new java.awt.Color(255, 255, 255));
-        }
-    }//GEN-LAST:event_lbAjudaMouseExited
-
-    private void lbTermosUsoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTermosUsoMouseClicked
-        LimparDesktop();
-        viewTermosUso.setVisible(true);
-        try {
-            viewTermosUso.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_lbTermosUsoMouseClicked
-
-    private void lbTermosUsoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTermosUsoMouseEntered
-        if (viewTermosUso.isVisible() == false) {
-            lbTermosUso.setForeground(new java.awt.Color(153, 204, 0));
-        }
-    }//GEN-LAST:event_lbTermosUsoMouseEntered
-
-    private void lbTermosUsoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTermosUsoMouseExited
-        if (viewTermosUso.isVisible() == false) {
-            lbTermosUso.setForeground(new java.awt.Color(255, 255, 255));
-        }
-    }//GEN-LAST:event_lbTermosUsoMouseExited
-
-    private void lbPoliticaPrivacidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbPoliticaPrivacidadeMouseClicked
-        LimparDesktop();
-        viewPoliticaPrivacidade.setVisible(true);
-        try {
-            viewPoliticaPrivacidade.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_lbPoliticaPrivacidadeMouseClicked
-
-    private void lbPoliticaPrivacidadeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbPoliticaPrivacidadeMouseEntered
-        if (viewPoliticaPrivacidade.isVisible() == false) {
-            lbPoliticaPrivacidade.setForeground(new java.awt.Color(153, 204, 0));
-        }
-    }//GEN-LAST:event_lbPoliticaPrivacidadeMouseEntered
-
-    private void lbPoliticaPrivacidadeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbPoliticaPrivacidadeMouseExited
-        if (viewPoliticaPrivacidade.isVisible() == false) {
-            lbPoliticaPrivacidade.setForeground(new java.awt.Color(255, 255, 255));
-        }
-    }//GEN-LAST:event_lbPoliticaPrivacidadeMouseExited
     //FIM dos Métodos de interação entre todos os JInternalFrames e o JDesktopPane da ViewPrincipal.
 
     /**
@@ -841,32 +660,24 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
     //Declaração de variáveis(Views).
     private ViewAcesso viewAcesso;
-    private ViewAjuda viewAjuda;
-    private ViewVendas viewCaixa;
     private ViewEstoque viewEstoque;
     private ViewFinanceiro viewFinanceiro;
-    private ViewVisaoGeral viewHome;
     private ViewPainelControle viewPainelControle;
-    private ViewPoliticaPrivacidade viewPoliticaPrivacidade;
     private ViewRelatorios viewRelatorios;
-    private ViewTermosUso viewTermosUso;
+    private ViewVendas viewVendas;
+    private ViewVisaoGeral viewVisaoGeral;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dpnCorpo;
-    private javax.swing.JLabel lbAjuda;
-    private javax.swing.JLabel lbDireitos;
     private javax.swing.JLabel lbEstoque;
     private javax.swing.JLabel lbFinanceiro;
     private javax.swing.JLabel lbFundoDireita;
     private javax.swing.JLabel lbFundoEsquerda;
     private javax.swing.JLabel lbNull;
     private javax.swing.JLabel lbPainelControle;
-    private javax.swing.JLabel lbPoliticaPrivacidade;
     private javax.swing.JLabel lbRelatorios;
     private javax.swing.JLabel lbSair;
-    private javax.swing.JLabel lbTermosUso;
     private javax.swing.JLabel lbVendas;
-    private javax.swing.JLabel lbVersao;
     private javax.swing.JLabel lbVisaoGeral;
     private javax.swing.JPanel pnCorpo;
     private javax.swing.JPanel pnEstoque;
@@ -874,7 +685,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pnMenu;
     private javax.swing.JPanel pnPainelControle;
     private javax.swing.JPanel pnRelatorios;
-    private javax.swing.JPanel pnRodape;
     private javax.swing.JPanel pnSair;
     private javax.swing.JPanel pnVendas;
     private javax.swing.JPanel pnVisaoGeral;

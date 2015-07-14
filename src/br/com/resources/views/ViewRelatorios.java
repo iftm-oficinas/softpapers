@@ -18,126 +18,177 @@ public class ViewRelatorios extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel7 = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        tpnCorpo = new javax.swing.JTabbedPane();
+        spnVendasCliente = new javax.swing.JScrollPane();
+        pnVendasCliente = new javax.swing.JPanel();
+        lbVendasCliente = new javax.swing.JLabel();
+        spnVendasVendedor = new javax.swing.JScrollPane();
+        pnVendasVendedor = new javax.swing.JPanel();
+        lbVendasVededor = new javax.swing.JLabel();
+        spnFluxoCaixaDiario = new javax.swing.JScrollPane();
+        pnFluxoCaixaDiario = new javax.swing.JPanel();
+        lbFluxoCaixaDiario = new javax.swing.JLabel();
+        spnFluxoCaixaMensal = new javax.swing.JScrollPane();
+        pnFluxoCaixaMensal = new javax.swing.JPanel();
+        lbFluxoCaixaMensal = new javax.swing.JLabel();
+        spnGiroEstoque = new javax.swing.JScrollPane();
+        pnGiroEstoque = new javax.swing.JPanel();
+        lbGiroEstoque = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
         setResizable(true);
         setFrameIcon(null);
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        tpnCorpo.setForeground(new java.awt.Color(102, 102, 102));
+        tpnCorpo.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        tpnCorpo.setFocusable(false);
+        tpnCorpo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        jScrollPane4.setBorder(null);
+        spnVendasCliente.setBorder(null);
 
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        pnVendasCliente.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/5.RelatoriosVendasClientes.png"))); // NOI18N
+        lbVendasCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/5.RelatoriosVendasClientes.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnVendasClienteLayout = new javax.swing.GroupLayout(pnVendasCliente);
+        pnVendasCliente.setLayout(pnVendasClienteLayout);
+        pnVendasClienteLayout.setHorizontalGroup(
+            pnVendasClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnVendasClienteLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lbVendasCliente)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        pnVendasClienteLayout.setVerticalGroup(
+            pnVendasClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnVendasClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lbVendasCliente)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane4.setViewportView(jPanel8);
+        spnVendasCliente.setViewportView(pnVendasCliente);
 
-        jTabbedPane2.addTab("", jScrollPane4);
+        tpnCorpo.addTab("Vendas por Cliente      ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/vendasCliente.png")), spnVendasCliente); // NOI18N
 
-        jScrollPane5.setBorder(null);
+        spnVendasVendedor.setBorder(null);
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        pnVendasVendedor.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/5.RelatoriosFluxoCaixa.png"))); // NOI18N
+        lbVendasVededor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/5.RelatoriosVendasVendedor.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnVendasVendedorLayout = new javax.swing.GroupLayout(pnVendasVendedor);
+        pnVendasVendedor.setLayout(pnVendasVendedorLayout);
+        pnVendasVendedorLayout.setHorizontalGroup(
+            pnVendasVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnVendasVendedorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(lbVendasVededor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        pnVendasVendedorLayout.setVerticalGroup(
+            pnVendasVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnVendasVendedorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(lbVendasVededor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane5.setViewportView(jPanel9);
+        spnVendasVendedor.setViewportView(pnVendasVendedor);
 
-        jTabbedPane2.addTab("", jScrollPane5);
+        tpnCorpo.addTab("Vendas por Vendedor  ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/vendasVendedor.png")), spnVendasVendedor); // NOI18N
 
-        jScrollPane6.setBorder(null);
+        spnFluxoCaixaDiario.setBorder(null);
 
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        pnFluxoCaixaDiario.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/5.RelatoriosGiroEstoque.png"))); // NOI18N
+        lbFluxoCaixaDiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/5.RelatoriosFluxoCaixaDiario.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnFluxoCaixaDiarioLayout = new javax.swing.GroupLayout(pnFluxoCaixaDiario);
+        pnFluxoCaixaDiario.setLayout(pnFluxoCaixaDiarioLayout);
+        pnFluxoCaixaDiarioLayout.setHorizontalGroup(
+            pnFluxoCaixaDiarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnFluxoCaixaDiarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(lbFluxoCaixaDiario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+        pnFluxoCaixaDiarioLayout.setVerticalGroup(
+            pnFluxoCaixaDiarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnFluxoCaixaDiarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addComponent(lbFluxoCaixaDiario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane6.setViewportView(jPanel10);
+        spnFluxoCaixaDiario.setViewportView(pnFluxoCaixaDiario);
 
-        jTabbedPane2.addTab("", jScrollPane6);
+        tpnCorpo.addTab("Fluxo de Caixa Diário   ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/fluxoCaixaDiario.png")), spnFluxoCaixaDiario); // NOI18N
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1907, Short.MAX_VALUE)
+        spnFluxoCaixaMensal.setBorder(null);
+
+        pnFluxoCaixaMensal.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbFluxoCaixaMensal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/5.RelatoriosFluxoCaixaMensal.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnFluxoCaixaMensalLayout = new javax.swing.GroupLayout(pnFluxoCaixaMensal);
+        pnFluxoCaixaMensal.setLayout(pnFluxoCaixaMensalLayout);
+        pnFluxoCaixaMensalLayout.setHorizontalGroup(
+            pnFluxoCaixaMensalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnFluxoCaixaMensalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbFluxoCaixaMensal)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+        pnFluxoCaixaMensalLayout.setVerticalGroup(
+            pnFluxoCaixaMensalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnFluxoCaixaMensalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbFluxoCaixaMensal)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        spnFluxoCaixaMensal.setViewportView(pnFluxoCaixaMensal);
+
+        tpnCorpo.addTab("FLuxo de Caixa Mensal", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/fluxoCaixaMensal.png")), spnFluxoCaixaMensal); // NOI18N
+
+        spnGiroEstoque.setBorder(null);
+
+        pnGiroEstoque.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbGiroEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/5.RelatoriosGiroEstoque.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnGiroEstoqueLayout = new javax.swing.GroupLayout(pnGiroEstoque);
+        pnGiroEstoque.setLayout(pnGiroEstoqueLayout);
+        pnGiroEstoqueLayout.setHorizontalGroup(
+            pnGiroEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnGiroEstoqueLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbGiroEstoque)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnGiroEstoqueLayout.setVerticalGroup(
+            pnGiroEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnGiroEstoqueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbGiroEstoque)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        spnGiroEstoque.setViewportView(pnGiroEstoque);
+
+        tpnCorpo.addTab("Giro de Estoque           ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/giroCaixa.png")), spnGiroEstoque); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tpnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 1058, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tpnCorpo)
         );
 
         pack();
@@ -146,16 +197,21 @@ public class ViewRelatorios extends javax.swing.JInternalFrame {
     private ViewPrincipal viewPrincipal;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JLabel lbFluxoCaixaDiario;
+    private javax.swing.JLabel lbFluxoCaixaMensal;
+    private javax.swing.JLabel lbGiroEstoque;
+    private javax.swing.JLabel lbVendasCliente;
+    private javax.swing.JLabel lbVendasVededor;
+    private javax.swing.JPanel pnFluxoCaixaDiario;
+    private javax.swing.JPanel pnFluxoCaixaMensal;
+    private javax.swing.JPanel pnGiroEstoque;
+    private javax.swing.JPanel pnVendasCliente;
+    private javax.swing.JPanel pnVendasVendedor;
+    private javax.swing.JScrollPane spnFluxoCaixaDiario;
+    private javax.swing.JScrollPane spnFluxoCaixaMensal;
+    private javax.swing.JScrollPane spnGiroEstoque;
+    private javax.swing.JScrollPane spnVendasCliente;
+    private javax.swing.JScrollPane spnVendasVendedor;
+    private javax.swing.JTabbedPane tpnCorpo;
     // End of variables declaration//GEN-END:variables
 }
