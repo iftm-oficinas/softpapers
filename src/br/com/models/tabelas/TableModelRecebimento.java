@@ -20,10 +20,9 @@ public class TableModelRecebimento extends AbstractTableModel {
     private final String[] colunas;
 
     //Declaração de variáveis que compoem os campos da tabela.
-    private static final int statusRecebimento = 0;
-    private static final int descricaoRecebimento = 1;
-    private static final int valorRecebimento = 2;
-    private static final int dataRecebimento = 3;
+    private static final int descricaoRecebimento = 0;
+    private static final int valorRecebimento = 1;
+    private static final int dataRecebimento = 2;
 
     /**
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
@@ -31,7 +30,7 @@ public class TableModelRecebimento extends AbstractTableModel {
      */
     public TableModelRecebimento() {
         linhas = new ArrayList<>();
-        colunas = new String[]{" ", "Recebimento", "Valor", "Data"};
+        colunas = new String[]{"Pago", "Valor", "Data"};
     }
 
     /**
@@ -41,7 +40,7 @@ public class TableModelRecebimento extends AbstractTableModel {
      */
     public TableModelRecebimento(List<Recebimento> recebimentos) {
         linhas = new ArrayList<>(recebimentos);
-        colunas = new String[]{" ", "Recebimento", "Valor", "Data"};
+        colunas = new String[]{"Pago", "Valor", "Data"};
     }
 
     //Gets and Sets
@@ -63,10 +62,8 @@ public class TableModelRecebimento extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
-            case statusRecebimento:
-                return Boolean.class;
             case descricaoRecebimento:
-                return String.class;
+                return Boolean.class;
             case valorRecebimento:
                 return BigDecimal.class;
             case dataRecebimento:
@@ -80,10 +77,8 @@ public class TableModelRecebimento extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Recebimento recebimento = linhas.get(rowIndex);
         switch (columnIndex) {
-            case statusRecebimento:
-                return recebimento.getStatusRecebimento();
             case descricaoRecebimento:
-                return recebimento.getDescricaoRecebimento();
+                return recebimento.getStatusRecebimento();
             case valorRecebimento:
                 return recebimento.getValorRecebimento();
             case dataRecebimento:
@@ -97,11 +92,8 @@ public class TableModelRecebimento extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         Recebimento recebimento = linhas.get(rowIndex);
         switch (columnIndex) {
-            case statusRecebimento:
-                recebimento.setStatusRecebimento((Boolean) aValue);
-                break;
             case descricaoRecebimento:
-                recebimento.setDescricaoRecebimento((String) (aValue));
+                recebimento.setStatusRecebimento((Boolean) aValue);
                 break;
             case valorRecebimento:
                 recebimento.setValorRecebimento((BigDecimal) (aValue));

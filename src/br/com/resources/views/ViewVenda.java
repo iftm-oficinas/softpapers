@@ -6,18 +6,17 @@ import br.com.models.tabelas.TableModelRecebimento;
 import br.com.models.vo.Itemvenda;
 import br.com.models.vo.Recebimento;
 import br.com.models.vo.Venda;
-import java.awt.Cursor;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * @see Classe visual. JDialog que tem como objetivo cadastrar uma nova venda.
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
-public class ViewVenda extends javax.swing.JDialog {
+public final class ViewVenda extends javax.swing.JDialog {
 
     /**
      * @see Construtor padrão.
@@ -33,11 +32,11 @@ public class ViewVenda extends javax.swing.JDialog {
         this.viewVendas = viewVendas;
         this.vendaBO = new VendaBO();
         this.itens = new ArrayList<>();
+        this.recebimentos = new ArrayList<>();
         initComponents();
         rbAVista.doClick();
         btnAlterar.setVisible(false);
-
-        atualizarTabelas();
+        atualizarPagina();
     }
 
     /**
@@ -56,11 +55,23 @@ public class ViewVenda extends javax.swing.JDialog {
         this.viewVendas = viewVendas;
         this.vendaBO = new VendaBO();
         this.itens = new ArrayList<>();
+        this.recebimentos = new ArrayList<>();
         initComponents();
         rbAVista.doClick();
         btnFinalizarVenda.setVisible(false);
 
+        atualizarPagina();
+    }
+
+    public void atualizarPagina() {
+        calcularValores();
+        calcularPagamento();
+        calcularTroco();
+        gerarRecebimentos();
         atualizarTabelas();
+        calcularValores();
+        calcularPagamento();
+        calcularTroco();
     }
 
     /**
@@ -90,7 +101,6 @@ public class ViewVenda extends javax.swing.JDialog {
         tbRecebimentos.clearSelection();
 
         //Definindo botões Aleterar e Excluir como não habilitado.
-        btnVisualizarItem.setEnabled(false);
         btnAlterarItem.setEnabled(false);
         btnExcluirItem.setEnabled(false);
 
@@ -100,7 +110,6 @@ public class ViewVenda extends javax.swing.JDialog {
         if (cbCliente.getSelectedIndex() == 0) {
             tfDesconto.setText("0.0");
         }
-        calcularValores();
     }
 
     /**
@@ -116,16 +125,49 @@ public class ViewVenda extends javax.swing.JDialog {
             aux.add(aux.multiply(new BigDecimal(-1)).multiply(new BigDecimal(tfDesconto.getText().replace(",", ".")).divide(new BigDecimal(100))));
 
             tfTotalVenda.setText(aux.add(aux.multiply(new BigDecimal(-1)).multiply(new BigDecimal(tfDesconto.getText().replace(",", ".")).divide(new BigDecimal(100)))).setScale(2, RoundingMode.UP).toString());
-            rbAVista.doClick();
-            calcularPagamento();
+        }
+    }
+
+    /**
+     * @see Método que calcula os valores do troco.
+     */
+    public void calcularTroco() {
+        try {
+            BigDecimal troco = new BigDecimal(tfTotalPago.getText()).subtract(new BigDecimal(tfTotalAVista.getText()));
+            tfTroco.setText(troco.toString());
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void calcularPagamento() {
+        if (rbAVista.isSelected()) {
+            tfTotalAVista.setText(tfTotalVenda.getText());
+        } else {
+            BigDecimal valor = new BigDecimal(0);
+            for (Recebimento recebimento : recebimentos) {
+                if (recebimento.getStatusRecebimento()) {
+                    valor = valor.add(recebimento.getValorRecebimento());
+                }
+            }
+            tfTotalAVista.setText(valor.toString());
         }
     }
 
     /**
      * @see Método que calcula os valores do pagamento da venda.
      */
-    public void calcularPagamento() {
-
+    public void gerarRecebimentos() {
+        recebimentos.clear();
+        try {
+            if (rbAPrazo.isSelected()) {
+                for (int cont = 0; cont < (Integer) sldParcelas.getValue(); cont++) {
+                    recebimentos.add(new Recebimento(null, null, vendaVO, "Venda", new BigDecimal(tfTotalVenda.getText()).divide(new BigDecimal(sldParcelas.getValue()), MathContext.DECIMAL128), new Date(), false, new Date(), new Date()));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     //Componentes padrões do JFrame.
@@ -143,7 +185,6 @@ public class ViewVenda extends javax.swing.JDialog {
         lbPedido = new javax.swing.JLabel();
         pnPedido = new javax.swing.JPanel();
         btnNovoItem = new javax.swing.JButton();
-        btnVisualizarItem = new javax.swing.JButton();
         btnAlterarItem = new javax.swing.JButton();
         btnExcluirItem = new javax.swing.JButton();
         spnItens = new javax.swing.JScrollPane();
@@ -160,10 +201,10 @@ public class ViewVenda extends javax.swing.JDialog {
         rbAVista = new javax.swing.JRadioButton();
         rbAPrazo = new javax.swing.JRadioButton();
         pnAPrazo = new javax.swing.JPanel();
-        lbParcelas = new javax.swing.JLabel();
-        lbVencimento = new javax.swing.JLabel();
-        tfVencimento = new javax.swing.JFormattedTextField();
-        spnParcelas = new javax.swing.JSpinner();
+        tfParcelas = new javax.swing.JLabel();
+        sldParcelas = new javax.swing.JSlider();
+        tfVencimento = new javax.swing.JLabel();
+        cbVencimento = new javax.swing.JComboBox();
         spnRecebimentos = new javax.swing.JScrollPane();
         tbRecebimentos = new javax.swing.JTable();
         pnAVista = new javax.swing.JPanel();
@@ -261,20 +302,6 @@ public class ViewVenda extends javax.swing.JDialog {
             }
         });
 
-        btnVisualizarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarUP.png"))); // NOI18N
-        btnVisualizarItem.setBorder(null);
-        btnVisualizarItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVisualizarItem.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
-        btnVisualizarItem.setEnabled(false);
-        btnVisualizarItem.setFocusable(false);
-        btnVisualizarItem.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
-        btnVisualizarItem.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
-        btnVisualizarItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisualizarItemActionPerformed(evt);
-            }
-        });
-
         btnAlterarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
         btnAlterarItem.setBorder(null);
         btnAlterarItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -341,8 +368,7 @@ public class ViewVenda extends javax.swing.JDialog {
 
         tfValorProdutos.setEditable(false);
         tfValorProdutos.setForeground(new java.awt.Color(102, 102, 102));
-        tfValorProdutos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
-        tfValorProdutos.setText("0,0");
+        tfValorProdutos.setText("0.0");
         tfValorProdutos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbDesconto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -351,8 +377,7 @@ public class ViewVenda extends javax.swing.JDialog {
 
         tfDesconto.setEditable(false);
         tfDesconto.setForeground(new java.awt.Color(102, 102, 102));
-        tfDesconto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
-        tfDesconto.setText("0,0");
+        tfDesconto.setText("0.0");
         tfDesconto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbTotalVenda.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -361,8 +386,7 @@ public class ViewVenda extends javax.swing.JDialog {
 
         tfTotalVenda.setEditable(false);
         tfTotalVenda.setForeground(new java.awt.Color(102, 102, 102));
-        tfTotalVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
-        tfTotalVenda.setText("0,0");
+        tfTotalVenda.setText("0.0");
         tfTotalVenda.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout pnPedidoLayout = new javax.swing.GroupLayout(pnPedido);
@@ -373,15 +397,13 @@ public class ViewVenda extends javax.swing.JDialog {
                 .addGap(11, 11, 11)
                 .addComponent(btnNovoItem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVisualizarItem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAlterarItem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExcluirItem)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(pnPedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spnItens, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                .addComponent(spnItens, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(pnPedidoLayout.createSequentialGroup()
                 .addContainerGap()
@@ -394,18 +416,16 @@ public class ViewVenda extends javax.swing.JDialog {
                     .addComponent(tfTotalVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfValorProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(328, Short.MAX_VALUE))
         );
         pnPedidoLayout.setVerticalGroup(
             pnPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnPedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnNovoItem)
-                        .addComponent(btnAlterarItem)
-                        .addComponent(btnExcluirItem))
-                    .addComponent(btnVisualizarItem))
+                .addGroup(pnPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNovoItem)
+                    .addComponent(btnAlterarItem)
+                    .addComponent(btnExcluirItem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spnItens, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -459,31 +479,34 @@ public class ViewVenda extends javax.swing.JDialog {
 
         pnAPrazo.setBackground(new java.awt.Color(255, 255, 255));
 
-        lbParcelas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbParcelas.setForeground(new java.awt.Color(102, 102, 102));
-        lbParcelas.setText("Parcelas");
+        tfParcelas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfParcelas.setForeground(new java.awt.Color(102, 102, 102));
+        tfParcelas.setText("Parcelas");
 
-        lbVencimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbVencimento.setForeground(new java.awt.Color(102, 102, 102));
-        lbVencimento.setText("Vencimento");
-
-        tfVencimento.setForeground(new java.awt.Color(102, 102, 102));
-        try {
-            tfVencimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        tfVencimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        spnParcelas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        spnParcelas.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
-        spnParcelas.setFocusable(false);
-        spnParcelas.setForeground(new java.awt.Color(102, 102, 102));
-        spnParcelas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                spnParcelasMouseClicked(evt);
+        sldParcelas.setBackground(new java.awt.Color(255, 255, 255));
+        sldParcelas.setFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
+        sldParcelas.setForeground(new java.awt.Color(102, 102, 102));
+        sldParcelas.setMajorTickSpacing(1);
+        sldParcelas.setMaximum(12);
+        sldParcelas.setPaintLabels(true);
+        sldParcelas.setPaintTicks(true);
+        sldParcelas.setSnapToTicks(true);
+        sldParcelas.setValue(0);
+        sldParcelas.setFocusable(false);
+        sldParcelas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                sldParcelasMouseReleased(evt);
             }
         });
+
+        tfVencimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfVencimento.setForeground(new java.awt.Color(102, 102, 102));
+        tfVencimento.setText("Vencimento nos dias");
+
+        cbVencimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cbVencimento.setForeground(new java.awt.Color(102, 102, 102));
+        cbVencimento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbVencimento.setFocusable(false);
 
         spnRecebimentos.setBackground(new java.awt.Color(255, 255, 255));
         spnRecebimentos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -504,7 +527,8 @@ public class ViewVenda extends javax.swing.JDialog {
         tbRecebimentos.setGridColor(new java.awt.Color(204, 204, 204));
         tbRecebimentos.setIntercellSpacing(new java.awt.Dimension(0, 1));
         tbRecebimentos.setRowHeight(30);
-        tbRecebimentos.setSelectionBackground(new java.awt.Color(95, 180, 25));
+        tbRecebimentos.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tbRecebimentos.setSelectionForeground(new java.awt.Color(102, 102, 102));
         tbRecebimentos.setShowVerticalLines(false);
         tbRecebimentos.getTableHeader().setReorderingAllowed(false);
         tbRecebimentos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -525,30 +549,34 @@ public class ViewVenda extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnAPrazoLayout.createSequentialGroup()
+                        .addComponent(spnRecebimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(pnAPrazoLayout.createSequentialGroup()
                         .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbVencimento)
-                            .addComponent(lbParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfVencimento)
-                            .addComponent(spnParcelas, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
-                    .addComponent(spnRecebimentos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addGroup(pnAPrazoLayout.createSequentialGroup()
+                                .addComponent(tfVencimento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnAPrazoLayout.createSequentialGroup()
+                                .addComponent(tfParcelas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sldParcelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10))))
         );
         pnAPrazoLayout.setVerticalGroup(
             pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAPrazoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spnParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbParcelas))
+                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnAPrazoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tfParcelas))
+                    .addComponent(sldParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbVencimento))
+                    .addComponent(tfVencimento)
+                    .addComponent(cbVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(spnRecebimentos, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(spnRecebimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pnAVista.setBackground(new java.awt.Color(255, 255, 255));
@@ -559,8 +587,7 @@ public class ViewVenda extends javax.swing.JDialog {
 
         tfTotalAVista.setEditable(false);
         tfTotalAVista.setForeground(new java.awt.Color(102, 102, 102));
-        tfTotalAVista.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
-        tfTotalAVista.setText("0,0");
+        tfTotalAVista.setText("0.0");
         tfTotalAVista.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbTotalPago.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -569,11 +596,10 @@ public class ViewVenda extends javax.swing.JDialog {
 
         tfTotalPago.setForeground(new java.awt.Color(102, 102, 102));
         tfTotalPago.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
-        tfTotalPago.setText("0,0");
         tfTotalPago.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfTotalPago.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfTotalPagoKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfTotalPagoKeyReleased(evt);
             }
         });
 
@@ -583,8 +609,7 @@ public class ViewVenda extends javax.swing.JDialog {
 
         tfTroco.setEditable(false);
         tfTroco.setForeground(new java.awt.Color(102, 102, 102));
-        tfTroco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
-        tfTroco.setText("0,0");
+        tfTroco.setText("0.0");
         tfTroco.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout pnAVistaLayout = new javax.swing.GroupLayout(pnAVista);
@@ -604,7 +629,7 @@ public class ViewVenda extends javax.swing.JDialog {
                             .addComponent(tfTroco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAVistaLayout.createSequentialGroup()
                         .addComponent(lbTotalAVista)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                         .addComponent(tfTotalAVista, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -631,9 +656,7 @@ public class ViewVenda extends javax.swing.JDialog {
         pnPagamentoLayout.setHorizontalGroup(
             pnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnPagamentoLayout.createSequentialGroup()
-                .addGroup(pnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnAVista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnAPrazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnAVista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(pnPagamentoLayout.createSequentialGroup()
                 .addContainerGap()
@@ -641,6 +664,7 @@ public class ViewVenda extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbAPrazo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnAPrazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnPagamentoLayout.setVerticalGroup(
             pnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -757,26 +781,37 @@ public class ViewVenda extends javax.swing.JDialog {
 
     private void tbItensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbItensMouseClicked
         if (tbItens.getSelectedRow() != -1) {
-            btnVisualizarItem.setEnabled(true);
             btnAlterarItem.setEnabled(true);
             btnExcluirItem.setEnabled(true);
         }
     }//GEN-LAST:event_tbItensMouseClicked
 
     private void tbRecebimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRecebimentosMouseClicked
-        // TODO add your handling code here:
+        if (tbRecebimentos.getSelectedRow() != -1) {
+            if (recebimentos.get(tbRecebimentos.getSelectedRow()).getStatusRecebimento()) {
+                recebimentos.get(tbRecebimentos.getSelectedRow()).setStatusRecebimento(false);
+            } else {
+                recebimentos.get(tbRecebimentos.getSelectedRow()).setStatusRecebimento(true);
+            }
+            atualizarTabelas();
+            calcularValores();
+            calcularPagamento();
+            calcularTroco();
+        }
     }//GEN-LAST:event_tbRecebimentosMouseClicked
 
     private void rbAVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAVistaActionPerformed
         if (rbAVista.isSelected()) {
             pnAPrazo.setVisible(false);
             pnAVista.setVisible(true);
+            atualizarPagina();
         }
     }//GEN-LAST:event_rbAVistaActionPerformed
 
     private void rbAPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAPrazoActionPerformed
         if (rbAPrazo.isSelected()) {
             pnAPrazo.setVisible(true);
+            atualizarPagina();
         }
     }//GEN-LAST:event_rbAPrazoActionPerformed
 
@@ -786,28 +821,13 @@ public class ViewVenda extends javax.swing.JDialog {
         } else {
             tfDesconto.setText("0.0");
         }
-        atualizarTabelas();
+        atualizarPagina();
     }//GEN-LAST:event_cbClienteActionPerformed
-
-    private void spnParcelasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spnParcelasMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_spnParcelasMouseClicked
-
-    private void tfTotalPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTotalPagoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfTotalPagoKeyTyped
 
     private void btnNovoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoItemActionPerformed
         viewItem = new ViewItemVenda(viewPrincipal, true, this, itens);
         viewItem.setVisible(true);
     }//GEN-LAST:event_btnNovoItemActionPerformed
-
-    private void btnVisualizarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarItemActionPerformed
-        if (tbItens.getSelectedRow() != -1) {
-            viewItem = new ViewItemVenda(viewPrincipal, true, this, itens.get(tbItens.getSelectedRow()), false);
-            viewItem.setVisible(true);
-        }
-    }//GEN-LAST:event_btnVisualizarItemActionPerformed
 
     private void btnAlterarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarItemActionPerformed
         if (tbItens.getSelectedRow() != -1) {
@@ -819,9 +839,19 @@ public class ViewVenda extends javax.swing.JDialog {
     private void btnExcluirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirItemActionPerformed
         if (tbItens.getSelectedRow() != -1) {
             itens.remove(tbItens.getSelectedRow());
-            atualizarTabelas();
+            atualizarPagina();
         }
     }//GEN-LAST:event_btnExcluirItemActionPerformed
+
+    private void tfTotalPagoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTotalPagoKeyReleased
+        calcularTroco();
+    }//GEN-LAST:event_tfTotalPagoKeyReleased
+
+    private void sldParcelasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sldParcelasMouseReleased
+        sldParcelas.setEnabled(false);
+        atualizarPagina();
+        sldParcelas.setEnabled(true);
+    }//GEN-LAST:event_sldParcelasMouseReleased
 
     //Declaração de variáveis(View).
     private final ViewPrincipal viewPrincipal;
@@ -830,8 +860,8 @@ public class ViewVenda extends javax.swing.JDialog {
 
     //Declaração de variáveis(Value Object).
     private Venda vendaVO;
-    private ArrayList<Itemvenda> itens;
-    private ArrayList<Recebimento> recebimentos;
+    private final ArrayList<Itemvenda> itens;
+    private final ArrayList<Recebimento> recebimentos;
 
     //Declaração de variáveis(Business Object).
     private VendaBO vendaBO;
@@ -846,14 +876,13 @@ public class ViewVenda extends javax.swing.JDialog {
     private javax.swing.JButton btnExcluirItem;
     private javax.swing.JButton btnFinalizarVenda;
     private javax.swing.JButton btnNovoItem;
-    private javax.swing.JButton btnVisualizarItem;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbCliente;
+    private javax.swing.JComboBox cbVencimento;
     private javax.swing.JLabel lbCategoria;
     private javax.swing.JLabel lbDesconto;
     private javax.swing.JLabel lbOpcional1;
     private javax.swing.JLabel lbPagamento;
-    private javax.swing.JLabel lbParcelas;
     private javax.swing.JLabel lbPedido;
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JLabel lbTotalAVista;
@@ -861,7 +890,6 @@ public class ViewVenda extends javax.swing.JDialog {
     private javax.swing.JLabel lbTotalVenda;
     private javax.swing.JLabel lbTroco;
     private javax.swing.JLabel lbValorProdutos;
-    private javax.swing.JLabel lbVencimento;
     private javax.swing.JPanel pnAPrazo;
     private javax.swing.JPanel pnAVista;
     private javax.swing.JPanel pnCliente;
@@ -871,8 +899,8 @@ public class ViewVenda extends javax.swing.JDialog {
     private javax.swing.JPanel pnTitulo;
     private javax.swing.JRadioButton rbAPrazo;
     private javax.swing.JRadioButton rbAVista;
+    private javax.swing.JSlider sldParcelas;
     private javax.swing.JScrollPane spnItens;
-    private javax.swing.JSpinner spnParcelas;
     private javax.swing.JScrollPane spnRecebimentos;
     private javax.swing.JSeparator sprDireita;
     private javax.swing.JSeparator sprRodape;
@@ -880,11 +908,12 @@ public class ViewVenda extends javax.swing.JDialog {
     private javax.swing.table.JTableHeader cabecalho;
     private javax.swing.JTable tbRecebimentos;
     private javax.swing.JFormattedTextField tfDesconto;
+    private javax.swing.JLabel tfParcelas;
     private javax.swing.JFormattedTextField tfTotalAVista;
     private javax.swing.JFormattedTextField tfTotalPago;
     private javax.swing.JFormattedTextField tfTotalVenda;
     private javax.swing.JFormattedTextField tfTroco;
     private javax.swing.JFormattedTextField tfValorProdutos;
-    private javax.swing.JFormattedTextField tfVencimento;
+    private javax.swing.JLabel tfVencimento;
     // End of variables declaration//GEN-END:variables
 }

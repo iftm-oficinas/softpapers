@@ -48,6 +48,7 @@ public class ViewItemVenda extends javax.swing.JDialog {
         this.itens = null;
         initComponents();
         btnCadastrar.setVisible(false);
+        btnAlterar.setVisible(false);
 
         //Definindo Modelo com Produto para os JComboBox.
         ArrayList<String> array = new ArrayList<>();
@@ -68,6 +69,7 @@ public class ViewItemVenda extends javax.swing.JDialog {
         tfBuscarProduto.setEditable(false);
         btnBuscarProduto.setEnabled(false);
         if (alterar) {
+            btnAlterar.setVisible(true);
             tfQuantidade.setEnabled(true);
             valor = new BigDecimal(tfValor.getText()).divide(new BigDecimal(tfQuantidade.getText()));
         }
@@ -336,7 +338,7 @@ public class ViewItemVenda extends javax.swing.JDialog {
             itemVO = itemBO.inserirItem(null, itemBO.buscarProduto(cbProduto.getSelectedIndex() - 1), tfQuantidade.getText(), tfValor.getText());
             if (itemVO != null) {
                 itens.add(itemVO);
-                viewVenda.atualizarTabelas();
+                viewVenda.atualizarPagina();
                 this.dispose();
             }
         }
@@ -349,7 +351,7 @@ public class ViewItemVenda extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         if (itemBO.validarCampos(pnItem)) {
             if (itemBO.alterarItem(itemVO, tfQuantidade.getText(), tfValor.getText())) {
-                viewVenda.atualizarTabelas();
+                viewVenda.atualizarPagina();
                 this.dispose();
             }
         }
