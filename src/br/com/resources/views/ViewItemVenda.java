@@ -56,7 +56,7 @@ public class ViewItemVenda extends javax.swing.JDialog {
         if (item.getProduto() != null) {
             array.add(item.getProduto().getDescricaoProduto());
         } else {
-            array.add("CATEGORIA");
+            array.add("PRODUTO");
         }
         Arr = array.toArray(Arr);
         cbProduto.setModel(new javax.swing.DefaultComboBoxModel(Arr));

@@ -86,7 +86,11 @@ public class TableModelCompra extends AbstractTableModel {
         Compra compra = linhas.get(rowIndex);
         switch (columnIndex) {
             case fornecedorCompra:
-                return compra.getFornecedor().getNomeFornecedor();
+                if(compra.getFornecedor() != null){
+                    return compra.getFornecedor().getNomeFornecedor();
+                } else {
+                    return "SEM FORNECEDOR";
+                }
             case valorCompra:
                 return compra.getValorCompra();
             case parcelasCompra:

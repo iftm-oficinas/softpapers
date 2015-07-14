@@ -947,11 +947,11 @@ public final class ViewVenda extends javax.swing.JDialog {
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        btnFinalizarVenda.setEnabled(false);
+        btnAlterar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
         this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        btnFinalizarVenda.setEnabled(true);
+        btnAlterar.setEnabled(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     //Declaração de variáveis(View).

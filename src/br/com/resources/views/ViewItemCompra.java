@@ -1,7 +1,10 @@
 package br.com.resources.views;
 
-import br.com.models.bo.ItemVendaBO;
+import br.com.models.bo.ItemCompraBO;
 import br.com.models.vo.Itemcompra;
+import java.awt.Cursor;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 
 /**
  * @see Classe visual. JDialog que tem como objetivo cadastrar um novo item de
@@ -11,33 +14,65 @@ import br.com.models.vo.Itemcompra;
 public class ViewItemCompra extends javax.swing.JDialog {
 
     /**
+     * @param itens
+     * @param viewCompra
      * @see Construtor padrão.
      * @param parent
      * @param modal
-     * @param viewVenda
      */
-    public ViewItemCompra(java.awt.Frame parent, boolean modal, ViewVenda viewVenda) {
+    public ViewItemCompra(java.awt.Frame parent, boolean modal, ViewCompra viewCompra, ArrayList<Itemcompra> itens) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
+        this.viewCompra = viewCompra;
+        this.itemBO = new ItemCompraBO();
+        this.itens = itens;
+        this.itemVO = new Itemcompra();
         initComponents();
-        this.viewVenda = viewVenda;
-        this.viewCompra = null;
-        this.itemBO = new ItemVendaBO();
+        btnAlterar.setVisible(false);
     }
-    
+
     /**
+     * @param item
+     * @param alterar
      * @see Construtor padrão.
      * @param parent
      * @param modal
      * @param viewCompra
      */
-    public ViewItemCompra(java.awt.Frame parent, boolean modal, ViewCompra viewCompra) {
+    public ViewItemCompra(java.awt.Frame parent, boolean modal, ViewCompra viewCompra, Itemcompra item, Boolean alterar) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
-        initComponents();
         this.viewCompra = viewCompra;
-        this.viewVenda = null;
-        this.itemBO = new ItemVendaBO();
+        this.itemBO = new ItemCompraBO();
+        this.itemVO = item;
+        this.itens = null;
+        initComponents();
+        btnCadastrar.setVisible(false);
+        btnAlterar.setVisible(false);
+
+        //Definindo Modelo com Produto para os JComboBox.
+        ArrayList<String> array = new ArrayList<>();
+        String[] Arr = new String[array.size()];
+        if (item.getProduto() != null) {
+            array.add(item.getProduto().getDescricaoProduto());
+        } else {
+            array.add("PRODUTO");
+        }
+        Arr = array.toArray(Arr);
+        cbProduto.setModel(new javax.swing.DefaultComboBoxModel(Arr));
+        cbProduto.setEnabled(false);
+
+        //Definindo valores quantidade e valor
+        tfQuantidade.setText(item.getQuantidadeItemCompra().toString());
+        tfValor.setText(item.getValorItemCompra().toString());
+        tfBuscarProduto.setText(item.getProduto().getCodigoProduto());
+        tfBuscarProduto.setEditable(false);
+        btnBuscarProduto.setEnabled(false);
+        if (alterar) {
+            btnAlterar.setVisible(true);
+            tfQuantidade.setEnabled(true);
+            valor = new BigDecimal(tfValor.getText()).divide(new BigDecimal(tfQuantidade.getText()));
+        }
     }
 
     //Componentes padrões do JFrame.
@@ -97,6 +132,7 @@ public class ViewItemCompra extends javax.swing.JDialog {
 
         cbProduto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cbProduto.setForeground(new java.awt.Color(102, 102, 102));
+        cbProduto.setModel(new javax.swing.DefaultComboBoxModel(itemBO.buscarNomeProdutos()));
         cbProduto.setFocusable(false);
         cbProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,10 +146,11 @@ public class ViewItemCompra extends javax.swing.JDialog {
 
         tfQuantidade.setForeground(new java.awt.Color(102, 102, 102));
         tfQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
+        tfQuantidade.setEnabled(false);
         tfQuantidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfQuantidadeKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfQuantidadeKeyReleased(evt);
             }
         });
 
@@ -135,6 +172,7 @@ public class ViewItemCompra extends javax.swing.JDialog {
         btnBuscarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarUP.png"))); // NOI18N
         btnBuscarProduto.setBorder(null);
         btnBuscarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarProduto.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
         btnBuscarProduto.setFocusable(false);
         btnBuscarProduto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
         btnBuscarProduto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
@@ -261,30 +299,76 @@ public class ViewItemCompra extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProdutoActionPerformed
-        // TODO add your handling code here:
+        if (cbProduto.getSelectedIndex() != 0) {
+            tfQuantidade.setEnabled(true);
+        } else {
+            tfQuantidade.setEnabled(false);
+        }
+        tfQuantidade.setText("");
+        tfValor.setText("0,0");
     }//GEN-LAST:event_cbProdutoActionPerformed
 
-    private void tfQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfQuantidadeKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfQuantidadeKeyTyped
-
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        btnCadastrar.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        if (itemBO.validarCampos(pnItem) && cbProduto.getSelectedIndex() > 0) {
+            itemVO = itemBO.inserirItem(null, itemBO.buscarProduto(cbProduto.getSelectedIndex() - 1), tfQuantidade.getText(), tfValor.getText());
+            if (itemVO != null) {
+                itens.add(itemVO);
+                viewCompra.atualizarPagina();
+                this.dispose();
+            }
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
+        btnCadastrar.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        if (itemBO.validarCampos(pnItem)) {
+            if (itemBO.alterarItem(itemVO, tfQuantidade.getText(), tfValor.getText())) {
+                viewCompra.atualizarPagina();
+                this.dispose();
+            }
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
+    private void tfQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfQuantidadeKeyReleased
+        try {
+            if (tfValor.getText().length() > 0 && cbProduto.getSelectedIndex() > 0) {
+                tfValor.setText(new BigDecimal(tfQuantidade.getText()).multiply(itemBO.buscarProduto(cbProduto.getSelectedIndex() - 1).getVendaProduto()).toString());
+            } else {
+                tfValor.setText("0.0");
+            }
+        } catch (Exception e) {
+
+        }
+        if (!cbProduto.isEnabled()) {
+            try {
+                if (tfValor.getText().length() > 0) {
+                    tfValor.setText(new BigDecimal(tfQuantidade.getText()).multiply(valor).toString());
+                } else {
+                    tfValor.setText("0.0");
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }//GEN-LAST:event_tfQuantidadeKeyReleased
+
     //Declaração de variáveis(View).
-    private final ViewVenda viewVenda;
     private final ViewCompra viewCompra;
 
     //Declaração de variáveis(Value Object).
     private Itemcompra itemVO;
+    private final ArrayList<Itemcompra> itens;
+    private BigDecimal valor;
 
     //Declaração de variáveis(Business Object).
-    private ItemVendaBO itemBO;
+    private final ItemCompraBO itemBO;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

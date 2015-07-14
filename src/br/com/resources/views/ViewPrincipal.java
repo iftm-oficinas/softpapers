@@ -1,6 +1,7 @@
 package br.com.resources.views;
 
 import br.com.models.vo.Funcionario;
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -48,6 +49,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         //Define como não visível todos os elementos do menu (pnMenu).
         ocultarMenu();
+        
+        this.getGraphics().drawImage(null, 10, 10, 10, 10, 10, 10, 10, 10, Color.yellow, null);
     }
 
     /**

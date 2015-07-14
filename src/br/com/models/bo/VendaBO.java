@@ -4,7 +4,6 @@ import br.com.models.dao.GenericDAO;
 import br.com.models.vo.Cliente;
 import br.com.models.vo.Funcionario;
 import br.com.models.vo.Itemvenda;
-import br.com.models.vo.Recebimento;
 import br.com.models.vo.Venda;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
