@@ -20,11 +20,12 @@ public class TableModelFornecedor extends AbstractTableModel {
     private final String[] colunas;
 
     //Declaração de variáveis que compoem os campos da tabela.
-    private static final int idFornecedor = 0;
-    private static final int nomeFornecedor = 1;
-    private static final int telefoneFornecedor = 2;
-    private static final int dataCriacao = 3;
-    private static final int dataAtualizacao = 4;
+    private static final int nomeFornecedor = 0;
+    private static final int cpfCnpjFornecedor = 1;
+    private static final int emailFornecedor = 2;
+    private static final int telefoneFornecedor = 3;
+    private static final int criacaoFornecedor = 4;
+    private static final int atualizacaoFornecedor = 5;
 
     /**
      *
@@ -33,7 +34,7 @@ public class TableModelFornecedor extends AbstractTableModel {
      */
     public TableModelFornecedor() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Fornecedor", "Nome", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Fornecedor", "CNPJ/CPF", "E-mail", "Telefone", "Criação", "Atualização"};
     }
 
     /**
@@ -45,7 +46,7 @@ public class TableModelFornecedor extends AbstractTableModel {
      */
     public TableModelFornecedor(List<Fornecedor> fornecedor) {
         linhas = new ArrayList<>(fornecedor);
-        colunas = new String[]{"Fornecedor", "Nome", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Fornecedor", "CNPJ/CPF", "E-mail", "Telefone", "Criação", "Atualização"};
     }
 
     //Gets and Sets
@@ -67,15 +68,17 @@ public class TableModelFornecedor extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
-            case idFornecedor:
-                return Long.class;
             case nomeFornecedor:
+                return String.class;
+            case cpfCnpjFornecedor:
+                return String.class;
+            case emailFornecedor:
                 return String.class;
             case telefoneFornecedor:
                 return String.class;
-            case dataCriacao:
+            case criacaoFornecedor:
                 return Date.class;
-            case dataAtualizacao:
+            case atualizacaoFornecedor:
                 return Date.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -86,16 +89,18 @@ public class TableModelFornecedor extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Fornecedor fornecedor = linhas.get(rowIndex);
         switch (columnIndex) {
-            case idFornecedor:
-                return fornecedor.getIdFornecedor();
             case nomeFornecedor:
-                return fornecedor.getNomeFornecedor();
+                return fornecedor.getEmpresaFornecedor();
+            case cpfCnpjFornecedor:
+                return fornecedor.getCpfCnpjFornecedor();
+            case emailFornecedor:
+                return fornecedor.getEmailFornecedor();
             case telefoneFornecedor:
                 return fornecedor.getTelefoneFornecedor();
-            case dataCriacao:
-                return fornecedor.getDataCriacao();
-            case dataAtualizacao:
-                return fornecedor.getDataAtualizacao();
+            case criacaoFornecedor:
+                return fornecedor.getCriacaoFornecedor();
+            case atualizacaoFornecedor:
+                return fornecedor.getAtualizacaoFornecedor();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -105,20 +110,23 @@ public class TableModelFornecedor extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         Fornecedor fornecedor = linhas.get(rowIndex);
         switch (columnIndex) {
-            case idFornecedor:
-                fornecedor.setIdFornecedor((Long) aValue);
-                break;
             case nomeFornecedor:
-                fornecedor.setNomeFornecedor((String) aValue);
+                fornecedor.setEmpresaFornecedor((String) aValue);
+                break;
+            case cpfCnpjFornecedor:
+                fornecedor.setCpfCnpjFornecedor((String) aValue);
+                break;
+            case emailFornecedor:
+                fornecedor.setEmailFornecedor((String) aValue);
                 break;
             case telefoneFornecedor:
                 fornecedor.setTelefoneFornecedor((String) aValue);
                 break;
-            case dataCriacao:
-                fornecedor.setDataCriacao((Date) aValue);
+            case criacaoFornecedor:
+                fornecedor.setCriacaoFornecedor((Date) (aValue));
                 break;
-            case dataAtualizacao:
-                fornecedor.setDataAtualizacao((Date) aValue);
+            case atualizacaoFornecedor:
+                fornecedor.setAtualizacaoFornecedor((Date) (aValue));
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");

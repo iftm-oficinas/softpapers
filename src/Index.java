@@ -27,6 +27,10 @@ public class Index {
             java.util.logging.Logger.getLogger(ViewPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
+        //Instancia o ViewPrincipal para setar sua visibilidade como verdadeira.
+        ViewPrincipal viewPrincipal = new ViewPrincipal();
+        viewPrincipal.setVisible(true);
+
         //Teste restricões...
 //        String x = "0123456789abcdefghijklmnopqrstuvwxyz";
 //        if (x.contains("r")) {
@@ -34,8 +38,5 @@ public class Index {
 //        } else {
 //            System.out.println("no");
 //        }
-        //Instancia o ViewPrincipal para setar sua visibilidade como verdadeira.
-        ViewPrincipal viewPrincipal = new ViewPrincipal();
-        viewPrincipal.setVisible(true);
     }
 }

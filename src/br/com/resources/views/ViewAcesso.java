@@ -1,13 +1,13 @@
 package br.com.resources.views;
 
 import br.com.models.bo.AcessoBO;
-import br.com.models.vo.Usuario;
+import br.com.models.vo.Funcionario;
 import java.awt.Cursor;
 
 /**
  *
  * @see Classe visual. JInternalFrame que tem como objetivo restringir e validar
- * o acesso do Usuario ao programa e disponibilizar pequenas descrições das
+ * o acesso do Funcionario ao programa e disponibilizar pequenas descrições das
  * funcioalidades, página inicil do software.
  *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
@@ -53,8 +53,8 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
         pnCorpo = new javax.swing.JPanel();
         lbLogo = new javax.swing.JLabel();
         pnAcesso = new javax.swing.JPanel();
-        lbEmail = new javax.swing.JLabel();
-        tfEmail = new javax.swing.JTextField();
+        lbUsuario = new javax.swing.JLabel();
+        tfUsuario = new javax.swing.JTextField();
         lbSenha = new javax.swing.JLabel();
         pfSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
@@ -131,13 +131,13 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
 
         pnAcesso.setBackground(new java.awt.Color(255, 255, 255));
 
-        lbEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbEmail.setForeground(new java.awt.Color(51, 51, 51));
-        lbEmail.setText("Email");
+        lbUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        lbUsuario.setText("Usuário");
 
-        tfEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfEmail.setForeground(new java.awt.Color(51, 51, 51));
-        tfEmail.setText("marlonmacf@gmail.com");
+        tfUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        tfUsuario.setText("marlonmacf");
 
         lbSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbSenha.setForeground(new java.awt.Color(51, 51, 51));
@@ -145,7 +145,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
 
         pfSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         pfSenha.setForeground(new java.awt.Color(51, 51, 51));
-        pfSenha.setText("1");
+        pfSenha.setText("1234567890");
 
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnEntrarUP.png"))); // NOI18N
         btnEntrar.setBorder(null);
@@ -179,10 +179,10 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAcessoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnAcessoLayout.createSequentialGroup()
                         .addGroup(pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbUsuario, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbSenha, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbAcesso3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnAcessoLayout.createSequentialGroup()
@@ -198,9 +198,9 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
             pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnAcessoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbEmail)
+                .addComponent(lbUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -733,8 +733,8 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         acessoBO = new AcessoBO();
         if (acessoBO.validarCampos(pnAcesso)) {
-            usuarioVO = acessoBO.validarAcesso(tfEmail.getText(), new String(pfSenha.getPassword()));
-            if (usuarioVO != null) {
+            funcionarioVO = acessoBO.validarAcesso(tfUsuario.getText(), new String(pfSenha.getPassword()));
+            if (funcionarioVO != null) {
                 viewPrincipal.mostrarMenu();
             }
         }
@@ -749,14 +749,13 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
     private AcessoBO acessoBO;
 
     //Declaração de variáveis(Value Object).
-    private Usuario usuarioVO;
+    private Funcionario funcionarioVO;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel lbAcesso2;
     private javax.swing.JLabel lbAcesso3;
     private javax.swing.JLabel lbAcesso4;
-    private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbImagemControle;
     private javax.swing.JLabel lbImagemEstoque;
     private javax.swing.JLabel lbImagemFinanceiro;
@@ -802,6 +801,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbTituloRelatorios;
     private javax.swing.JLabel lbTituloUsuarios;
     private javax.swing.JLabel lbTituloVendas;
+    private javax.swing.JLabel lbUsuario;
     private javax.swing.JPasswordField pfSenha;
     private javax.swing.JPanel pnAcesso;
     private javax.swing.JPanel pnControle;
@@ -820,6 +820,6 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator sprRodape;
     private javax.swing.JSeparator sprUsuarios;
     private javax.swing.JSeparator sprVendas;
-    private javax.swing.JTextField tfEmail;
+    private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

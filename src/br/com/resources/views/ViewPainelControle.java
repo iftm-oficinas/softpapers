@@ -1,11 +1,10 @@
 package br.com.resources.views;
 
 import br.com.models.bo.PainelControleBO;
-import br.com.models.tabelas.TableModelCategoria;
 import br.com.models.tabelas.TableModelCliente;
 import br.com.models.tabelas.TableModelFornecedor;
 import br.com.models.tabelas.TableModelProduto;
-import br.com.models.tabelas.TableModelUsuario;
+import br.com.models.tabelas.TableModelFuncionario;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -56,35 +55,34 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
     public final void atualizarTabelas() {
         //Inicialização dos modelos de tabelas.
         painelControleBO = new PainelControleBO();
-        tabelaUsuario = new TableModelUsuario(painelControleBO.buscarUsuarios());
+        tabelaFuncionario = new TableModelFuncionario(painelControleBO.buscarFuncionarios());
         tabelaCliente = new TableModelCliente(painelControleBO.buscarClientes());
         tabelaFornecedor = new TableModelFornecedor(painelControleBO.buscarFornecedores());
-        tabelaCategoria = new TableModelCategoria(painelControleBO.buscarCategorias());
         tabelaProduto = new TableModelProduto(painelControleBO.buscarProdutos());
 
         //Definindo modelo de tabelas para as tabelas.
-        tbUsuarios.setModel(tabelaUsuario);
+        tbFuncionarios.setModel(tabelaFuncionario);
         tbClientes.setModel(tabelaCliente);
         tbFornecedores.setModel(tabelaFornecedor);
-        tbCategorias.setModel(tabelaCategoria);
         tbProdutos.setModel(tabelaProduto);
 
         //Definir tabelas como sem seleção.
-        tbUsuarios.clearSelection();
+        tbFuncionarios.clearSelection();
         tbClientes.clearSelection();
         tbFornecedores.clearSelection();
-        tbCategorias.clearSelection();
         tbProdutos.clearSelection();
 
         //Definindo botões Aleterar e Excluir como não habilitado.
-        btnAlterarUsuario.setEnabled(false);
-        btnExcluirUsuario.setEnabled(false);
+        btnVisualizarFuncionario.setEnabled(false);
+        btnAlterarFuncionario.setEnabled(false);
+        btnExcluirFuncionario.setEnabled(false);
+        btnVisualizarCliente.setEnabled(false);
         btnAlterarCliente.setEnabled(false);
         btnExcluirCliente.setEnabled(false);
+        btnVisualizarFornecedor.setEnabled(false);
         btnAlterarFornecedor.setEnabled(false);
         btnExcluirFornecedor.setEnabled(false);
-        btnAlterarCategoria.setEnabled(false);
-        btnExcluirCategoria.setEnabled(false);
+        btnVisualizarProduto.setEnabled(false);
         btnAlterarProduto.setEnabled(false);
         btnExcluirProduto.setEnabled(false);
     }
@@ -95,18 +93,20 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tpnCorpo = new javax.swing.JTabbedPane();
-        pnUsuario = new javax.swing.JPanel();
-        btnNovoUsuario = new javax.swing.JButton();
-        btnAlterarUsuario = new javax.swing.JButton();
-        btnExcluirUsuario = new javax.swing.JButton();
-        pnBuscarUsuario = new javax.swing.JPanel();
-        tfBuscarUsuario = new javax.swing.JTextField();
-        btnBuscarUsuario = new javax.swing.JButton();
-        lbResultadosUsuario = new javax.swing.JLabel();
-        spnUsuario = new javax.swing.JScrollPane();
-        tbUsuarios = new javax.swing.JTable();
+        pnFuncionario = new javax.swing.JPanel();
+        btnNovoFuncionario = new javax.swing.JButton();
+        btnVisualizarFuncionario = new javax.swing.JButton();
+        btnAlterarFuncionario = new javax.swing.JButton();
+        btnExcluirFuncionario = new javax.swing.JButton();
+        pnBuscarFuncionario = new javax.swing.JPanel();
+        tfBuscarFuncionario = new javax.swing.JTextField();
+        btnBuscarFuncionario = new javax.swing.JButton();
+        lbResultadosFuncionario = new javax.swing.JLabel();
+        spnFuncionario = new javax.swing.JScrollPane();
+        tbFuncionarios = new javax.swing.JTable();
         pnCliente = new javax.swing.JPanel();
         btnNovoCliente = new javax.swing.JButton();
+        btnVisualizarCliente = new javax.swing.JButton();
         btnAlterarCliente = new javax.swing.JButton();
         btnExcluirCliente = new javax.swing.JButton();
         pnBuscarCliente = new javax.swing.JPanel();
@@ -117,6 +117,7 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         tbClientes = new javax.swing.JTable();
         pnFornecedor = new javax.swing.JPanel();
         btnNovoFornecedor = new javax.swing.JButton();
+        btnVisualizarFornecedor = new javax.swing.JButton();
         btnAlterarFornecedor = new javax.swing.JButton();
         btnExcluirFornecedor = new javax.swing.JButton();
         pnBuscarFornecedor = new javax.swing.JPanel();
@@ -125,18 +126,9 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         lbResultadosFornecedor = new javax.swing.JLabel();
         spnFornecedores = new javax.swing.JScrollPane();
         tbFornecedores = new javax.swing.JTable();
-        pnCategoria = new javax.swing.JPanel();
-        btnNovaCategoria = new javax.swing.JButton();
-        btnAlterarCategoria = new javax.swing.JButton();
-        btnExcluirCategoria = new javax.swing.JButton();
-        pnBuscarCategoria = new javax.swing.JPanel();
-        tfBuscarCategoria = new javax.swing.JTextField();
-        btnBuscarCategoria = new javax.swing.JButton();
-        lbResultadosCategoria = new javax.swing.JLabel();
-        spnCategorias = new javax.swing.JScrollPane();
-        tbCategorias = new javax.swing.JTable();
         pnProduto = new javax.swing.JPanel();
         btnNovoProduto = new javax.swing.JButton();
+        btnVisualizarProduto = new javax.swing.JButton();
         btnAlterarProduto = new javax.swing.JButton();
         btnExcluirProduto = new javax.swing.JButton();
         pnBuscarProduto = new javax.swing.JPanel();
@@ -159,94 +151,107 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         tpnCorpo.setFocusable(false);
         tpnCorpo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        pnUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        pnUsuario.setPreferredSize(new java.awt.Dimension(642, 315));
+        pnFuncionario.setBackground(new java.awt.Color(255, 255, 255));
+        pnFuncionario.setPreferredSize(new java.awt.Dimension(642, 315));
 
-        btnNovoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoUsuarioUP.png"))); // NOI18N
-        btnNovoUsuario.setBorder(null);
-        btnNovoUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNovoUsuario.setFocusable(false);
-        btnNovoUsuario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoUsuarioDOWN.png"))); // NOI18N
-        btnNovoUsuario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoUsuarioDOWN.png"))); // NOI18N
-        btnNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnNovoFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoFuncionarioUP.png"))); // NOI18N
+        btnNovoFuncionario.setBorder(null);
+        btnNovoFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNovoFuncionario.setFocusable(false);
+        btnNovoFuncionario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoFuncionarioDOWN.png"))); // NOI18N
+        btnNovoFuncionario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovoFuncionarioDOWN.png"))); // NOI18N
+        btnNovoFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoUsuarioActionPerformed(evt);
+                btnNovoFuncionarioActionPerformed(evt);
             }
         });
 
-        btnAlterarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
-        btnAlterarUsuario.setBorder(null);
-        btnAlterarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAlterarUsuario.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
-        btnAlterarUsuario.setFocusable(false);
-        btnAlterarUsuario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
-        btnAlterarUsuario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
-        btnAlterarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnVisualizarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarUP.png"))); // NOI18N
+        btnVisualizarFuncionario.setBorder(null);
+        btnVisualizarFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVisualizarFuncionario.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarFuncionario.setFocusable(false);
+        btnVisualizarFuncionario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarFuncionario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarUsuarioActionPerformed(evt);
+                btnVisualizarFuncionarioActionPerformed(evt);
             }
         });
 
-        btnExcluirUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirUP.png"))); // NOI18N
-        btnExcluirUsuario.setBorder(null);
-        btnExcluirUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExcluirUsuario.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
-        btnExcluirUsuario.setFocusable(false);
-        btnExcluirUsuario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
-        btnExcluirUsuario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
-        btnExcluirUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
+        btnAlterarFuncionario.setBorder(null);
+        btnAlterarFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlterarFuncionario.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarFuncionario.setFocusable(false);
+        btnAlterarFuncionario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarFuncionario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirUsuarioActionPerformed(evt);
+                btnAlterarFuncionarioActionPerformed(evt);
             }
         });
 
-        pnBuscarUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        btnExcluirFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirUP.png"))); // NOI18N
+        btnExcluirFuncionario.setBorder(null);
+        btnExcluirFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluirFuncionario.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
+        btnExcluirFuncionario.setFocusable(false);
+        btnExcluirFuncionario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
+        btnExcluirFuncionario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
+        btnExcluirFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirFuncionarioActionPerformed(evt);
+            }
+        });
 
-        tfBuscarUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfBuscarUsuario.setForeground(new java.awt.Color(102, 102, 102));
-        tfBuscarUsuario.setText("Pesquisa");
-        tfBuscarUsuario.setPreferredSize(new java.awt.Dimension(59, 19));
+        pnBuscarFuncionario.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnBuscarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarUP.png"))); // NOI18N
-        btnBuscarUsuario.setBorder(null);
-        btnBuscarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscarUsuario.setFocusable(false);
-        btnBuscarUsuario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
-        btnBuscarUsuario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
+        tfBuscarFuncionario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfBuscarFuncionario.setForeground(new java.awt.Color(102, 102, 102));
+        tfBuscarFuncionario.setText("Pesquisa");
+        tfBuscarFuncionario.setPreferredSize(new java.awt.Dimension(59, 19));
 
-        javax.swing.GroupLayout pnBuscarUsuarioLayout = new javax.swing.GroupLayout(pnBuscarUsuario);
-        pnBuscarUsuario.setLayout(pnBuscarUsuarioLayout);
-        pnBuscarUsuarioLayout.setHorizontalGroup(
-            pnBuscarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnBuscarUsuarioLayout.createSequentialGroup()
-                .addComponent(tfBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+        btnBuscarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarUP.png"))); // NOI18N
+        btnBuscarFuncionario.setBorder(null);
+        btnBuscarFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarFuncionario.setFocusable(false);
+        btnBuscarFuncionario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
+        btnBuscarFuncionario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnBuscarFuncionarioLayout = new javax.swing.GroupLayout(pnBuscarFuncionario);
+        pnBuscarFuncionario.setLayout(pnBuscarFuncionarioLayout);
+        pnBuscarFuncionarioLayout.setHorizontalGroup(
+            pnBuscarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnBuscarFuncionarioLayout.createSequentialGroup()
+                .addComponent(tfBuscarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnBuscarUsuario)
+                .addComponent(btnBuscarFuncionario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnBuscarUsuarioLayout.setVerticalGroup(
-            pnBuscarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnBuscarUsuarioLayout.createSequentialGroup()
-                .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+        pnBuscarFuncionarioLayout.setVerticalGroup(
+            pnBuscarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnBuscarFuncionarioLayout.createSequentialGroup()
+                .addComponent(btnBuscarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(pnBuscarUsuarioLayout.createSequentialGroup()
+            .addGroup(pnBuscarFuncionarioLayout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addComponent(tfBuscarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tfBuscarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(1, 1, 1))
         );
 
-        lbResultadosUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbResultadosUsuario.setForeground(new java.awt.Color(102, 102, 102));
-        lbResultadosUsuario.setText("0 resultados, mostrando todos.");
+        lbResultadosFuncionario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbResultadosFuncionario.setForeground(new java.awt.Color(102, 102, 102));
+        lbResultadosFuncionario.setText("0 resultados, mostrando todos.");
 
-        spnUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        spnUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        spnUsuario.setForeground(new java.awt.Color(102, 102, 102));
-        spnUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        spnFuncionario.setBackground(new java.awt.Color(255, 255, 255));
+        spnFuncionario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        spnFuncionario.setForeground(new java.awt.Color(102, 102, 102));
+        spnFuncionario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        tbUsuarios.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tbUsuarios.setForeground(new java.awt.Color(102, 102, 102));
-        tbUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tbFuncionarios.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tbFuncionarios.setForeground(new java.awt.Color(102, 102, 102));
+        tbFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -254,64 +259,67 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
 
             }
         ));
-        tbUsuarios.setFocusable(false);
-        tbUsuarios.setGridColor(new java.awt.Color(204, 204, 204));
-        tbUsuarios.setIntercellSpacing(new java.awt.Dimension(0, 1));
-        tbUsuarios.setRowHeight(30);
-        tbUsuarios.setSelectionBackground(new java.awt.Color(95, 180, 25));
-        tbUsuarios.setShowVerticalLines(false);
-        tbUsuarios.getTableHeader().setReorderingAllowed(false);
-        tbUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbFuncionarios.setFocusable(false);
+        tbFuncionarios.setGridColor(new java.awt.Color(204, 204, 204));
+        tbFuncionarios.setIntercellSpacing(new java.awt.Dimension(0, 1));
+        tbFuncionarios.setRowHeight(30);
+        tbFuncionarios.setSelectionBackground(new java.awt.Color(95, 180, 25));
+        tbFuncionarios.setShowVerticalLines(false);
+        tbFuncionarios.getTableHeader().setReorderingAllowed(false);
+        tbFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbUsuariosMouseClicked(evt);
+                tbFuncionariosMouseClicked(evt);
             }
         });
-        spnUsuario.setViewportView(tbUsuarios);
-        cabecalho = tbUsuarios.getTableHeader();
+        spnFuncionario.setViewportView(tbFuncionarios);
+        cabecalho = tbFuncionarios.getTableHeader();
         cabecalho.setFont(new Font("Arial", Font.PLAIN, 12));
         cabecalho.setForeground(new Color(102,102,102));
 
-        javax.swing.GroupLayout pnUsuarioLayout = new javax.swing.GroupLayout(pnUsuario);
-        pnUsuario.setLayout(pnUsuarioLayout);
-        pnUsuarioLayout.setHorizontalGroup(
-            pnUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnUsuarioLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnFuncionarioLayout = new javax.swing.GroupLayout(pnFuncionario);
+        pnFuncionario.setLayout(pnFuncionarioLayout);
+        pnFuncionarioLayout.setHorizontalGroup(
+            pnFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnFuncionarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnUsuarioLayout.createSequentialGroup()
-                        .addGroup(pnUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
-                            .addGroup(pnUsuarioLayout.createSequentialGroup()
-                                .addComponent(lbResultadosUsuario)
+                .addGroup(pnFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnFuncionarioLayout.createSequentialGroup()
+                        .addGroup(pnFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spnFuncionario)
+                            .addGroup(pnFuncionarioLayout.createSequentialGroup()
+                                .addComponent(lbResultadosFuncionario)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
-                    .addGroup(pnUsuarioLayout.createSequentialGroup()
-                        .addComponent(btnNovoUsuario)
+                    .addGroup(pnFuncionarioLayout.createSequentialGroup()
+                        .addComponent(btnNovoFuncionario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAlterarUsuario)
+                        .addComponent(btnVisualizarFuncionario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluirUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnAlterarFuncionario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluirFuncionario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addComponent(pnBuscarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
-        pnUsuarioLayout.setVerticalGroup(
-            pnUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUsuarioLayout.createSequentialGroup()
+        pnFuncionarioLayout.setVerticalGroup(
+            pnFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFuncionarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnNovoUsuario)
-                        .addComponent(btnAlterarUsuario)
-                        .addComponent(btnExcluirUsuario))
-                    .addComponent(pnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNovoFuncionario)
+                        .addComponent(btnAlterarFuncionario)
+                        .addComponent(btnExcluirFuncionario))
+                    .addComponent(pnBuscarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisualizarFuncionario))
                 .addGap(18, 18, 18)
-                .addComponent(lbResultadosUsuario)
+                .addComponent(lbResultadosFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                .addComponent(spnFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tpnCorpo.addTab("Usuário        ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/usuario.png")), pnUsuario); // NOI18N
+        tpnCorpo.addTab("Funcionário", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/usuario.png")), pnFuncionario); // NOI18N
 
         pnCliente.setBackground(new java.awt.Color(255, 255, 255));
         pnCliente.setPreferredSize(new java.awt.Dimension(642, 315));
@@ -328,6 +336,14 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
             }
         });
 
+        btnVisualizarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarUP.png"))); // NOI18N
+        btnVisualizarCliente.setBorder(null);
+        btnVisualizarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVisualizarCliente.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarCliente.setFocusable(false);
+        btnVisualizarCliente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarCliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+
         btnAlterarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
         btnAlterarCliente.setBorder(null);
         btnAlterarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -335,11 +351,6 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnAlterarCliente.setFocusable(false);
         btnAlterarCliente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
         btnAlterarCliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
-        btnAlterarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarClienteActionPerformed(evt);
-            }
-        });
 
         btnExcluirCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirUP.png"))); // NOI18N
         btnExcluirCliente.setBorder(null);
@@ -348,11 +359,6 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnExcluirCliente.setFocusable(false);
         btnExcluirCliente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
         btnExcluirCliente.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
-        btnExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirClienteActionPerformed(evt);
-            }
-        });
 
         pnBuscarCliente.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -442,10 +448,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
                         .addComponent(lbResultadosCliente)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnClienteLayout.createSequentialGroup()
-                        .addComponent(spnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                        .addComponent(spnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(pnClienteLayout.createSequentialGroup()
                         .addComponent(btnNovoCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVisualizarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAlterarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -458,11 +466,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnNovoCliente)
-                        .addComponent(btnAlterarCliente)
-                        .addComponent(btnExcluirCliente))
-                    .addComponent(pnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnAlterarCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnExcluirCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnNovoCliente))
+                    .addComponent(pnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisualizarCliente))
                 .addGap(18, 18, 18)
                 .addComponent(lbResultadosCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -487,6 +496,14 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
             }
         });
 
+        btnVisualizarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarUP.png"))); // NOI18N
+        btnVisualizarFornecedor.setBorder(null);
+        btnVisualizarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVisualizarFornecedor.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarFornecedor.setFocusable(false);
+        btnVisualizarFornecedor.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarFornecedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+
         btnAlterarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
         btnAlterarFornecedor.setBorder(null);
         btnAlterarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -494,11 +511,6 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnAlterarFornecedor.setFocusable(false);
         btnAlterarFornecedor.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
         btnAlterarFornecedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
-        btnAlterarFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarFornecedorActionPerformed(evt);
-            }
-        });
 
         btnExcluirFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirUP.png"))); // NOI18N
         btnExcluirFornecedor.setBorder(null);
@@ -507,11 +519,6 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnExcluirFornecedor.setFocusable(false);
         btnExcluirFornecedor.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
         btnExcluirFornecedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
-        btnExcluirFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirFornecedorActionPerformed(evt);
-            }
-        });
 
         pnBuscarFornecedor.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -598,10 +605,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
                         .addComponent(lbResultadosFornecedor)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFornecedorLayout.createSequentialGroup()
-                        .addComponent(spnFornecedores, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                        .addComponent(spnFornecedores, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(pnFornecedorLayout.createSequentialGroup()
                         .addComponent(btnNovoFornecedor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVisualizarFornecedor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAlterarFornecedor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -614,11 +623,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFornecedorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnNovoFornecedor)
-                        .addComponent(btnAlterarFornecedor)
-                        .addComponent(btnExcluirFornecedor))
-                    .addComponent(pnBuscarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnAlterarFornecedor, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnExcluirFornecedor, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnNovoFornecedor))
+                    .addComponent(pnBuscarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisualizarFornecedor))
                 .addGap(18, 18, 18)
                 .addComponent(lbResultadosFornecedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -627,159 +637,6 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         );
 
         tpnCorpo.addTab("Fornecedor", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/fornecedor.png")), pnFornecedor); // NOI18N
-
-        pnCategoria.setBackground(new java.awt.Color(255, 255, 255));
-        pnCategoria.setPreferredSize(new java.awt.Dimension(642, 315));
-
-        btnNovaCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaCategoriaUP.png"))); // NOI18N
-        btnNovaCategoria.setBorder(null);
-        btnNovaCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNovaCategoria.setFocusable(false);
-        btnNovaCategoria.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaCategoriaDOWN.png"))); // NOI18N
-        btnNovaCategoria.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnNovaCategoriaDOWN.png"))); // NOI18N
-        btnNovaCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovaCategoriaActionPerformed(evt);
-            }
-        });
-
-        btnAlterarCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
-        btnAlterarCategoria.setBorder(null);
-        btnAlterarCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAlterarCategoria.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
-        btnAlterarCategoria.setFocusable(false);
-        btnAlterarCategoria.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
-        btnAlterarCategoria.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
-        btnAlterarCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarCategoriaActionPerformed(evt);
-            }
-        });
-
-        btnExcluirCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirUP.png"))); // NOI18N
-        btnExcluirCategoria.setBorder(null);
-        btnExcluirCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExcluirCategoria.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
-        btnExcluirCategoria.setFocusable(false);
-        btnExcluirCategoria.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
-        btnExcluirCategoria.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
-        btnExcluirCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirCategoriaActionPerformed(evt);
-            }
-        });
-
-        pnBuscarCategoria.setBackground(new java.awt.Color(255, 255, 255));
-
-        tfBuscarCategoria.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfBuscarCategoria.setForeground(new java.awt.Color(102, 102, 102));
-        tfBuscarCategoria.setText("Pesquisa");
-        tfBuscarCategoria.setPreferredSize(new java.awt.Dimension(59, 19));
-
-        btnBuscarCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarUP.png"))); // NOI18N
-        btnBuscarCategoria.setBorder(null);
-        btnBuscarCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscarCategoria.setFocusable(false);
-        btnBuscarCategoria.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
-        btnBuscarCategoria.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
-
-        javax.swing.GroupLayout pnBuscarCategoriaLayout = new javax.swing.GroupLayout(pnBuscarCategoria);
-        pnBuscarCategoria.setLayout(pnBuscarCategoriaLayout);
-        pnBuscarCategoriaLayout.setHorizontalGroup(
-            pnBuscarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnBuscarCategoriaLayout.createSequentialGroup()
-                .addComponent(tfBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnBuscarCategoria)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnBuscarCategoriaLayout.setVerticalGroup(
-            pnBuscarCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnBuscarCategoriaLayout.createSequentialGroup()
-                .addComponent(btnBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(pnBuscarCategoriaLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(tfBuscarCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(1, 1, 1))
-        );
-
-        lbResultadosCategoria.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbResultadosCategoria.setForeground(new java.awt.Color(102, 102, 102));
-        lbResultadosCategoria.setText("0 resultados, mostrando todos.");
-
-        spnCategorias.setBackground(new java.awt.Color(255, 255, 255));
-        spnCategorias.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        spnCategorias.setForeground(new java.awt.Color(102, 102, 102));
-        spnCategorias.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        tbCategorias.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tbCategorias.setForeground(new java.awt.Color(102, 102, 102));
-        tbCategorias.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tbCategorias.setFocusable(false);
-        tbCategorias.setGridColor(new java.awt.Color(204, 204, 204));
-        tbCategorias.setIntercellSpacing(new java.awt.Dimension(0, 1));
-        tbCategorias.setRowHeight(30);
-        tbCategorias.setSelectionBackground(new java.awt.Color(95, 180, 25));
-        tbCategorias.setShowVerticalLines(false);
-        tbCategorias.getTableHeader().setReorderingAllowed(false);
-        tbCategorias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbCategoriasMouseClicked(evt);
-            }
-        });
-        spnCategorias.setViewportView(tbCategorias);
-        cabecalho = tbCategorias.getTableHeader();
-        cabecalho.setFont(new Font("Arial", Font.PLAIN, 12));
-        cabecalho.setForeground(new Color(102,102,102));
-
-        javax.swing.GroupLayout pnCategoriaLayout = new javax.swing.GroupLayout(pnCategoria);
-        pnCategoria.setLayout(pnCategoriaLayout);
-        pnCategoriaLayout.setHorizontalGroup(
-            pnCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCategoriaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnCategoriaLayout.createSequentialGroup()
-                        .addComponent(lbResultadosCategoria)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCategoriaLayout.createSequentialGroup()
-                        .addComponent(spnCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(pnCategoriaLayout.createSequentialGroup()
-                        .addComponent(btnNovaCategoria)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAlterarCategoria)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluirCategoria)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        pnCategoriaLayout.setVerticalGroup(
-            pnCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCategoriaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnNovaCategoria)
-                        .addComponent(btnAlterarCategoria)
-                        .addComponent(btnExcluirCategoria))
-                    .addComponent(pnBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lbResultadosCategoria)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spnCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        tpnCorpo.addTab("Categoria    ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/categoria.png")), pnCategoria); // NOI18N
 
         pnProduto.setBackground(new java.awt.Color(255, 255, 255));
         pnProduto.setPreferredSize(new java.awt.Dimension(642, 315));
@@ -796,6 +653,14 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
             }
         });
 
+        btnVisualizarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarUP.png"))); // NOI18N
+        btnVisualizarProduto.setBorder(null);
+        btnVisualizarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVisualizarProduto.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarProduto.setFocusable(false);
+        btnVisualizarProduto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarProduto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+
         btnAlterarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
         btnAlterarProduto.setBorder(null);
         btnAlterarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -803,11 +668,6 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnAlterarProduto.setFocusable(false);
         btnAlterarProduto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
         btnAlterarProduto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
-        btnAlterarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarProdutoActionPerformed(evt);
-            }
-        });
 
         btnExcluirProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirUP.png"))); // NOI18N
         btnExcluirProduto.setBorder(null);
@@ -816,11 +676,6 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnExcluirProduto.setFocusable(false);
         btnExcluirProduto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
         btnExcluirProduto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
-        btnExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirProdutoActionPerformed(evt);
-            }
-        });
 
         pnBuscarProduto.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -912,10 +767,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
                         .addComponent(lbResultadosProduto)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnProdutoLayout.createSequentialGroup()
-                        .addComponent(spnProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                        .addComponent(spnProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(pnProdutoLayout.createSequentialGroup()
                         .addComponent(btnNovoProduto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVisualizarProduto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAlterarProduto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -928,11 +785,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnProdutoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnNovoProduto)
-                        .addComponent(btnAlterarProduto)
-                        .addComponent(btnExcluirProduto))
-                    .addComponent(pnBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnAlterarProduto, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnExcluirProduto, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnNovoProduto))
+                    .addComponent(pnBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisualizarProduto))
                 .addGap(18, 18, 18)
                 .addComponent(lbResultadosProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -958,40 +816,17 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoUsuarioActionPerformed
-        viewUsuario = new ViewUsuario(viewPrincipal, true);
-        viewUsuario.setVisible(true);
-    }//GEN-LAST:event_btnNovoUsuarioActionPerformed
-
-    private void btnNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoClienteActionPerformed
-        viewCliente = new ViewCliente(viewPrincipal, true);
-        viewCliente.setVisible(true);
-    }//GEN-LAST:event_btnNovoClienteActionPerformed
-
-    private void btnNovoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoFornecedorActionPerformed
-        viewFornecedor = new ViewFornecedor(viewPrincipal, true);
-        viewFornecedor.setVisible(true);
-    }//GEN-LAST:event_btnNovoFornecedorActionPerformed
-
-    private void btnNovaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaCategoriaActionPerformed
-        viewCategoria = new ViewCategoria(viewPrincipal, true);
-        viewCategoria.setVisible(true);
-    }//GEN-LAST:event_btnNovaCategoriaActionPerformed
-
-    private void btnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProdutoActionPerformed
-        viewProduto = new ViewProduto(viewPrincipal, true);
-        viewProduto.setVisible(true);
-    }//GEN-LAST:event_btnNovoProdutoActionPerformed
-
-    private void tbUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUsuariosMouseClicked
-        if (tbUsuarios.getSelectedRow() != -1) {
-            btnAlterarUsuario.setEnabled(true);
-            btnExcluirUsuario.setEnabled(true);
+    private void tbFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFuncionariosMouseClicked
+        if (tbFuncionarios.getSelectedRow() != -1) {
+            btnVisualizarFuncionario.setEnabled(true);
+            btnAlterarFuncionario.setEnabled(true);
+            btnExcluirFuncionario.setEnabled(true);
         }
-    }//GEN-LAST:event_tbUsuariosMouseClicked
+    }//GEN-LAST:event_tbFuncionariosMouseClicked
 
     private void tbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClientesMouseClicked
         if (tbClientes.getSelectedRow() != -1) {
+            btnVisualizarCliente.setEnabled(true);
             btnAlterarCliente.setEnabled(true);
             btnExcluirCliente.setEnabled(true);
         }
@@ -999,68 +834,56 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
 
     private void tbFornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFornecedoresMouseClicked
         if (tbFornecedores.getSelectedRow() != -1) {
+            btnVisualizarFornecedor.setEnabled(true);
             btnAlterarFornecedor.setEnabled(true);
             btnExcluirFornecedor.setEnabled(true);
         }
     }//GEN-LAST:event_tbFornecedoresMouseClicked
 
-    private void tbCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCategoriasMouseClicked
-        if (tbCategorias.getSelectedRow() != -1) {
-            btnAlterarCategoria.setEnabled(true);
-            btnExcluirCategoria.setEnabled(true);
-        }
-    }//GEN-LAST:event_tbCategoriasMouseClicked
-
     private void tbProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProdutosMouseClicked
         if (tbProdutos.getSelectedRow() != -1) {
+            btnVisualizarProduto.setEnabled(true);
             btnAlterarProduto.setEnabled(true);
             btnExcluirProduto.setEnabled(true);
         }
     }//GEN-LAST:event_tbProdutosMouseClicked
 
-    private void btnAlterarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarUsuarioActionPerformed
+    private void btnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProdutoActionPerformed
+        viewProduto = new ViewProduto(viewPrincipal, true);
+        viewProduto.setVisible(true);
+    }//GEN-LAST:event_btnNovoProdutoActionPerformed
 
-    private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarClienteActionPerformed
+    private void btnNovoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoFornecedorActionPerformed
+        viewFornecedor = new ViewFornecedor(viewPrincipal, true, this);
+        viewFornecedor.setVisible(true);
+    }//GEN-LAST:event_btnNovoFornecedorActionPerformed
 
-    private void btnAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFornecedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarFornecedorActionPerformed
+    private void btnNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoClienteActionPerformed
+        viewCliente = new ViewCliente(viewPrincipal, true);
+        viewCliente.setVisible(true);
+    }//GEN-LAST:event_btnNovoClienteActionPerformed
 
-    private void btnAlterarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarCategoriaActionPerformed
+    private void btnNovoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoFuncionarioActionPerformed
+        viewFuncionario = new ViewFuncionario(viewPrincipal, true, this);
+        viewFuncionario.setVisible(true);
+    }//GEN-LAST:event_btnNovoFuncionarioActionPerformed
 
-    private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarProdutoActionPerformed
+    private void btnVisualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarFuncionarioActionPerformed
+        viewFuncionario = new ViewFuncionario(viewPrincipal, true, this);
+        viewFuncionario.setVisible(true);
+    }//GEN-LAST:event_btnVisualizarFuncionarioActionPerformed
 
-    private void btnExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirUsuarioActionPerformed
+    private void btnAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirUsuarioActionPerformed
+    }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
-    private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
+    private void btnExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirClienteActionPerformed
-
-    private void btnExcluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFornecedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
-
-    private void btnExcluirCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirCategoriaActionPerformed
-
-    private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirProdutoActionPerformed
+    }//GEN-LAST:event_btnExcluirFuncionarioActionPerformed
 
     //Declaração de variáveis(View).
     private ViewPrincipal viewPrincipal;
-    private ViewUsuario viewUsuario;
+    private ViewFuncionario viewFuncionario;
     private ViewCliente viewCliente;
     private ViewFornecedor viewFornecedor;
     private ViewCategoria viewCategoria;
@@ -1070,65 +893,58 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
     private PainelControleBO painelControleBO;
 
     //Declaração de variáveis(Tabelas).
-    private TableModelUsuario tabelaUsuario;
+    private TableModelFuncionario tabelaFuncionario;
     private TableModelCliente tabelaCliente;
     private TableModelFornecedor tabelaFornecedor;
-    private TableModelCategoria tabelaCategoria;
     private TableModelProduto tabelaProduto;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterarCategoria;
     private javax.swing.JButton btnAlterarCliente;
     private javax.swing.JButton btnAlterarFornecedor;
+    private javax.swing.JButton btnAlterarFuncionario;
     private javax.swing.JButton btnAlterarProduto;
-    private javax.swing.JButton btnAlterarUsuario;
-    private javax.swing.JButton btnBuscarCategoria;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarFornecedor;
+    private javax.swing.JButton btnBuscarFuncionario;
     private javax.swing.JButton btnBuscarProduto;
-    private javax.swing.JButton btnBuscarUsuario;
-    private javax.swing.JButton btnExcluirCategoria;
     private javax.swing.JButton btnExcluirCliente;
     private javax.swing.JButton btnExcluirFornecedor;
+    private javax.swing.JButton btnExcluirFuncionario;
     private javax.swing.JButton btnExcluirProduto;
-    private javax.swing.JButton btnExcluirUsuario;
-    private javax.swing.JButton btnNovaCategoria;
     private javax.swing.JButton btnNovoCliente;
     private javax.swing.JButton btnNovoFornecedor;
+    private javax.swing.JButton btnNovoFuncionario;
     private javax.swing.JButton btnNovoProduto;
-    private javax.swing.JButton btnNovoUsuario;
+    private javax.swing.JButton btnVisualizarCliente;
+    private javax.swing.JButton btnVisualizarFornecedor;
+    private javax.swing.JButton btnVisualizarFuncionario;
+    private javax.swing.JButton btnVisualizarProduto;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbResultadosCategoria;
     private javax.swing.JLabel lbResultadosCliente;
     private javax.swing.JLabel lbResultadosFornecedor;
+    private javax.swing.JLabel lbResultadosFuncionario;
     private javax.swing.JLabel lbResultadosProduto;
-    private javax.swing.JLabel lbResultadosUsuario;
-    private javax.swing.JPanel pnBuscarCategoria;
     private javax.swing.JPanel pnBuscarCliente;
     private javax.swing.JPanel pnBuscarFornecedor;
+    private javax.swing.JPanel pnBuscarFuncionario;
     private javax.swing.JPanel pnBuscarProduto;
-    private javax.swing.JPanel pnBuscarUsuario;
-    private javax.swing.JPanel pnCategoria;
     private javax.swing.JPanel pnCliente;
     private javax.swing.JPanel pnFornecedor;
+    private javax.swing.JPanel pnFuncionario;
     private javax.swing.JPanel pnProduto;
-    private javax.swing.JPanel pnUsuario;
-    private javax.swing.JScrollPane spnCategorias;
     private javax.swing.JScrollPane spnClientes;
     private javax.swing.JScrollPane spnFornecedores;
+    private javax.swing.JScrollPane spnFuncionario;
     private javax.swing.JScrollPane spnProdutos;
-    private javax.swing.JScrollPane spnUsuario;
-    private javax.swing.JTable tbCategorias;
     private javax.swing.JTable tbClientes;
     private javax.swing.JTable tbFornecedores;
-    private javax.swing.JTable tbProdutos;
-    private javax.swing.JTable tbUsuarios;
+    private javax.swing.JTable tbFuncionarios;
     private javax.swing.table.JTableHeader cabecalho;
-    private javax.swing.JTextField tfBuscarCategoria;
+    private javax.swing.JTable tbProdutos;
     private javax.swing.JTextField tfBuscarCliente;
     private javax.swing.JTextField tfBuscarFornecedor;
+    private javax.swing.JTextField tfBuscarFuncionario;
     private javax.swing.JTextField tfBuscarProduto;
-    private javax.swing.JTextField tfBuscarUsuario;
     private javax.swing.JTabbedPane tpnCorpo;
     // End of variables declaration//GEN-END:variables
 }

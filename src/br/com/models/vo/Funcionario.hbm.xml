@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/06/2015 16:37:36 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Funcionario" table="funcionario" catalog="dbloja" optimistic-lock="version">
+        <id name="idFuncionario" type="java.lang.Long">
+            <column name="idFuncionario" />
+            <generator class="identity" />
+        </id>
+        <property name="nomeFuncionario" type="string">
+            <column name="nomeFuncionario" length="50" />
+        </property>
+        <property name="cargoFuncionario" type="string">
+            <column name="cargoFuncionario" length="20" />
+        </property>
+        <property name="usuarioFuncionario" type="string">
+            <column name="usuarioFuncionario" length="50" unique="true" />
+        </property>
+        <property name="senhaFuncionario" type="string">
+            <column name="senhaFuncionario" length="50" />
+        </property>
+        <property name="emailFuncionario" type="string">
+            <column name="emailFuncionario" length="50" />
+        </property>
+        <property name="telefoneFuncionario" type="string">
+            <column name="telefoneFuncionario" length="20" />
+        </property>
+        <property name="celularFuncionario" type="string">
+            <column name="celularFuncionario" length="20" />
+        </property>
+        <property name="cpfFuncionario" type="string">
+            <column name="cpfFuncionario" length="20" />
+        </property>
+        <property name="rgFuncionario" type="string">
+            <column name="rgFuncionario" length="20" />
+        </property>
+        <property name="nascimentoFuncionario" type="date">
+            <column name="nascimentoFuncionario" length="10" />
+        </property>
+        <property name="enderecoFuncionario" type="string">
+            <column name="enderecoFuncionario" length="100" />
+        </property>
+        <property name="cepFuncionario" type="string">
+            <column name="cepFuncionario" length="20" />
+        </property>
+        <property name="complementoFuncionario" type="string">
+            <column name="complementoFuncionario" length="20" />
+        </property>
+        <property name="numeroFuncionario" type="string">
+            <column name="numeroFuncionario" length="10" />
+        </property>
+        <property name="cidadeFuncionario" type="string">
+            <column name="cidadeFuncionario" length="20" />
+        </property>
+        <property name="bairroFuncionario" type="string">
+            <column name="bairroFuncionario" length="20" />
+        </property>
+        <property name="estadoFuncionario" type="string">
+            <column name="estadoFuncionario" length="20" />
+        </property>
+        <property name="criacaoFuncionario" type="timestamp">
+            <column name="criacaoFuncionario" length="19" />
+        </property>
+        <property name="atualizacaoFuncionario" type="timestamp">
+            <column name="atualizacaoFuncionario" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

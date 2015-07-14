@@ -1,35 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/05/2015 14:52:38 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/06/2015 16:37:36 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="dbloja" name="br.com.models.vo.Fornecedor" optimistic-lock="version" table="fornecedor">
-    <id name="idFornecedor" type="java.lang.Long">
-      <column name="idFornecedor"/>
-      <generator class="identity"/>
-    </id>
-    <property name="nomeFornecedor" type="string">
-      <column length="30" name="nomeFornecedor" not-null="true"/>
-    </property>
-    <property name="telefoneFornecedor" type="string">
-      <column length="15" name="telefoneFornecedor"/>
-    </property>
-    <property name="dataCriacao" type="timestamp">
-      <column length="19" name="dataCriacao"/>
-    </property>
-    <property name="dataAtualizacao" type="timestamp">
-      <column length="19" name="dataAtualizacao"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="produtos" table="produto">
-      <key>
-        <column name="fornecedorProduto"/>
-      </key>
-      <one-to-many class="br.com.models.vo.Produto"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="pedidofornecedors" table="pedidofornecedor">
-      <key>
-        <column name="fornecedorPedidoFornecedor"/>
-      </key>
-      <one-to-many class="br.com.models.vo.Pedidofornecedor"/>
-    </set>
-  </class>
+    <class name="br.com.models.vo.Fornecedor" table="fornecedor" catalog="dbloja" optimistic-lock="version">
+        <id name="idFornecedor" type="java.lang.Long">
+            <column name="idFornecedor" />
+            <generator class="identity" />
+        </id>
+        <property name="empresaFornecedor" type="string">
+            <column name="empresaFornecedor" length="50" />
+        </property>
+        <property name="contatoFornecedor" type="string">
+            <column name="contatoFornecedor" length="50" />
+        </property>
+        <property name="emailFornecedor" type="string">
+            <column name="emailFornecedor" length="50" />
+        </property>
+        <property name="telefoneFornecedor" type="string">
+            <column name="telefoneFornecedor" length="50" />
+        </property>
+        <property name="celularFornecedor" type="string">
+            <column name="celularFornecedor" length="50" />
+        </property>
+        <property name="enderecoFornecedor" type="string">
+            <column name="enderecoFornecedor" length="100" />
+        </property>
+        <property name="cepFornecedor" type="string">
+            <column name="cepFornecedor" length="20" />
+        </property>
+        <property name="complementoFornecedor" type="string">
+            <column name="complementoFornecedor" length="20" />
+        </property>
+        <property name="numeroFornecedor" type="string">
+            <column name="numeroFornecedor" length="10" />
+        </property>
+        <property name="cidadeFornecedor" type="string">
+            <column name="cidadeFornecedor" length="20" />
+        </property>
+        <property name="bairroFornecedor" type="string">
+            <column name="bairroFornecedor" length="20" />
+        </property>
+        <property name="estadoFornecedor" type="string">
+            <column name="estadoFornecedor" length="20" />
+        </property>
+        <property name="pessoaFornecedor" type="string">
+            <column name="pessoaFornecedor" length="20" />
+        </property>
+        <property name="cpfCnpjFornecedor" type="string">
+            <column name="cpfCnpjFornecedor" length="20" />
+        </property>
+        <property name="rgRazaoFornecedor" type="string">
+            <column name="rgRazaoFornecedor" length="20" />
+        </property>
+        <property name="nascimentoFornecedor" type="date">
+            <column name="nascimentoFornecedor" length="10" />
+        </property>
+        <property name="estadualFornecedor" type="string">
+            <column name="estadualFornecedor" length="50" />
+        </property>
+        <property name="municipalFornecedor" type="string">
+            <column name="municipalFornecedor" length="50" />
+        </property>
+        <property name="suframaFornecedor" type="string">
+            <column name="suframaFornecedor" length="50" />
+        </property>
+        <property name="icmsFornecedor" type="java.lang.Boolean">
+            <column name="icmsFornecedor" />
+        </property>
+        <property name="criacaoFornecedor" type="timestamp">
+            <column name="criacaoFornecedor" length="19" />
+        </property>
+        <property name="atualizacaoFornecedor" type="timestamp">
+            <column name="atualizacaoFornecedor" length="19" />
+        </property>
+        <set name="produtos" table="produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fornecedorProduto" />
+            </key>
+            <one-to-many class="br.com.models.vo.Produto" />
+        </set>
+    </class>
 </hibernate-mapping>

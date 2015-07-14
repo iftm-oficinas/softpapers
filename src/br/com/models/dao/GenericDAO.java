@@ -13,13 +13,14 @@ import org.hibernate.criterion.Restrictions;
  * atualizar(), apagar(), consultar().
  *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * 
  * @param <T> obejeto genérico que substitui como parâmetro todos os objetos de
  * valores do sistema.
  */
 public class GenericDAO<T> {
 
     //Declaração da sessão de conexão ao banco de dados.
-    private Session session;
+    private final Session session = (Session) HibernateUtil.getSession();
 
     /**
      *
@@ -28,9 +29,7 @@ public class GenericDAO<T> {
      * @param obj objeto de valor que abstrai uma linha do banco.
      */
     public void inserir(T obj) {
-        session = (Session) HibernateUtil.getSession();
         session.persist(obj);
-        session.close();
     }
 
     /**
@@ -40,9 +39,7 @@ public class GenericDAO<T> {
      * @param obj objeto de valor que abstrai uma linha do banco.
      */
     public void atualizar(T obj) {
-        session = (Session) HibernateUtil.getSession();
         session.saveOrUpdate(obj);
-        session.close();
     }
 
     /**
@@ -52,9 +49,7 @@ public class GenericDAO<T> {
      * @param obj objeto de valor que abstrai uma linha do banco.
      */
     public void apagar(T obj) {
-        session = (Session) HibernateUtil.getSession();
         session.delete(obj);
-        session.close();
     }
 
     /**
@@ -65,9 +60,7 @@ public class GenericDAO<T> {
      * @return Lista de obejtos do parâmetro.
      */
     public List<T> consultar(T obj) {
-        session = (Session) HibernateUtil.getSession();
         Criteria c = session.createCriteria(obj.getClass());
-        session.close();
         return c.list();
     }
 
@@ -81,10 +74,8 @@ public class GenericDAO<T> {
      * @return obejeto do parâmetro que a consulta localizar.
      */
     public T consultar(String campo, Long valor, T obj) {
-        session = (Session) HibernateUtil.getSession();
         Criteria c = session.createCriteria(obj.getClass());
         c.add(Restrictions.eq(campo, valor));
-        session.close();
         if (c.list() == null) {
             return null;
         } else {
@@ -105,11 +96,9 @@ public class GenericDAO<T> {
      * critérios forem verdadeiros.
      */
     public T consultar(String campo1, String valor1, String campo2, String valor2, T obj) {
-        session = (Session) HibernateUtil.getSession();
         Criteria c = session.createCriteria(obj.getClass());
         c.add(Restrictions.eq(campo1, valor1));
         c.add(Restrictions.eq(campo2, valor2));
-        session.close();
         if (c.list() == null) {
             return null;
         } else {
@@ -127,7 +116,6 @@ public class GenericDAO<T> {
      * pelo campo do parâmetro.
      */
     public T consultar(String campo, T obj) {
-        session = (Session) HibernateUtil.getSession();
         Criteria c = session.createCriteria(obj.getClass());
         c.addOrder(Order.desc(campo));
         c.setMaxResults(1);

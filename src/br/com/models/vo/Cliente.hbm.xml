@@ -1,47 +1,87 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/05/2015 14:52:38 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/06/2015 16:37:36 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="dbloja" name="br.com.models.vo.Cliente" optimistic-lock="version" table="cliente">
-    <id name="idCliente" type="java.lang.Long">
-      <column name="idCliente"/>
-      <generator class="identity"/>
-    </id>
-    <property name="nomeCliente" type="string">
-      <column length="30" name="nomeCliente" not-null="true"/>
-    </property>
-    <property name="cpfCliente" type="string">
-      <column length="15" name="cpfCliente" not-null="true"/>
-    </property>
-    <property name="rgCliente" type="string">
-      <column length="15" name="rgCliente"/>
-    </property>
-    <property name="telefone" type="string">
-      <column length="15" name="telefone" not-null="true"/>
-    </property>
-    <property name="dataNascimento" type="timestamp">
-      <column length="19" name="dataNascimento"/>
-    </property>
-    <property name="enderecoCliente" type="string">
-      <column length="50" name="enderecoCliente"/>
-    </property>
-    <property name="emailCliente" type="string">
-      <column length="30" name="emailCliente"/>
-    </property>
-    <property name="sexoCliente" type="string">
-      <column length="1" name="sexoCLiente"/>
-    </property>
-    <property name="dataCriacao" type="timestamp">
-      <column length="19" name="dataCriacao"/>
-    </property>
-    <property name="dataAtualizacao" type="timestamp">
-      <column length="19" name="dataAtualizacao"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="pedidoclientes" table="pedidocliente">
-      <key>
-        <column name="clientePedidoCliente"/>
-      </key>
-      <one-to-many class="br.com.models.vo.Pedidocliente"/>
-    </set>
-  </class>
+    <class name="br.com.models.vo.Cliente" table="cliente" catalog="dbloja" optimistic-lock="version">
+        <id name="idCliente" type="java.lang.Long">
+            <column name="idCliente" />
+            <generator class="identity" />
+        </id>
+        <property name="nomeCliente" type="string">
+            <column name="nomeCliente" length="50" />
+        </property>
+        <property name="emailCliente" type="string">
+            <column name="emailCliente" length="50" />
+        </property>
+        <property name="telefoneCliente" type="string">
+            <column name="telefoneCliente" length="20" />
+        </property>
+        <property name="celularCliente" type="string">
+            <column name="celularCliente" length="20" />
+        </property>
+        <property name="salarioCliente" type="big_decimal">
+            <column name="salarioCliente" precision="10" />
+        </property>
+        <property name="limiteCliente" type="big_decimal">
+            <column name="limiteCliente" precision="10" />
+        </property>
+        <property name="descontoCliente" type="big_decimal">
+            <column name="descontoCliente" precision="10" />
+        </property>
+        <property name="enderecoCliente" type="string">
+            <column name="enderecoCliente" length="100" />
+        </property>
+        <property name="cepCliente" type="string">
+            <column name="cepCliente" length="20" />
+        </property>
+        <property name="complementoCliente" type="string">
+            <column name="complementoCliente" length="20" />
+        </property>
+        <property name="numeroCliente" type="string">
+            <column name="numeroCliente" length="10" />
+        </property>
+        <property name="cidadeCliente" type="string">
+            <column name="cidadeCliente" length="20" />
+        </property>
+        <property name="bairroCliente" type="string">
+            <column name="bairroCliente" length="20" />
+        </property>
+        <property name="estadoCliente" type="string">
+            <column name="estadoCliente" length="20" />
+        </property>
+        <property name="pessoaCliente" type="string">
+            <column name="pessoaCliente" length="20" />
+        </property>
+        <property name="cpfCnpjCliente" type="string">
+            <column name="cpfCnpjCliente" length="20" />
+        </property>
+        <property name="rgRazaoCliente" type="string">
+            <column name="rgRazaoCliente" length="20" />
+        </property>
+        <property name="nascimentoCliente" type="date">
+            <column name="nascimentoCliente" length="10" />
+        </property>
+        <property name="estadualCliente" type="string">
+            <column name="estadualCliente" length="50" />
+        </property>
+        <property name="municipalCliente" type="string">
+            <column name="municipalCliente" length="50" />
+        </property>
+        <property name="suframaCliente" type="string">
+            <column name="suframaCliente" length="50" />
+        </property>
+        <property name="icmsCliente" type="string">
+            <column name="icmsCliente" length="50" />
+        </property>
+        <property name="publicidadeCliente" type="java.lang.Boolean">
+            <column name="publicidadeCliente" />
+        </property>
+        <property name="criacaoCliente" type="timestamp">
+            <column name="criacaoCliente" length="19" />
+        </property>
+        <property name="atualizacaoCliente" type="timestamp">
+            <column name="atualizacaoCliente" length="19" />
+        </property>
+    </class>
 </hibernate-mapping>

@@ -7,16 +7,10 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dbloja?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">admwindows</property>
+    <mapping resource="br/com/models/vo/Cliente.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Funcionario.hbm.xml"/>
     <mapping resource="br/com/models/vo/Fornecedor.hbm.xml"/>
     <mapping resource="br/com/models/vo/Categoria.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Formapagamento.hbm.xml"/>
     <mapping resource="br/com/models/vo/Produto.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Pedidoparceladocliente.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Cliente.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Usuario.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Pedidocliente.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Item.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Pedidofornecedor.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Pedidoparceladofornecedor.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

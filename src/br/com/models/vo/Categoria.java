@@ -1,5 +1,5 @@
 package br.com.models.vo;
-// Generated 09/05/2015 14:52:35 by Hibernate Tools 4.3.1
+// Generated 15/06/2015 16:37:34 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,23 +26,19 @@ import javax.persistence.TemporalType;
 public class Categoria  implements java.io.Serializable {
 
 
-     private Integer idCategoria;
-     private String nomeCategoria;
-     private Date dataCriacao;
-     private Date dataAtualizacao;
+     private Long idCategoria;
+     private String descricaoCategoria;
+     private Date criacaoCategoria;
+     private Date atualizacaoCategoria;
      private Set<Produto> produtos = new HashSet<Produto>(0);
 
     public Categoria() {
     }
 
-	
-    public Categoria(String nomeCategoria) {
-        this.nomeCategoria = nomeCategoria;
-    }
-    public Categoria(String nomeCategoria, Date dataCriacao, Date dataAtualizacao, Set<Produto> produtos) {
-       this.nomeCategoria = nomeCategoria;
-       this.dataCriacao = dataCriacao;
-       this.dataAtualizacao = dataAtualizacao;
+    public Categoria(String descricaoCategoria, Date criacaoCategoria, Date atualizacaoCategoria, Set<Produto> produtos) {
+       this.descricaoCategoria = descricaoCategoria;
+       this.criacaoCategoria = criacaoCategoria;
+       this.atualizacaoCategoria = atualizacaoCategoria;
        this.produtos = produtos;
     }
    
@@ -50,42 +46,42 @@ public class Categoria  implements java.io.Serializable {
 
     
     @Column(name="idCategoria", unique=true, nullable=false)
-    public Integer getIdCategoria() {
+    public Long getIdCategoria() {
         return this.idCategoria;
     }
     
-    public void setIdCategoria(Integer idCategoria) {
+    public void setIdCategoria(Long idCategoria) {
         this.idCategoria = idCategoria;
     }
 
     
-    @Column(name="nomeCategoria", nullable=false, length=30)
-    public String getNomeCategoria() {
-        return this.nomeCategoria;
+    @Column(name="descricaoCategoria", length=50)
+    public String getDescricaoCategoria() {
+        return this.descricaoCategoria;
     }
     
-    public void setNomeCategoria(String nomeCategoria) {
-        this.nomeCategoria = nomeCategoria;
+    public void setDescricaoCategoria(String descricaoCategoria) {
+        this.descricaoCategoria = descricaoCategoria;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="dataCriacao", length=19)
-    public Date getDataCriacao() {
-        return this.dataCriacao;
+    @Column(name="criacaoCategoria", length=19)
+    public Date getCriacaoCategoria() {
+        return this.criacaoCategoria;
     }
     
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setCriacaoCategoria(Date criacaoCategoria) {
+        this.criacaoCategoria = criacaoCategoria;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="dataAtualizacao", length=19)
-    public Date getDataAtualizacao() {
-        return this.dataAtualizacao;
+    @Column(name="atualizacaoCategoria", length=19)
+    public Date getAtualizacaoCategoria() {
+        return this.atualizacaoCategoria;
     }
     
-    public void setDataAtualizacao(Date dataAtualizacao) {
-        this.dataAtualizacao = dataAtualizacao;
+    public void setAtualizacaoCategoria(Date atualizacaoCategoria) {
+        this.atualizacaoCategoria = atualizacaoCategoria;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="categoria")

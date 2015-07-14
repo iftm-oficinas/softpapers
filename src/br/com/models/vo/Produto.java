@@ -1,11 +1,9 @@
 package br.com.models.vo;
-// Generated 09/05/2015 14:52:35 by Hibernate Tools 4.3.1
+// Generated 15/06/2015 16:37:34 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +12,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,30 +29,31 @@ public class Produto  implements java.io.Serializable {
      private Long idProduto;
      private Categoria categoria;
      private Fornecedor fornecedor;
-     private String nomeProduto;
-     private BigDecimal valorProduto;
-     private Integer quantidadeMinimaProduto;
-     private Date dataCriacao;
-     private Date dataAtualizacao;
-     private Set<Item> items = new HashSet<Item>(0);
+     private String descricaoProduto;
+     private String codigoProduto;
+     private BigDecimal custoProduto;
+     private BigDecimal vendaProduto;
+     private Integer minimoProduto;
+     private Integer maximoProduto;
+     private Integer estoqueProduto;
+     private Date criacaoProduto;
+     private Date atualizacaoProduto;
 
     public Produto() {
     }
 
-	
-    public Produto(Categoria categoria, String nomeProduto) {
-        this.categoria = categoria;
-        this.nomeProduto = nomeProduto;
-    }
-    public Produto(Categoria categoria, Fornecedor fornecedor, String nomeProduto, BigDecimal valorProduto, Integer quantidadeMinimaProduto, Date dataCriacao, Date dataAtualizacao, Set<Item> items) {
+    public Produto(Categoria categoria, Fornecedor fornecedor, String descricaoProduto, String codigoProduto, BigDecimal custoProduto, BigDecimal vendaProduto, Integer minimoProduto, Integer maximoProduto, Integer estoqueProduto, Date criacaoProduto, Date atualizacaoProduto) {
        this.categoria = categoria;
        this.fornecedor = fornecedor;
-       this.nomeProduto = nomeProduto;
-       this.valorProduto = valorProduto;
-       this.quantidadeMinimaProduto = quantidadeMinimaProduto;
-       this.dataCriacao = dataCriacao;
-       this.dataAtualizacao = dataAtualizacao;
-       this.items = items;
+       this.descricaoProduto = descricaoProduto;
+       this.codigoProduto = codigoProduto;
+       this.custoProduto = custoProduto;
+       this.vendaProduto = vendaProduto;
+       this.minimoProduto = minimoProduto;
+       this.maximoProduto = maximoProduto;
+       this.estoqueProduto = estoqueProduto;
+       this.criacaoProduto = criacaoProduto;
+       this.atualizacaoProduto = atualizacaoProduto;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -71,7 +69,7 @@ public class Produto  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="categoriaProduto", nullable=false)
+    @JoinColumn(name="categoriaProduto")
     public Categoria getCategoria() {
         return this.categoria;
     }
@@ -91,62 +89,93 @@ public class Produto  implements java.io.Serializable {
     }
 
     
-    @Column(name="nomeProduto", nullable=false, length=30)
-    public String getNomeProduto() {
-        return this.nomeProduto;
+    @Column(name="descricaoProduto", length=50)
+    public String getDescricaoProduto() {
+        return this.descricaoProduto;
     }
     
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
-
-    
-    @Column(name="valorProduto", precision=10)
-    public BigDecimal getValorProduto() {
-        return this.valorProduto;
-    }
-    
-    public void setValorProduto(BigDecimal valorProduto) {
-        this.valorProduto = valorProduto;
+    public void setDescricaoProduto(String descricaoProduto) {
+        this.descricaoProduto = descricaoProduto;
     }
 
     
-    @Column(name="quantidadeMinimaProduto")
-    public Integer getQuantidadeMinimaProduto() {
-        return this.quantidadeMinimaProduto;
+    @Column(name="codigoProduto", length=50)
+    public String getCodigoProduto() {
+        return this.codigoProduto;
     }
     
-    public void setQuantidadeMinimaProduto(Integer quantidadeMinimaProduto) {
-        this.quantidadeMinimaProduto = quantidadeMinimaProduto;
+    public void setCodigoProduto(String codigoProduto) {
+        this.codigoProduto = codigoProduto;
+    }
+
+    
+    @Column(name="custoProduto", precision=10)
+    public BigDecimal getCustoProduto() {
+        return this.custoProduto;
+    }
+    
+    public void setCustoProduto(BigDecimal custoProduto) {
+        this.custoProduto = custoProduto;
+    }
+
+    
+    @Column(name="vendaProduto", precision=10)
+    public BigDecimal getVendaProduto() {
+        return this.vendaProduto;
+    }
+    
+    public void setVendaProduto(BigDecimal vendaProduto) {
+        this.vendaProduto = vendaProduto;
+    }
+
+    
+    @Column(name="minimoProduto")
+    public Integer getMinimoProduto() {
+        return this.minimoProduto;
+    }
+    
+    public void setMinimoProduto(Integer minimoProduto) {
+        this.minimoProduto = minimoProduto;
+    }
+
+    
+    @Column(name="maximoProduto")
+    public Integer getMaximoProduto() {
+        return this.maximoProduto;
+    }
+    
+    public void setMaximoProduto(Integer maximoProduto) {
+        this.maximoProduto = maximoProduto;
+    }
+
+    
+    @Column(name="estoqueProduto")
+    public Integer getEstoqueProduto() {
+        return this.estoqueProduto;
+    }
+    
+    public void setEstoqueProduto(Integer estoqueProduto) {
+        this.estoqueProduto = estoqueProduto;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="dataCriacao", length=19)
-    public Date getDataCriacao() {
-        return this.dataCriacao;
+    @Column(name="criacaoProduto", length=19)
+    public Date getCriacaoProduto() {
+        return this.criacaoProduto;
     }
     
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setCriacaoProduto(Date criacaoProduto) {
+        this.criacaoProduto = criacaoProduto;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="dataAtualizacao", length=19)
-    public Date getDataAtualizacao() {
-        return this.dataAtualizacao;
+    @Column(name="atualizacaoProduto", length=19)
+    public Date getAtualizacaoProduto() {
+        return this.atualizacaoProduto;
     }
     
-    public void setDataAtualizacao(Date dataAtualizacao) {
-        this.dataAtualizacao = dataAtualizacao;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="produto")
-    public Set<Item> getItems() {
-        return this.items;
-    }
-    
-    public void setItems(Set<Item> items) {
-        this.items = items;
+    public void setAtualizacaoProduto(Date atualizacaoProduto) {
+        this.atualizacaoProduto = atualizacaoProduto;
     }
 
 

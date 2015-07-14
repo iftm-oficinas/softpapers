@@ -4,8 +4,8 @@ import br.com.models.dao.GenericDAO;
 import br.com.models.vo.Categoria;
 import br.com.models.vo.Cliente;
 import br.com.models.vo.Fornecedor;
+import br.com.models.vo.Funcionario;
 import br.com.models.vo.Produto;
-import br.com.models.vo.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,14 +18,14 @@ import java.util.List;
 public class PainelControleBO {
 
     //Declaração de variáveis(Value Object).
-    private List<Usuario> usuariosVO;
+    private List<Funcionario> funcionariosVO;
     private List<Cliente> clientesVO;
     private List<Fornecedor> fornecedoresVO;
     private List<Categoria> categoriasVO;
     private List<Produto> produtosVO;
 
     //Declaração de variáveis(Data Access Object).
-    private GenericDAO<Usuario> usuarioDAO;
+    private GenericDAO<Funcionario> funcionarioDAO;
     private GenericDAO<Cliente> clienteDAO;
     private GenericDAO<Fornecedor> fornecedorDAO;
     private GenericDAO<Categoria> categoriaDAO;
@@ -38,10 +38,10 @@ public class PainelControleBO {
      * @return Lista de Usuarios composta por todas as linhas da tabela usuario
      * do banco de dados.
      */
-    public List<Usuario> buscarUsuarios() {
-        usuarioDAO = new GenericDAO();
-        usuariosVO = new ArrayList<>(usuarioDAO.consultar(new Usuario()));
-        return usuariosVO;
+    public List<Funcionario> buscarFuncionarios() {
+        funcionarioDAO = new GenericDAO();
+        funcionariosVO = new ArrayList<>(funcionarioDAO.consultar(new Funcionario()));
+        return funcionariosVO;
     }
 
     /**

@@ -1,38 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/05/2015 14:52:38 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/06/2015 16:37:36 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="dbloja" name="br.com.models.vo.Produto" optimistic-lock="version" table="produto">
-    <id name="idProduto" type="java.lang.Long">
-      <column name="idProduto"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="br.com.models.vo.Categoria" fetch="select" name="categoria">
-      <column name="categoriaProduto" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="br.com.models.vo.Fornecedor" fetch="select" name="fornecedor">
-      <column name="fornecedorProduto"/>
-    </many-to-one>
-    <property name="nomeProduto" type="string">
-      <column length="30" name="nomeProduto" not-null="true"/>
-    </property>
-    <property name="valorProduto" type="big_decimal">
-      <column name="valorProduto" precision="10"/>
-    </property>
-    <property name="quantidadeMinimaProduto" type="java.lang.Integer">
-      <column name="quantidadeMinimaProduto"/>
-    </property>
-    <property name="dataCriacao" type="timestamp">
-      <column length="19" name="dataCriacao"/>
-    </property>
-    <property name="dataAtualizacao" type="timestamp">
-      <column length="19" name="dataAtualizacao"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="items" table="item">
-      <key>
-        <column name="itemProduto" not-null="true"/>
-      </key>
-      <one-to-many class="br.com.models.vo.Item"/>
-    </set>
-  </class>
+    <class name="br.com.models.vo.Produto" table="produto" catalog="dbloja" optimistic-lock="version">
+        <id name="idProduto" type="java.lang.Long">
+            <column name="idProduto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="categoria" class="br.com.models.vo.Categoria" fetch="select">
+            <column name="categoriaProduto" />
+        </many-to-one>
+        <many-to-one name="fornecedor" class="br.com.models.vo.Fornecedor" fetch="select">
+            <column name="fornecedorProduto" />
+        </many-to-one>
+        <property name="descricaoProduto" type="string">
+            <column name="descricaoProduto" length="50" />
+        </property>
+        <property name="codigoProduto" type="string">
+            <column name="codigoProduto" length="50" />
+        </property>
+        <property name="custoProduto" type="big_decimal">
+            <column name="custoProduto" precision="10" />
+        </property>
+        <property name="vendaProduto" type="big_decimal">
+            <column name="vendaProduto" precision="10" />
+        </property>
+        <property name="minimoProduto" type="java.lang.Integer">
+            <column name="minimoProduto" />
+        </property>
+        <property name="maximoProduto" type="java.lang.Integer">
+            <column name="maximoProduto" />
+        </property>
+        <property name="estoqueProduto" type="java.lang.Integer">
+            <column name="estoqueProduto" />
+        </property>
+        <property name="criacaoProduto" type="timestamp">
+            <column name="criacaoProduto" length="19" />
+        </property>
+        <property name="atualizacaoProduto" type="timestamp">
+            <column name="atualizacaoProduto" length="19" />
+        </property>
+    </class>
 </hibernate-mapping>

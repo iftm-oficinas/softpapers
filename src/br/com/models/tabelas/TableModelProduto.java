@@ -3,7 +3,6 @@ package br.com.models.tabelas;
 import br.com.models.vo.Categoria;
 import br.com.models.vo.Fornecedor;
 import br.com.models.vo.Produto;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,14 +22,12 @@ public class TableModelProduto extends AbstractTableModel {
     private final String[] colunas;
 
     //Declaração de variáveis que compoem os campos da tabela.
-    private static final int idProduto = 0;
-    private static final int nomeProduto = 1;
-    private static final int categoriaProduto = 2;
-    private static final int fornecedorProduto = 3;
-    private static final int valorProduto = 4;
-    private static final int quantidadeMinimaProduto = 5;
-    private static final int dataCriacao = 6;
-    private static final int dataAtualizacao = 7;
+    private static final int descricaoProduto = 0;
+    private static final int categoriaProduto = 1;
+    private static final int fornecedorProduto = 2;
+    private static final int codigoProduto = 3;
+    private static final int criacaoProduto = 4;
+    private static final int atualizacaoProduto = 5;
 
     /**
      *
@@ -39,7 +36,7 @@ public class TableModelProduto extends AbstractTableModel {
      */
     public TableModelProduto() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Produto", "Nome", "Categoria", "Fornecedor", "Valor", "Quantidade min.", "Criação", "Atualização"};
+        colunas = new String[]{"Produto", "Categoria", "Fornecedor", "Codigo", "Criação", "Atualização"};
     }
 
     /**
@@ -51,7 +48,7 @@ public class TableModelProduto extends AbstractTableModel {
      */
     public TableModelProduto(List<Produto> produtos) {
         linhas = new ArrayList<>(produtos);
-        colunas = new String[]{"Produto", "Nome", "Categoria", "Fornecedor", "Valor", "Quantidade min.", "Criação", "Atualização"};
+        colunas = new String[]{"Produto", "Categoria", "Fornecedor", "Codigo", "Criação", "Atualização"};
     }
 
     //Gets and Sets
@@ -73,21 +70,17 @@ public class TableModelProduto extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
-            case idProduto:
-                return Long.class;
-            case nomeProduto:
+            case descricaoProduto:
                 return String.class;
             case categoriaProduto:
-                return Categoria.class;
+                return String.class;
             case fornecedorProduto:
-                return Fornecedor.class;
-            case valorProduto:
-                return BigDecimal.class;
-            case quantidadeMinimaProduto:
-                return Integer.class;
-            case dataCriacao:
+                return String.class;
+            case codigoProduto:
+                return String.class;
+            case criacaoProduto:
                 return Date.class;
-            case dataAtualizacao:
+            case atualizacaoProduto:
                 return Date.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -98,22 +91,18 @@ public class TableModelProduto extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Produto produto = linhas.get(rowIndex);
         switch (columnIndex) {
-            case idProduto:
-                return produto.getIdProduto();
-            case nomeProduto:
-                return produto.getNomeProduto();
+            case descricaoProduto:
+                return produto.getDescricaoProduto();
             case categoriaProduto:
-                return produto.getCategoria();
+                return produto.getCategoria().getDescricaoCategoria();
             case fornecedorProduto:
-                return produto.getFornecedor();
-            case valorProduto:
-                return produto.getValorProduto();
-            case quantidadeMinimaProduto:
-                return produto.getQuantidadeMinimaProduto();
-            case dataCriacao:
-                return produto.getDataCriacao();
-            case dataAtualizacao:
-                return produto.getDataAtualizacao();
+                return produto.getFornecedor().getEmpresaFornecedor();
+            case codigoProduto:
+                return produto.getCodigoProduto();
+            case criacaoProduto:
+                return produto.getCriacaoProduto();
+            case atualizacaoProduto:
+                return produto.getAtualizacaoProduto();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -123,11 +112,8 @@ public class TableModelProduto extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         Produto produto = linhas.get(rowIndex);
         switch (columnIndex) {
-            case idProduto:
-                produto.setIdProduto((Long) aValue);
-                break;
-            case nomeProduto:
-                produto.setNomeProduto((String) aValue);
+            case descricaoProduto:
+                produto.setDescricaoProduto((String) aValue);
                 break;
             case categoriaProduto:
                 produto.setCategoria((Categoria) aValue);
@@ -135,17 +121,14 @@ public class TableModelProduto extends AbstractTableModel {
             case fornecedorProduto:
                 produto.setFornecedor((Fornecedor) aValue);
                 break;
-            case quantidadeMinimaProduto:
-                produto.setQuantidadeMinimaProduto((Integer) aValue);
+            case codigoProduto:
+                produto.setCodigoProduto((String) aValue);
                 break;
-            case valorProduto:
-                produto.setValorProduto((BigDecimal) aValue);
+            case criacaoProduto:
+                produto.setCriacaoProduto((Date) (aValue));
                 break;
-            case dataCriacao:
-                produto.setDataCriacao((Date) aValue);
-                break;
-            case dataAtualizacao:
-                produto.setDataAtualizacao((Date) aValue);
+            case atualizacaoProduto:
+                produto.setAtualizacaoProduto((Date) (aValue));
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");

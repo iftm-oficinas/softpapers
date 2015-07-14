@@ -1,7 +1,7 @@
 package br.com.models.bo;
 
 import br.com.models.dao.GenericDAO;
-import br.com.models.vo.Usuario;
+import br.com.models.vo.Funcionario;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -20,29 +20,29 @@ import javax.swing.border.LineBorder;
 public class AcessoBO {
 
     //Declaração de variáveis(Value Object).
-    private Usuario usuarioVO;
+    private Funcionario funcionarioVO;
 
     //Declaração de variáveis(Data Access Object).
-    private GenericDAO<Usuario> usuarioDAO;
+    private GenericDAO<Funcionario> funcionarioDAO;
 
     /**
      *
-     * @see Método que chama uma consulta ao banco de dados atravéz da classe
-     * usuarioDAO.
+     * @see Método que chama uma consulta ao banco de dados atravéz da
+     * referência usuarioDAO.
      *
-     * @param email
+     * @param usuario
      * @param senha
      * @return Usuario caso ele encontre.
      */
-    public Usuario validarAcesso(String email, String senha) {
-        usuarioDAO = new GenericDAO();
-        usuarioVO = new Usuario();
-        usuarioVO = (Usuario) usuarioDAO.consultar("emailUsuario", email, "senhaUsuario", senha, usuarioVO);
-        if (usuarioVO == null) {
-            JOptionPane.showMessageDialog(null, "Email ou senha invalidos", "Acesso Negado", JOptionPane.ERROR_MESSAGE);
+    public Funcionario validarAcesso(String usuario, String senha) {
+        funcionarioDAO = new GenericDAO();
+        funcionarioVO = new Funcionario();
+        funcionarioVO = (Funcionario) funcionarioDAO.consultar("usuarioFuncionario", usuario, "senhaFuncionario", senha, funcionarioVO);
+        if (funcionarioVO == null) {
+            JOptionPane.showMessageDialog(null, "Usuário ou senha invalidos", "Acesso Negado", JOptionPane.ERROR_MESSAGE);
             return null;
         } else {
-            return usuarioVO;
+            return funcionarioVO;
         }
     }
 
@@ -75,7 +75,7 @@ public class AcessoBO {
                     if (((JPasswordField) c).getText().trim().equals("")) {
                         ((JPasswordField) c).setBorder(new LineBorder(Color.RED));
                         erro = false;
-                    }  else {
+                    } else {
                         ((JPasswordField) c).setBorder(new LineBorder(Color.LIGHT_GRAY));
                     }
                 } else {
