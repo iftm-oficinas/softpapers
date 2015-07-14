@@ -1,7 +1,12 @@
 package br.com.resources.views;
 
+import br.com.models.bo.FornecedorBO;
 import br.com.models.vo.Fornecedor;
+import br.com.models.vo.Pessoafisica;
+import br.com.models.vo.Pessoajuridica;
+import java.awt.Cursor;
 import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -13,19 +18,90 @@ import java.awt.event.KeyEvent;
 public class ViewFornecedor extends javax.swing.JDialog {
 
     /**
-     *
      * @see Construtor padrão.
-     *
+     * @param viewPainelControle
      * @param parent
      * @param modal
-     * @param pai
      */
-    public ViewFornecedor(java.awt.Frame parent, boolean modal, ViewPainelControle pai) {
+    public ViewFornecedor(java.awt.Frame parent, boolean modal, ViewPainelControle viewPainelControle) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         initComponents();
-        pnPessoaJuridica.setVisible(false);
-        viewPainelControle = pai;
+        rbPessoaFisica.doClick();
+        this.viewPainelControle = viewPainelControle;
+        fornecedorBO = new FornecedorBO();
+        btnAlterarFornecedor.setVisible(false);
+    }
+
+    public ViewFornecedor(java.awt.Frame parent, boolean modal, ViewPainelControle viewPainelControle, Fornecedor fornecedorVO, Boolean alterar) {
+        //Inicialização dos componentes padrões do JDialog.
+        super(parent, modal);
+        initComponents();
+        this.viewPainelControle = viewPainelControle;
+        this.fornecedorBO = new FornecedorBO();
+        this.fornecedorVO = fornecedorVO;
+        btnCadastrar.setVisible(false);
+        lbTitulo.setText("Alterar Fornecedor");
+        rbPessoaFisica.setVisible(false);
+        rbPessoaJuridica.setVisible(false);
+
+        //Definindo atributos do objeto para os campos
+        tfNomeFornecedor.setText(fornecedorVO.getNomeFornecedor());
+        tfNomeContato.setText(fornecedorVO.getNomeFornecedor());
+        tfEmail.setText(fornecedorVO.getContato().getEmailContato());
+        tfTelefone.setText(fornecedorVO.getContato().getTelefoneContato());
+        tfCelular.setText(fornecedorVO.getContato().getCelularContato());
+        tfEndereco.setText(fornecedorVO.getEndereco().getEnderecoEndereco());
+        tfCep.setText(fornecedorVO.getEndereco().getCepEndereco());
+        tfComplemento.setText(fornecedorVO.getEndereco().getComplementoEndereco());
+        tfNumero.setText(fornecedorVO.getEndereco().getNumeroEndereco());
+        tfBairro.setText(fornecedorVO.getEndereco().getBairroEndereco());
+        tfCidade.setText(fornecedorVO.getEndereco().getCidadeEndereco());
+        tfEstado.setText(fornecedorVO.getEndereco().getEstadoEndereco());
+        if ("Fisica".equals(fornecedorVO.getPessoa().getTipoPessoa())) {
+            rbPessoaFisica.doClick();
+            Pessoafisica pessoaFisica = fornecedorBO.buscarPessoaFisica(fornecedorVO.getPessoa().getIdPessoa());
+            tfCpfCnpj.setText(pessoaFisica.getCpfPessoaFisica());
+            tfRgRazaoSocial.setText(pessoaFisica.getRgPessoaFisica());
+            tfNascimentoFundacao.setText(new SimpleDateFormat("dd/MM/yyyy").format(pessoaFisica.getNascimentoPessoaFisica()));
+        } else {
+            rbPessoaJuridica.doClick();
+            Pessoajuridica pessoaJuridica = fornecedorBO.buscarPessoaJuridica(fornecedorVO.getPessoa().getIdPessoa());
+            tfCpfCnpj.setText(pessoaJuridica.getCnpjPessoaJuridica());
+            tfRgRazaoSocial.setText(pessoaJuridica.getRazaoSocialPessoaJuridica());
+            tfNascimentoFundacao.setText(new SimpleDateFormat("dd/MM/yyyy").format(pessoaJuridica.getFundacaoPessoaJuridica()));
+            tfEstadual.setText(pessoaJuridica.getEstadualPessoaJuridica());
+            tfMunicipal.setText(pessoaJuridica.getMunicipalPessoaJuridica());
+            tfSuframa.setText(pessoaJuridica.getSuframaPessoaJuridica());
+            if (pessoaJuridica.getIcmsPessoaJuridica()) {
+                rbIcms.doClick();
+            }
+        }
+
+        //Definindo como não editável
+        if (!alterar) {
+            btnAlterarFornecedor.setVisible(false);
+            lbTitulo.setText("Fornecedor");
+            tfNomeFornecedor.setEditable(false);
+            tfNomeContato.setEditable(false);
+            tfEmail.setEditable(false);
+            tfTelefone.setEditable(false);
+            tfCelular.setEditable(false);
+            tfEndereco.setEditable(false);
+            tfCep.setEditable(false);
+            tfComplemento.setEditable(false);
+            tfNumero.setEditable(false);
+            tfBairro.setEditable(false);
+            tfCidade.setEditable(false);
+            tfEstado.setEditable(false);
+            tfCpfCnpj.setEditable(false);
+            tfRgRazaoSocial.setEditable(false);
+            tfNascimentoFundacao.setEditable(false);
+            tfEstado.setEditable(false);
+            tfMunicipal.setEditable(false);
+            tfSuframa.setEditable(false);
+            rbIcms.setEnabled(false);
+        }
     }
 
     //Componentes padrões do JFrame.
@@ -67,7 +143,9 @@ public class ViewFornecedor extends javax.swing.JDialog {
         sprDireita = new javax.swing.JSeparator();
         rbPessoaFisica = new javax.swing.JRadioButton();
         rbPessoaJuridica = new javax.swing.JRadioButton();
-        pnPessoa = new javax.swing.JPanel();
+        sprRodape = new javax.swing.JSeparator();
+        btnCadastrar = new javax.swing.JButton();
+        btnAlterarFornecedor = new javax.swing.JButton();
         lbPessoaFisica = new javax.swing.JLabel();
         lbOpcional4 = new javax.swing.JLabel();
         lbCpfCnpj = new javax.swing.JLabel();
@@ -76,7 +154,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
         tfRgRazaoSocial = new javax.swing.JTextField();
         lbNascimentoFundacao = new javax.swing.JLabel();
         tfNascimentoFundacao = new javax.swing.JTextField();
-        pnPessoaJuridica = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         lbEstadual = new javax.swing.JLabel();
         tfEstadual = new javax.swing.JTextField();
         lbMunicipal = new javax.swing.JLabel();
@@ -84,8 +162,6 @@ public class ViewFornecedor extends javax.swing.JDialog {
         lbSuframa = new javax.swing.JLabel();
         tfSuframa = new javax.swing.JTextField();
         rbIcms = new javax.swing.JRadioButton();
-        sprRodape = new javax.swing.JSeparator();
-        btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Fornecedor");
@@ -178,6 +254,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfCelular.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfCelular.setForeground(new java.awt.Color(102, 102, 102));
+        tfCelular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCelularActionPerformed(evt);
+            }
+        });
         tfCelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfCelularKeyTyped(evt);
@@ -285,6 +366,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
         rbPessoaFisica.setForeground(new java.awt.Color(102, 102, 102));
         rbPessoaFisica.setSelected(true);
         rbPessoaFisica.setText("Pessoa Física");
+        rbPessoaFisica.setFocusable(false);
         rbPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbPessoaFisicaActionPerformed(evt);
@@ -296,13 +378,40 @@ public class ViewFornecedor extends javax.swing.JDialog {
         rbPessoaJuridica.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         rbPessoaJuridica.setForeground(new java.awt.Color(102, 102, 102));
         rbPessoaJuridica.setText("Pessoa Jurídica ");
+        rbPessoaJuridica.setFocusable(false);
         rbPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbPessoaJuridicaActionPerformed(evt);
             }
         });
 
-        pnPessoa.setBackground(new java.awt.Color(255, 255, 255));
+        sprRodape.setForeground(new java.awt.Color(204, 204, 204));
+
+        btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarUP.png"))); // NOI18N
+        btnCadastrar.setBorder(null);
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCadastrar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
+        btnCadastrar.setFocusable(false);
+        btnCadastrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
+        btnCadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+
+        btnAlterarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
+        btnAlterarFornecedor.setBorder(null);
+        btnAlterarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlterarFornecedor.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarFornecedor.setFocusable(false);
+        btnAlterarFornecedor.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarFornecedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarFornecedorActionPerformed(evt);
+            }
+        });
 
         lbPessoaFisica.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lbPessoaFisica.setForeground(new java.awt.Color(0, 102, 205));
@@ -330,6 +439,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfRgRazaoSocial.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfRgRazaoSocial.setForeground(new java.awt.Color(102, 102, 102));
+        tfRgRazaoSocial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfRgRazaoSocialActionPerformed(evt);
+            }
+        });
         tfRgRazaoSocial.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfRgRazaoSocialKeyTyped(evt);
@@ -348,7 +462,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
             }
         });
 
-        pnPessoaJuridica.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lbEstadual.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbEstadual.setForeground(new java.awt.Color(102, 102, 102));
@@ -390,28 +504,31 @@ public class ViewFornecedor extends javax.swing.JDialog {
         rbIcms.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         rbIcms.setForeground(new java.awt.Color(102, 102, 102));
         rbIcms.setText("Isento ICMS");
+        rbIcms.setFocusable(false);
 
-        javax.swing.GroupLayout pnPessoaJuridicaLayout = new javax.swing.GroupLayout(pnPessoaJuridica);
-        pnPessoaJuridica.setLayout(pnPessoaJuridicaLayout);
-        pnPessoaJuridicaLayout.setHorizontalGroup(
-            pnPessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnPessoaJuridicaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnPessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbIcms)
-                    .addGroup(pnPessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lbEstadual)
-                        .addComponent(lbSuframa)
-                        .addComponent(lbMunicipal)
-                        .addComponent(tfSuframa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                        .addComponent(tfMunicipal, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(tfEstadual)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(tfEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbEstadual)
+                            .addComponent(lbSuframa)
+                            .addComponent(rbIcms)
+                            .addComponent(lbMunicipal))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(tfSuframa, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfMunicipal, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
-        pnPessoaJuridicaLayout.setVerticalGroup(
-            pnPessoaJuridicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnPessoaJuridicaLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lbEstadual)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -425,69 +542,8 @@ public class ViewFornecedor extends javax.swing.JDialog {
                 .addComponent(tfSuframa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbIcms, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        javax.swing.GroupLayout pnPessoaLayout = new javax.swing.GroupLayout(pnPessoa);
-        pnPessoa.setLayout(pnPessoaLayout);
-        pnPessoaLayout.setHorizontalGroup(
-            pnPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnPessoaLayout.createSequentialGroup()
-                .addComponent(pnPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(pnPessoaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnPessoaLayout.createSequentialGroup()
-                        .addGroup(pnPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbCpfCnpj)
-                            .addGroup(pnPessoaLayout.createSequentialGroup()
-                                .addComponent(lbPessoaFisica)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbOpcional4))
-                            .addComponent(lbRgRazaoSocial)
-                            .addComponent(lbNascimentoFundacao))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnPessoaLayout.createSequentialGroup()
-                        .addGroup(pnPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfNascimentoFundacao)
-                            .addComponent(tfRgRazaoSocial, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tfCpfCnpj, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap())))
-        );
-        pnPessoaLayout.setVerticalGroup(
-            pnPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnPessoaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbPessoaFisica)
-                    .addComponent(lbOpcional4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbCpfCnpj)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbRgRazaoSocial)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfRgRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbNascimentoFundacao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNascimentoFundacao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        sprRodape.setForeground(new java.awt.Color(204, 204, 204));
-
-        btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarUP.png"))); // NOI18N
-        btnCadastrar.setBorder(null);
-        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCadastrar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
-        btnCadastrar.setFocusable(false);
-        btnCadastrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
-        btnCadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
 
         javax.swing.GroupLayout pnCorpoLayout = new javax.swing.GroupLayout(pnCorpo);
         pnCorpo.setLayout(pnCorpoLayout);
@@ -497,72 +553,90 @@ public class ViewFornecedor extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnCorpoLayout.createSequentialGroup()
-                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnCadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAlterarFornecedor)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfEstado))
-                            .addComponent(tfEndereco)
-                            .addComponent(tfNomeFornecedor)
-                            .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(pnCorpoLayout.createSequentialGroup()
-                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbEmail)
-                                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbTelefone))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbCelular)
-                                            .addComponent(tfCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(pnCorpoLayout.createSequentialGroup()
-                                        .addComponent(lbMaisEndereco)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lbOpcional3))
-                                    .addComponent(lbEndereco)
-                                    .addGroup(pnCorpoLayout.createSequentialGroup()
-                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbCep)
-                                            .addComponent(lbBairro))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbComplemento)
-                                            .addComponent(lbCidade))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbEstado)
-                                            .addComponent(lbNumero)
-                                            .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lbNomeFornecedor)
                                     .addGroup(pnCorpoLayout.createSequentialGroup()
                                         .addComponent(lbContato)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lbOpcional1))
                                     .addComponent(lbNomeContato)
-                                    .addComponent(tfNomeContato))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(lbEmail))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbTelefone))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbCelular)
+                                    .addComponent(tfCelular)))
+                            .addGroup(pnCorpoLayout.createSequentialGroup()
+                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbBairro)
+                                    .addComponent(lbCep))
+                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                                        .addGap(210, 210, 210)
+                                        .addComponent(lbEstado))
+                                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbComplemento)
+                                            .addComponent(lbCidade))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbNumero)
+                                            .addComponent(tfNumero)))))
+                            .addGroup(pnCorpoLayout.createSequentialGroup()
+                                .addComponent(lbMaisEndereco)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbOpcional3))
+                            .addGroup(pnCorpoLayout.createSequentialGroup()
+                                .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbEndereco)
+                            .addComponent(tfEndereco)
+                            .addComponent(tfNomeContato)
+                            .addComponent(tfNomeFornecedor))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sprDireita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sprDireita, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addComponent(rbPessoaFisica)
-                                .addGap(0, 0, 0)
-                                .addComponent(rbPessoaJuridica))
-                            .addComponent(pnPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnCadastrar)))
+                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                                        .addComponent(rbPessoaFisica)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbPessoaJuridica))
+                                    .addComponent(lbCpfCnpj)
+                                    .addComponent(lbRgRazaoSocial)
+                                    .addComponent(lbNascimentoFundacao)
+                                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                                        .addComponent(lbPessoaFisica)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lbOpcional4))
+                                    .addComponent(tfCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfNascimentoFundacao, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfRgRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
             .addComponent(sprRodape)
         );
         pnCorpoLayout.setVerticalGroup(
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCorpoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCorpoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnCorpoLayout.createSequentialGroup()
@@ -577,8 +651,8 @@ public class ViewFornecedor extends javax.swing.JDialog {
                         .addComponent(lbNomeContato)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfNomeContato, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(6, 6, 6)
+                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbEmail)
                             .addComponent(lbTelefone)
                             .addComponent(lbCelular))
@@ -615,18 +689,36 @@ public class ViewFornecedor extends javax.swing.JDialog {
                             .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(sprDireita)
+                    .addComponent(sprDireita, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnCorpoLayout.createSequentialGroup()
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rbPessoaJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbPessoaFisica)
+                            .addComponent(lbOpcional4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbCpfCnpj)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbRgRazaoSocial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfRgRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbNascimentoFundacao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNascimentoFundacao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sprRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sprRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCadastrar)
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAlterarFornecedor, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
 
@@ -658,21 +750,33 @@ public class ViewFornecedor extends javax.swing.JDialog {
      */
     private void rbPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPessoaFisicaActionPerformed
         if (rbPessoaFisica.isSelected()) {
-            pnPessoaJuridica.setVisible(false);
             lbPessoaFisica.setText("pessoa física");
             lbCpfCnpj.setText("CPF");
             lbRgRazaoSocial.setText("RG");
             lbNascimentoFundacao.setText("Nascimento");
+            lbEstadual.setVisible(false);
+            tfEstadual.setVisible(false);
+            lbMunicipal.setVisible(false);
+            tfMunicipal.setVisible(false);
+            lbSuframa.setVisible(false);
+            tfSuframa.setVisible(false);
+            rbIcms.setVisible(false);
         }
     }//GEN-LAST:event_rbPessoaFisicaActionPerformed
 
     private void rbPessoaJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPessoaJuridicaActionPerformed
         if (rbPessoaJuridica.isSelected()) {
-            pnPessoaJuridica.setVisible(true);
             lbPessoaFisica.setText("pessoa jurídica");
             lbCpfCnpj.setText("CNPJ");
             lbRgRazaoSocial.setText("Razão Social");
             lbNascimentoFundacao.setText("Fundação");
+            lbEstadual.setVisible(true);
+            tfEstadual.setVisible(true);
+            lbMunicipal.setVisible(true);
+            tfMunicipal.setVisible(true);
+            lbSuframa.setVisible(true);
+            tfSuframa.setVisible(true);
+            rbIcms.setVisible(true);
         }
     }//GEN-LAST:event_rbPessoaJuridicaActionPerformed
 
@@ -699,7 +803,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
     }//GEN-LAST:event_tfNomeContatoKeyTyped
 
     private void tfEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmailKeyTyped
-        if (tfEmail.getText().length() > 49) {
+        if (tfEmail.getText().length() > 29) {
             evt.consume();
         }
     }//GEN-LAST:event_tfEmailKeyTyped
@@ -741,7 +845,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
     }//GEN-LAST:event_tfCelularKeyTyped
 
     private void tfEnderecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEnderecoKeyTyped
-        if (tfEndereco.getText().length() > 99) {
+        if (tfEndereco.getText().length() > 49) {
             evt.consume();
         }
     }//GEN-LAST:event_tfEnderecoKeyTyped
@@ -824,36 +928,73 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
     private void tfEstadualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEstadualKeyTyped
         String caracteres = "1234567890";
-        if (!caracteres.contains(evt.getKeyChar() + "") || tfEstadual.getText().length() > 49) {
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfEstadual.getText().length() > 44) {
             evt.consume();
         }
     }//GEN-LAST:event_tfEstadualKeyTyped
 
     private void tfMunicipalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMunicipalKeyTyped
         String caracteres = "1234567890";
-        if (!caracteres.contains(evt.getKeyChar() + "") || tfMunicipal.getText().length() > 49) {
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfMunicipal.getText().length() > 44) {
             evt.consume();
         }
     }//GEN-LAST:event_tfMunicipalKeyTyped
 
     private void tfSuframaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSuframaKeyTyped
         String caracteres = "1234567890";
-        if (!caracteres.contains(evt.getKeyChar() + "") || tfSuframa.getText().length() > 49) {
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfSuframa.getText().length() > 44) {
             evt.consume();
         }
     }//GEN-LAST:event_tfSuframaKeyTyped
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        btnCadastrar.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        if (fornecedorBO.validarCampos(pnCorpo)) {
+            if (fornecedorBO.inserirFornecedor(tfNomeFornecedor.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText(), rbPessoaFisica.isSelected(), tfCpfCnpj.getText(), tfRgRazaoSocial.getText(), tfNascimentoFundacao.getText(), tfEstadual.getText(), tfMunicipal.getText(), tfSuframa.getText(), rbIcms.isSelected())) {
+                viewPainelControle.atualizarTabelas();
+                this.dispose();
+            }
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnCadastrar.setEnabled(true);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFornecedorActionPerformed
+        btnAlterarFornecedor.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        if (fornecedorBO.validarCampos(pnCorpo)) {
+            if (fornecedorBO.alterarFornecedor(fornecedorVO.getIdFornecedor(), tfNomeFornecedor.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText(), rbPessoaFisica.isSelected(), tfCpfCnpj.getText(), tfRgRazaoSocial.getText(), tfNascimentoFundacao.getText(), tfEstadual.getText(), tfMunicipal.getText(), tfSuframa.getText(), rbIcms.isSelected())) {
+                viewPainelControle.atualizarTabelas();
+                this.dispose();
+            }
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnAlterarFornecedor.setEnabled(true);
+    }//GEN-LAST:event_btnAlterarFornecedorActionPerformed
+
+    private void tfRgRazaoSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfRgRazaoSocialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfRgRazaoSocialActionPerformed
+
+    private void tfCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCelularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCelularActionPerformed
 
     //Declaração de variáveis(View).
     private final ViewPainelControle viewPainelControle;
 
     //Declaração de variáveis(Business Object).
-//    private FornecedorBO fornecedorBO;
+    private final FornecedorBO fornecedorBO;
+
     //Declaração de variáveis(Value Object).
     private Fornecedor fornecedorVO;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterarFornecedor;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbBairro;
     private javax.swing.JLabel lbCelular;
     private javax.swing.JLabel lbCep;
@@ -880,8 +1021,6 @@ public class ViewFornecedor extends javax.swing.JDialog {
     private javax.swing.JLabel lbTelefone;
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JPanel pnCorpo;
-    private javax.swing.JPanel pnPessoa;
-    private javax.swing.JPanel pnPessoaJuridica;
     private javax.swing.JPanel pnTitulo;
     private javax.swing.JRadioButton rbIcms;
     private javax.swing.JRadioButton rbPessoaFisica;

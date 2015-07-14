@@ -865,6 +865,9 @@
                       <Image iconType="3" name="/br/com/resources/imagens/btnVisualizarDOWN.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarFornecedorActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAlterarFornecedor">
                   <Properties>
@@ -888,6 +891,9 @@
                       <Image iconType="3" name="/br/com/resources/imagens/btnAlterarDOWN.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarFornecedorActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnExcluirFornecedor">
                   <Properties>
@@ -911,6 +917,9 @@
                       <Image iconType="3" name="/br/com/resources/imagens/btnExcluirDOWN.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirFornecedorActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="pnBuscarFornecedor">
                   <Properties>

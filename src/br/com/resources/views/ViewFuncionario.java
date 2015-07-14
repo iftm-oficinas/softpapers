@@ -116,7 +116,7 @@ public class ViewFuncionario extends javax.swing.JDialog {
         lbRg = new javax.swing.JLabel();
         tfRg = new javax.swing.JTextField();
         lbNascimento = new javax.swing.JLabel();
-        tfNascimento = new javax.swing.JTextField();
+        tfNascimento = new javax.swing.JFormattedTextField();
         lbMaisEndereco = new javax.swing.JLabel();
         lbOpcional4 = new javax.swing.JLabel();
         lbEndereco = new javax.swing.JLabel();
@@ -173,6 +173,9 @@ public class ViewFuncionario extends javax.swing.JDialog {
         tfNomeFuncionario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfNomeFuncionario.setForeground(new java.awt.Color(102, 102, 102));
         tfNomeFuncionario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfNomeFuncionarioKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfNomeFuncionarioKeyTyped(evt);
             }
@@ -314,8 +317,9 @@ public class ViewFuncionario extends javax.swing.JDialog {
         lbNascimento.setForeground(new java.awt.Color(102, 102, 102));
         lbNascimento.setText("Nascimento");
 
-        tfNascimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfNascimento.setForeground(new java.awt.Color(102, 102, 102));
+        tfNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
+        tfNascimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfNascimentoKeyTyped(evt);
@@ -466,14 +470,20 @@ public class ViewFuncionario extends javax.swing.JDialog {
                                 .addComponent(lbPessoaFisica)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbOpcional3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfRg, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbRg))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbNascimento)))
+                            .addGroup(pnCorpoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbRg)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCorpoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfRg, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)))
+                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnCorpoLayout.createSequentialGroup()
+                                .addComponent(lbNascimento)
+                                .addGap(133, 133, 133))
+                            .addComponent(tfNascimento)))
                     .addGroup(pnCorpoLayout.createSequentialGroup()
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfCargo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -497,48 +507,48 @@ public class ViewFuncionario extends javax.swing.JDialog {
                         .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tfNomeContato)
                     .addComponent(tfNomeFuncionario)
+                    .addComponent(lbEndereco)
                     .addGroup(pnCorpoLayout.createSequentialGroup()
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbEndereco)
+                            .addComponent(tfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbCep)
+                            .addComponent(lbBairro))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbComplemento)
+                            .addComponent(lbCidade))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfNumero)
                             .addGroup(pnCorpoLayout.createSequentialGroup()
                                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbCep)
-                                    .addComponent(lbBairro))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbComplemento)
-                                    .addComponent(lbCidade))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbEstado)
                                     .addComponent(lbNumero)
-                                    .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addComponent(lbFuncionario)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbOpcional2))
+                                    .addComponent(lbEstado))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                        .addComponent(lbFuncionario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbOpcional2))
+                    .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCorpoLayout.createSequentialGroup()
                             .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCorpoLayout.createSequentialGroup()
-                                    .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lbEmail))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lbTelefone))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lbCelular)
-                                        .addComponent(tfCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(pnCorpoLayout.createSequentialGroup()
-                                    .addComponent(lbContato)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lbOpcional1)))
-                            .addComponent(lbNomeContato)
-                            .addComponent(lbNomeFuncionario))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbEmail))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbTelefone))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbCelular)
+                                .addComponent(tfCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnCorpoLayout.createSequentialGroup()
+                            .addComponent(lbContato)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lbOpcional1)))
+                    .addComponent(lbNomeContato)
+                    .addComponent(lbNomeFuncionario))
                 .addContainerGap())
         );
         pnCorpoLayout.setVerticalGroup(
@@ -591,10 +601,11 @@ public class ViewFuncionario extends javax.swing.JDialog {
                     .addComponent(lbRg)
                     .addComponent(lbNascimento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfRg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfRg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbMaisEndereco)
@@ -661,7 +672,8 @@ public class ViewFuncionario extends javax.swing.JDialog {
     private void tfNomeContatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNomeContatoKeyTyped
         if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
             String caracteres = " aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZçÇáÁàÀãÃâÂéÉèÈêÊíÍìÌîÎóÓòÒõÕôÔúÚùÙûÛ";
-            if (!caracteres.contains(evt.getKeyChar() + "") || tfNomeContato.getText().length() > 49) {
+            if (caracteres.contains(evt.getKeyChar() + "") && tfNomeContato.getText().length() <= 49) {
+            } else {
                 evt.consume();
             }
         }
@@ -748,18 +760,6 @@ public class ViewFuncionario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tfRgKeyTyped
 
-    private void tfNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNascimentoKeyTyped
-        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
-            String caracteres = "1234567890";
-            if (!caracteres.contains(evt.getKeyChar() + "") || tfNascimento.getText().length() > 9) {
-                evt.consume();
-            }
-            if (tfNascimento.getText().length() == 2 || tfNascimento.getText().length() == 5) {
-                tfNascimento.setText(tfNascimento.getText() + "/");
-            }
-        }
-    }//GEN-LAST:event_tfNascimentoKeyTyped
-
     private void tfEnderecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEnderecoKeyTyped
         if (tfEndereco.getText().length() > 49) {
             evt.consume();
@@ -783,13 +783,6 @@ public class ViewFuncionario extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_tfComplementoKeyTyped
-
-    private void tfNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNumeroKeyTyped
-        String caracteres = "1234567890";
-        if (!caracteres.contains(evt.getKeyChar() + "") || tfNumero.getText().length() > 9) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_tfNumeroKeyTyped
 
     private void tfBairroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBairroKeyTyped
         if (tfBairro.getText().length() > 19) {
@@ -846,6 +839,35 @@ public class ViewFuncionario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tfNomeFuncionarioKeyTyped
 
+    private void tfNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNumeroKeyTyped
+        String caracteres = "1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfNumero.getText().length() > 9) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfNumeroKeyTyped
+
+    private void tfNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNascimentoKeyTyped
+        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            String caracteres = "1234567890";
+            if (!caracteres.contains(evt.getKeyChar() + "") || tfNascimento.getText().length() > 9) {
+                evt.consume();
+            }
+            if (tfNascimento.getText().length() == 2 || tfNascimento.getText().length() == 5) {
+                tfNascimento.setText(tfNascimento.getText() + "/");
+            }
+        }
+    }//GEN-LAST:event_tfNascimentoKeyTyped
+
+    private void tfNomeFuncionarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNomeFuncionarioKeyPressed
+        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            String caracteres = " aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZçÇáÁàÀãÃâÂéÉèÈêÊíÍìÌîÎóÓòÒõÕôÔúÚùÙûÛ";
+            if (caracteres.contains(evt.getKeyChar() + "") && tfNomeFuncionario.getText().length() <= 49) {
+            } else {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_tfNomeFuncionarioKeyPressed
+
     //Declaração de variáveis(View).
     private final ViewPainelControle viewPainelControle;
 
@@ -900,7 +922,7 @@ public class ViewFuncionario extends javax.swing.JDialog {
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfEndereco;
     private javax.swing.JTextField tfEstado;
-    private javax.swing.JTextField tfNascimento;
+    private javax.swing.JFormattedTextField tfNascimento;
     private javax.swing.JTextField tfNomeContato;
     private javax.swing.JTextField tfNomeFuncionario;
     private javax.swing.JTextField tfNumero;

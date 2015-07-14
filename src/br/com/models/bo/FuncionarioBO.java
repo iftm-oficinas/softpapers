@@ -11,7 +11,6 @@ import java.awt.Component;
 import java.awt.HeadlessException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -81,9 +80,8 @@ public class FuncionarioBO {
             pessoaFisicaVO.setCpfPessoaFisica(cpf);
             pessoaFisicaVO.setRgPessoaFisica(rg);
             pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
-            if (pessoaFisicaDAO.inserir(pessoaFisicaVO)) {
-                pessoaFisicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
-            }
+            pessoaFisicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
+            pessoaFisicaDAO.inserir(pessoaFisicaVO);
 
             contatoVO.setNomeContato(nome);
             contatoVO.setEmailContato(email);
@@ -120,9 +118,9 @@ public class FuncionarioBO {
      * @see Método que inseri um objeto no banco de dados por meio da
      * GenericDAO.
      * @param idFuncionario
-     * @param idPessoaFisica
      * @param idContato
      * @param idEndereco
+     * @param idPessoa
      * @param funcionario
      * @param nome
      * @param email
@@ -146,15 +144,18 @@ public class FuncionarioBO {
     public Boolean alterarFuncionario(Long idFuncionario, Long idPessoa, Long idContato, Long idEndereco, String funcionario, String nome, String email, String telefone, String celular, String cargo, String usuario, String senha, String cpf, String rg, String nascimento, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado) {
         try {
             GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
-            GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
             GenericDAO<Contato> contatoDAO = new GenericDAO<>();
             GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
             GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
             Funcionario funcionarioVO = new Funcionario();
-            Pessoa pessoaVO = new Pessoa();
             Contato contatoVO = new Contato();
             Endereco enderecoVO = new Endereco();
-            Pessoafisica pessoaFisicaVO = new Pessoafisica();
+
+            Pessoafisica pessoaFisicaVO = buscarPessoaFisica(idPessoa);
+            pessoaFisicaVO.setCpfPessoaFisica(cpf);
+            pessoaFisicaVO.setRgPessoaFisica(rg);
+            pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("dd/MM/yyyy").parse(nascimento));
+            pessoaFisicaDAO.atualizar(pessoaFisicaVO);
 
             funcionarioVO = funcionarioDAO.consultar("idFuncionario", idFuncionario, funcionarioVO);
             funcionarioVO.setNomeFuncionario(funcionario);
@@ -162,12 +163,6 @@ public class FuncionarioBO {
             funcionarioVO.setUsuarioFuncionario(usuario);
             funcionarioVO.setSenhaFuncionario(senha);
             funcionarioVO.setAtualizacaoFuncionario(new Date());
-
-            pessoaFisicaVO = buscarPessoaFisica(idPessoa);
-            pessoaFisicaVO.setCpfPessoaFisica(cpf);
-            pessoaFisicaVO.setRgPessoaFisica(rg);
-            pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("dd/MM/yyyy").parse(nascimento));
-            pessoaFisicaDAO.atualizar(pessoaFisicaVO);
 
             contatoVO = contatoDAO.consultar("idContato", idContato, contatoVO);
             contatoVO.setNomeContato(nome);
@@ -202,6 +197,12 @@ public class FuncionarioBO {
         }
     }
 
+    /**
+     * @see Método que retorna PessoaFisica que possua o atributo Pessoa passado
+     * como parâmetro.
+     * @param idPessoa
+     * @return Pessoafisica/null.
+     */
     public Pessoafisica buscarPessoaFisica(Long idPessoa) {
         GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
         List<Pessoafisica> pessoaFisicaVO = pessoaFisicaDAO.consultar(new Pessoafisica());

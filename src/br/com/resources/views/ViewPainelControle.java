@@ -518,6 +518,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnVisualizarFornecedor.setFocusable(false);
         btnVisualizarFornecedor.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
         btnVisualizarFornecedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarFornecedorActionPerformed(evt);
+            }
+        });
 
         btnAlterarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
         btnAlterarFornecedor.setBorder(null);
@@ -526,6 +531,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnAlterarFornecedor.setFocusable(false);
         btnAlterarFornecedor.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
         btnAlterarFornecedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarFornecedorActionPerformed(evt);
+            }
+        });
 
         btnExcluirFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirUP.png"))); // NOI18N
         btnExcluirFornecedor.setBorder(null);
@@ -534,6 +544,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnExcluirFornecedor.setFocusable(false);
         btnExcluirFornecedor.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
         btnExcluirFornecedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
+        btnExcluirFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirFornecedorActionPerformed(evt);
+            }
+        });
 
         pnBuscarFornecedor.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -897,7 +912,7 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
     private void btnExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFuncionarioActionPerformed
         if (tbFuncionarios.getSelectedRow() != -1) {
             TableModelFuncionario modelo = (TableModelFuncionario) tbFuncionarios.getModel();
-            if(painelControleBO.excluirFuncionario(modelo.getFuncionario(tbFuncionarios.getSelectedRow()).getIdFuncionario())){
+            if (painelControleBO.excluirFuncionario(modelo.getFuncionario(tbFuncionarios.getSelectedRow()).getIdFuncionario())) {
                 atualizarTabelas();
             }
         }
@@ -927,11 +942,36 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
         if (tbClientes.getSelectedRow() != -1) {
             TableModelCliente modelo = (TableModelCliente) tbClientes.getModel();
-            if(painelControleBO.excluirCliente(modelo.getCliente(tbClientes.getSelectedRow()).getIdCliente())){
+            if (painelControleBO.excluirCliente(modelo.getCliente(tbClientes.getSelectedRow()).getIdCliente())) {
                 atualizarTabelas();
             }
         }
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
+
+    private void btnVisualizarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarFornecedorActionPerformed
+        if (tbFornecedores.getSelectedRow() != -1) {
+            TableModelFornecedor modelo = (TableModelFornecedor) tbFornecedores.getModel();
+            viewFornecedor = new ViewFornecedor(viewPrincipal, true, this, modelo.getFornecedor(tbFornecedores.getSelectedRow()), false);
+            viewFornecedor.setVisible(true);
+        }
+    }//GEN-LAST:event_btnVisualizarFornecedorActionPerformed
+
+    private void btnAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFornecedorActionPerformed
+        if (tbFornecedores.getSelectedRow() != -1) {
+            TableModelFornecedor modelo = (TableModelFornecedor) tbFornecedores.getModel();
+            viewFornecedor = new ViewFornecedor(viewPrincipal, true, this, modelo.getFornecedor(tbFornecedores.getSelectedRow()), true);
+            viewFornecedor.setVisible(true);
+        }
+    }//GEN-LAST:event_btnAlterarFornecedorActionPerformed
+
+    private void btnExcluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFornecedorActionPerformed
+        if (tbFornecedores.getSelectedRow() != -1) {
+            TableModelFornecedor modelo = (TableModelFornecedor) tbFornecedores.getModel();
+            if (painelControleBO.excluirFornecedor(modelo.getFornecedor(tbFornecedores.getSelectedRow()).getIdFornecedor())) {
+                atualizarTabelas();
+            }
+        }
+    }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
 
     //Declaração de variáveis(View).
     private ViewPrincipal viewPrincipal;

@@ -9,6 +9,7 @@ import br.com.models.vo.Fornecedor;
 import br.com.models.vo.Funcionario;
 import br.com.models.vo.Pessoa;
 import br.com.models.vo.Pessoafisica;
+import br.com.models.vo.Pessoajuridica;
 import br.com.models.vo.Produto;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +90,13 @@ public class PainelControleBO {
         ArrayList<Produto> produtosVO = new ArrayList<>(produtoDAO.consultar(new Produto()));
         return produtosVO;
     }
-    
+
+    /**
+     * @see Método que retorna PessoaFisica que possua o atributo Pessoa passado
+     * como parâmetro.
+     * @param idPessoa
+     * @return Pessoafisica/null.
+     */
     public Pessoafisica buscarPessoaFisica(Long idPessoa) {
         GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
         List<Pessoafisica> pessoaFisicaVO = pessoaFisicaDAO.consultar(new Pessoafisica());
@@ -100,7 +107,24 @@ public class PainelControleBO {
         }
         return null;
     }
-    
+
+    /**
+     * @see Método que retorna PessoaJuridica que possua o atributo Pessoa
+     * passado como parâmetro.
+     * @param idPessoa
+     * @return Pessoafisica/null.
+     */
+    public Pessoajuridica buscarPessoaJuridica(Long idPessoa) {
+        GenericDAO<Pessoajuridica> pessoaJuridicaDAO = new GenericDAO<>();
+        List<Pessoajuridica> pessoaJuridicaVO = pessoaJuridicaDAO.consultar(new Pessoajuridica());
+        for (Pessoajuridica pessoaJuridicaVO1 : pessoaJuridicaVO) {
+            if (Objects.equals(pessoaJuridicaVO1.getPessoa().getIdPessoa(), idPessoa)) {
+                return pessoaJuridicaVO1;
+            }
+        }
+        return null;
+    }
+
     /**
      *
      * @see Método que exclui um objeto no banco de dados por meio da
@@ -122,13 +146,13 @@ public class PainelControleBO {
             Pessoafisica pessoaFisicaVO = new Pessoafisica();
             Contato contatoVO = new Contato();
             Endereco enderecoVO = new Endereco();
-            
+
             funcionarioVO = funcionarioDAO.consultar("idFuncionario", idFuncionario, funcionarioVO);
             pessoaVO = pessoaDAO.consultar("idPessoa", funcionarioVO.getPessoa().getIdPessoa(), pessoaVO);
             pessoaFisicaVO = buscarPessoaFisica(pessoaVO.getIdPessoa());
             contatoVO = contatoDAO.consultar("idContato", funcionarioVO.getContato().getIdContato(), contatoVO);
             enderecoVO = enderecoDAO.consultar("idEndereco", funcionarioVO.getEndereco().getIdEndereco(), enderecoVO);
-            
+
             if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este Funcionário?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
                 try {
                     funcionarioDAO.apagar(funcionarioVO);
@@ -149,7 +173,7 @@ public class PainelControleBO {
             return false;
         }
     }
-    
+
     /**
      *
      * @see Método que exclui um objeto no banco de dados por meio da
@@ -162,13 +186,84 @@ public class PainelControleBO {
     public Boolean excluirCliente(Long idCliente) {
         try {
             GenericDAO<Cliente> clienteDAO = new GenericDAO<>();
-            Cliente clienteVO = new Cliente();
-            clienteVO = clienteDAO.consultar("idCliente", idCliente, clienteVO);
-            if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este Funcionário?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-                if (clienteDAO.apagar(clienteVO)) {
-                    JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso.", "Secesso", JOptionPane.INFORMATION_MESSAGE);
+            GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
+            GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
+            GenericDAO<Pessoajuridica> pessoaJuridicaDAO = new GenericDAO<>();
+            GenericDAO<Contato> contatoDAO = new GenericDAO<>();
+            GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
+
+            if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este Cliente?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+                try {
+                    Cliente clienteVO = clienteDAO.consultar("idCliente", idCliente, new Cliente());
+                    Pessoa pessoaVO = pessoaDAO.consultar("idPessoa", clienteVO.getPessoa().getIdPessoa(), new Pessoa());
+                    Contato contatoVO = contatoDAO.consultar("idContato", clienteVO.getContato().getIdContato(), new Contato());
+                    Endereco enderecoVO = enderecoDAO.consultar("idEndereco", clienteVO.getEndereco().getIdEndereco(), new Endereco());
+
+                    if ("Fisica".equals(pessoaVO.getTipoPessoa())) {
+                        Pessoafisica pessoaFisicaVO = buscarPessoaFisica(clienteVO.getPessoa().getIdPessoa());
+                        pessoaFisicaDAO.apagar(pessoaFisicaVO);
+                    } else {
+                        Pessoajuridica pessoaJuridicaVO = buscarPessoaJuridica(clienteVO.getPessoa().getIdPessoa());
+                        pessoaJuridicaDAO.apagar(pessoaJuridicaVO);
+                    }
+
+                    clienteDAO.apagar(clienteVO);
+                    pessoaDAO.apagar(pessoaVO);
+                    contatoDAO.apagar(contatoVO);
+                    enderecoDAO.apagar(enderecoVO);
+                    JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso.", "Secesso", JOptionPane.INFORMATION_MESSAGE);
                     return true;
-                } else {
+                } catch (Exception e) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
+    /**
+     *
+     * @see Método que exclui um objeto no banco de dados por meio da
+     * GenericDAO.
+     *
+     * @param idFornecedor
+     *
+     * @return
+     */
+    public Boolean excluirFornecedor(Long idFornecedor) {
+        try {
+            if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este Fornecedor?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+                try {
+                    GenericDAO<Fornecedor> fornecedorDAO = new GenericDAO<>();
+                    GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
+                    GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
+                    GenericDAO<Pessoajuridica> pessoaJuridicaDAO = new GenericDAO<>();
+                    GenericDAO<Contato> contatoDAO = new GenericDAO<>();
+                    GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
+                    Fornecedor fornecedorVO = fornecedorDAO.consultar("idFornecedor", idFornecedor, new Fornecedor());
+                    Pessoa pessoaVO = pessoaDAO.consultar("idPessoa", fornecedorVO.getPessoa().getIdPessoa(), new Pessoa());
+                    Contato contatoVO = contatoDAO.consultar("idContato", fornecedorVO.getContato().getIdContato(), new Contato());
+                    Endereco enderecoVO = enderecoDAO.consultar("idEndereco", fornecedorVO.getEndereco().getIdEndereco(), new Endereco());
+
+                    if ("Fisica".equals(pessoaVO.getTipoPessoa())) {
+                        Pessoafisica pessoaFisicaVO = buscarPessoaFisica(fornecedorVO.getPessoa().getIdPessoa());
+                        pessoaFisicaDAO.apagar(pessoaFisicaVO);
+                    } else {
+                        Pessoajuridica pessoaJuridicaVO = buscarPessoaJuridica(fornecedorVO.getPessoa().getIdPessoa());
+                        pessoaJuridicaDAO.apagar(pessoaJuridicaVO);
+                    }
+
+                    fornecedorDAO.apagar(fornecedorVO);
+                    pessoaDAO.apagar(pessoaVO);
+                    contatoDAO.apagar(contatoVO);
+                    enderecoDAO.apagar(enderecoVO);
+                    JOptionPane.showMessageDialog(null, "Fornecedor excluido com sucesso.", "Secesso", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                } catch (Exception e) {
                     return false;
                 }
             } else {
