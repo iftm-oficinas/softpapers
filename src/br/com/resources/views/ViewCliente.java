@@ -1,6 +1,11 @@
 package br.com.resources.views;
 
+import br.com.models.bo.ClienteBO;
+import br.com.models.vo.Cliente;
+import java.awt.Cursor;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -15,12 +20,87 @@ public class ViewCliente extends javax.swing.JDialog {
      *
      * @param parent
      * @param modal
+     * @param viewPainelControle
      */
-    public ViewCliente(java.awt.Frame parent, boolean modal) {
+    public ViewCliente(java.awt.Frame parent, boolean modal, ViewPainelControle viewPainelControle) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         initComponents();
         pnPessoaJuridica.setVisible(false);
+        this.viewPainelControle = viewPainelControle;
+    }
+
+    public ViewCliente(java.awt.Frame parent, boolean modal, ViewPainelControle viewPainelControle, Cliente cliente, Boolean alterar) {
+        //Inicialização dos componentes padrões do JDialog.
+        super(parent, modal);
+        initComponents();
+        this.viewPainelControle = viewPainelControle;
+        this.clienteVO = cliente;
+        btnCadastrar.setVisible(false);
+        lbTitulo.setText("Alterar Cliente");
+
+        //Definindo atributos do objeto para os campos
+        tfNome.setText(cliente.getNomeCliente());
+        tfEmail.setText(cliente.getEmailCliente());
+        tfTelefone.setText(cliente.getTelefoneCliente());
+        tfCelular.setText(cliente.getCelularCliente());
+        ftfSalario.setText(cliente.getSalarioCliente().toString());
+        ftfLimite.setText(cliente.getLimiteCliente().toString());
+        ftfDesconto.setText(cliente.getDescontoCliente().toString());
+        tfEndereco.setText(cliente.getEnderecoCliente());
+        tfCep.setText(cliente.getCepCliente());
+        tfComplemento.setText(cliente.getComplementoCliente());
+        tfNumero.setText(cliente.getNumeroCliente());
+        tfBairro.setText(cliente.getBairroCliente());
+        tfCidade.setText(cliente.getCidadeCliente());
+        tfEstado.setText(cliente.getEstadoCliente());
+        if ("Pessoa Fisica".equals(cliente.getPessoaCliente())) {
+            rbPessoaFisica.doClick();
+        } else {
+            rbPessoaJuridica.doClick();
+        }
+        tfCpfCnpj.setText(cliente.getCpfCnpjCliente());
+        tfRgRazaoSocial.setText(cliente.getRgRazaoCliente());
+        tfNascimentoFundacao.setText(new SimpleDateFormat("dd/MM/yyyy").format(cliente.getNascimentoCliente()));
+        tfEstadual.setText(cliente.getEstadualCliente());
+        tfMunicipal.setText(cliente.getMunicipalCliente());
+        tfSuframa.setText(cliente.getSuframaCliente());
+        if ("true".equals(cliente.getIcmsCliente())) {
+            rbIcms.doClick();
+        }
+        if (cliente.getPublicidadeCliente()) {
+            rbPublicidade.doClick();
+        }
+
+        //Definindo como não editável
+        if (!alterar) {
+            lbTitulo.setText("Cliente");
+            btnAlterarFuncionario.setVisible(false);
+            tfNome.setEditable(false);
+            tfEmail.setEditable(false);
+            tfTelefone.setEditable(false);
+            tfCelular.setEditable(false);
+            ftfSalario.setEditable(false);
+            ftfLimite.setEditable(false);
+            ftfDesconto.setEditable(false);
+            tfEndereco.setEditable(false);
+            tfCep.setEditable(false);
+            tfComplemento.setEditable(false);
+            tfNumero.setEditable(false);
+            tfBairro.setEditable(false);
+            tfCidade.setEditable(false);
+            tfEstado.setEditable(false);
+            rbIcms.setEnabled(false);
+            rbPessoaFisica.setEnabled(false);
+            rbPessoaJuridica.setEnabled(false);
+            rbPublicidade.setEnabled(false);
+            tfCpfCnpj.setEnabled(false);
+            tfRgRazaoSocial.setEnabled(false);
+            tfNascimentoFundacao.setEnabled(false);
+            tfEstadual.setEnabled(false);
+            tfMunicipal.setEnabled(false);
+            tfSuframa.setEnabled(false);
+        }
     }
 
     //Componentes padrões do JFrame.
@@ -89,6 +169,7 @@ public class ViewCliente extends javax.swing.JDialog {
         rbIcms = new javax.swing.JRadioButton();
         sprRodape = new javax.swing.JSeparator();
         btnCadastrar = new javax.swing.JButton();
+        btnAlterarFuncionario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cliente");
@@ -217,7 +298,6 @@ public class ViewCliente extends javax.swing.JDialog {
         lbSalario.setText("Faixa salarial");
 
         ftfSalario.setForeground(new java.awt.Color(102, 102, 102));
-        ftfSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0.00"))));
         ftfSalario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ftfSalario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -230,7 +310,6 @@ public class ViewCliente extends javax.swing.JDialog {
         lbLimite.setText("Limite");
 
         ftfLimite.setForeground(new java.awt.Color(102, 102, 102));
-        ftfLimite.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0.00"))));
         ftfLimite.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ftfLimite.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -552,6 +631,24 @@ public class ViewCliente extends javax.swing.JDialog {
         btnCadastrar.setFocusable(false);
         btnCadastrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
         btnCadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+
+        btnAlterarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
+        btnAlterarFuncionario.setBorder(null);
+        btnAlterarFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlterarFuncionario.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarFuncionario.setFocusable(false);
+        btnAlterarFuncionario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarFuncionario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarFuncionarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnCorpoLayout = new javax.swing.GroupLayout(pnCorpo);
         pnCorpo.setLayout(pnCorpoLayout);
@@ -644,7 +741,9 @@ public class ViewCliente extends javax.swing.JDialog {
                             .addComponent(pnPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnCorpoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnCadastrar)))
+                        .addComponent(btnCadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlterarFuncionario)))
                 .addGap(0, 6, Short.MAX_VALUE))
             .addComponent(sprRodape)
         );
@@ -693,10 +792,11 @@ public class ViewCliente extends javax.swing.JDialog {
                             .addComponent(lbSalario)
                             .addComponent(lbDesconto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ftfDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ftfLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ftfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ftfDesconto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(ftfLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ftfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbMaisEndereco)
@@ -728,7 +828,9 @@ public class ViewCliente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sprRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCadastrar)
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnAlterarFuncionario))
                 .addContainerGap())
         );
 
@@ -926,27 +1028,75 @@ public class ViewCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_tfSuframaKeyTyped
 
     private void ftfSalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfSalarioKeyTyped
-        String caracteres = ",1234567890";
-        if (!caracteres.contains(evt.getKeyChar() + "") || ftfSalario.getText().length() > 49) {
+        String caracteres = ".1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || ftfSalario.getText().length() > 7) {
             evt.consume();
         }
     }//GEN-LAST:event_ftfSalarioKeyTyped
 
     private void ftfLimiteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfLimiteKeyTyped
-        String caracteres = ",1234567890";
-        if (!caracteres.contains(evt.getKeyChar() + "") || ftfLimite.getText().length() > 49) {
+        String caracteres = ".1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || ftfLimite.getText().length() > 7) {
             evt.consume();
         }
     }//GEN-LAST:event_ftfLimiteKeyTyped
 
     private void ftfDescontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftfDescontoKeyTyped
-        String caracteres = ",1234567890";
-        if (!caracteres.contains(evt.getKeyChar() + "") || ftfDesconto.getText().length() > 49) {
+        String caracteres = ".1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || ftfDesconto.getText().length() > 7) {
             evt.consume();
         }
     }//GEN-LAST:event_ftfDescontoKeyTyped
 
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        btnCadastrar.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        clienteBO = new ClienteBO();
+        if (clienteBO.validarCampos(pnCorpo)) {
+            if(rbPessoaFisica.isSelected()){
+                clienteVO = clienteBO.inserirCliente(tfNome.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), ftfSalario.getText(), ftfLimite.getText(), ftfDesconto.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfCidade.getText(), tfBairro.getText(), tfEstado.getText(), "Pessoa Fisica", tfCpfCnpj.getText(), tfRgRazaoSocial.getText(), tfNascimentoFundacao.getText(), "", "", "", null, rbPublicidade.isSelected());
+            } else {
+                clienteVO = clienteBO.inserirCliente(tfNome.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), ftfSalario.getText(), ftfLimite.getText(), ftfDesconto.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfCidade.getText(), tfBairro.getText(), tfEstado.getText(), "Pessoa Juridica", tfCpfCnpj.getText(), tfRgRazaoSocial.getText(), tfNascimentoFundacao.getText(), tfEstadual.getText(), tfMunicipal.getText(), tfSuframa.getText(), null, rbPublicidade.isSelected());
+            }
+            if(clienteVO != null) {
+                viewPainelControle.atualizarTabelas();
+                this.dispose();
+            }
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnCadastrar.setEnabled(true);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncionarioActionPerformed
+        btnAlterarFuncionario.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        clienteBO = new ClienteBO();
+        if (clienteBO.validarCampos(pnCorpo)) {
+            if(rbPessoaFisica.isSelected()){
+                clienteVO = clienteBO.alterarCliente(clienteVO.getIdCliente(), tfNome.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), ftfSalario.getText(), ftfLimite.getText(), ftfDesconto.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfCidade.getText(), tfBairro.getText(), tfEstado.getText(), "Pessoa Fisica", tfCpfCnpj.getText(), tfRgRazaoSocial.getText(), tfNascimentoFundacao.getText(), "", "", "", null, rbPublicidade.isSelected());
+            } else {
+                clienteVO = clienteBO.alterarCliente(clienteVO.getIdCliente(), tfNome.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), ftfSalario.getText(), ftfLimite.getText(), ftfDesconto.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfCidade.getText(), tfBairro.getText(), tfEstado.getText(), "Pessoa Juridica", tfCpfCnpj.getText(), tfRgRazaoSocial.getText(), tfNascimentoFundacao.getText(), tfEstadual.getText(), tfMunicipal.getText(), tfSuframa.getText(), null, rbPublicidade.isSelected());
+            }
+            if(clienteVO != null) {
+                viewPainelControle.atualizarTabelas();
+                this.dispose();
+            }
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnAlterarFuncionario.setEnabled(true);
+    }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
+
+    //Declaração de variáveis(View).
+    private final ViewPainelControle viewPainelControle;
+
+    //Declaração de variáveis(Value Object).
+    private Cliente clienteVO;
+
+    //Declaração de variáveis(Business Object).
+    private ClienteBO clienteBO;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterarFuncionario;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JFormattedTextField ftfDesconto;

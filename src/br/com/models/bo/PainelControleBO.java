@@ -128,4 +128,34 @@ public class PainelControleBO {
             return false;
         }
     }
+    
+    /**
+     *
+     * @see Método que exclui um objeto no banco de dados por meio da
+     * GenericDAO.
+     *
+     * @param idCliente
+     *
+     * @return
+     */
+    public Boolean excluirCliente(Long idCliente) {
+        try {
+            clienteDAO = new GenericDAO<>();
+            Cliente clienteVO = new Cliente();
+            clienteVO = clienteDAO.consultar("idCliente", idCliente, clienteVO);
+            if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este Funcionário?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+                if (clienteDAO.apagar(clienteVO)) {
+                    JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso.", "Secesso", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
 }

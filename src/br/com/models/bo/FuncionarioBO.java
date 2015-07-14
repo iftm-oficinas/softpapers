@@ -16,14 +16,13 @@ import javax.swing.border.LineBorder;
 
 /**
  *
- * @see Classe de objetos de negócios. Métodos: inserirFuncionari(),
+ * @see Classe de objetos de negócios. Métodos: inserirFuncionario(),
  * validarCampos().
  *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class FuncionarioBO {
 
-    //Declaração da sessão de conexão ao banco de dados.
     /**
      *
      * @see Método que inseri um objeto no banco de dados por meio da
