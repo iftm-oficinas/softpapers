@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30/04/2015 19:57:40 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="fenixdb" name="br.com.models.entity.Usuario" optimistic-lock="version" table="usuario">
+    <id name="idUsuario" type="long">
+      <column name="idUsuario"/>
+      <generator class="assigned"/>
+    </id>
+    <set fetch="select" inverse="true" lazy="true" name="pedidofornecedors" table="pedidofornecedor">
+      <key>
+        <column name="Usuario_idUsuario" not-null="true"/>
+      </key>
+      <one-to-many class="br.com.models.entity.Pedidofornecedor"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="pedidoclientes" table="pedidocliente">
+      <key>
+        <column name="Usuario_idUsuario" not-null="true"/>
+      </key>
+      <one-to-many class="br.com.models.entity.Pedidocliente"/>
+    </set>
+  </class>
+</hibernate-mapping>
