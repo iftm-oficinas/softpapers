@@ -136,24 +136,28 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
         lbAcesso1.setText("ACESSO");
 
         lbEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbEmail.setForeground(new java.awt.Color(102, 102, 102));
+        lbEmail.setForeground(new java.awt.Color(51, 51, 51));
         lbEmail.setText("Email");
 
         tfEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfEmail.setForeground(new java.awt.Color(102, 102, 102));
+        tfEmail.setForeground(new java.awt.Color(51, 51, 51));
         tfEmail.setText("marlonmacf@gmail.com");
 
         lbSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbSenha.setForeground(new java.awt.Color(102, 102, 102));
+        lbSenha.setForeground(new java.awt.Color(51, 51, 51));
         lbSenha.setText("Senha");
 
         pfSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        pfSenha.setForeground(new java.awt.Color(102, 102, 102));
+        pfSenha.setForeground(new java.awt.Color(51, 51, 51));
         pfSenha.setText("1");
 
-        btnEntrar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnEntrar.setForeground(new java.awt.Color(102, 102, 102));
-        btnEntrar.setText("Entrar");
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnEntrarUP.png"))); // NOI18N
+        btnEntrar.setBorder(null);
+        btnEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEntrar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnEntrarDOWN.png"))); // NOI18N
+        btnEntrar.setFocusable(false);
+        btnEntrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnEntrarDOWN.png"))); // NOI18N
+        btnEntrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnEntrarDOWN.png"))); // NOI18N
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
@@ -176,25 +180,25 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
         pnAcesso.setLayout(pnAcessoLayout);
         pnAcessoLayout.setHorizontalGroup(
             pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnAcessoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAcessoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfEmail)
-                    .addComponent(btnEntrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pfSenha)
-                    .addGroup(pnAcessoLayout.createSequentialGroup()
-                        .addGroup(pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbEmail)
-                            .addComponent(lbSenha)
-                            .addComponent(lbAcesso3)
-                            .addGroup(pnAcessoLayout.createSequentialGroup()
+                .addGroup(pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnAcessoLayout.createSequentialGroup()
+                        .addGroup(pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbAcesso3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnAcessoLayout.createSequentialGroup()
                                 .addComponent(lbAcesso2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbAcesso4))
-                            .addGroup(pnAcessoLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnAcessoLayout.createSequentialGroup()
                                 .addGap(104, 104, 104)
-                                .addComponent(lbAcesso1)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(lbAcesso1))
+                            .addComponent(btnEntrar, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(pfSenha, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
         pnAcessoLayout.setVerticalGroup(
@@ -211,7 +215,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEntrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnAcessoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbAcesso2)

@@ -4,6 +4,7 @@ import br.com.models.bo.PainelControleBO;
 import br.com.models.vo.Usuario;
 import br.com.resources.tabelas.TabelaUsuario;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 
 public class ViewPainelControle extends javax.swing.JInternalFrame {
@@ -223,7 +224,7 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
                         .addComponent(btnAlterarUsuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluirUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnUsuarioLayout.createSequentialGroup()
                         .addComponent(lbResultadosUsuario)
@@ -865,8 +866,10 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoUsuarioActionPerformed
+        btnNovoUsuario.setEnabled(false);
         ViewNovoProduto viewNovoProduto = new ViewNovoProduto(viewPrincipal, true);
         viewNovoProduto.setVisible(true);
+        btnNovoUsuario.setEnabled(true);
     }//GEN-LAST:event_btnNovoUsuarioActionPerformed
 
     private ViewPrincipal viewPrincipal;
