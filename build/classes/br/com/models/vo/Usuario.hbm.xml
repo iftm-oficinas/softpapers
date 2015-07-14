@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09/05/2015 14:52:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbloja" name="br.com.models.vo.Usuario" optimistic-lock="version" table="usuario">
+    <id name="idUsuario" type="java.lang.Long">
+      <column name="idUsuario"/>
+      <generator class="identity"/>
+    </id>
+    <property name="nomeUsuario" type="string">
+      <column length="30" name="nomeUsuario" not-null="true"/>
+    </property>
+    <property name="cpfUsuario" type="string">
+      <column length="15" name="cpfUsuario" not-null="true"/>
+    </property>
+    <property name="emailUsuario" type="string">
+      <column length="20" name="emailUsuario" unique="true"/>
+    </property>
+    <property name="senhaUsuario" type="string">
+      <column length="20" name="senhaUsuario"/>
+    </property>
+    <property name="enderecoUsuario" type="string">
+      <column length="50" name="enderecoUsuario"/>
+    </property>
+    <property name="dataCriacao" type="timestamp">
+      <column length="19" name="dataCriacao"/>
+    </property>
+    <property name="dataAtualizacao" type="timestamp">
+      <column length="19" name="dataAtualizacao"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="pedidofornecedors" table="pedidofornecedor">
+      <key>
+        <column name="usuarioPedidoFornecedor" not-null="true"/>
+      </key>
+      <one-to-many class="br.com.models.vo.Pedidofornecedor"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="pedidoclientes" table="pedidocliente">
+      <key>
+        <column name="usuarioPedidoCliente" not-null="true"/>
+      </key>
+      <one-to-many class="br.com.models.vo.Pedidocliente"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09/05/2015 14:52:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbloja" name="br.com.models.vo.Fornecedor" optimistic-lock="version" table="fornecedor">
+    <id name="idFornecedor" type="java.lang.Long">
+      <column name="idFornecedor"/>
+      <generator class="identity"/>
+    </id>
+    <property name="nomeFornecedor" type="string">
+      <column length="30" name="nomeFornecedor" not-null="true"/>
+    </property>
+    <property name="telefoneFornecedor" type="string">
+      <column length="15" name="telefoneFornecedor"/>
+    </property>
+    <property name="dataCriacao" type="timestamp">
+      <column length="19" name="dataCriacao"/>
+    </property>
+    <property name="dataAtualizacao" type="timestamp">
+      <column length="19" name="dataAtualizacao"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="produtos" table="produto">
+      <key>
+        <column name="fornecedorProduto"/>
+      </key>
+      <one-to-many class="br.com.models.vo.Produto"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="pedidofornecedors" table="pedidofornecedor">
+      <key>
+        <column name="fornecedorPedidoFornecedor"/>
+      </key>
+      <one-to-many class="br.com.models.vo.Pedidofornecedor"/>
+    </set>
+  </class>
+</hibernate-mapping>
