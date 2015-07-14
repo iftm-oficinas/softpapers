@@ -1,11 +1,11 @@
 package br.com.resources.views;
 
 import br.com.models.bo.PainelControleBO;
-import br.com.models.tm.TableModelCategoria;
-import br.com.models.tm.TableModelCliente;
-import br.com.models.tm.TableModelFornecedor;
-import br.com.models.tm.TableModelProduto;
-import br.com.models.tm.TableModelUsuario;
+import br.com.models.tabelas.TableModelCategoria;
+import br.com.models.tabelas.TableModelCliente;
+import br.com.models.tabelas.TableModelFornecedor;
+import br.com.models.tabelas.TableModelProduto;
+import br.com.models.tabelas.TableModelUsuario;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -43,6 +43,8 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         //Inicialização dos componentes padrões do JFrame.
         initComponents();
         this.viewPrincipal = viewPrincipal;
+
+        //Carrega todas os modelos de tabelas.
         atualizarTabelas();
     }
 
@@ -73,7 +75,7 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         tbFornecedores.clearSelection();
         tbCategorias.clearSelection();
         tbProdutos.clearSelection();
-        
+
         //Definindo botões Aleterar e Excluir como não habilitado.
         btnAlterarUsuario.setEnabled(false);
         btnExcluirUsuario.setEnabled(false);

@@ -3,7 +3,7 @@ package br.com.resources.views;
 /**
  *
  * @see Classe visual. JDialog que tem como objetivo cadastrar um novo
- * recebimento.
+ * pagamento.
  *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
@@ -16,10 +16,11 @@ public class ViewPagamento extends javax.swing.JDialog {
      * @param modal
      */
     public ViewPagamento(java.awt.Frame parent, boolean modal) {
+        //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         initComponents();
     }
-    
+
     //Componentes padrões do JFrame.
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

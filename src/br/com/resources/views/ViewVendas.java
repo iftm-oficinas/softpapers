@@ -4,15 +4,15 @@ package br.com.resources.views;
  *
  * @see Classe visual. JInternalFrame que tem como objetivo simular um ponto de
  * venda, responsável por listar e gerenciar todas as vendas(cadastrar, alterar,
- * excluir). Podendo tambem transformar um orçamento em um pedido de venda ou um
- * pedido de venda em uma venda(finalizar).
+ * excluir). Podendo tambem transformar um pedido de venda em uma
+ * venda(finalizar).
  *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class ViewVendas extends javax.swing.JInternalFrame {
 
     /**
-     * 
+     *
      * @see Construtor padrão.
      */
     public ViewVendas() {

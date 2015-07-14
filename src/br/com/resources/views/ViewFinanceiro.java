@@ -16,6 +16,7 @@ public class ViewFinanceiro extends javax.swing.JInternalFrame {
      * @see Construtor padrão.
      */
     public ViewFinanceiro() {
+        //Inicialização dos componentes padrões do JFrame.
         initComponents();
     }
 
@@ -28,10 +29,12 @@ public class ViewFinanceiro extends javax.swing.JInternalFrame {
      * @param viewPrincipal
      */
     public ViewFinanceiro(ViewPrincipal viewPrincipal) {
+        //Esconde barra de título padrão do JInternalFrama.
         setRootPaneCheckingEnabled(false);
         javax.swing.plaf.InternalFrameUI frame = this.getUI();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) frame).setNorthPane(null);
 
+        //Inicialização dos componentes padrões do JFrame.
         initComponents();
         this.viewPrincipal = viewPrincipal;
     }

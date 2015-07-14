@@ -1,12 +1,26 @@
 package br.com.resources.views;
 
+/**
+ *
+ * @see Classe visual. JDialog que tem como objetivo cadastrar um novo cliente.
+ *
+ * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ */
 public class ViewCliente extends javax.swing.JDialog {
 
+    /**
+     * @see Construtor padrão.
+     *
+     * @param parent
+     * @param modal
+     */
     public ViewCliente(java.awt.Frame parent, boolean modal) {
+        //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         initComponents();
     }
 
+    //Componentes padrões do JFrame.
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -28,6 +42,13 @@ public class ViewCliente extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     *
+     * @see Método principal da classe, carrega lookAndFeel padrão como Windows
+     * e define a ViewPrincipal visível.
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

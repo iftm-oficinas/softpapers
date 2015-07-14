@@ -1,6 +1,6 @@
-package br.com.models.tm;
+package br.com.models.tabelas;
 
-import br.com.models.vo.Categoria;
+import br.com.models.vo.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,26 +13,30 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
-public class TableModelCategoria extends AbstractTableModel {
+public class TableModelUsuario extends AbstractTableModel {
 
     //Declaração de variáveis.
-    private final List<Categoria> linhas;
+    private final List<Usuario> linhas;
     private final String[] colunas;
 
     //Declaração de variáveis que compoem os campos da tabela.
-    private static final int idCategoria = 0;
-    private static final int nomeCategoria = 1;
-    private static final int dataCriacao = 2;
-    private static final int dataAtualizacao = 3;
+    private static final int idUsuario = 0;
+    private static final int nomeUsuario = 1;
+    private static final int cpfUsuario = 2;
+    private static final int emailUsuario = 3;
+    private static final int senhaUsuario = 4;
+    private static final int enderecoUsuario = 5;
+    private static final int dataCriacao = 6;
+    private static final int dataAtualizacao = 7;
 
     /**
      *
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
      * as colunas com os valores do objeto.
      */
-    public TableModelCategoria() {
+    public TableModelUsuario() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Categoria", "Nome", "Criação", "Atualização"};
+        colunas = new String[]{"Usuario", "Nome", "Cpf", "Email", "Senha", "Endereço", "Criação", "Atualização"};
     }
 
     /**
@@ -40,11 +44,11 @@ public class TableModelCategoria extends AbstractTableModel {
      * @see Contrutor que inicializa as linhas da coluna com a lista recebida
      * pelo parâmetro e define as colunas com os valores do objeto.
      *
-     * @param categorias
+     * @param usuarios
      */
-    public TableModelCategoria(List<Categoria> categorias) {
-        linhas = new ArrayList<>(categorias);
-        colunas = new String[]{"Categoria", "Nome", "Criação", "Atualização"};
+    public TableModelUsuario(List<Usuario> usuarios) {
+        linhas = new ArrayList<>(usuarios);
+        colunas = new String[]{"Usuario", "Nome", "Cpf", "Email", "Senha", "Endereço", "Criação", "Atualização"};
     }
 
     //Gets and Sets
@@ -66,9 +70,17 @@ public class TableModelCategoria extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
-            case idCategoria:
-                return Integer.class;
-            case nomeCategoria:
+            case idUsuario:
+                return Long.class;
+            case nomeUsuario:
+                return String.class;
+            case cpfUsuario:
+                return String.class;
+            case emailUsuario:
+                return String.class;
+            case senhaUsuario:
+                return String.class;
+            case enderecoUsuario:
                 return String.class;
             case dataCriacao:
                 return Date.class;
@@ -81,16 +93,24 @@ public class TableModelCategoria extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Categoria categoria = linhas.get(rowIndex);
+        Usuario usuario = linhas.get(rowIndex);
         switch (columnIndex) {
-            case idCategoria:
-                return categoria.getIdCategoria();
-            case nomeCategoria:
-                return categoria.getNomeCategoria();
+            case idUsuario:
+                return usuario.getIdUsuario();
+            case nomeUsuario:
+                return usuario.getNomeUsuario();
+            case cpfUsuario:
+                return usuario.getCpfUsuario();
+            case emailUsuario:
+                return usuario.getEmailUsuario();
+            case senhaUsuario:
+                return usuario.getSenhaUsuario();
+            case enderecoUsuario:
+                return usuario.getEnderecoUsuario();
             case dataCriacao:
-                return categoria.getDataCriacao();
+                return usuario.getDataCriacao();
             case dataAtualizacao:
-                return categoria.getDataAtualizacao();
+                return usuario.getDataAtualizacao();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -98,19 +118,31 @@ public class TableModelCategoria extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        Categoria categoria = linhas.get(rowIndex);
+        Usuario usuario = linhas.get(rowIndex);
         switch (columnIndex) {
-            case idCategoria:
-                categoria.setIdCategoria((Integer) aValue);
+            case idUsuario:
+                usuario.setIdUsuario((Long) aValue);
                 break;
-            case nomeCategoria:
-                categoria.setNomeCategoria((String) aValue);
+            case nomeUsuario:
+                usuario.setNomeUsuario((String) aValue);
+                break;
+            case cpfUsuario:
+                usuario.setCpfUsuario((String) aValue);
+                break;
+            case emailUsuario:
+                usuario.setEmailUsuario((String) aValue);
+                break;
+            case senhaUsuario:
+                usuario.setSenhaUsuario((String) aValue);
+                break;
+            case enderecoUsuario:
+                usuario.setEnderecoUsuario((String) aValue);
                 break;
             case dataCriacao:
-                categoria.setDataCriacao((Date) aValue);
+                usuario.setDataCriacao((Date) aValue);
                 break;
             case dataAtualizacao:
-                categoria.setDataAtualizacao((Date) aValue);
+                usuario.setDataAtualizacao((Date) aValue);
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -118,7 +150,7 @@ public class TableModelCategoria extends AbstractTableModel {
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 
-    public Categoria getCategoria(int rowIndex) {
+    public Usuario getUsuario(int rowIndex) {
         return linhas.get(rowIndex);
     }
 
@@ -127,10 +159,10 @@ public class TableModelCategoria extends AbstractTableModel {
      * @see Método que adiciona uma nova linha com os valores do objeto recebido
      * como parâmetro.
      *
-     * @param categoria Objeto que compoe uma linha da tabela.
+     * @param usuario Usuario que compoe uma linha da tabela.
      */
-    public void addCategoria(Categoria categoria) {
-        linhas.add(categoria);
+    public void addUsuario(Usuario usuario) {
+        linhas.add(usuario);
         int ultimoIndice = getRowCount() - 1;
         fireTableRowsInserted(ultimoIndice, ultimoIndice);
     }
@@ -140,12 +172,12 @@ public class TableModelCategoria extends AbstractTableModel {
      * @see Método que adiciona uma lista de linhas com a lista de objetos
      * recebida como parâmetro.
      *
-     * @param categorias
+     * @param usuarios
      */
-    public void addListaCategorias(List<Categoria> categorias) {
+    public void addListaUsuarios(List<Usuario> usuarios) {
         int indice = getRowCount();
-        linhas.addAll(categorias);
-        fireTableRowsInserted(indice, indice + categorias.size());
+        linhas.addAll(usuarios);
+        fireTableRowsInserted(indice, indice + usuarios.size());
     }
 
     /**
@@ -155,13 +187,13 @@ public class TableModelCategoria extends AbstractTableModel {
      *
      * @param rowIndex numero da linha da tabela.
      */
-    public void removeCategoria(int rowIndex) {
+    public void removeUsuario(int rowIndex) {
         linhas.remove(rowIndex);
         fireTableRowsDeleted(rowIndex, rowIndex);
     }
 
     /**
-     *
+     * 
      * @see Método que remove todas as linhas da tabela.
      */
     public void limpar() {

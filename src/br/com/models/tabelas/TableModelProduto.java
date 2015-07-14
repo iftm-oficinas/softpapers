@@ -1,6 +1,9 @@
-package br.com.models.tm;
+package br.com.models.tabelas;
 
-import br.com.models.vo.Usuario;
+import br.com.models.vo.Categoria;
+import br.com.models.vo.Fornecedor;
+import br.com.models.vo.Produto;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,23 +12,23 @@ import javax.swing.table.AbstractTableModel;
 /**
  *
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
- * do Usuario.
+ * do Produto.
  *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
-public class TableModelUsuario extends AbstractTableModel {
+public class TableModelProduto extends AbstractTableModel {
 
     //Declaração de variáveis.
-    private final List<Usuario> linhas;
+    private final List<Produto> linhas;
     private final String[] colunas;
 
     //Declaração de variáveis que compoem os campos da tabela.
-    private static final int idUsuario = 0;
-    private static final int nomeUsuario = 1;
-    private static final int cpfUsuario = 2;
-    private static final int emailUsuario = 3;
-    private static final int senhaUsuario = 4;
-    private static final int enderecoUsuario = 5;
+    private static final int idProduto = 0;
+    private static final int nomeProduto = 1;
+    private static final int categoriaProduto = 2;
+    private static final int fornecedorProduto = 3;
+    private static final int valorProduto = 4;
+    private static final int quantidadeMinimaProduto = 5;
     private static final int dataCriacao = 6;
     private static final int dataAtualizacao = 7;
 
@@ -34,9 +37,9 @@ public class TableModelUsuario extends AbstractTableModel {
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
      * as colunas com os valores do objeto.
      */
-    public TableModelUsuario() {
+    public TableModelProduto() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Usuario", "Nome", "Cpf", "Email", "Senha", "Endereço", "Criação", "Atualização"};
+        colunas = new String[]{"Produto", "Nome", "Categoria", "Fornecedor", "Valor", "Quantidade min.", "Criação", "Atualização"};
     }
 
     /**
@@ -44,11 +47,11 @@ public class TableModelUsuario extends AbstractTableModel {
      * @see Contrutor que inicializa as linhas da coluna com a lista recebida
      * pelo parâmetro e define as colunas com os valores do objeto.
      *
-     * @param usuarios
+     * @param produtos
      */
-    public TableModelUsuario(List<Usuario> usuarios) {
-        linhas = new ArrayList<>(usuarios);
-        colunas = new String[]{"Usuario", "Nome", "Cpf", "Email", "Senha", "Endereço", "Criação", "Atualização"};
+    public TableModelProduto(List<Produto> produtos) {
+        linhas = new ArrayList<>(produtos);
+        colunas = new String[]{"Produto", "Nome", "Categoria", "Fornecedor", "Valor", "Quantidade min.", "Criação", "Atualização"};
     }
 
     //Gets and Sets
@@ -70,18 +73,18 @@ public class TableModelUsuario extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
-            case idUsuario:
+            case idProduto:
                 return Long.class;
-            case nomeUsuario:
+            case nomeProduto:
                 return String.class;
-            case cpfUsuario:
-                return String.class;
-            case emailUsuario:
-                return String.class;
-            case senhaUsuario:
-                return String.class;
-            case enderecoUsuario:
-                return String.class;
+            case categoriaProduto:
+                return Categoria.class;
+            case fornecedorProduto:
+                return Fornecedor.class;
+            case valorProduto:
+                return BigDecimal.class;
+            case quantidadeMinimaProduto:
+                return Integer.class;
             case dataCriacao:
                 return Date.class;
             case dataAtualizacao:
@@ -93,24 +96,24 @@ public class TableModelUsuario extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Usuario usuario = linhas.get(rowIndex);
+        Produto produto = linhas.get(rowIndex);
         switch (columnIndex) {
-            case idUsuario:
-                return usuario.getIdUsuario();
-            case nomeUsuario:
-                return usuario.getNomeUsuario();
-            case cpfUsuario:
-                return usuario.getCpfUsuario();
-            case emailUsuario:
-                return usuario.getEmailUsuario();
-            case senhaUsuario:
-                return usuario.getSenhaUsuario();
-            case enderecoUsuario:
-                return usuario.getEnderecoUsuario();
+            case idProduto:
+                return produto.getIdProduto();
+            case nomeProduto:
+                return produto.getNomeProduto();
+            case categoriaProduto:
+                return produto.getCategoria();
+            case fornecedorProduto:
+                return produto.getFornecedor();
+            case valorProduto:
+                return produto.getValorProduto();
+            case quantidadeMinimaProduto:
+                return produto.getQuantidadeMinimaProduto();
             case dataCriacao:
-                return usuario.getDataCriacao();
+                return produto.getDataCriacao();
             case dataAtualizacao:
-                return usuario.getDataAtualizacao();
+                return produto.getDataAtualizacao();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -118,31 +121,31 @@ public class TableModelUsuario extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        Usuario usuario = linhas.get(rowIndex);
+        Produto produto = linhas.get(rowIndex);
         switch (columnIndex) {
-            case idUsuario:
-                usuario.setIdUsuario((Long) aValue);
+            case idProduto:
+                produto.setIdProduto((Long) aValue);
                 break;
-            case nomeUsuario:
-                usuario.setNomeUsuario((String) aValue);
+            case nomeProduto:
+                produto.setNomeProduto((String) aValue);
                 break;
-            case cpfUsuario:
-                usuario.setCpfUsuario((String) aValue);
+            case categoriaProduto:
+                produto.setCategoria((Categoria) aValue);
                 break;
-            case emailUsuario:
-                usuario.setEmailUsuario((String) aValue);
+            case fornecedorProduto:
+                produto.setFornecedor((Fornecedor) aValue);
                 break;
-            case senhaUsuario:
-                usuario.setSenhaUsuario((String) aValue);
+            case quantidadeMinimaProduto:
+                produto.setQuantidadeMinimaProduto((Integer) aValue);
                 break;
-            case enderecoUsuario:
-                usuario.setEnderecoUsuario((String) aValue);
+            case valorProduto:
+                produto.setValorProduto((BigDecimal) aValue);
                 break;
             case dataCriacao:
-                usuario.setDataCriacao((Date) aValue);
+                produto.setDataCriacao((Date) aValue);
                 break;
             case dataAtualizacao:
-                usuario.setDataAtualizacao((Date) aValue);
+                produto.setDataAtualizacao((Date) aValue);
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -150,7 +153,7 @@ public class TableModelUsuario extends AbstractTableModel {
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 
-    public Usuario getUsuario(int rowIndex) {
+    public Produto getProduto(int rowIndex) {
         return linhas.get(rowIndex);
     }
 
@@ -159,10 +162,10 @@ public class TableModelUsuario extends AbstractTableModel {
      * @see Método que adiciona uma nova linha com os valores do objeto recebido
      * como parâmetro.
      *
-     * @param usuario Usuario que compoe uma linha da tabela.
+     * @param produto Usuario que compoe uma linha da tabela.
      */
-    public void addUsuario(Usuario usuario) {
-        linhas.add(usuario);
+    public void addProduto(Produto produto) {
+        linhas.add(produto);
         int ultimoIndice = getRowCount() - 1;
         fireTableRowsInserted(ultimoIndice, ultimoIndice);
     }
@@ -172,12 +175,12 @@ public class TableModelUsuario extends AbstractTableModel {
      * @see Método que adiciona uma lista de linhas com a lista de objetos
      * recebida como parâmetro.
      *
-     * @param usuarios
+     * @param produtos
      */
-    public void addListaUsuarios(List<Usuario> usuarios) {
+    public void addListaProdutos(List<Produto> produtos) {
         int indice = getRowCount();
-        linhas.addAll(usuarios);
-        fireTableRowsInserted(indice, indice + usuarios.size());
+        linhas.addAll(produtos);
+        fireTableRowsInserted(indice, indice + produtos.size());
     }
 
     /**
@@ -187,13 +190,13 @@ public class TableModelUsuario extends AbstractTableModel {
      *
      * @param rowIndex numero da linha da tabela.
      */
-    public void removeUsuario(int rowIndex) {
+    public void removeProduto(int rowIndex) {
         linhas.remove(rowIndex);
         fireTableRowsDeleted(rowIndex, rowIndex);
     }
 
     /**
-     * 
+     *
      * @see Método que remove todas as linhas da tabela.
      */
     public void limpar() {

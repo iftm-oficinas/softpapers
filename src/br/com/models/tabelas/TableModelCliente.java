@@ -1,4 +1,4 @@
-package br.com.models.tm;
+package br.com.models.tabelas;
 
 import br.com.models.vo.Cliente;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 /**
  *
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
- * do Usuario.
+ * do Cliente.
  *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
@@ -217,7 +217,7 @@ public class TableModelCliente extends AbstractTableModel {
     }
 
     /**
-     * 
+     *
      * @see Método que remove todas as linhas da tabela.
      */
     public void limpar() {

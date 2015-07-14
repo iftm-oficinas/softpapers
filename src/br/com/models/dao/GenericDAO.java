@@ -1,7 +1,6 @@
 package br.com.models.dao;
 
 import br.com.models.util.HibernateUtil;
-import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -31,6 +30,7 @@ public class GenericDAO<T> {
     public void inserir(T obj) {
         session = (Session) HibernateUtil.getSession();
         session.persist(obj);
+        session.close();
     }
 
     /**
@@ -42,6 +42,7 @@ public class GenericDAO<T> {
     public void atualizar(T obj) {
         session = (Session) HibernateUtil.getSession();
         session.saveOrUpdate(obj);
+        session.close();
     }
 
     /**
@@ -53,6 +54,7 @@ public class GenericDAO<T> {
     public void apagar(T obj) {
         session = (Session) HibernateUtil.getSession();
         session.delete(obj);
+        session.close();
     }
 
     /**
@@ -65,6 +67,7 @@ public class GenericDAO<T> {
     public List<T> consultar(T obj) {
         session = (Session) HibernateUtil.getSession();
         Criteria c = session.createCriteria(obj.getClass());
+        session.close();
         return c.list();
     }
 
@@ -81,6 +84,7 @@ public class GenericDAO<T> {
         session = (Session) HibernateUtil.getSession();
         Criteria c = session.createCriteria(obj.getClass());
         c.add(Restrictions.eq(campo, valor));
+        session.close();
         if (c.list() == null) {
             return null;
         } else {
@@ -105,6 +109,7 @@ public class GenericDAO<T> {
         Criteria c = session.createCriteria(obj.getClass());
         c.add(Restrictions.eq(campo1, valor1));
         c.add(Restrictions.eq(campo2, valor2));
+        session.close();
         if (c.list() == null) {
             return null;
         } else {
@@ -126,6 +131,7 @@ public class GenericDAO<T> {
         Criteria c = session.createCriteria(obj.getClass());
         c.addOrder(Order.desc(campo));
         c.setMaxResults(1);
+        session.close();
         if (c.list() == null) {
             return null;
         } else {

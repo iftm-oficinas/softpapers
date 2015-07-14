@@ -13,10 +13,11 @@ package br.com.resources.views;
 public class ViewEstoque extends javax.swing.JInternalFrame {
 
     /**
-     * 
+     *
      * @see Construtor padrão.
      */
     public ViewEstoque() {
+        //Inicialização dos componentes padrões do JFrame.
         initComponents();
     }
 
