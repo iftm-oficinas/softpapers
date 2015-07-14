@@ -7,16 +7,13 @@ import java.awt.Cursor;
 import java.text.SimpleDateFormat;
 
 /**
- *
  * @see Classe visual. JDialog que tem como objetivo cadastrar um novo usuário.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class ViewFuncionario extends javax.swing.JDialog {
 
     /**
      * @see Construtor padrão.
-     *
      * @param parent
      * @param modal
      * @param viewPainelControle
@@ -67,6 +64,8 @@ public class ViewFuncionario extends javax.swing.JDialog {
         tfBairro.setText(funcionario.getEndereco().getBairroEndereco());
         tfCidade.setText(funcionario.getEndereco().getCidadeEndereco());
         tfEstado.setText(funcionario.getEndereco().getEstadoEndereco());
+
+        //Definindo como não editável
         if (!alterar) {
             lbTitulo.setText("Funcionário");
             btnAlterar.setVisible(false);
@@ -392,11 +391,7 @@ public class ViewFuncionario extends javax.swing.JDialog {
         lbNumero.setText("Número");
 
         tfNumero.setForeground(new java.awt.Color(102, 102, 102));
-        try {
-            tfNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        tfNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
         tfNumero.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbCidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -805,6 +800,11 @@ public class ViewFuncionario extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @see Método que responde ao clique do JButton e verifica se os campos
+     * estão preenchidos para inserir um novo Funcionário.
+     * @param evt
+     */
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         btnCadastrar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -819,6 +819,11 @@ public class ViewFuncionario extends javax.swing.JDialog {
         btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e verifica se os campos
+     * estão preenchidos para alterar um novo Funcionário.
+     * @param evt
+     */
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         btnAlterar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

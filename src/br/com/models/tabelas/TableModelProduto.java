@@ -9,10 +9,8 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
  * do Produto.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class TableModelProduto extends AbstractTableModel {
@@ -30,7 +28,6 @@ public class TableModelProduto extends AbstractTableModel {
     private static final int atualizacaoProduto = 5;
 
     /**
-     *
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
      * as colunas com os valores do objeto.
      */
@@ -40,10 +37,8 @@ public class TableModelProduto extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Contrutor que inicializa as linhas da coluna com a lista recebida
      * pelo parâmetro e define as colunas com os valores do objeto.
-     *
      * @param produtos
      */
     public TableModelProduto(List<Produto> produtos) {
@@ -94,9 +89,17 @@ public class TableModelProduto extends AbstractTableModel {
             case descricaoProduto:
                 return produto.getDescricaoProduto();
             case categoriaProduto:
-                return produto.getCategoria().getDescricaoCategoria();
+                if (produto.getCategoria() != null) {
+                    return produto.getCategoria().getDescricaoCategoria();
+                } else {
+                    return null;
+                }
             case fornecedorProduto:
-                return produto.getFornecedor().getNomeFornecedor();
+                if (produto.getFornecedor() != null) {
+                    return produto.getFornecedor().getNomeFornecedor();
+                } else {
+                    return null;
+                }
             case codigoProduto:
                 return produto.getCodigoProduto();
             case criacaoProduto:
@@ -141,10 +144,8 @@ public class TableModelProduto extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que adiciona uma nova linha com os valores do objeto recebido
      * como parâmetro.
-     *
      * @param produto Usuario que compoe uma linha da tabela.
      */
     public void addProduto(Produto produto) {
@@ -154,10 +155,8 @@ public class TableModelProduto extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que adiciona uma lista de linhas com a lista de objetos
      * recebida como parâmetro.
-     *
      * @param produtos
      */
     public void addListaProdutos(List<Produto> produtos) {
@@ -167,10 +166,8 @@ public class TableModelProduto extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que remove linha da tabela atravez do index rebecido como
      * parâmetro.
-     *
      * @param rowIndex numero da linha da tabela.
      */
     public void removeProduto(int rowIndex) {
@@ -179,7 +176,6 @@ public class TableModelProduto extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que remove todas as linhas da tabela.
      */
     public void limpar() {

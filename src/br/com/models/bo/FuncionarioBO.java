@@ -14,15 +14,12 @@ import java.util.List;
 import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @see Classe de objetos de negócios. Métodos: inserirFuncionario(),
- * validarCampos().
- *
+ * @see Classe de objetos de negócios. Métodos: alterarFuncionario(),
+ * inserirFuncionario(), buscarPessoaFisica(), validarCampos().
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class FuncionarioBO {
@@ -124,7 +121,7 @@ public class FuncionarioBO {
     }
 
     /**
-     * @see Método que inseri um objeto no banco de dados por meio da
+     * @see Método que altera um objeto no banco de dados por meio da
      * GenericDAO.
      * @param idFuncionario
      * @param idContato
@@ -227,7 +224,6 @@ public class FuncionarioBO {
     }
 
     /**
-     *
      * @see Método que verifica se os elementos do JPanel são diferentes de
      * null, usado para verificar se os campos estão preenchidos pelo usuário.
      * @param panel
@@ -247,18 +243,6 @@ public class FuncionarioBO {
                     }
                 } else {
                     ((JTextField) c).setBorder(new LineBorder(Color.LIGHT_GRAY));
-                }
-            }
-            if (c instanceof JPasswordField) {
-                if (((JPasswordField) c).isEnabled()) {
-                    if (((JPasswordField) c).getText().trim().equals("")) {
-                        ((JPasswordField) c).setBorder(new LineBorder(Color.RED));
-                        erro = false;
-                    } else {
-                        ((JPasswordField) c).setBorder(new LineBorder(Color.LIGHT_GRAY));
-                    }
-                } else {
-                    ((JPasswordField) c).setBorder(new LineBorder(Color.LIGHT_GRAY));
                 }
             }
         }

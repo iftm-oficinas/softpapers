@@ -1,19 +1,16 @@
 package br.com.resources.views;
 
 /**
-     *
-     * @see Classe visual. JInternalFrame que tem como objetivo apresentar um
-     * pequeno resumo da saúde de sua empresa, composta pelas funcionalidades:
-     * Faturamento(demonstra o lucro decorrente em forma de gráfico), Contas a
-     * Pagar(demonstra últimos pagamentos a serem feitos que o usuário
-     * cadastrou) e Contas a Receber.
-     * 
-     * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
-     */
+ * @see Classe visual. JInternalFrame que tem como objetivo apresentar um
+ * pequeno resumo da saúde de sua empresa, composta pelas funcionalidades:
+ * Faturamento(demonstra o lucro decorrente em forma de gráfico), Contas a
+ * Pagar(demonstra últimos pagamentos a serem feitos que o usuário cadastrou) e
+ * Contas a Receber.
+ * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ */
 public class ViewVisaoGeral extends javax.swing.JInternalFrame {
 
     /**
-     *
      * @see Construtor padrão.
      */
     public ViewVisaoGeral() {
@@ -21,11 +18,9 @@ public class ViewVisaoGeral extends javax.swing.JInternalFrame {
     }
 
     /**
-     *
      * @see Construtor usado quando classe é instanciada na ViewPrincipal,
      * recebe a viewPrincipal como pai e organiza esse JInternalFrame dentro do
      * JFrame principal.
-     *
      * @param viewPrincipal
      */
     public ViewVisaoGeral(ViewPrincipal viewPrincipal) {
@@ -45,6 +40,7 @@ public class ViewVisaoGeral extends javax.swing.JInternalFrame {
 
         spnCorpo = new javax.swing.JScrollPane();
         pnCorpo = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -57,15 +53,23 @@ public class ViewVisaoGeral extends javax.swing.JInternalFrame {
         pnCorpo.setBackground(new java.awt.Color(255, 255, 255));
         pnCorpo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/prototipo/1.VisaoGeral.png"))); // NOI18N
+
         javax.swing.GroupLayout pnCorpoLayout = new javax.swing.GroupLayout(pnCorpo);
         pnCorpo.setLayout(pnCorpoLayout);
         pnCorpoLayout.setHorizontalGroup(
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
+            .addGroup(pnCorpoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnCorpoLayout.setVerticalGroup(
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 315, Short.MAX_VALUE)
+            .addGroup(pnCorpoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         spnCorpo.setViewportView(pnCorpo);
@@ -88,6 +92,7 @@ public class ViewVisaoGeral extends javax.swing.JInternalFrame {
     private ViewPrincipal viewPrincipal;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel pnCorpo;
     private javax.swing.JScrollPane spnCorpo;
     // End of variables declaration//GEN-END:variables

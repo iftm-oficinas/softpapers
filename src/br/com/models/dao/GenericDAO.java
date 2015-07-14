@@ -9,12 +9,9 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
  * @see @see Classe de objetos de acesso ao banco de dados. Métodos: inserir(),
  * atualizar(), apagar(), consultar().
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
- *
  * @param <T> obejeto genérico que substitui como parâmetro todos os objetos de
  * valores do sistema.
  */
@@ -24,11 +21,8 @@ public class GenericDAO<T> {
     private final Session session = (Session) HibernateUtil.getSession();
 
     /**
-     *
      * @see Método INSERT INTO.
-     *
      * @param obj objeto de valor que abstrai uma linha do banco.
-     *
      * @return T obj
      */
     public Boolean inserir(T obj) {
@@ -45,11 +39,8 @@ public class GenericDAO<T> {
     }
 
     /**
-     *
      * @see Método UPDATE.
-     *
      * @param obj objeto de valor que abstrai uma linha do banco.
-     *
      * @return T obj
      */
     public Boolean atualizar(T obj) {
@@ -66,11 +57,8 @@ public class GenericDAO<T> {
     }
 
     /**
-     *
      * @see Método DELETE.
-     *
      * @param obj objeto de valor que abstrai uma linha do banco.
-     *
      * @return
      */
     public Boolean apagar(T obj) {
@@ -87,11 +75,8 @@ public class GenericDAO<T> {
     }
 
     /**
-     *
      * @see Método SELECT *.
-     *
      * @param obj objeto de valor que abstrai uma linha do banco.
-     *
      * @return Lista de obejtos do parâmetro.
      */
     public List<T> consultar(T obj) {
@@ -100,9 +85,7 @@ public class GenericDAO<T> {
     }
 
     /**
-     *
      * @see Método SELECT WHERE(campo = valor).
-     *
      * @param campo nome da linha no BD.
      * @param valor valor da linha no BD.
      * @param obj objeto de valor que abstrai uma linha do banco.
@@ -119,9 +102,7 @@ public class GenericDAO<T> {
     }
 
     /**
-     *
      * @see Método SELECT WHERE(campo1 = valor1 AND campo2 = valor2).
-     *
      * @param campo1 primeiro nome da linha no BD.
      * @param valor1 primeiro valor da linha no BD.
      * @param campo2 segundo nome da linha no BD.
@@ -142,9 +123,7 @@ public class GenericDAO<T> {
     }
 
     /**
-     *
      * @see Método SELECT ORDER BY(campo).
-     *
      * @param campo nome da linha no BD.
      * @param obj objeto de valor que abstrai uma linha do banco.
      * @return único resultado de uma lista de objetos do parâmetro ordenados

@@ -1,16 +1,13 @@
 package br.com.resources.views;
 
 /**
- *
  * @see Classe visual. JDialog que tem como objetivo cadastrar uma nova venda.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class ViewVenda extends javax.swing.JDialog {
 
     /**
      * @see Construtor padrão.
-     *
      * @param parent
      * @param modal
      */

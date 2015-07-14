@@ -8,10 +8,8 @@ import java.awt.Cursor;
 import java.text.SimpleDateFormat;
 
 /**
- *
  * @see Classe visual. JDialog que tem como objetivo cadastrar um novo
  * fornecedor.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class ViewFornecedor extends javax.swing.JDialog {
@@ -126,6 +124,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
         }
     }
 
+    //Componentes padrões do JFrame.
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -437,11 +436,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
         lbNumero.setText("Número");
 
         tfNumero.setForeground(new java.awt.Color(102, 102, 102));
-        try {
-            tfNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        tfNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
         tfNumero.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbCidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -981,6 +976,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @see Método que responde ao clique do JRadioButton e altera os atributos
+     * para o padrão da Pessoa Fisíca.
+     * @param evt
+     */
     private void rbPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPessoaFisicaActionPerformed
         if (rbPessoaFisica.isSelected()) {
             lbPessoa.setText("pessoa física");
@@ -989,6 +989,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_rbPessoaFisicaActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JRadioButton e altera os atributos
+     * para o padrão da Pessoa Jurídica.
+     * @param evt
+     */
     private void rbPessoaJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPessoaJuridicaActionPerformed
         if (rbPessoaJuridica.isSelected()) {
             lbPessoa.setText("pessoa jurídica");
@@ -997,6 +1002,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_rbPessoaJuridicaActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e verifica se os campos
+     * estão preenchidos para inserir um novo Fornecedor.
+     * @param evt
+     */
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         btnCadastrar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -1010,6 +1020,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
         btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e verifica se os campos
+     * estão preenchidos para alterar um novo Fornecedor.
+     * @param evt
+     */
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         btnAlterar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

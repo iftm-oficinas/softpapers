@@ -5,17 +5,14 @@ import br.com.models.vo.Funcionario;
 import java.awt.Cursor;
 
 /**
- *
  * @see Classe visual. JInternalFrame que tem como objetivo restringir e validar
  * o acesso do Funcionario ao programa e disponibilizar pequenas descrições das
  * funcioalidades, página inicil do software.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class ViewAcesso extends javax.swing.JInternalFrame {
 
     /**
-     *
      * @see Construtor padrão.
      */
     public ViewAcesso() {
@@ -24,11 +21,9 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
     }
 
     /**
-     *
      * @see Construtor usado quando classe é instanciada na ViewPrincipal,
      * recebe a viewPrincipal como pai e organiza esse JInternalFrame dentro do
      * JFrame principal.
-     *
      * @param viewPrincipal
      */
     public ViewAcesso(ViewPrincipal viewPrincipal) {
@@ -725,7 +720,6 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
      * @see Método que responde ao clique do JButton(btnEntrar), chama a função
      * de validarAcesso da classe AcessoBO passando como parâmetros os valores
      * do JTextFild(tfEmail) e JPasswordFild(pfSenha).
-     *
      * @param evt
      */
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed

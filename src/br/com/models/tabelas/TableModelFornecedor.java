@@ -7,10 +7,8 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
  * do Fornecedor.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class TableModelFornecedor extends AbstractTableModel {
@@ -28,7 +26,6 @@ public class TableModelFornecedor extends AbstractTableModel {
     private static final int atualizacaoFornecedor = 5;
 
     /**
-     *
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
      * as colunas com os valores do objeto.
      */
@@ -38,10 +35,8 @@ public class TableModelFornecedor extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Contrutor que inicializa as linhas da coluna com a lista recebida
      * pelo parâmetro e define as colunas com os valores do objeto.
-     *
      * @param fornecedor
      */
     public TableModelFornecedor(List<Fornecedor> fornecedor) {
@@ -139,10 +134,8 @@ public class TableModelFornecedor extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que adiciona uma nova linha com os valores do objeto recebido
      * como parâmetro.
-     *
      * @param fornecedor Usuario que compoe uma linha da tabela.
      */
     public void addFornecedor(Fornecedor fornecedor) {
@@ -152,10 +145,8 @@ public class TableModelFornecedor extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que adiciona uma lista de linhas com a lista de objetos
      * recebida como parâmetro.
-     *
      * @param fornecedores
      */
     public void addListaFornecedores(List<Fornecedor> fornecedores) {
@@ -165,10 +156,8 @@ public class TableModelFornecedor extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que remove linha da tabela atravez do index rebecido como
      * parâmetro.
-     *
      * @param rowIndex numero da linha da tabela.
      */
     public void removeFornecedores(int rowIndex) {
@@ -177,7 +166,6 @@ public class TableModelFornecedor extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que remove todas as linhas da tabela.
      */
     public void limpar() {

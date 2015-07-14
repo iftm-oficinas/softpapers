@@ -1198,6 +1198,9 @@
                       <Image iconType="3" name="/br/com/resources/imagens/btnVisualizarDOWN.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarProdutoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAlterarProduto">
                   <Properties>
@@ -1221,6 +1224,9 @@
                       <Image iconType="3" name="/br/com/resources/imagens/btnAlterarDOWN.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarProdutoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnExcluirProduto">
                   <Properties>
@@ -1244,6 +1250,9 @@
                       <Image iconType="3" name="/br/com/resources/imagens/btnExcluirDOWN.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirProdutoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="pnBuscarProduto">
                   <Properties>

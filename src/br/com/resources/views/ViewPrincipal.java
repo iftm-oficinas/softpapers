@@ -1,29 +1,30 @@
 package br.com.resources.views;
 
+import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @see Classe visual. JFrame principal do programa que possui uma barra de menu
  * (JPanel) que ao clicar em cada opção (JButton) adiciona um JInternalFrame ao
  * JDesktopPane.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class ViewPrincipal extends javax.swing.JFrame {
 
     /**
-     *
      * @see Construtor padrão que é carregado quando se executa o programa pela
      * primeira vez e é necessário a verificação de acesso.
      */
     public ViewPrincipal() {
         //Inicialização dos componentes padrões do JFrame.
         initComponents();
-
+        
+        //Define iconImagem
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/resources/imagens/iconImage.png")));
+        
         //Define que a view sempre carregue como maximizada.
         setExtendedState(MAXIMIZED_BOTH);
 
@@ -49,7 +50,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }
 
     /**
-     *
      * @see Método que define todos os elementos do menu como não visíveis para
      * restringir o acesso antes do usuario acessar.
      */
@@ -64,7 +64,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }
 
     /**
-     *
      * @see Método que define todos os elementos do menu como visíveis após
      * realizar o acesso.
      */
@@ -362,7 +361,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    //INICIO dos Métodos que realizão interação entre todos os JInternalFrames e o JDesktopPane da ViewPrincipal. 
+    /**
+     * @see Método que responde ao clique do JButton e realiza a interação entre
+     * o JInternalFrame(ViewVisaoGeral) e o JDesktopPane da ViewPrincipal.
+     * @param evt
+     */
     private void btnVisaoGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaoGeralActionPerformed
         if (!viewVisaoGeral.isVisible()) {
             LimparDesktop();
@@ -375,6 +378,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVisaoGeralActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e realiza a interação entre
+     * o JInternalFrame(ViewVendas) e o JDesktopPane da ViewPrincipal.
+     * @param evt
+     */
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
         if (!viewVendas.isVisible()) {
             LimparDesktop();
@@ -387,6 +395,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVendasActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e realiza a interação entre
+     * o JInternalFrame(ViewEstoque) e o JDesktopPane da ViewPrincipal.
+     * @param evt
+     */
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
         if (!viewEstoque.isVisible()) {
             LimparDesktop();
@@ -399,6 +412,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e realiza a interação entre
+     * o JInternalFrame(ViewFinanceiro) e o JDesktopPane da ViewPrincipal.
+     * @param evt
+     */
     private void btnFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinanceiroActionPerformed
         if (!viewFinanceiro.isVisible()) {
             LimparDesktop();
@@ -411,6 +429,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFinanceiroActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e realiza a interação entre
+     * o JInternalFrame(ViewRelatorios) e o JDesktopPane da ViewPrincipal.
+     * @param evt
+     */
     private void btnRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatoriosActionPerformed
         if (!viewRelatorios.isVisible()) {
             LimparDesktop();
@@ -423,6 +446,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRelatoriosActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e realiza a interação entre
+     * o JInternalFrame(ViewPainelControle) e o JDesktopPane da ViewPrincipal.
+     * @param evt
+     */
     private void btnPainelControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainelControleActionPerformed
         if (!viewPainelControle.isVisible()) {
             LimparDesktop();
@@ -435,6 +463,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPainelControleActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e realiza a interação entre
+     * o JInternalFrame(ViewAcesso) e o JDesktopPane da ViewPrincipal.
+     * @param evt
+     */
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Alerta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             LimparDesktop();
@@ -447,13 +480,10 @@ public class ViewPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnSairActionPerformed
-    //FIM dos Métodos de interação entre todos os JInternalFrames e o JDesktopPane da ViewPrincipal.
 
     /**
-     *
      * @see Método principal da classe, carrega lookAndFeel padrão como Windows
-     * e define a ViewPrincipal visível.
-     *
+     * e define a ViewPrincipal como visível.
      * @param args
      */
     public static void main(String args[]) {

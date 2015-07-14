@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/06/2015 16:38:24 by Hibernate Tools 4.3.1 -->
+<!-- Generated 23/06/2015 19:20:06 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.models.vo.Endereco" table="endereco" catalog="dbloja" optimistic-lock="version">
         <id name="idEndereco" type="java.lang.Long">

@@ -7,10 +7,8 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
  * da Categoria.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class TableModelCategoria extends AbstractTableModel {
@@ -25,7 +23,6 @@ public class TableModelCategoria extends AbstractTableModel {
     private static final int atualizacaoCategoria = 2;
 
     /**
-     *
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
      * as colunas com os valores do objeto.
      */
@@ -35,10 +32,8 @@ public class TableModelCategoria extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Contrutor que inicializa as linhas da coluna com a lista recebida
      * pelo parâmetro e define as colunas com os valores do objeto.
-     *
      * @param categorias
      */
     public TableModelCategoria(List<Categoria> categorias) {
@@ -115,10 +110,8 @@ public class TableModelCategoria extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que adiciona uma nova linha com os valores do objeto recebido
      * como parâmetro.
-     *
      * @param categoria
      */
     public void addProduto(Categoria categoria) {
@@ -128,10 +121,8 @@ public class TableModelCategoria extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que adiciona uma lista de linhas com a lista de objetos
      * recebida como parâmetro.
-     *
      * @param categorias
      */
     public void addListaProdutos(List<Categoria> categorias) {
@@ -141,10 +132,8 @@ public class TableModelCategoria extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que remove linha da tabela atravez do index rebecido como
      * parâmetro.
-     *
      * @param rowIndex numero da linha da tabela.
      */
     public void removeProduto(int rowIndex) {
@@ -153,7 +142,6 @@ public class TableModelCategoria extends AbstractTableModel {
     }
 
     /**
-     *
      * @see Método que remove todas as linhas da tabela.
      */
     public void limpar() {

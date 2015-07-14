@@ -4,14 +4,14 @@ import br.com.resources.views.ViewPrincipal;
 /**
  * @see Classe utilizada para iniciar o programa, seleciona o look and feal e
  * abre a tela principal.
- *
  * @author Marlon Andrel Coelho Freitas
  * @version 0.0000.00.00 Alfa
  */
 public class Index {
 
     /**
-     *
+     * @see Método principal da classe, carrega lookAndFeel padrão como Windows
+     * e define a ViewPrincipal como visível.
      * @param args the command line arguments
      */
     public static void main(String[] args) {
@@ -31,12 +31,14 @@ public class Index {
         ViewPrincipal viewPrincipal = new ViewPrincipal();
         viewPrincipal.setVisible(true);
 
-        //Teste restricões...
+        //Teste restricões.
 //        String x = "0123456789abcdefghijklmnopqrstuvwxyz";
 //        if (x.contains("r")) {
 //            System.out.println("ok");
 //        } else {
 //            System.out.println("no");
 //        }
+        //Esconder barra de título padrão JFrame e JDialog.
+//        this.setUndecorated(true);
     }
 }

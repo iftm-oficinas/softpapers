@@ -10,28 +10,24 @@ import java.awt.Color;
 import java.awt.Font;
 
 /**
- *
  * @see Classe visual. JInternalFrame que tem como objetivo gerenciar todos os
  * registros padrões do sistema.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class ViewPainelControle extends javax.swing.JInternalFrame {
 
     /**
-     *
      * @see Construtor padrão.
      */
     public ViewPainelControle() {
+        //Inicialização dos componentes padrões do JFrame.
         initComponents();
     }
 
     /**
-     *
      * @see Construtor usado quando classe é instanciada na ViewPrincipal,
      * recebe a viewPrincipal como pai e organiza esse JInternalFrame dentro do
      * JFrame principal.
-     *
      * @param viewPrincipal
      */
     public ViewPainelControle(ViewPrincipal viewPrincipal) {
@@ -49,7 +45,6 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
     }
 
     /**
-     *
      * @see Método que Instancia a classe PainelControleBO para realizar buscas
      * de Objetos de valores que compoem os modelos de tabelas.
      */
@@ -92,6 +87,13 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnVisualizarCategoria.setEnabled(false);
         btnAlterarCategoria.setEnabled(false);
         btnExcluirCategoria.setEnabled(false);
+        
+        //Definindo lbResultados
+        lbResultadosFuncionario.setText(tbFuncionarios.getModel().getRowCount()+" resultados, mostrando todos.");
+        lbResultadosCliente.setText(tbClientes.getModel().getRowCount()+" resultados, mostrando todos.");
+        lbResultadosFornecedor.setText(tbFornecedores.getModel().getRowCount()+" resultados, mostrando todos.");
+        lbResultadosProduto.setText(tbProdutos.getModel().getRowCount()+" resultados, mostrando todos.");
+        lbResultadosCategoria.setText(tbClientes.getModel().getRowCount()+" resultados, mostrando todos.");
     }
 
     //Componentes padrões do JFrame
@@ -708,6 +710,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnVisualizarProduto.setFocusable(false);
         btnVisualizarProduto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
         btnVisualizarProduto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarProdutoActionPerformed(evt);
+            }
+        });
 
         btnAlterarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
         btnAlterarProduto.setBorder(null);
@@ -716,6 +723,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnAlterarProduto.setFocusable(false);
         btnAlterarProduto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
         btnAlterarProduto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarProdutoActionPerformed(evt);
+            }
+        });
 
         btnExcluirProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirUP.png"))); // NOI18N
         btnExcluirProduto.setBorder(null);
@@ -724,6 +736,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         btnExcluirProduto.setFocusable(false);
         btnExcluirProduto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
         btnExcluirProduto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
+        btnExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirProdutoActionPerformed(evt);
+            }
+        });
 
         pnBuscarProduto.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1040,6 +1057,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @see Método que responde ao clique do JTable(tbFucionarios) e se possuir
+     * uma linha selecionada habilita os JButton.
+     * @param evt
+     */
     private void tbFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFuncionariosMouseClicked
         if (tbFuncionarios.getSelectedRow() != -1) {
             btnVisualizarFuncionario.setEnabled(true);
@@ -1048,6 +1070,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbFuncionariosMouseClicked
 
+    /**
+     * @see Método que responde ao clique do JTable(tbClientes) e se possuir uma
+     * linha selecionada habilita os JButton.
+     * @param evt
+     */
     private void tbClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClientesMouseClicked
         if (tbClientes.getSelectedRow() != -1) {
             btnVisualizarCliente.setEnabled(true);
@@ -1056,6 +1083,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbClientesMouseClicked
 
+    /**
+     * @see Método que responde ao clique do JTable(tbFornecedores) e se possuir
+     * uma linha selecionada habilita os JButton.
+     * @param evt
+     */
     private void tbFornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFornecedoresMouseClicked
         if (tbFornecedores.getSelectedRow() != -1) {
             btnVisualizarFornecedor.setEnabled(true);
@@ -1064,6 +1096,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbFornecedoresMouseClicked
 
+    /**
+     * @see Método que responde ao clique do JTable(tbProdutos) e se possuir uma
+     * linha selecionada habilita os JButton.
+     * @param evt
+     */
     private void tbProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProdutosMouseClicked
         if (tbProdutos.getSelectedRow() != -1) {
             btnVisualizarProduto.setEnabled(true);
@@ -1072,21 +1109,42 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbProdutosMouseClicked
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia com o construtor
+     * padrão e define como visível a ViewProduto.
+     * @param evt
+     */
     private void btnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProdutoActionPerformed
         viewProduto = new ViewProduto(viewPrincipal, true, this);
         viewProduto.setVisible(true);
     }//GEN-LAST:event_btnNovoProdutoActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia com o construtor
+     * padrão e define como visível a ViewFornecedor.
+     * @param evt
+     */
     private void btnNovoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoFornecedorActionPerformed
         viewFornecedor = new ViewFornecedor(viewPrincipal, true, this);
         viewFornecedor.setVisible(true);
     }//GEN-LAST:event_btnNovoFornecedorActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia com o construtor
+     * padrão e define como visível a ViewFuncionario.
+     * @param evt
+     */
     private void btnNovoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoFuncionarioActionPerformed
         viewFuncionario = new ViewFuncionario(viewPrincipal, true, this);
         viewFuncionario.setVisible(true);
     }//GEN-LAST:event_btnNovoFuncionarioActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia e define como
+     * visível a ViewFuncionario, passando como parâmetros um objeto Funcionario
+     * e alterar como falso.
+     * @param evt
+     */
     private void btnVisualizarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarFuncionarioActionPerformed
         if (tbFuncionarios.getSelectedRow() != -1) {
             TableModelFuncionario modelo = (TableModelFuncionario) tbFuncionarios.getModel();
@@ -1095,6 +1153,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnVisualizarFuncionarioActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia e define como
+     * visível a ViewFuncionario, passando como parâmetros um objeto Produto e
+     * alterar como verdadeiro.
+     * @param evt
+     */
     private void btnAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncionarioActionPerformed
         if (tbFuncionarios.getSelectedRow() != -1) {
             TableModelFuncionario modelo = (TableModelFuncionario) tbFuncionarios.getModel();
@@ -1103,6 +1167,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Se conseguir excluir um
+     * Funcionario chama método atualizarTabelas().
+     * @param evt
+     */
     private void btnExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFuncionarioActionPerformed
         if (tbFuncionarios.getSelectedRow() != -1) {
             TableModelFuncionario modelo = (TableModelFuncionario) tbFuncionarios.getModel();
@@ -1112,11 +1181,22 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnExcluirFuncionarioActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia com o construtor
+     * padrão e define como visível a ViewCliente.
+     * @param evt
+     */
     private void btnNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoClienteActionPerformed
         viewCliente = new ViewCliente(viewPrincipal, true, this);
         viewCliente.setVisible(true);
     }//GEN-LAST:event_btnNovoClienteActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia e define como
+     * visível a ViewCliente, passando como parâmetros um objeto Cliente e
+     * alterar como falso.
+     * @param evt
+     */
     private void btnVisualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarClienteActionPerformed
         if (tbClientes.getSelectedRow() != -1) {
             TableModelCliente modelo = (TableModelCliente) tbClientes.getModel();
@@ -1125,6 +1205,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnVisualizarClienteActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia e define como
+     * visível a ViewCliente, passando como parâmetros um objeto Cliente e
+     * alterar como verdadeiro.
+     * @param evt
+     */
     private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
         if (tbClientes.getSelectedRow() != -1) {
             TableModelCliente modelo = (TableModelCliente) tbClientes.getModel();
@@ -1133,6 +1219,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAlterarClienteActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Se conseguir excluir um
+     * Cliente chama método atualizarTabelas().
+     * @param evt
+     */
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
         if (tbClientes.getSelectedRow() != -1) {
             TableModelCliente modelo = (TableModelCliente) tbClientes.getModel();
@@ -1142,6 +1233,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia e define como
+     * visível a ViewFornecedor, passando como parâmetros um objeto Fornecedor e
+     * alterar como falso.
+     * @param evt
+     */
     private void btnVisualizarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarFornecedorActionPerformed
         if (tbFornecedores.getSelectedRow() != -1) {
             TableModelFornecedor modelo = (TableModelFornecedor) tbFornecedores.getModel();
@@ -1150,6 +1247,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnVisualizarFornecedorActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia e define como
+     * visível a ViewFornecedor, passando como parâmetros um objeto Fornecedor e
+     * alterar como verdadeiro.
+     * @param evt
+     */
     private void btnAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFornecedorActionPerformed
         if (tbFornecedores.getSelectedRow() != -1) {
             TableModelFornecedor modelo = (TableModelFornecedor) tbFornecedores.getModel();
@@ -1158,6 +1261,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAlterarFornecedorActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Se conseguir excluir um
+     * Fornecedor chama método atualizarTabelas().
+     * @param evt
+     */
     private void btnExcluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFornecedorActionPerformed
         if (tbFornecedores.getSelectedRow() != -1) {
             TableModelFornecedor modelo = (TableModelFornecedor) tbFornecedores.getModel();
@@ -1167,6 +1275,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JTable(tbCategorias) e se possuir
+     * uma linha selecionada habilita os JButton.
+     * @param evt
+     */
     private void tbCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCategoriasMouseClicked
         if (tbCategorias.getSelectedRow() != -1) {
             btnVisualizarCategoria.setEnabled(true);
@@ -1175,11 +1288,22 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tbCategoriasMouseClicked
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia com o construtor
+     * padrão e define como visível a ViewCategoria.
+     * @param evt
+     */
     private void btnNovaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaCategoriaActionPerformed
         viewCategoria = new ViewCategoria(viewPrincipal, true, this);
         viewCategoria.setVisible(true);
     }//GEN-LAST:event_btnNovaCategoriaActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia e define como
+     * visível a ViewCategoria, passando como parâmetros um objeto Categoria e
+     * alterar como falso.
+     * @param evt
+     */
     private void btnVisualizarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarCategoriaActionPerformed
         if (tbCategorias.getSelectedRow() != -1) {
             TableModelCategoria modelo = (TableModelCategoria) tbCategorias.getModel();
@@ -1188,6 +1312,12 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnVisualizarCategoriaActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Instancia e define como
+     * visível a ViewCategoria, passando como parâmetros um objeto Categoria e
+     * alterar como falso.
+     * @param evt
+     */
     private void btnAlterarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarCategoriaActionPerformed
         if (tbCategorias.getSelectedRow() != -1) {
             TableModelCategoria modelo = (TableModelCategoria) tbCategorias.getModel();
@@ -1196,6 +1326,11 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAlterarCategoriaActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton. Se conseguir excluir um
+     * Categoria chama método atualizarTabelas().
+     * @param evt
+     */
     private void btnExcluirCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCategoriaActionPerformed
         if (tbCategorias.getSelectedRow() != -1) {
             TableModelCategoria modelo = (TableModelCategoria) tbCategorias.getModel();
@@ -1204,6 +1339,48 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnExcluirCategoriaActionPerformed
+
+    /**
+     * @see Método que responde ao clique do JButton. Instancia e define como
+     * visível a ViewProduto, passando como parâmetros um objeto Produto e
+     * alterar como falso.
+     * @param evt
+     */
+    private void btnVisualizarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarProdutoActionPerformed
+        if (tbProdutos.getSelectedRow() != -1) {
+            TableModelProduto modelo = (TableModelProduto) tbProdutos.getModel();
+            viewProduto = new ViewProduto(viewPrincipal, true, this, modelo.getProduto(tbProdutos.getSelectedRow()), false);
+            viewProduto.setVisible(true);
+        }
+    }//GEN-LAST:event_btnVisualizarProdutoActionPerformed
+
+    /**
+     * @see Método que responde ao clique do JButton. Instancia e define como
+     * visível a ViewProduto, passando como parâmetros um objeto Produto e
+     * alterar como falso.
+     * @param evt
+     */
+    private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
+        if (tbProdutos.getSelectedRow() != -1) {
+            TableModelProduto modelo = (TableModelProduto) tbProdutos.getModel();
+            viewProduto = new ViewProduto(viewPrincipal, true, this, modelo.getProduto(tbProdutos.getSelectedRow()), true);
+            viewProduto.setVisible(true);
+        }
+    }//GEN-LAST:event_btnAlterarProdutoActionPerformed
+
+    /**
+     * @see Método que responde ao clique do JButton. Se conseguir excluir um
+     * Produto chama método atualizarTabelas().
+     * @param evt
+     */
+    private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
+        if (tbProdutos.getSelectedRow() != -1) {
+            TableModelProduto modelo = (TableModelProduto) tbProdutos.getModel();
+            if (painelControleBO.excluirProduto(modelo.getProduto(tbProdutos.getSelectedRow()).getIdProduto())) {
+                atualizarTabelas();
+            }
+        }
+    }//GEN-LAST:event_btnExcluirProdutoActionPerformed
 
     //Declaração de variáveis(View).
     private ViewPrincipal viewPrincipal;

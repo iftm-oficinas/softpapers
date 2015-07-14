@@ -5,10 +5,8 @@ import br.com.models.vo.Categoria;
 import java.awt.Cursor;
 
 /**
- *
  * @see Classe visual. JDialog que tem como objetivo cadastrar uma nova
  * categoria.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class ViewCategoria extends javax.swing.JDialog {
@@ -28,7 +26,8 @@ public class ViewCategoria extends javax.swing.JDialog {
     }
 
     /**
-     * @see Construtor padrão.
+     * @see Construtor utilizado quando se quer visualizar ou alterar uma
+     * Categoria.
      * @param viewPainelControle
      * @param parent
      * @param modal
@@ -45,12 +44,12 @@ public class ViewCategoria extends javax.swing.JDialog {
         this.categoriaBO = new CategoriaBO();
         btnCadastrar.setVisible(false);
         lbTitulo.setText("Alterar Categoria");
-        
+
         //Definindo os atributos.
         tfDescricao.setText(categoriaVO.getDescricaoCategoria());
-        
+
         //Definindo como não editável
-        if(!alterar) {
+        if (!alterar) {
             lbTitulo.setText("Categoria");
             btnAlterar.setVisible(false);
             tfDescricao.setEditable(false);
@@ -210,25 +209,39 @@ public class ViewCategoria extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @see Método que responde ao clique do JButton e verifica se os campos
+     * estão preenchidos para inserir uma nova Categoria.
+     * @param evt
+     */
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         btnCadastrar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         categoriaBO = new CategoriaBO();
-        if (categoriaBO.inserirCategoria(tfDescricao.getText())) {
-            viewPainelControle.atualizarTabelas();
-            this.dispose();
+        if (categoriaBO.validarCampos(pnCorpo)) {
+            if (categoriaBO.inserirCategoria(tfDescricao.getText())) {
+                viewPainelControle.atualizarTabelas();
+                this.dispose();
+            }
         }
         this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e verifica se os campos
+     * estão preenchidos para alterar uma Categoria.
+     * @param evt
+     */
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         btnCadastrar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         categoriaBO = new CategoriaBO();
-        if (categoriaBO.alterarCategoria(categoriaVO.getIdCategoria(), tfDescricao.getText())) {
-            viewPainelControle.atualizarTabelas();
-            this.dispose();
+        if (categoriaBO.validarCampos(pnCorpo)) {
+            if (categoriaBO.alterarCategoria(categoriaVO.getIdCategoria(), tfDescricao.getText())) {
+                viewPainelControle.atualizarTabelas();
+                this.dispose();
+            }
         }
         this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         btnCadastrar.setEnabled(true);
@@ -242,7 +255,6 @@ public class ViewCategoria extends javax.swing.JDialog {
 
     //Declaração de variáveis(Business Object).
     private CategoriaBO categoriaBO;
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

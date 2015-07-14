@@ -17,17 +17,17 @@ import java.util.Objects;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @see Classe de objetos de negócios. Métodos:
- *
+ * @see Classe de objetos de negócios. Métodos: buscarCategorias(),
+ * buscarClientes(), BuscarFornecedores(), buscarFuncionarios(),
+ * buscarPessoaFisica(), buscarPessoaJuridica(), buscarProdutos(),
+ * excluirCategoria(), excluirCliente(), excluirFornecedor(),
+ * excluirFuncionario(), excluirProduto().
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class PainelControleBO {
 
     /**
-     *
      * @see Método que realiza consulta ao banco de dados por todos os Usuarios.
-     *
      * @return Lista de Usuarios composta por todas as linhas da tabela usuario
      * do banco de dados.
      */
@@ -38,9 +38,7 @@ public class PainelControleBO {
     }
 
     /**
-     *
      * @see Método que realiza consulta ao banco de dados por todos os Clientes.
-     *
      * @return Lista de Clientes composta por todas as linhas da tabela cliente
      * do banco de dados.
      */
@@ -51,10 +49,8 @@ public class PainelControleBO {
     }
 
     /**
-     *
      * @see Método que realiza consulta ao banco de dados por todos os
      * Fornecedores.
-     *
      * @return Lista de Fornecedores composta por todas as linhas da tabela
      * fornecedor do banco de dados.
      */
@@ -65,10 +61,8 @@ public class PainelControleBO {
     }
 
     /**
-     *
      * @see Método que realiza consulta ao banco de dados por todos as
      * Categorias.
-     *
      * @return Lista de Categorias composta por todas as linhas da tabela
      * categoria do banco de dados.
      */
@@ -79,9 +73,7 @@ public class PainelControleBO {
     }
 
     /**
-     *
      * @see Método que realiza consulta ao banco de dados por todos os Produtos.
-     *
      * @return Lista de Produtos composta por todas as linhas da tabela produto
      * do banco de dados.
      */
@@ -126,12 +118,9 @@ public class PainelControleBO {
     }
 
     /**
-     *
      * @see Método que exclui um objeto no banco de dados por meio da
      * GenericDAO.
-     *
      * @param idFuncionario
-     *
      * @return
      */
     public Boolean excluirFuncionario(Long idFuncionario) {
@@ -143,13 +132,12 @@ public class PainelControleBO {
             GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
             Funcionario funcionarioVO = new Funcionario();
             Pessoa pessoaVO = new Pessoa();
-            Pessoafisica pessoaFisicaVO = new Pessoafisica();
             Contato contatoVO = new Contato();
             Endereco enderecoVO = new Endereco();
 
             funcionarioVO = funcionarioDAO.consultar("idFuncionario", idFuncionario, funcionarioVO);
             pessoaVO = pessoaDAO.consultar("idPessoa", funcionarioVO.getPessoa().getIdPessoa(), pessoaVO);
-            pessoaFisicaVO = buscarPessoaFisica(pessoaVO.getIdPessoa());
+            Pessoafisica pessoaFisicaVO = buscarPessoaFisica(pessoaVO.getIdPessoa());
             contatoVO = contatoDAO.consultar("idContato", funcionarioVO.getContato().getIdContato(), contatoVO);
             enderecoVO = enderecoDAO.consultar("idEndereco", funcionarioVO.getEndereco().getIdEndereco(), enderecoVO);
 
@@ -175,13 +163,10 @@ public class PainelControleBO {
     }
 
     /**
-     *
      * @see Método que exclui um objeto no banco de dados por meio da
      * GenericDAO.
-     *
      * @param idCliente
-     *
-     * @return
+     * @return true/false.
      */
     public Boolean excluirCliente(Long idCliente) {
         try {
@@ -226,13 +211,10 @@ public class PainelControleBO {
     }
 
     /**
-     *
      * @see Método que exclui um objeto no banco de dados por meio da
      * GenericDAO.
-     *
      * @param idFornecedor
-     *
-     * @return
+     * @return true/false.
      */
     public Boolean excluirFornecedor(Long idFornecedor) {
         try {
@@ -274,17 +256,14 @@ public class PainelControleBO {
             return false;
         }
     }
-    
+
     /**
-     *
      * @see Método que exclui um objeto no banco de dados por meio da
      * GenericDAO.
-     *
      * @param idCategoria
-     *
-     * @return
+     * @return true/false.
      */
-    public Boolean excluirCategoria(Long idCategoria){
+    public Boolean excluirCategoria(Long idCategoria) {
         try {
             if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esta Categoria?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
                 try {
@@ -292,6 +271,33 @@ public class PainelControleBO {
                     Categoria categoriaVO = categoriaDAO.consultar("idCategoria", idCategoria, new Categoria());
                     categoriaDAO.apagar(categoriaVO);
                     JOptionPane.showMessageDialog(null, "Categoria excluida com sucesso.", "Secesso", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                } catch (Exception e) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
+    /**
+     * @see Método que exclui um objeto no banco de dados por meio da
+     * GenericDAO.
+     * @param idProduto
+     * @return true/false.
+     */
+    public Boolean excluirProduto(Long idProduto) {
+        try {
+            if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este Produto?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+                try {
+                    GenericDAO<Produto> produtoDAO = new GenericDAO<>();
+                    Produto produtoVO = produtoDAO.consultar("idProduto", idProduto, new Produto());
+                    produtoDAO.apagar(produtoVO);
+                    JOptionPane.showMessageDialog(null, "Produto excluido com sucesso.", "Secesso", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 } catch (Exception e) {
                     return false;

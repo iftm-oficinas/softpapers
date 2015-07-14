@@ -11,10 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @see Classe de objetos de negócios. Métodos: validarCampos(),
- * validarAcesso().
- *
+ * @see Classe de objetos de negócios. Métodos: validarAcesso(),
+ * validarCampos().
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class AcessoBO {
@@ -26,18 +24,21 @@ public class AcessoBO {
     private GenericDAO<Funcionario> funcionarioDAO;
 
     /**
-     *
      * @see Método que chama uma consulta ao banco de dados atravéz da
-     * referência usuarioDAO.
-     *
+     * referência usuarioDAO, para validar o acesso de usuario.
      * @param usuario
      * @param senha
      * @return Usuario caso ele encontre.
      */
     public Funcionario validarAcesso(String usuario, String senha) {
+        //Instanciando variáveis.
         funcionarioDAO = new GenericDAO();
         funcionarioVO = new Funcionario();
+
+        //Consulta ao banco de dados.
         funcionarioVO = (Funcionario) funcionarioDAO.consultar("usuarioFuncionario", usuario, "senhaFuncionario", senha, funcionarioVO);
+
+        //Retorno da função;
         if (funcionarioVO == null) {
             JOptionPane.showMessageDialog(null, "Usuário ou senha invalidos", "Acesso Negado", JOptionPane.ERROR_MESSAGE);
             return null;
@@ -47,10 +48,8 @@ public class AcessoBO {
     }
 
     /**
-     *
      * @see Método que verifica se os elementos do JPanel são diferentes de
      * null, usado para verificar se os campos estão preenchidos pelo usuário.
-     *
      * @param panel
      * @return false caso pelo menos um componente possuir getText() == null.
      */

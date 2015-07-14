@@ -2,12 +2,11 @@ package br.com.resources.views;
 
 import br.com.models.bo.ProdutoBO;
 import br.com.models.vo.Produto;
+import java.awt.Cursor;
 import java.util.ArrayList;
 
 /**
- *
  * @see Classe visual. JDialog que tem como objetivo cadastrar um novo produto.
- *
  * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class ViewProduto extends javax.swing.JDialog {
@@ -28,7 +27,7 @@ public class ViewProduto extends javax.swing.JDialog {
     }
 
     /**
-     * @see Construtor padrão.
+     * @see Construtor usado para visualizar ou alterar um produto.
      * @param parent
      * @param modal
      * @param viewPainelControle
@@ -41,7 +40,6 @@ public class ViewProduto extends javax.swing.JDialog {
         this.produtoBO = new ProdutoBO();
         initComponents();
         this.viewPainelControle = viewPainelControle;
-        btnAlterar.setVisible(false);
         this.produtoVO = produto;
         btnCadastrar.setVisible(false);
         lbTitulo.setText("Alterar Produto");
@@ -54,16 +52,10 @@ public class ViewProduto extends javax.swing.JDialog {
         tfMinimo.setText(produto.getMinimoProduto().toString());
         tfMaximo.setText(produto.getMaximoProduto().toString());
         tfEstoque.setText(produto.getEstoqueProduto().toString());
-        
-        ArrayList<String> array = new ArrayList<>();
-        String[] Arr = new String[array.size()];
-        array.add(produto.getCategoria().getDescricaoCategoria());
-        Arr = array.toArray(Arr);
-        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(Arr));
-        array.clear();
-        array.add(produto.getFornecedor().getNomeFornecedor());
-        Arr = array.toArray(Arr);
-        cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel(Arr));
+
+        //Definindo Modelo com lista de Categorias e Fornecedores para os JComboBox.
+        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(produtoBO.buscarNomeCategorias()));
+        cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel(produtoBO.buscarNomeFornecedores()));
 
         //Definindo como não editável.
         if (!alterar) {
@@ -78,6 +70,25 @@ public class ViewProduto extends javax.swing.JDialog {
             tfEstoque.setEditable(false);
             cbCategoria.setEnabled(false);
             cbFornecedor.setEnabled(false);
+
+            //Definindo Modelo com Categoria e Fornecedor para os JComboBox.
+            ArrayList<String> array = new ArrayList<>();
+            String[] Arr = new String[array.size()];
+            if (produto.getCategoria() != null) {
+                array.add(produto.getCategoria().getDescricaoCategoria());
+            } else {
+                array.add("CATEGORIA");
+            }
+            Arr = array.toArray(Arr);
+            cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(Arr));
+            array.clear();
+            if (produto.getFornecedor() != null) {
+                array.add(produto.getFornecedor().getNomeFornecedor());
+            } else {
+                array.add("FORNECEDOR");
+            }
+            Arr = array.toArray(Arr);
+            cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel(Arr));
         }
     }
 
@@ -226,11 +237,7 @@ public class ViewProduto extends javax.swing.JDialog {
         lbMinimo.setText("Quantidade mínima");
 
         tfMinimo.setForeground(new java.awt.Color(102, 102, 102));
-        try {
-            tfMinimo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##################")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        tfMinimo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
         tfMinimo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbMaximo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -238,11 +245,7 @@ public class ViewProduto extends javax.swing.JDialog {
         lbMaximo.setText("Quantidade máxima");
 
         tfMaximo.setForeground(new java.awt.Color(102, 102, 102));
-        try {
-            tfMaximo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##################")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        tfMaximo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
         tfMaximo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbEstoque.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -254,11 +257,7 @@ public class ViewProduto extends javax.swing.JDialog {
         lbInicial.setText("(inicial)");
 
         tfEstoque.setForeground(new java.awt.Color(102, 102, 102));
-        try {
-            tfEstoque.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##################")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        tfEstoque.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
         tfEstoque.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbCategoria.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -271,7 +270,7 @@ public class ViewProduto extends javax.swing.JDialog {
 
         cbCategoria.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cbCategoria.setForeground(new java.awt.Color(102, 102, 102));
-        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(produtoBO.buscarCategorias()));
+        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(produtoBO.buscarNomeCategorias()));
         cbCategoria.setFocusable(false);
 
         lbFornecedor.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -284,7 +283,7 @@ public class ViewProduto extends javax.swing.JDialog {
 
         cbFornecedor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cbFornecedor.setForeground(new java.awt.Color(102, 102, 102));
-        cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel(produtoBO.buscarFornecedores()));
+        cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel(produtoBO.buscarNomeFornecedores()));
         cbFornecedor.setFocusable(false);
 
         javax.swing.GroupLayout pnProdutoLayout = new javax.swing.GroupLayout(pnProduto);
@@ -458,12 +457,42 @@ public class ViewProduto extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @see Método que responde ao clique do JButton e verifica se os campos
+     * estão preenchidos para inserir um novo Produto.
+     * @param evt
+     */
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        btnCadastrar.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        produtoBO = new ProdutoBO();
+        if (produtoBO.validarCampos(pnObrigatorio)) {
+            if (produtoBO.inserirProduto(cbCategoria.getSelectedIndex(), cbFornecedor.getSelectedIndex(), tfDescricao.getText(), tfCodigo.getText(), tfValorCusto.getText(), tfValorVenda.getText(), tfMinimo.getText(), tfMaximo.getText(), tfEstoque.getText())) {
+                viewPainelControle.atualizarTabelas();
+                this.dispose();
+            }
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    /**
+     * @see Método que responde ao clique do JButton e verifica se os campos
+     * estão preenchidos para alterar um novo Produto.
+     * @param evt
+     */
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
+        btnCadastrar.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        produtoBO = new ProdutoBO();
+        if (produtoBO.validarCampos(pnObrigatorio)) {
+            if (produtoBO.alterarProduto(produtoVO.getIdProduto(), cbCategoria.getSelectedIndex(), cbFornecedor.getSelectedIndex(), tfDescricao.getText(), tfCodigo.getText(), tfValorCusto.getText(), tfValorVenda.getText(), tfMinimo.getText(), tfMaximo.getText(), tfEstoque.getText())) {
+                viewPainelControle.atualizarTabelas();
+                this.dispose();
+            }
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     //Declaração de variáveis(View).
