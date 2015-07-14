@@ -18,20 +18,16 @@ public class ViewRelatorios extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        spnCorpo = new javax.swing.JScrollPane();
         tpnCorpo = new javax.swing.JTabbedPane();
-        spnVendasCliente = new javax.swing.JScrollPane();
         pnVendasCliente = new javax.swing.JPanel();
         lbVendasCliente = new javax.swing.JLabel();
-        spnVendasVendedor = new javax.swing.JScrollPane();
         pnVendasVendedor = new javax.swing.JPanel();
         lbVendasVededor = new javax.swing.JLabel();
-        spnFluxoCaixaDiario = new javax.swing.JScrollPane();
         pnFluxoCaixaDiario = new javax.swing.JPanel();
         lbFluxoCaixaDiario = new javax.swing.JLabel();
-        spnFluxoCaixaMensal = new javax.swing.JScrollPane();
         pnFluxoCaixaMensal = new javax.swing.JPanel();
         lbFluxoCaixaMensal = new javax.swing.JLabel();
-        spnGiroEstoque = new javax.swing.JScrollPane();
         pnGiroEstoque = new javax.swing.JPanel();
         lbGiroEstoque = new javax.swing.JLabel();
 
@@ -40,12 +36,12 @@ public class ViewRelatorios extends javax.swing.JInternalFrame {
         setResizable(true);
         setFrameIcon(null);
 
+        spnCorpo.setBorder(null);
+
         tpnCorpo.setForeground(new java.awt.Color(102, 102, 102));
         tpnCorpo.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tpnCorpo.setFocusable(false);
         tpnCorpo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-
-        spnVendasCliente.setBorder(null);
 
         pnVendasCliente.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -56,23 +52,19 @@ public class ViewRelatorios extends javax.swing.JInternalFrame {
         pnVendasClienteLayout.setHorizontalGroup(
             pnVendasClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnVendasClienteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 2, Short.MAX_VALUE)
                 .addComponent(lbVendasCliente)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         pnVendasClienteLayout.setVerticalGroup(
             pnVendasClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnVendasClienteLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(lbVendasCliente)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        spnVendasCliente.setViewportView(pnVendasCliente);
-
-        tpnCorpo.addTab("Vendas por Cliente      ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/vendasCliente.png")), spnVendasCliente); // NOI18N
-
-        spnVendasVendedor.setBorder(null);
+        tpnCorpo.addTab("Vendas por Cliente     ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/vendasCliente.png")), pnVendasCliente); // NOI18N
 
         pnVendasVendedor.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -83,23 +75,19 @@ public class ViewRelatorios extends javax.swing.JInternalFrame {
         pnVendasVendedorLayout.setHorizontalGroup(
             pnVendasVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnVendasVendedorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lbVendasVededor)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnVendasVendedorLayout.setVerticalGroup(
             pnVendasVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnVendasVendedorLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(lbVendasVededor)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        spnVendasVendedor.setViewportView(pnVendasVendedor);
-
-        tpnCorpo.addTab("Vendas por Vendedor  ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/vendasVendedor.png")), spnVendasVendedor); // NOI18N
-
-        spnFluxoCaixaDiario.setBorder(null);
+        tpnCorpo.addTab("Vendas por Vendedor ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/vendasVendedor.png")), pnVendasVendedor); // NOI18N
 
         pnFluxoCaixaDiario.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -110,23 +98,19 @@ public class ViewRelatorios extends javax.swing.JInternalFrame {
         pnFluxoCaixaDiarioLayout.setHorizontalGroup(
             pnFluxoCaixaDiarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFluxoCaixaDiarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 2, Short.MAX_VALUE)
                 .addComponent(lbFluxoCaixaDiario)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         pnFluxoCaixaDiarioLayout.setVerticalGroup(
             pnFluxoCaixaDiarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFluxoCaixaDiarioLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(lbFluxoCaixaDiario)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        spnFluxoCaixaDiario.setViewportView(pnFluxoCaixaDiario);
-
-        tpnCorpo.addTab("Fluxo de Caixa Diário   ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/fluxoCaixaDiario.png")), spnFluxoCaixaDiario); // NOI18N
-
-        spnFluxoCaixaMensal.setBorder(null);
+        tpnCorpo.addTab("Fluxo de Caixa Diário  ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/fluxoCaixaDiario.png")), pnFluxoCaixaDiario); // NOI18N
 
         pnFluxoCaixaMensal.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -137,23 +121,19 @@ public class ViewRelatorios extends javax.swing.JInternalFrame {
         pnFluxoCaixaMensalLayout.setHorizontalGroup(
             pnFluxoCaixaMensalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFluxoCaixaMensalLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 51, Short.MAX_VALUE)
                 .addComponent(lbFluxoCaixaMensal)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 51, Short.MAX_VALUE))
         );
         pnFluxoCaixaMensalLayout.setVerticalGroup(
             pnFluxoCaixaMensalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFluxoCaixaMensalLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(lbFluxoCaixaMensal)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        spnFluxoCaixaMensal.setViewportView(pnFluxoCaixaMensal);
-
-        tpnCorpo.addTab("FLuxo de Caixa Mensal", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/fluxoCaixaMensal.png")), spnFluxoCaixaMensal); // NOI18N
-
-        spnGiroEstoque.setBorder(null);
+        tpnCorpo.addTab("Fluxo de Caixa Mensal", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/fluxoCaixaMensal.png")), pnFluxoCaixaMensal); // NOI18N
 
         pnGiroEstoque.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -164,31 +144,31 @@ public class ViewRelatorios extends javax.swing.JInternalFrame {
         pnGiroEstoqueLayout.setHorizontalGroup(
             pnGiroEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnGiroEstoqueLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 1, Short.MAX_VALUE)
                 .addComponent(lbGiroEstoque)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         pnGiroEstoqueLayout.setVerticalGroup(
             pnGiroEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnGiroEstoqueLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(lbGiroEstoque)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        spnGiroEstoque.setViewportView(pnGiroEstoque);
+        tpnCorpo.addTab("Giro de Estoque          ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/giroEstoque.png")), pnGiroEstoque); // NOI18N
 
-        tpnCorpo.addTab("Giro de Estoque           ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/giroCaixa.png")), spnGiroEstoque); // NOI18N
+        spnCorpo.setViewportView(tpnCorpo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 1058, Short.MAX_VALUE)
+            .addComponent(spnCorpo)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpnCorpo)
+            .addComponent(spnCorpo)
         );
 
         pack();
@@ -207,11 +187,7 @@ public class ViewRelatorios extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnGiroEstoque;
     private javax.swing.JPanel pnVendasCliente;
     private javax.swing.JPanel pnVendasVendedor;
-    private javax.swing.JScrollPane spnFluxoCaixaDiario;
-    private javax.swing.JScrollPane spnFluxoCaixaMensal;
-    private javax.swing.JScrollPane spnGiroEstoque;
-    private javax.swing.JScrollPane spnVendasCliente;
-    private javax.swing.JScrollPane spnVendasVendedor;
+    private javax.swing.JScrollPane spnCorpo;
     private javax.swing.JTabbedPane tpnCorpo;
     // End of variables declaration//GEN-END:variables
 }

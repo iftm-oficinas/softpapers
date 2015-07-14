@@ -36,7 +36,7 @@ public class TabelaUsuario extends AbstractTableModel {
      */
     public TabelaUsuario() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Id", "Nome", "Cpf", "Email", "Senha", "Endereço", "Data criação", "Data atualização"};
+        colunas = new String[]{"Usuario", "Nome", "Cpf", "Email", "Senha", "Endereço", "Criação", "Atualização"};
     }
 
     /**
@@ -48,7 +48,7 @@ public class TabelaUsuario extends AbstractTableModel {
      */
     public TabelaUsuario(List<Usuario> usuarios) {
         linhas = new ArrayList<>(usuarios);
-        colunas = new String[]{"Id", "Nome", "Cpf", "Email", "Senha", "Endereço", "Data criação", "Data atualização"};
+        colunas = new String[]{"Usuario", "Nome", "Cpf", "Email", "Senha", "Endereço", "Criação", "Atualização"};
     }
 
     //Gets and Sets

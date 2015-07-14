@@ -19,6 +19,7 @@ public class ViewEstoque extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
+        spnCorpo = new javax.swing.JScrollPane();
         tpnCorpo = new javax.swing.JTabbedPane();
         pnInventario = new javax.swing.JPanel();
         lbInventario = new javax.swing.JLabel();
@@ -87,15 +88,17 @@ public class ViewEstoque extends javax.swing.JInternalFrame {
 
         tpnCorpo.addTab("Compras  ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/compras.png")), pnCompras); // NOI18N
 
+        spnCorpo.setViewportView(tpnCorpo);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpnCorpo)
+            .addComponent(spnCorpo)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpnCorpo)
+            .addComponent(spnCorpo)
         );
 
         pack();
@@ -115,6 +118,7 @@ public class ViewEstoque extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbInventario;
     private javax.swing.JPanel pnCompras;
     private javax.swing.JPanel pnInventario;
+    private javax.swing.JScrollPane spnCorpo;
     private javax.swing.JTabbedPane tpnCorpo;
     // End of variables declaration//GEN-END:variables
 }

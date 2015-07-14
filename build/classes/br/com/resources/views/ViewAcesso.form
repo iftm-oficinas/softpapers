@@ -43,13 +43,6 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JScrollPane" name="spnCorpo">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-            <EtchetBorder/>
-          </Border>
-        </Property>
-      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
@@ -63,14 +56,14 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pnUsuarios" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
                               <Component id="pnEstoque" alignment="0" max="32767" attributes="0"/>
                               <Component id="pnVendas" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="pnControle" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -79,13 +72,13 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pnFinanceiro" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="pnControle" min="-2" max="-2" attributes="0"/>
-                          <Component id="pnRelatorios" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnFinanceiro" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnRelatorios" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnUsuarios" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Component id="pnRodape" alignment="0" max="32767" attributes="0"/>
+                  <Component id="pnRodape" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -94,23 +87,22 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="pnFinanceiro" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="pnRelatorios" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="pnControle" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="pnUsuarios" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="pnFinanceiro" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="pnVendas" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="pnEstoque" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="pnUsuarios" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="pnControle" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="lbLogo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="pnAcesso" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -180,7 +172,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="pfSenha" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnEntrar" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnEntrar" min="-2" pref="35" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbAcesso2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -320,7 +312,6 @@
                                       <Component id="lbTextoVendas3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lbTextoVendas4" min="-2" max="-2" attributes="0"/>
                                       <Component id="lbTextoVendas5" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbInfoVendas" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="sprVendas" min="-2" pref="300" max="-2" attributes="0"/>
@@ -355,9 +346,7 @@
                               </Group>
                               <Component id="lbImagemVendas" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lbInfoVendas" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -423,17 +412,6 @@
                     <Property name="text" type="java.lang.String" value="vendas."/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbInfoVendas">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="14" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="MAIS INFO"/>
-                  </Properties>
-                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnEstoque">
@@ -457,7 +435,6 @@
                                       <Component id="lbTextoEstoque2" min="-2" max="-2" attributes="0"/>
                                       <Component id="lbTextoEstoque3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lbTextoEstoque4" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbInfoEstoque" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="sprEstoque" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
@@ -478,7 +455,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="sprEstoque" min="-2" pref="2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="lbTextoEstoque1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -487,12 +464,10 @@
                                   <Component id="lbTextoEstoque3" min="-2" pref="15" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbTextoEstoque4" min="-2" pref="15" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="lbInfoEstoque" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="lbImagemEstoque" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -550,17 +525,6 @@
                     <Property name="text" type="java.lang.String" value="dor de cabe&#xe7;a."/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbInfoEstoque">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="14" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="MAIS INFO"/>
-                  </Properties>
-                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnUsuarios">
@@ -577,15 +541,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="lbImagemUsuarios" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbTextoUsuairos1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbTextoUsuairos2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbTextoUsuairos3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbTextoUsuairos4" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbInfoUsuarios" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbTextoUsuairos2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbTextoUsuairos1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbTextoUsuairos3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbTextoUsuairos4" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lbImagemUsuarios" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="sprUsuarios" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -605,7 +568,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="sprUsuarios" min="-2" pref="2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="lbTextoUsuairos1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -614,12 +577,10 @@
                                   <Component id="lbTextoUsuairos3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbTextoUsuairos4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="lbInfoUsuarios" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="lbImagemUsuarios" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -677,17 +638,6 @@
                     <Property name="text" type="java.lang.String" value="seu controle interno."/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbInfoUsuarios">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="14" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="MAIS INFO"/>
-                  </Properties>
-                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnFinanceiro">
@@ -713,7 +663,6 @@
                                       <Component id="lbTextoFinanceiro4" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lbTextoFinanceiro5" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lbTextoFinanceiro6" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lnInfoFinanceiro" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbImagemFinanceiro" min="-2" max="-2" attributes="0"/>
@@ -751,9 +700,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lbTextoFinanceiro6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lnInfoFinanceiro" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -827,17 +774,6 @@
                     <Property name="text" type="java.lang.String" value="vencimento."/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lnInfoFinanceiro">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="14" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="MAIS INFO"/>
-                  </Properties>
-                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnRelatorios">
@@ -862,7 +798,6 @@
                                       <Component id="lbTextoRelatorios3" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lbTextoRelatorios4" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="lbTextoRelatorios5" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbInfoRelatorios" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbImagemRelatorios" min="-2" max="-2" attributes="0"/>
@@ -898,9 +833,7 @@
                               </Group>
                               <Component id="lbImagemRelatorios" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lbInfoRelatorios" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -966,17 +899,6 @@
                     <Property name="text" type="java.lang.String" value="neg&#xf3;cio."/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbInfoRelatorios">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="14" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="MAIS INFO"/>
-                  </Properties>
-                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnControle">
@@ -993,28 +915,19 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lbImagemControle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lbTextoControle1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lbTextoControle2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lbTextoControle3" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lbTextoControle4" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lbTextoControle5" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lbTextoControle6" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lbInfoControle" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="lbTextoControle1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbTextoControle2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbTextoControle3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                          <Component id="lbTextoControle5" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbTextoControle4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbTextoControle6" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbImagemControle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="311" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1024,10 +937,9 @@
                                           <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace pref="11" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1046,17 +958,15 @@
                                   <Component id="lbTextoControle2" min="-2" pref="15" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbTextoControle3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbTextoControle4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="lbTextoControle4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbTextoControle5" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="lbImagemControle" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lbTextoControle6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lbInfoControle" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -1129,17 +1039,6 @@
                       <Font name="Arial" size="12" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="decis&#xe3;o na sua empresa."/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lbInfoControle">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="14" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="MAIS INFO"/>
                   </Properties>
                 </Component>
               </SubComponents>

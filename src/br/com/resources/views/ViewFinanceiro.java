@@ -18,6 +18,7 @@ public class ViewFinanceiro extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        spnCorpo = new javax.swing.JScrollPane();
         tpnCorpo = new javax.swing.JTabbedPane();
         pnExtrato = new javax.swing.JPanel();
         lbExtrato = new javax.swing.JLabel();
@@ -32,6 +33,8 @@ public class ViewFinanceiro extends javax.swing.JInternalFrame {
         setBorder(null);
         setResizable(true);
         setFrameIcon(null);
+
+        spnCorpo.setBorder(null);
 
         tpnCorpo.setForeground(new java.awt.Color(102, 102, 102));
         tpnCorpo.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -141,15 +144,17 @@ public class ViewFinanceiro extends javax.swing.JInternalFrame {
 
         tpnCorpo.addTab("Histórico               ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/bola.png")), pnHitorico); // NOI18N
 
+        spnCorpo.setViewportView(tpnCorpo);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpnCorpo)
+            .addComponent(spnCorpo)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpnCorpo)
+            .addComponent(spnCorpo)
         );
 
         pack();
@@ -178,6 +183,7 @@ public class ViewFinanceiro extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnContasReceber;
     private javax.swing.JPanel pnExtrato;
     private javax.swing.JPanel pnHitorico;
+    private javax.swing.JScrollPane spnCorpo;
     private javax.swing.JTabbedPane tpnCorpo;
     // End of variables declaration//GEN-END:variables
 }
