@@ -26,7 +26,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="pnRodape" alignment="0" max="32767" attributes="0"/>
           <Component id="pnMenu" alignment="0" max="32767" attributes="0"/>
-          <Component id="pnCorpo" alignment="0" pref="1187" max="32767" attributes="0"/>
+          <Component id="pnCorpo" alignment="0" pref="1145" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -34,7 +34,7 @@
           <Group type="102" attributes="0">
               <Component id="pnMenu" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="pnCorpo" pref="196" max="32767" attributes="0"/>
+              <Component id="pnCorpo" pref="186" max="32767" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="pnRodape" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -509,21 +509,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Component id="lbFundoEsquerda" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="dpnCorpo" max="32767" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="lbFundoDireita" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lbFundoDireita" pref="0" max="32767" attributes="0"/>
-                      <Component id="dpnCorpo" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lbFundoEsquerda" pref="0" max="32767" attributes="0"/>
+                      <Component id="lbFundoEsquerda" alignment="1" pref="0" max="32767" attributes="0"/>
+                      <Component id="dpnCorpo" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
               </Group>
@@ -553,7 +551,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="190" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="180" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -583,13 +581,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
                   <Component id="lbDireitos" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="203" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="lbAjuda" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lbTermosUso" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lbPoliticaPrivacidade" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="204" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="lbVersao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
               </Group>

@@ -1,22 +1,37 @@
 package br.com.resources.views;
 
-import br.com.controllers.ControllerPrincipal;
+import br.com.models.bo.AcessoBO;
+import br.com.models.vo.Usuario;
 
 public class ViewAcesso extends javax.swing.JInternalFrame {
 
+    /**
+     *
+     * @see Construtor padrão.
+     */
     public ViewAcesso() {
         initComponents();
     }
-    
-    public ViewAcesso(ViewPrincipal viewPrincipal){
+
+    /**
+     *
+     * @see Construtor usado quando classe é instanciada na ViewPrincipal,
+     * recebe a viewPrincipal como pai e organiza esse frame dentro do frame
+     * principal.
+     *
+     * @param viewPrincipal
+     */
+    public ViewAcesso(ViewPrincipal viewPrincipal) {
         setRootPaneCheckingEnabled(false);
         javax.swing.plaf.InternalFrameUI frame = this.getUI();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) frame).setNorthPane(null);
-        
+
         initComponents();
         this.viewPrincipal = viewPrincipal;
+        this.acessoBO = new AcessoBO();
     }
-    
+
+    //Componentes padrões do JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -41,6 +56,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
 
         tfEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfEmail.setForeground(new java.awt.Color(102, 102, 102));
+        tfEmail.setText("marlonmacf@gmail.com");
 
         lbSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbSenha.setForeground(new java.awt.Color(102, 102, 102));
@@ -48,6 +64,7 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
 
         pfSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         pfSenha.setForeground(new java.awt.Color(102, 102, 102));
+        pfSenha.setText("1");
 
         btnEntrar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(102, 102, 102));
@@ -111,13 +128,35 @@ public class ViewAcesso extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @see Método que responde ao clique do JButton(btnEntrar), chama a função
+     * de verificarAcesso da classe AcessoBO, passando como parâmetros os
+     * valores do JTextFild(tfEmail) e JpasswordFild(pfLogin).
+     *
+     * @param evt
+     */
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        controllerPrincipal.realizarAcesso(tfEmail.getText(), pfSenha.getText());
+        btnEntrar.setEnabled(false);
+        if (acessoBO.validarCampos(pnAcesso)) {
+            usuarioVO = acessoBO.verificarUsuario(tfEmail.getText(), pfSenha.getText());
+            if (usuarioVO != null) {
+                viewPrincipal.mostrarMenu();
+                this.setVisible(false);
+            }
+        }
+        btnEntrar.setEnabled(true);
     }//GEN-LAST:event_btnEntrarActionPerformed
 
+    //Declaração de variáveis(View).
     private ViewPrincipal viewPrincipal;
-    private ControllerPrincipal controllerPrincipal;
-    
+
+    //Declaração de variáveis(Business Object).
+    private AcessoBO acessoBO;
+
+    //Declaração de variáveis(Value Object).
+    private Usuario usuarioVO;
+    //Declaração de variáveis(Data Access Object).
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel lbEmail;

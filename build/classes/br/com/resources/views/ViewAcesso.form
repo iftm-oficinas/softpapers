@@ -116,6 +116,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="marlonmacf@gmail.com"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbSenha">
@@ -137,6 +138,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnEntrar">

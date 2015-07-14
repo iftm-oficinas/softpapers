@@ -8,8 +8,9 @@ import br.com.resources.views.ViewPrincipal;
 public class Index {
 
     /**
-     * Classe utilizada para iniciar o programa, seleciona o look and feal e
-     * abre a tela principal.
+     * @see Classe utilizada para iniciar o programa, seleciona o look and feal 
+     * e abre a tela principal.
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {

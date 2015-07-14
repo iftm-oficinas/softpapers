@@ -7,7 +7,8 @@ import java.util.logging.Logger;
 public class ViewPrincipal extends javax.swing.JFrame {
 
     /**
-     * Construtor padrão que é carregado quando se executa o programa pela
+     *
+     * @see Construtor padrão que é carregado quando se executa o programa pela
      * primeira vez e é necessário a verificação de acesso.
      */
     public ViewPrincipal() {
@@ -31,19 +32,23 @@ public class ViewPrincipal extends javax.swing.JFrame {
         dpnCorpo.add(viewTermosUso = new ViewTermosUso(this));
         dpnCorpo.add(viewPoliticaPrivacidade = new ViewPoliticaPrivacidade(this));
 
-        /**
-         * Define viewAcesso visivel para se verificar o acesso; Condição try
-         * que tenta definir a viewAcesso com tamanho maximo.
-         */
-        LimparDesktop();
+        ocultarMenu();
         viewAcesso.setVisible(true);
+        
+        //Condição try que tenta definir a viewAcesso com tamanho maximo.
         try {
             viewAcesso.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
-        //Define todos os menus como não visíveis para restringir o acesso antes do usuario logar.
+    /**
+     *
+     * @see Método que define todos os elementos do menu como não visíveis para
+     * restringir o acesso antes do usuario logar.
+     */
+    public final void ocultarMenu() {
         lbHome.setVisible(false);
         lbCaixa.setVisible(false);
         lbClientes.setVisible(false);
@@ -58,10 +63,31 @@ public class ViewPrincipal extends javax.swing.JFrame {
         lbTermosUso.setVisible(false);
         lbPoliticaPrivacidade.setVisible(false);
     }
-
+    
     /**
-     * Método que define como não visivel todos os JInternalFrames dessa view;
-     * Utilizado sempre que uma nova view for definida como visível.
+     *
+     * @see Método que define todos os elementos do menu como visíveis apos
+     * realizar o login.
+     */
+    public final void mostrarMenu() {
+        lbHome.setVisible(true);
+        lbCaixa.setVisible(true);
+        lbClientes.setVisible(true);
+        lbClientes.setVisible(true);
+        lbFornecedores.setVisible(true);
+        lbEstoque.setVisible(true);
+        lbFinanceiro.setVisible(true);
+        lbRelatorios.setVisible(true);
+        lbPainelControle.setVisible(true);
+        lbSair.setVisible(true);
+        lbAjuda.setVisible(true);
+        lbTermosUso.setVisible(true);
+        lbPoliticaPrivacidade.setVisible(true);
+    }
+    
+    /**
+     * @see Método que define como não visivel todos os JInternalFrames,
+     * utilizado sempre que uma nova view for definida como visível.
      */
     public final void LimparDesktop() {
         viewAcesso.setVisible(false);
@@ -475,7 +501,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
         );
         dpnCorpoLayout.setVerticalGroup(
             dpnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGap(0, 180, Short.MAX_VALUE)
         );
 
         lbFundoDireita.setBackground(new java.awt.Color(255, 255, 255));
@@ -487,19 +513,17 @@ public class ViewPrincipal extends javax.swing.JFrame {
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCorpoLayout.createSequentialGroup()
                 .addComponent(lbFundoEsquerda)
-                .addGap(0, 0, 0)
                 .addComponent(dpnCorpo)
-                .addGap(0, 0, 0)
                 .addComponent(lbFundoDireita))
         );
         pnCorpoLayout.setVerticalGroup(
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCorpoLayout.createSequentialGroup()
+            .addGroup(pnCorpoLayout.createSequentialGroup()
                 .addGap(3, 3, 3)
-                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbFundoDireita, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(dpnCorpo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbFundoEsquerda, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(lbFundoEsquerda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(dpnCorpo))
                 .addGap(3, 3, 3))
         );
 
@@ -568,13 +592,13 @@ public class ViewPrincipal extends javax.swing.JFrame {
             .addGroup(pnRodapeLayout.createSequentialGroup()
                 .addGap(169, 169, 169)
                 .addComponent(lbDireitos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbAjuda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbTermosUso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbPoliticaPrivacidade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbVersao)
                 .addGap(170, 170, 170))
         );
@@ -597,14 +621,14 @@ public class ViewPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnRodape, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 1187, Short.MAX_VALUE)
+            .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 1145, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addComponent(pnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(pnRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -614,11 +638,12 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Métodos que realizarão a interação entre todos os JInternalFrames e o
-     * JDesktopPane da ViewPrincipal; MouseClicked chama a função LimparDesktop
-     * e define como visível uma nova view no JDesktopPane; MouseEntered
-     * acontece ao passar o mouse pela label, muda a cor da mesma; MouseExited
-     * acontece ao retirar o mouse da label, retorna a cor padrão.
+     * 
+     * @ see Métodos que realizarão a interação entre todos os JInternalFrames 
+     * e o JDesktopPane da ViewPrincipal; MouseClicked chama a função 
+     * LimparDesktop e define como visível uma nova view no JDesktopPane; 
+     * MouseEntered acontece ao passar o mouse pela label, muda a cor da mesma; 
+     * MouseExited acontece ao retirar o mouse da label, retorna a cor padrão.
      *
      * @param evt
      */
@@ -808,6 +833,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
     private void lbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSairMouseClicked
         LimparDesktop();
+        ocultarMenu();
         viewAcesso.setVisible(true);
         try {
             viewAcesso.setMaximum(true);
@@ -913,7 +939,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
         });
     }
 
-    //Declaração de variáveis.
+    //Declaração de variáveis(Views).
     private ViewAcesso viewAcesso;
     private ViewHome viewHome;
     private ViewCaixa viewCaixa;
