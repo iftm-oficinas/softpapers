@@ -21,7 +21,7 @@ public class TableModelCliente extends AbstractTableModel {
 
     //Declaração de variáveis que compoem os campos da tabela.
     private static final int nomeCliente = 0;
-    private static final int cpfCnpjCliente = 1;
+    private static final int pessoaCliente = 1;
     private static final int emailCliente = 2;
     private static final int TelefoneCliente = 3;
     private static final int criacaoCliente = 4;
@@ -34,7 +34,7 @@ public class TableModelCliente extends AbstractTableModel {
      */
     public TableModelCliente() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Cliente", "CNPJ/CPF", "E-mail", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Cliente", "Pessoa", "E-mail", "Telefone", "Criação", "Atualização"};
     }
 
     /**
@@ -46,7 +46,7 @@ public class TableModelCliente extends AbstractTableModel {
      */
     public TableModelCliente(List<Cliente> clientes) {
         linhas = new ArrayList<>(clientes);
-        colunas = new String[]{"Cliente", "CNPJ/CPF", "E-mail", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Cliente", "Pessoa", "E-mail", "Telefone", "Criação", "Atualização"};
     }
 
     //Gets and Sets
@@ -70,7 +70,7 @@ public class TableModelCliente extends AbstractTableModel {
         switch (columnIndex) {
             case nomeCliente:
                 return String.class;
-            case cpfCnpjCliente:
+            case pessoaCliente:
                 return String.class;
             case emailCliente:
                 return String.class;
@@ -91,12 +91,12 @@ public class TableModelCliente extends AbstractTableModel {
         switch (columnIndex) {
             case nomeCliente:
                 return cliente.getNomeCliente();
-            case cpfCnpjCliente:
-                return cliente.getCpfCnpjCliente();
+            case pessoaCliente:
+                return cliente.getPessoa().getTipoPessoa();
             case emailCliente:
-                return cliente.getEmailCliente();
+                return cliente.getContato().getEmailContato();
             case TelefoneCliente:
-                return cliente.getTelefoneCliente();
+                return cliente.getContato().getTelefoneContato();
             case criacaoCliente:
                 return cliente.getCriacaoCliente();
             case atualizacaoCliente:
@@ -113,14 +113,14 @@ public class TableModelCliente extends AbstractTableModel {
             case nomeCliente:
                 cliente.setNomeCliente((String) aValue);
                 break;
-            case cpfCnpjCliente:
-                cliente.setCpfCnpjCliente((String) (aValue));
+            case pessoaCliente:
+                cliente.getPessoa().setTipoPessoa((String) (aValue));
                 break;
             case emailCliente:
-                cliente.setEmailCliente((String) (aValue));
+                cliente.getContato().setEmailContato((String) (aValue));
                 break;
             case TelefoneCliente:
-                cliente.setTelefoneCliente((String) (aValue));
+                cliente.getContato().setTelefoneContato((String) (aValue));
                 break;
             case criacaoCliente:
                 cliente.setCriacaoCliente((Date) (aValue));

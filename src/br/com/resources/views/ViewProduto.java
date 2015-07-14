@@ -91,6 +91,11 @@ public class ViewProduto extends javax.swing.JDialog {
 
         tfDescricao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfDescricao.setForeground(new java.awt.Color(102, 102, 102));
+        tfDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfDescricaoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnObrigatorioLayout = new javax.swing.GroupLayout(pnObrigatorio);
         pnObrigatorio.setLayout(pnObrigatorioLayout);
@@ -129,6 +134,11 @@ public class ViewProduto extends javax.swing.JDialog {
 
         tfCodigo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfCodigo.setForeground(new java.awt.Color(102, 102, 102));
+        tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCodigoKeyTyped(evt);
+            }
+        });
 
         lbValorCusto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbValorCusto.setForeground(new java.awt.Color(102, 102, 102));
@@ -136,6 +146,11 @@ public class ViewProduto extends javax.swing.JDialog {
 
         tfValorCusto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfValorCusto.setForeground(new java.awt.Color(102, 102, 102));
+        tfValorCusto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfValorCustoKeyTyped(evt);
+            }
+        });
 
         lbValorVenda.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbValorVenda.setForeground(new java.awt.Color(102, 102, 102));
@@ -143,6 +158,11 @@ public class ViewProduto extends javax.swing.JDialog {
 
         tfValorVenda.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfValorVenda.setForeground(new java.awt.Color(102, 102, 102));
+        tfValorVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfValorVendaKeyTyped(evt);
+            }
+        });
 
         lbMinimo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbMinimo.setForeground(new java.awt.Color(102, 102, 102));
@@ -150,6 +170,11 @@ public class ViewProduto extends javax.swing.JDialog {
 
         tfMinimo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfMinimo.setForeground(new java.awt.Color(102, 102, 102));
+        tfMinimo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfMinimoKeyTyped(evt);
+            }
+        });
 
         lbMaximo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbMaximo.setForeground(new java.awt.Color(102, 102, 102));
@@ -157,6 +182,11 @@ public class ViewProduto extends javax.swing.JDialog {
 
         tfMaximo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfMaximo.setForeground(new java.awt.Color(102, 102, 102));
+        tfMaximo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfMaximoKeyTyped(evt);
+            }
+        });
 
         lbEstoque.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbEstoque.setForeground(new java.awt.Color(102, 102, 102));
@@ -168,6 +198,11 @@ public class ViewProduto extends javax.swing.JDialog {
 
         tfEstoque.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfEstoque.setForeground(new java.awt.Color(102, 102, 102));
+        tfEstoque.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfEstoqueKeyTyped(evt);
+            }
+        });
 
         lbCategoria.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lbCategoria.setForeground(new java.awt.Color(0, 102, 205));
@@ -179,6 +214,7 @@ public class ViewProduto extends javax.swing.JDialog {
 
         cbCategoria.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cbCategoria.setForeground(new java.awt.Color(102, 102, 102));
+        cbCategoria.setFocusable(false);
 
         lbFornecedor.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lbFornecedor.setForeground(new java.awt.Color(0, 102, 205));
@@ -190,6 +226,7 @@ public class ViewProduto extends javax.swing.JDialog {
 
         cbFornecedor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cbFornecedor.setForeground(new java.awt.Color(102, 102, 102));
+        cbFornecedor.setFocusable(false);
 
         sprRodape.setForeground(new java.awt.Color(204, 204, 204));
 
@@ -200,11 +237,6 @@ public class ViewProduto extends javax.swing.JDialog {
         btnCadastrar.setFocusable(false);
         btnCadastrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
         btnCadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnCorpoLayout = new javax.swing.GroupLayout(pnCorpo);
         pnCorpo.setLayout(pnCorpoLayout);
@@ -331,9 +363,60 @@ public class ViewProduto extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+    /**
+     *
+     * @see Conjunto de Métodos que recebem o evento KeyTyped do teclado para
+     * validar a entrada de valores nos campos de texto.
+     *
+     * @param evt
+     */
+    private void tfDescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDescricaoKeyTyped
+        if (tfDescricao.getText().length() > 49) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfDescricaoKeyTyped
 
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+    private void tfCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyTyped
+        String caracteres = ".1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfCodigo.getText().length() > 49) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfCodigoKeyTyped
+
+    private void tfValorCustoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfValorCustoKeyTyped
+        String caracteres = ".1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfValorCusto.getText().length() > 19) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfValorCustoKeyTyped
+
+    private void tfValorVendaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfValorVendaKeyTyped
+        String caracteres = ".1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfValorVenda.getText().length() > 19) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfValorVendaKeyTyped
+
+    private void tfMinimoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMinimoKeyTyped
+        String caracteres = "1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfMinimo.getText().length() > 9) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfMinimoKeyTyped
+
+    private void tfMaximoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMaximoKeyTyped
+        String caracteres = "1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfMaximo.getText().length() > 9) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfMaximoKeyTyped
+
+    private void tfEstoqueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEstoqueKeyTyped
+        String caracteres = "1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfEstoque.getText().length() > 9) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfEstoqueKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;

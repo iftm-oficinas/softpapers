@@ -1,6 +1,7 @@
 package br.com.resources.views;
 
 import br.com.models.vo.Fornecedor;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -35,13 +36,12 @@ public class ViewFornecedor extends javax.swing.JDialog {
         pnTitulo = new javax.swing.JPanel();
         lbTitulo = new javax.swing.JLabel();
         pnCorpo = new javax.swing.JPanel();
-        pnObrigatorio = new javax.swing.JPanel();
-        lbNome = new javax.swing.JLabel();
-        tfNome = new javax.swing.JTextField();
-        lbEmpresa = new javax.swing.JLabel();
-        tfEmpresa = new javax.swing.JTextField();
+        lbNomeFornecedor = new javax.swing.JLabel();
+        tfNomeFornecedor = new javax.swing.JTextField();
         lbContato = new javax.swing.JLabel();
         lbOpcional1 = new javax.swing.JLabel();
+        lbNomeContato = new javax.swing.JLabel();
+        tfNomeContato = new javax.swing.JTextField();
         lbEmail = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
         lbTelefone = new javax.swing.JLabel();
@@ -116,42 +116,17 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         pnCorpo.setBackground(new java.awt.Color(255, 255, 255));
 
-        pnObrigatorio.setBackground(new java.awt.Color(255, 255, 255));
+        lbNomeFornecedor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbNomeFornecedor.setForeground(new java.awt.Color(102, 102, 102));
+        lbNomeFornecedor.setText("Nome do fornecedor");
 
-        lbNome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbNome.setForeground(new java.awt.Color(102, 102, 102));
-        lbNome.setText("Nome do contato");
-
-        tfNome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfNome.setForeground(new java.awt.Color(102, 102, 102));
-
-        javax.swing.GroupLayout pnObrigatorioLayout = new javax.swing.GroupLayout(pnObrigatorio);
-        pnObrigatorio.setLayout(pnObrigatorioLayout);
-        pnObrigatorioLayout.setHorizontalGroup(
-            pnObrigatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnObrigatorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnObrigatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbNome))
-                .addGap(3, 3, 3))
-        );
-        pnObrigatorioLayout.setVerticalGroup(
-            pnObrigatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnObrigatorioLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(lbNome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        lbEmpresa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbEmpresa.setForeground(new java.awt.Color(102, 102, 102));
-        lbEmpresa.setText("Empresa");
-
-        tfEmpresa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfEmpresa.setForeground(new java.awt.Color(102, 102, 102));
+        tfNomeFornecedor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfNomeFornecedor.setForeground(new java.awt.Color(102, 102, 102));
+        tfNomeFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNomeFornecedorKeyTyped(evt);
+            }
+        });
 
         lbContato.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lbContato.setForeground(new java.awt.Color(0, 102, 205));
@@ -161,12 +136,29 @@ public class ViewFornecedor extends javax.swing.JDialog {
         lbOpcional1.setForeground(new java.awt.Color(102, 102, 102));
         lbOpcional1.setText("(Opcional)");
 
+        lbNomeContato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbNomeContato.setForeground(new java.awt.Color(102, 102, 102));
+        lbNomeContato.setText("Nome do contato");
+
+        tfNomeContato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfNomeContato.setForeground(new java.awt.Color(102, 102, 102));
+        tfNomeContato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNomeContatoKeyTyped(evt);
+            }
+        });
+
         lbEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbEmail.setForeground(new java.awt.Color(102, 102, 102));
         lbEmail.setText("E-mail");
 
         tfEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfEmail.setForeground(new java.awt.Color(102, 102, 102));
+        tfEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfEmailKeyTyped(evt);
+            }
+        });
 
         lbTelefone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbTelefone.setForeground(new java.awt.Color(102, 102, 102));
@@ -174,6 +166,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfTelefone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfTelefone.setForeground(new java.awt.Color(102, 102, 102));
+        tfTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfTelefoneKeyTyped(evt);
+            }
+        });
 
         lbCelular.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbCelular.setForeground(new java.awt.Color(102, 102, 102));
@@ -181,6 +178,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfCelular.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfCelular.setForeground(new java.awt.Color(102, 102, 102));
+        tfCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCelularKeyTyped(evt);
+            }
+        });
 
         lbMaisEndereco.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lbMaisEndereco.setForeground(new java.awt.Color(0, 102, 205));
@@ -196,6 +198,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfEndereco.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfEndereco.setForeground(new java.awt.Color(102, 102, 102));
+        tfEndereco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfEnderecoKeyTyped(evt);
+            }
+        });
 
         lbCep.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbCep.setForeground(new java.awt.Color(102, 102, 102));
@@ -215,6 +222,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfComplemento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfComplemento.setForeground(new java.awt.Color(102, 102, 102));
+        tfComplemento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfComplementoKeyTyped(evt);
+            }
+        });
 
         lbNumero.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbNumero.setForeground(new java.awt.Color(102, 102, 102));
@@ -234,6 +246,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfBairro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfBairro.setForeground(new java.awt.Color(102, 102, 102));
+        tfBairro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfBairroKeyTyped(evt);
+            }
+        });
 
         lbCidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbCidade.setForeground(new java.awt.Color(102, 102, 102));
@@ -241,6 +258,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfCidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfCidade.setForeground(new java.awt.Color(102, 102, 102));
+        tfCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCidadeKeyTyped(evt);
+            }
+        });
 
         lbEstado.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbEstado.setForeground(new java.awt.Color(102, 102, 102));
@@ -248,6 +270,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfEstado.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfEstado.setForeground(new java.awt.Color(102, 102, 102));
+        tfEstado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfEstadoKeyTyped(evt);
+            }
+        });
 
         sprDireita.setForeground(new java.awt.Color(204, 204, 204));
         sprDireita.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -256,6 +283,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
         buttonGroup1.add(rbPessoaFisica);
         rbPessoaFisica.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         rbPessoaFisica.setForeground(new java.awt.Color(102, 102, 102));
+        rbPessoaFisica.setSelected(true);
         rbPessoaFisica.setText("Pessoa Física");
         rbPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,7 +295,6 @@ public class ViewFornecedor extends javax.swing.JDialog {
         buttonGroup1.add(rbPessoaJuridica);
         rbPessoaJuridica.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         rbPessoaJuridica.setForeground(new java.awt.Color(102, 102, 102));
-        rbPessoaJuridica.setSelected(true);
         rbPessoaJuridica.setText("Pessoa Jurídica ");
         rbPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,6 +318,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfCpfCnpj.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfCpfCnpj.setForeground(new java.awt.Color(102, 102, 102));
+        tfCpfCnpj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCpfCnpjKeyTyped(evt);
+            }
+        });
 
         lbRgRazaoSocial.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbRgRazaoSocial.setForeground(new java.awt.Color(102, 102, 102));
@@ -298,6 +330,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfRgRazaoSocial.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfRgRazaoSocial.setForeground(new java.awt.Color(102, 102, 102));
+        tfRgRazaoSocial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfRgRazaoSocialKeyTyped(evt);
+            }
+        });
 
         lbNascimentoFundacao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbNascimentoFundacao.setForeground(new java.awt.Color(102, 102, 102));
@@ -319,6 +356,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfEstadual.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfEstadual.setForeground(new java.awt.Color(102, 102, 102));
+        tfEstadual.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfEstadualKeyTyped(evt);
+            }
+        });
 
         lbMunicipal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbMunicipal.setForeground(new java.awt.Color(102, 102, 102));
@@ -326,6 +368,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfMunicipal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfMunicipal.setForeground(new java.awt.Color(102, 102, 102));
+        tfMunicipal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfMunicipalKeyTyped(evt);
+            }
+        });
 
         lbSuframa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbSuframa.setForeground(new java.awt.Color(102, 102, 102));
@@ -333,6 +380,11 @@ public class ViewFornecedor extends javax.swing.JDialog {
 
         tfSuframa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfSuframa.setForeground(new java.awt.Color(102, 102, 102));
+        tfSuframa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfSuframaKeyTyped(evt);
+            }
+        });
 
         rbIcms.setBackground(new java.awt.Color(255, 255, 255));
         rbIcms.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -387,9 +439,6 @@ public class ViewFornecedor extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(pnPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnPessoaLayout.createSequentialGroup()
-                        .addComponent(tfNascimentoFundacao)
-                        .addContainerGap())
-                    .addGroup(pnPessoaLayout.createSequentialGroup()
                         .addGroup(pnPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbCpfCnpj)
                             .addGroup(pnPessoaLayout.createSequentialGroup()
@@ -399,8 +448,9 @@ public class ViewFornecedor extends javax.swing.JDialog {
                             .addComponent(lbRgRazaoSocial)
                             .addComponent(lbNascimentoFundacao))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnPessoaLayout.createSequentialGroup()
+                    .addGroup(pnPessoaLayout.createSequentialGroup()
                         .addGroup(pnPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfNascimentoFundacao)
                             .addComponent(tfRgRazaoSocial, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfCpfCnpj, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
@@ -438,11 +488,6 @@ public class ViewFornecedor extends javax.swing.JDialog {
         btnCadastrar.setFocusable(false);
         btnCadastrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
         btnCadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnCadastrarDOWN.png"))); // NOI18N
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnCorpoLayout = new javax.swing.GroupLayout(pnCorpo);
         pnCorpo.setLayout(pnCorpoLayout);
@@ -452,57 +497,58 @@ public class ViewFornecedor extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnCorpoLayout.createSequentialGroup()
-                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnCorpoLayout.createSequentialGroup()
                                 .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfEstado))
+                            .addComponent(tfEndereco)
+                            .addComponent(tfNomeFornecedor)
                             .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addComponent(lbContato)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbOpcional1))
-                            .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbEmail)
-                                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbTelefone))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbCelular)
-                                    .addComponent(tfCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addComponent(lbMaisEndereco)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbOpcional3))
-                            .addComponent(lbEndereco)
-                            .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbCep)
-                                    .addComponent(lbBairro))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbComplemento)
-                                    .addComponent(lbCidade))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbEstado)
-                                    .addComponent(lbNumero)
-                                    .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbEmpresa)
-                                    .addComponent(tfEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pnObrigatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tfEndereco))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbEmail)
+                                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbTelefone))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbCelular)
+                                            .addComponent(tfCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                                        .addComponent(lbMaisEndereco)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lbOpcional3))
+                                    .addComponent(lbEndereco)
+                                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbCep)
+                                            .addComponent(lbBairro))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lbComplemento)
+                                            .addComponent(lbCidade))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbEstado)
+                                            .addComponent(lbNumero)
+                                            .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lbNomeFornecedor)
+                                    .addGroup(pnCorpoLayout.createSequentialGroup()
+                                        .addComponent(lbContato)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lbOpcional1))
+                                    .addComponent(lbNomeContato)
+                                    .addComponent(tfNomeContato))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(sprDireita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -520,16 +566,18 @@ public class ViewFornecedor extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnCorpoLayout.createSequentialGroup()
-                        .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnObrigatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnCorpoLayout.createSequentialGroup()
-                                .addComponent(lbEmpresa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbNomeFornecedor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNomeFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbContato)
                             .addComponent(lbOpcional1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbNomeContato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNomeContato, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbEmail)
                             .addComponent(lbTelefone)
@@ -539,7 +587,7 @@ public class ViewFornecedor extends javax.swing.JDialog {
                             .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbMaisEndereco)
                             .addComponent(lbOpcional3))
@@ -601,6 +649,13 @@ public class ViewFornecedor extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     *
+     * @see Métodos usados para controlar apresentação dos RadioButton
+     * PessoaFisica e PessoaJuridica.
+     *
+     * @param evt
+     */
     private void rbPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPessoaFisicaActionPerformed
         if (rbPessoaFisica.isSelected()) {
             pnPessoaJuridica.setVisible(false);
@@ -621,37 +676,178 @@ public class ViewFornecedor extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_rbPessoaJuridicaActionPerformed
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+    /**
+     *
+     * @see Conjunto de Métodos que recebem o evento KeyTyped do teclado para
+     * validar a entrada de valores nos campos de texto.
+     *
+     * @param evt
+     */
+    private void tfNomeFornecedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNomeFornecedorKeyTyped
+        if (tfNomeFornecedor.getText().length() > 49) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfNomeFornecedorKeyTyped
 
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+    private void tfNomeContatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNomeContatoKeyTyped
+        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            String caracteres = " aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZçÇáÁàÀãÃâÂéÉèÈêÊíÍìÌîÎóÓòÒõÕôÔúÚùÙûÛ";
+            if (!caracteres.contains(evt.getKeyChar() + "") || tfNomeContato.getText().length() > 49) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_tfNomeContatoKeyTyped
+
+    private void tfEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmailKeyTyped
+        if (tfEmail.getText().length() > 49) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfEmailKeyTyped
+
+    private void tfTelefoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTelefoneKeyTyped
+        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            String caracteres = "1234567890";
+            if (!caracteres.contains(evt.getKeyChar() + "") || tfTelefone.getText().length() > 12) {
+                evt.consume();
+            }
+            if (tfTelefone.getText().length() == 0) {
+                tfTelefone.setText(tfTelefone.getText() + "(");
+            }
+            if (tfTelefone.getText().length() == 3) {
+                tfTelefone.setText(tfTelefone.getText() + ")");
+            }
+            if (tfTelefone.getText().length() == 8) {
+                tfTelefone.setText(tfTelefone.getText() + "-");
+            }
+        }
+    }//GEN-LAST:event_tfTelefoneKeyTyped
+
+    private void tfCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCelularKeyTyped
+        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            String caracteres = "1234567890";
+            if (!caracteres.contains(evt.getKeyChar() + "") || tfCelular.getText().length() > 12) {
+                evt.consume();
+            }
+            if (tfCelular.getText().length() == 0) {
+                tfCelular.setText(tfCelular.getText() + "(");
+            }
+            if (tfCelular.getText().length() == 3) {
+                tfCelular.setText(tfCelular.getText() + ")");
+            }
+            if (tfCelular.getText().length() == 8) {
+                tfCelular.setText(tfCelular.getText() + "-");
+            }
+        }
+    }//GEN-LAST:event_tfCelularKeyTyped
+
+    private void tfEnderecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEnderecoKeyTyped
+        if (tfEndereco.getText().length() > 99) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfEnderecoKeyTyped
+
+    private void tfCepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCepKeyTyped
+        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            String caracteres = "1234567890";
+            if (!caracteres.contains(evt.getKeyChar() + "") || tfCep.getText().length() > 8) {
+                evt.consume();
+            }
+            if (tfCep.getText().length() == 5) {
+                tfCep.setText(tfCep.getText() + "-");
+            }
+        }
+    }//GEN-LAST:event_tfCepKeyTyped
+
+    private void tfComplementoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfComplementoKeyTyped
+        if (tfComplemento.getText().length() > 19) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfComplementoKeyTyped
 
     private void tfNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNumeroKeyTyped
-        String caracteres = "(12)3456-7890";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
+        String caracteres = "1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfNumero.getText().length() > 9) {
             evt.consume();
         }
     }//GEN-LAST:event_tfNumeroKeyTyped
 
-    private void tfCepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCepKeyTyped
-        String caracteres = "12345-67890";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
+    private void tfBairroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBairroKeyTyped
+        if (tfBairro.getText().length() > 19) {
             evt.consume();
         }
-    }//GEN-LAST:event_tfCepKeyTyped
+    }//GEN-LAST:event_tfBairroKeyTyped
+
+    private void tfCidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCidadeKeyTyped
+        if (tfCidade.getText().length() > 19) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfCidadeKeyTyped
+
+    private void tfEstadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEstadoKeyTyped
+        if (tfEstado.getText().length() > 19) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfEstadoKeyTyped
+
+    private void tfCpfCnpjKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCpfCnpjKeyTyped
+        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            String caracteres = "12345678900";
+            if (!caracteres.contains(evt.getKeyChar() + "") || tfCpfCnpj.getText().length() > 13) {
+                evt.consume();
+            }
+            if (tfCpfCnpj.getText().length() == 3 || tfCpfCnpj.getText().length() == 7) {
+                tfCpfCnpj.setText(tfCpfCnpj.getText() + ".");
+            }
+            if (tfCpfCnpj.getText().length() == 11) {
+                tfCpfCnpj.setText(tfCpfCnpj.getText() + "-");
+            }
+        }
+    }//GEN-LAST:event_tfCpfCnpjKeyTyped
+
+    private void tfRgRazaoSocialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfRgRazaoSocialKeyTyped
+        if (tfRgRazaoSocial.getText().length() > 19) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfRgRazaoSocialKeyTyped
 
     private void tfNascimentoFundacaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNascimentoFundacaoKeyTyped
-        String caracteres = "1234567890.";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
-            evt.consume();
+        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            String caracteres = "1234567890";
+            if (!caracteres.contains(evt.getKeyChar() + "") || tfNascimentoFundacao.getText().length() > 9) {
+                evt.consume();
+            }
+            if (tfNascimentoFundacao.getText().length() == 2 || tfNascimentoFundacao.getText().length() == 5) {
+                tfNascimentoFundacao.setText(tfNascimentoFundacao.getText() + "/");
+            }
         }
     }//GEN-LAST:event_tfNascimentoFundacaoKeyTyped
+
+    private void tfEstadualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEstadualKeyTyped
+        String caracteres = "1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfEstadual.getText().length() > 49) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfEstadualKeyTyped
+
+    private void tfMunicipalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMunicipalKeyTyped
+        String caracteres = "1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfMunicipal.getText().length() > 49) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfMunicipalKeyTyped
+
+    private void tfSuframaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSuframaKeyTyped
+        String caracteres = "1234567890";
+        if (!caracteres.contains(evt.getKeyChar() + "") || tfSuframa.getText().length() > 49) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfSuframaKeyTyped
 
     //Declaração de variáveis(View).
     private final ViewPainelControle viewPainelControle;
 
     //Declaração de variáveis(Business Object).
-    
-
+//    private FornecedorBO fornecedorBO;
     //Declaração de variáveis(Value Object).
     private Fornecedor fornecedorVO;
 
@@ -666,14 +862,14 @@ public class ViewFornecedor extends javax.swing.JDialog {
     private javax.swing.JLabel lbContato;
     private javax.swing.JLabel lbCpfCnpj;
     private javax.swing.JLabel lbEmail;
-    private javax.swing.JLabel lbEmpresa;
     private javax.swing.JLabel lbEndereco;
     private javax.swing.JLabel lbEstado;
     private javax.swing.JLabel lbEstadual;
     private javax.swing.JLabel lbMaisEndereco;
     private javax.swing.JLabel lbMunicipal;
     private javax.swing.JLabel lbNascimentoFundacao;
-    private javax.swing.JLabel lbNome;
+    private javax.swing.JLabel lbNomeContato;
+    private javax.swing.JLabel lbNomeFornecedor;
     private javax.swing.JLabel lbNumero;
     private javax.swing.JLabel lbOpcional1;
     private javax.swing.JLabel lbOpcional3;
@@ -684,7 +880,6 @@ public class ViewFornecedor extends javax.swing.JDialog {
     private javax.swing.JLabel lbTelefone;
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JPanel pnCorpo;
-    private javax.swing.JPanel pnObrigatorio;
     private javax.swing.JPanel pnPessoa;
     private javax.swing.JPanel pnPessoaJuridica;
     private javax.swing.JPanel pnTitulo;
@@ -700,13 +895,13 @@ public class ViewFornecedor extends javax.swing.JDialog {
     private javax.swing.JTextField tfComplemento;
     private javax.swing.JTextField tfCpfCnpj;
     private javax.swing.JTextField tfEmail;
-    private javax.swing.JTextField tfEmpresa;
     private javax.swing.JTextField tfEndereco;
     private javax.swing.JTextField tfEstado;
     private javax.swing.JTextField tfEstadual;
     private javax.swing.JTextField tfMunicipal;
     private javax.swing.JTextField tfNascimentoFundacao;
-    private javax.swing.JTextField tfNome;
+    private javax.swing.JTextField tfNomeContato;
+    private javax.swing.JTextField tfNomeFornecedor;
     private javax.swing.JTextField tfNumero;
     private javax.swing.JTextField tfRgRazaoSocial;
     private javax.swing.JTextField tfSuframa;

@@ -1,5 +1,5 @@
 package br.com.models.vo;
-// Generated 16/06/2015 14:56:33 by Hibernate Tools 4.3.1
+// Generated 19/06/2015 12:08:25 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

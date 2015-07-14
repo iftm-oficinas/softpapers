@@ -96,7 +96,7 @@ public class TableModelProduto extends AbstractTableModel {
             case categoriaProduto:
                 return produto.getCategoria().getDescricaoCategoria();
             case fornecedorProduto:
-                return produto.getFornecedor().getEmpresaFornecedor();
+                return produto.getFornecedor().getNomeFornecedor();
             case codigoProduto:
                 return produto.getCodigoProduto();
             case criacaoProduto:

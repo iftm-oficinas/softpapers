@@ -21,7 +21,7 @@ public class TableModelFornecedor extends AbstractTableModel {
 
     //Declaração de variáveis que compoem os campos da tabela.
     private static final int nomeFornecedor = 0;
-    private static final int cpfCnpjFornecedor = 1;
+    private static final int pessoaFornecedor = 1;
     private static final int emailFornecedor = 2;
     private static final int telefoneFornecedor = 3;
     private static final int criacaoFornecedor = 4;
@@ -34,7 +34,7 @@ public class TableModelFornecedor extends AbstractTableModel {
      */
     public TableModelFornecedor() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Fornecedor", "CNPJ/CPF", "E-mail", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Fornecedor", "Pessoa", "E-mail", "Telefone", "Criação", "Atualização"};
     }
 
     /**
@@ -46,7 +46,7 @@ public class TableModelFornecedor extends AbstractTableModel {
      */
     public TableModelFornecedor(List<Fornecedor> fornecedor) {
         linhas = new ArrayList<>(fornecedor);
-        colunas = new String[]{"Fornecedor", "CNPJ/CPF", "E-mail", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Fornecedor", "Pessoa", "E-mail", "Telefone", "Criação", "Atualização"};
     }
 
     //Gets and Sets
@@ -70,7 +70,7 @@ public class TableModelFornecedor extends AbstractTableModel {
         switch (columnIndex) {
             case nomeFornecedor:
                 return String.class;
-            case cpfCnpjFornecedor:
+            case pessoaFornecedor:
                 return String.class;
             case emailFornecedor:
                 return String.class;
@@ -90,13 +90,13 @@ public class TableModelFornecedor extends AbstractTableModel {
         Fornecedor fornecedor = linhas.get(rowIndex);
         switch (columnIndex) {
             case nomeFornecedor:
-                return fornecedor.getEmpresaFornecedor();
-            case cpfCnpjFornecedor:
-                return fornecedor.getCpfCnpjFornecedor();
+                return fornecedor.getNomeFornecedor();
+            case pessoaFornecedor:
+                return fornecedor.getPessoa().getTipoPessoa();
             case emailFornecedor:
-                return fornecedor.getEmailFornecedor();
+                return fornecedor.getContato().getEmailContato();
             case telefoneFornecedor:
-                return fornecedor.getTelefoneFornecedor();
+                return fornecedor.getContato().getTelefoneContato();
             case criacaoFornecedor:
                 return fornecedor.getCriacaoFornecedor();
             case atualizacaoFornecedor:
@@ -111,16 +111,16 @@ public class TableModelFornecedor extends AbstractTableModel {
         Fornecedor fornecedor = linhas.get(rowIndex);
         switch (columnIndex) {
             case nomeFornecedor:
-                fornecedor.setEmpresaFornecedor((String) aValue);
+                fornecedor.setNomeFornecedor((String) aValue);
                 break;
-            case cpfCnpjFornecedor:
-                fornecedor.setCpfCnpjFornecedor((String) aValue);
+            case pessoaFornecedor:
+                fornecedor.getPessoa().setTipoPessoa((String) aValue);
                 break;
             case emailFornecedor:
-                fornecedor.setEmailFornecedor((String) aValue);
+                fornecedor.getContato().setEmailContato((String) aValue);
                 break;
             case telefoneFornecedor:
-                fornecedor.setTelefoneFornecedor((String) aValue);
+                fornecedor.getContato().setTelefoneContato((String) aValue);
                 break;
             case criacaoFornecedor:
                 fornecedor.setCriacaoFornecedor((Date) (aValue));

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2015 12:08:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Pessoa" table="pessoa" catalog="dbloja" optimistic-lock="version">
+        <id name="idPessoa" type="java.lang.Long">
+            <column name="idPessoa" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoPessoa" type="string">
+            <column name="tipoPessoa" length="20" />
+        </property>
+        <set name="funcionarios" table="funcionario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoaFuncionario" />
+            </key>
+            <one-to-many class="br.com.models.vo.Funcionario" />
+        </set>
+        <set name="pessoajuridicas" table="pessoajuridica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoaPessoaJuridica" />
+            </key>
+            <one-to-many class="br.com.models.vo.Pessoajuridica" />
+        </set>
+        <set name="pessoafisicas" table="pessoafisica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoaPessoaFisica" />
+            </key>
+            <one-to-many class="br.com.models.vo.Pessoafisica" />
+        </set>
+        <set name="fornecedors" table="fornecedor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoaFornecedor" />
+            </key>
+            <one-to-many class="br.com.models.vo.Fornecedor" />
+        </set>
+        <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoaCliente" />
+            </key>
+            <one-to-many class="br.com.models.vo.Cliente" />
+        </set>
+    </class>
+</hibernate-mapping>

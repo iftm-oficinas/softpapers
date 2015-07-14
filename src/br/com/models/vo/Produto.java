@@ -1,8 +1,7 @@
 package br.com.models.vo;
-// Generated 16/06/2015 14:56:33 by Hibernate Tools 4.3.1
+// Generated 19/06/2015 12:08:25 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,8 +30,8 @@ public class Produto  implements java.io.Serializable {
      private Fornecedor fornecedor;
      private String descricaoProduto;
      private String codigoProduto;
-     private BigDecimal custoProduto;
-     private BigDecimal vendaProduto;
+     private Long custoProduto;
+     private Long vendaProduto;
      private Integer minimoProduto;
      private Integer maximoProduto;
      private Integer estoqueProduto;
@@ -42,7 +41,7 @@ public class Produto  implements java.io.Serializable {
     public Produto() {
     }
 
-    public Produto(Categoria categoria, Fornecedor fornecedor, String descricaoProduto, String codigoProduto, BigDecimal custoProduto, BigDecimal vendaProduto, Integer minimoProduto, Integer maximoProduto, Integer estoqueProduto, Date criacaoProduto, Date atualizacaoProduto) {
+    public Produto(Categoria categoria, Fornecedor fornecedor, String descricaoProduto, String codigoProduto, Long custoProduto, Long vendaProduto, Integer minimoProduto, Integer maximoProduto, Integer estoqueProduto, Date criacaoProduto, Date atualizacaoProduto) {
        this.categoria = categoria;
        this.fornecedor = fornecedor;
        this.descricaoProduto = descricaoProduto;
@@ -109,22 +108,22 @@ public class Produto  implements java.io.Serializable {
     }
 
     
-    @Column(name="custoProduto", precision=10)
-    public BigDecimal getCustoProduto() {
+    @Column(name="custoProduto", precision=10, scale=0)
+    public Long getCustoProduto() {
         return this.custoProduto;
     }
     
-    public void setCustoProduto(BigDecimal custoProduto) {
+    public void setCustoProduto(Long custoProduto) {
         this.custoProduto = custoProduto;
     }
 
     
-    @Column(name="vendaProduto", precision=10)
-    public BigDecimal getVendaProduto() {
+    @Column(name="vendaProduto", precision=10, scale=0)
+    public Long getVendaProduto() {
         return this.vendaProduto;
     }
     
-    public void setVendaProduto(BigDecimal vendaProduto) {
+    public void setVendaProduto(Long vendaProduto) {
         this.vendaProduto = vendaProduto;
     }
 

@@ -1,6 +1,7 @@
 package br.com.resources.views;
 
-import br.com.models.vo.Categoria;
+import br.com.models.bo.CategoriaBO;
+import java.awt.Cursor;
 
 /**
  *
@@ -73,6 +74,11 @@ public class ViewCategoria extends javax.swing.JDialog {
 
         tfDescricao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfDescricao.setForeground(new java.awt.Color(102, 102, 102));
+        tfDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfDescricaoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnObrigatorioLayout = new javax.swing.GroupLayout(pnObrigatorio);
         pnObrigatorio.setLayout(pnObrigatorioLayout);
@@ -151,14 +157,31 @@ public class ViewCategoria extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+    /**
+     *
+     * @see Método que recebe o evento KeyTyped do teclado para validar entrada
+     * de dados nos campos.
+     *
+     * @param evt
+     */
+    private void tfDescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDescricaoKeyTyped
+        if (tfDescricao.getText().length() > 49) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfDescricaoKeyTyped
 
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        btnCadastrar.setEnabled(false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        if(categoriaBO.inserirCategoria(tfDescricao.getText())) {
+            this.dispose();
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     //Declaração de variáveis(Business Object).
-
-    //Declaração de variáveis(Value Object).
-    private Categoria categoriaVO;
+    private CategoriaBO categoriaBO;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;

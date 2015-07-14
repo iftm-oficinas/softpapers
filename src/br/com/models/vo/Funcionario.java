@@ -1,13 +1,16 @@
 package br.com.models.vo;
-// Generated 16/06/2015 14:56:33 by Hibernate Tools 4.3.1
+// Generated 19/06/2015 12:08:25 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,47 +26,27 @@ public class Funcionario  implements java.io.Serializable {
 
 
      private Long idFuncionario;
+     private Contato contato;
+     private Endereco endereco;
+     private Pessoa pessoa;
      private String nomeFuncionario;
      private String cargoFuncionario;
      private String usuarioFuncionario;
      private String senhaFuncionario;
-     private String emailFuncionario;
-     private String telefoneFuncionario;
-     private String celularFuncionario;
-     private String cpfFuncionario;
-     private String rgFuncionario;
-     private Date nascimentoFuncionario;
-     private String enderecoFuncionario;
-     private String cepFuncionario;
-     private String complementoFuncionario;
-     private String numeroFuncionario;
-     private String cidadeFuncionario;
-     private String bairroFuncionario;
-     private String estadoFuncionario;
      private Date criacaoFuncionario;
      private Date atualizacaoFuncionario;
 
     public Funcionario() {
     }
 
-    public Funcionario(String nomeFuncionario, String cargoFuncionario, String usuarioFuncionario, String senhaFuncionario, String emailFuncionario, String telefoneFuncionario, String celularFuncionario, String cpfFuncionario, String rgFuncionario, Date nascimentoFuncionario, String enderecoFuncionario, String cepFuncionario, String complementoFuncionario, String numeroFuncionario, String cidadeFuncionario, String bairroFuncionario, String estadoFuncionario, Date criacaoFuncionario, Date atualizacaoFuncionario) {
+    public Funcionario(Contato contato, Endereco endereco, Pessoa pessoa, String nomeFuncionario, String cargoFuncionario, String usuarioFuncionario, String senhaFuncionario, Date criacaoFuncionario, Date atualizacaoFuncionario) {
+       this.contato = contato;
+       this.endereco = endereco;
+       this.pessoa = pessoa;
        this.nomeFuncionario = nomeFuncionario;
        this.cargoFuncionario = cargoFuncionario;
        this.usuarioFuncionario = usuarioFuncionario;
        this.senhaFuncionario = senhaFuncionario;
-       this.emailFuncionario = emailFuncionario;
-       this.telefoneFuncionario = telefoneFuncionario;
-       this.celularFuncionario = celularFuncionario;
-       this.cpfFuncionario = cpfFuncionario;
-       this.rgFuncionario = rgFuncionario;
-       this.nascimentoFuncionario = nascimentoFuncionario;
-       this.enderecoFuncionario = enderecoFuncionario;
-       this.cepFuncionario = cepFuncionario;
-       this.complementoFuncionario = complementoFuncionario;
-       this.numeroFuncionario = numeroFuncionario;
-       this.cidadeFuncionario = cidadeFuncionario;
-       this.bairroFuncionario = bairroFuncionario;
-       this.estadoFuncionario = estadoFuncionario;
        this.criacaoFuncionario = criacaoFuncionario;
        this.atualizacaoFuncionario = atualizacaoFuncionario;
     }
@@ -78,6 +61,36 @@ public class Funcionario  implements java.io.Serializable {
     
     public void setIdFuncionario(Long idFuncionario) {
         this.idFuncionario = idFuncionario;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="contatoFuncionario")
+    public Contato getContato() {
+        return this.contato;
+    }
+    
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="enderecoFuncionario")
+    public Endereco getEndereco() {
+        return this.endereco;
+    }
+    
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="pessoaFuncionario")
+    public Pessoa getPessoa() {
+        return this.pessoa;
+    }
+    
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     
@@ -101,7 +114,7 @@ public class Funcionario  implements java.io.Serializable {
     }
 
     
-    @Column(name="usuarioFuncionario", length=50)
+    @Column(name="usuarioFuncionario", length=30)
     public String getUsuarioFuncionario() {
         return this.usuarioFuncionario;
     }
@@ -111,143 +124,13 @@ public class Funcionario  implements java.io.Serializable {
     }
 
     
-    @Column(name="senhaFuncionario", length=50)
+    @Column(name="senhaFuncionario", length=30)
     public String getSenhaFuncionario() {
         return this.senhaFuncionario;
     }
     
     public void setSenhaFuncionario(String senhaFuncionario) {
         this.senhaFuncionario = senhaFuncionario;
-    }
-
-    
-    @Column(name="emailFuncionario", length=50)
-    public String getEmailFuncionario() {
-        return this.emailFuncionario;
-    }
-    
-    public void setEmailFuncionario(String emailFuncionario) {
-        this.emailFuncionario = emailFuncionario;
-    }
-
-    
-    @Column(name="telefoneFuncionario", length=20)
-    public String getTelefoneFuncionario() {
-        return this.telefoneFuncionario;
-    }
-    
-    public void setTelefoneFuncionario(String telefoneFuncionario) {
-        this.telefoneFuncionario = telefoneFuncionario;
-    }
-
-    
-    @Column(name="celularFuncionario", length=20)
-    public String getCelularFuncionario() {
-        return this.celularFuncionario;
-    }
-    
-    public void setCelularFuncionario(String celularFuncionario) {
-        this.celularFuncionario = celularFuncionario;
-    }
-
-    
-    @Column(name="cpfFuncionario", length=20)
-    public String getCpfFuncionario() {
-        return this.cpfFuncionario;
-    }
-    
-    public void setCpfFuncionario(String cpfFuncionario) {
-        this.cpfFuncionario = cpfFuncionario;
-    }
-
-    
-    @Column(name="rgFuncionario", length=20)
-    public String getRgFuncionario() {
-        return this.rgFuncionario;
-    }
-    
-    public void setRgFuncionario(String rgFuncionario) {
-        this.rgFuncionario = rgFuncionario;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name="nascimentoFuncionario", length=10)
-    public Date getNascimentoFuncionario() {
-        return this.nascimentoFuncionario;
-    }
-    
-    public void setNascimentoFuncionario(Date nascimentoFuncionario) {
-        this.nascimentoFuncionario = nascimentoFuncionario;
-    }
-
-    
-    @Column(name="enderecoFuncionario", length=100)
-    public String getEnderecoFuncionario() {
-        return this.enderecoFuncionario;
-    }
-    
-    public void setEnderecoFuncionario(String enderecoFuncionario) {
-        this.enderecoFuncionario = enderecoFuncionario;
-    }
-
-    
-    @Column(name="cepFuncionario", length=20)
-    public String getCepFuncionario() {
-        return this.cepFuncionario;
-    }
-    
-    public void setCepFuncionario(String cepFuncionario) {
-        this.cepFuncionario = cepFuncionario;
-    }
-
-    
-    @Column(name="complementoFuncionario", length=20)
-    public String getComplementoFuncionario() {
-        return this.complementoFuncionario;
-    }
-    
-    public void setComplementoFuncionario(String complementoFuncionario) {
-        this.complementoFuncionario = complementoFuncionario;
-    }
-
-    
-    @Column(name="numeroFuncionario", length=10)
-    public String getNumeroFuncionario() {
-        return this.numeroFuncionario;
-    }
-    
-    public void setNumeroFuncionario(String numeroFuncionario) {
-        this.numeroFuncionario = numeroFuncionario;
-    }
-
-    
-    @Column(name="cidadeFuncionario", length=20)
-    public String getCidadeFuncionario() {
-        return this.cidadeFuncionario;
-    }
-    
-    public void setCidadeFuncionario(String cidadeFuncionario) {
-        this.cidadeFuncionario = cidadeFuncionario;
-    }
-
-    
-    @Column(name="bairroFuncionario", length=20)
-    public String getBairroFuncionario() {
-        return this.bairroFuncionario;
-    }
-    
-    public void setBairroFuncionario(String bairroFuncionario) {
-        this.bairroFuncionario = bairroFuncionario;
-    }
-
-    
-    @Column(name="estadoFuncionario", length=20)
-    public String getEstadoFuncionario() {
-        return this.estadoFuncionario;
-    }
-    
-    public void setEstadoFuncionario(String estadoFuncionario) {
-        this.estadoFuncionario = estadoFuncionario;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2015 12:08:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Pessoafisica" table="pessoafisica" catalog="dbloja" optimistic-lock="version">
+        <id name="idPessoaFisica" type="java.lang.Long">
+            <column name="idPessoaFisica" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pessoa" class="br.com.models.vo.Pessoa" fetch="select">
+            <column name="pessoaPessoaFisica" />
+        </many-to-one>
+        <property name="cpfPessoaFisica" type="string">
+            <column name="cpfPessoaFisica" length="20" />
+        </property>
+        <property name="rgPessoaFisica" type="string">
+            <column name="rgPessoaFisica" length="20" />
+        </property>
+        <property name="nascimentoPessoaFisica" type="date">
+            <column name="nascimentoPessoaFisica" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

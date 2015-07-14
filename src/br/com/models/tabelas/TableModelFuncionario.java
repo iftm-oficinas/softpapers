@@ -21,13 +21,11 @@ public class TableModelFuncionario extends AbstractTableModel {
 
     //Declaração de variáveis que compoem os campos da tabela.
     private static final int nomeFuncionario = 0;
-    private static final int cpfFuncionario = 1;
-    private static final int rgFuncionario = 2;
-    private static final int cargoFuncionario = 3;
-    private static final int emailFuncionario = 4;
-    private static final int telefoneFuncionario = 5;
-    private static final int criacaoFuncionario = 6;
-    private static final int atualizacaoFuncionario = 7;
+    private static final int cargoFuncionario = 1;
+    private static final int emailFuncionario = 2;
+    private static final int telefoneFuncionario = 3;
+    private static final int criacaoFuncionario = 4;
+    private static final int atualizacaoFuncionario = 5;
 
     /**
      *
@@ -36,7 +34,7 @@ public class TableModelFuncionario extends AbstractTableModel {
      */
     public TableModelFuncionario() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Funcionario", "CPF", "RG", "Cargo", "E-mail", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Funcionario", "Cargo", "E-mail", "Telefone", "Criação", "Atualização"};
     }
 
     /**
@@ -48,7 +46,7 @@ public class TableModelFuncionario extends AbstractTableModel {
      */
     public TableModelFuncionario(List<Funcionario> funcionarios) {
         linhas = new ArrayList<>(funcionarios);
-        colunas = new String[]{"Funcionario", "CPF", "RG", "Cargo", "E-mail", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Funcionario", "Cargo", "E-mail", "Telefone", "Criação", "Atualização"};
     }
 
     //Gets and Sets
@@ -72,10 +70,6 @@ public class TableModelFuncionario extends AbstractTableModel {
         switch (columnIndex) {
             case nomeFuncionario:
                 return String.class;
-            case cpfFuncionario:
-                return String.class;
-            case rgFuncionario:
-                return String.class;
             case cargoFuncionario:
                 return String.class;
             case emailFuncionario:
@@ -97,16 +91,12 @@ public class TableModelFuncionario extends AbstractTableModel {
         switch (columnIndex) {
             case nomeFuncionario:
                 return funcionario.getNomeFuncionario();
-            case cpfFuncionario:
-                return funcionario.getCpfFuncionario();
-            case rgFuncionario:
-                return funcionario.getRgFuncionario();
             case cargoFuncionario:
                 return funcionario.getCargoFuncionario();
             case emailFuncionario:
-                return funcionario.getEmailFuncionario();
+                return funcionario.getContato().getEmailContato();
             case telefoneFuncionario:
-                return funcionario.getTelefoneFuncionario();
+                return funcionario.getContato().getTelefoneContato();
             case criacaoFuncionario:
                 return funcionario.getCriacaoFuncionario();
             case atualizacaoFuncionario:
@@ -123,20 +113,14 @@ public class TableModelFuncionario extends AbstractTableModel {
             case nomeFuncionario:
                 funcionario.setNomeFuncionario((String) aValue);
                 break;
-            case cpfFuncionario:
-                funcionario.setCpfFuncionario((String) aValue);
-                break;
-            case rgFuncionario:
-                funcionario.setRgFuncionario((String) aValue);
-                break;
             case cargoFuncionario:
                 funcionario.setCargoFuncionario((String) aValue);
                 break;
             case emailFuncionario:
-                funcionario.setEmailFuncionario((String) aValue);
+                funcionario.getContato().setEmailContato((String) aValue);
                 break;
             case telefoneFuncionario:
-                funcionario.setTelefoneFuncionario((String) aValue);
+                funcionario.getContato().setTelefoneContato((String) aValue);
                 break;
             case criacaoFuncionario:
                 funcionario.setCriacaoFuncionario((Date) (aValue));

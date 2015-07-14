@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2015 12:08:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Pessoajuridica" table="pessoajuridica" catalog="dbloja" optimistic-lock="version">
+        <id name="idPessoaJuridica" type="java.lang.Long">
+            <column name="idPessoaJuridica" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pessoa" class="br.com.models.vo.Pessoa" fetch="select">
+            <column name="pessoaPessoaJuridica" />
+        </many-to-one>
+        <property name="cnpjPessoaJuridica" type="string">
+            <column name="cnpjPessoaJuridica" length="20" />
+        </property>
+        <property name="razaoSocialPessoaJuridica" type="string">
+            <column name="razaoSocialPessoaJuridica" length="20" />
+        </property>
+        <property name="fundacaoPessoaJuridica" type="date">
+            <column name="fundacaoPessoaJuridica" length="10" />
+        </property>
+        <property name="estadualPessoaJuridica" type="string">
+            <column name="estadualPessoaJuridica" length="45" />
+        </property>
+        <property name="municipalPessoaJuridica" type="string">
+            <column name="municipalPessoaJuridica" length="45" />
+        </property>
+        <property name="suframaPessoaJuridica" type="string">
+            <column name="suframaPessoaJuridica" length="45" />
+        </property>
+        <property name="icmsPessoaJuridica" type="java.lang.Boolean">
+            <column name="icmsPessoaJuridica" />
+        </property>
+    </class>
+</hibernate-mapping>

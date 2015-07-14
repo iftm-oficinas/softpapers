@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/06/2015 14:56:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19/06/2015 12:08:28 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.models.vo.Produto" table="produto" catalog="dbloja" optimistic-lock="version">
         <id name="idProduto" type="java.lang.Long">
@@ -20,11 +20,11 @@
         <property name="codigoProduto" type="string">
             <column name="codigoProduto" length="50" />
         </property>
-        <property name="custoProduto" type="big_decimal">
-            <column name="custoProduto" precision="10" />
+        <property name="custoProduto" type="java.lang.Long">
+            <column name="custoProduto" precision="10" scale="0" />
         </property>
-        <property name="vendaProduto" type="big_decimal">
-            <column name="vendaProduto" precision="10" />
+        <property name="vendaProduto" type="java.lang.Long">
+            <column name="vendaProduto" precision="10" scale="0" />
         </property>
         <property name="minimoProduto" type="java.lang.Integer">
             <column name="minimoProduto" />

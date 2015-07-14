@@ -3,11 +3,16 @@ package br.com.models.bo;
 import br.com.models.dao.GenericDAO;
 import br.com.models.vo.Categoria;
 import br.com.models.vo.Cliente;
+import br.com.models.vo.Contato;
+import br.com.models.vo.Endereco;
 import br.com.models.vo.Fornecedor;
 import br.com.models.vo.Funcionario;
+import br.com.models.vo.Pessoa;
+import br.com.models.vo.Pessoafisica;
 import br.com.models.vo.Produto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,20 +23,6 @@ import javax.swing.JOptionPane;
  */
 public class PainelControleBO {
 
-    //Declaração de variáveis(Value Object).
-    private List<Funcionario> funcionariosVO;
-    private List<Cliente> clientesVO;
-    private List<Fornecedor> fornecedoresVO;
-    private List<Categoria> categoriasVO;
-    private List<Produto> produtosVO;
-
-    //Declaração de variáveis(Data Access Object).
-    private GenericDAO<Funcionario> funcionarioDAO;
-    private GenericDAO<Cliente> clienteDAO;
-    private GenericDAO<Fornecedor> fornecedorDAO;
-    private GenericDAO<Categoria> categoriaDAO;
-    private GenericDAO<Produto> produtoDAO;
-
     /**
      *
      * @see Método que realiza consulta ao banco de dados por todos os Usuarios.
@@ -40,8 +31,8 @@ public class PainelControleBO {
      * do banco de dados.
      */
     public List<Funcionario> buscarFuncionarios() {
-        funcionarioDAO = new GenericDAO();
-        funcionariosVO = new ArrayList<>(funcionarioDAO.consultar(new Funcionario()));
+        GenericDAO<Funcionario> funcionarioDAO = new GenericDAO();
+        ArrayList<Funcionario> funcionariosVO = new ArrayList<>(funcionarioDAO.consultar(new Funcionario()));
         return funcionariosVO;
     }
 
@@ -53,8 +44,8 @@ public class PainelControleBO {
      * do banco de dados.
      */
     public List<Cliente> buscarClientes() {
-        clienteDAO = new GenericDAO();
-        clientesVO = new ArrayList<>(clienteDAO.consultar(new Cliente()));
+        GenericDAO<Cliente> clienteDAO = new GenericDAO();
+        ArrayList<Cliente> clientesVO = new ArrayList<>(clienteDAO.consultar(new Cliente()));
         return clientesVO;
     }
 
@@ -67,8 +58,8 @@ public class PainelControleBO {
      * fornecedor do banco de dados.
      */
     public List<Fornecedor> buscarFornecedores() {
-        fornecedorDAO = new GenericDAO<>();
-        fornecedoresVO = new ArrayList<>(fornecedorDAO.consultar(new Fornecedor()));
+        GenericDAO<Fornecedor> fornecedorDAO = new GenericDAO<>();
+        ArrayList<Fornecedor> fornecedoresVO = new ArrayList<>(fornecedorDAO.consultar(new Fornecedor()));
         return fornecedoresVO;
     }
 
@@ -81,8 +72,8 @@ public class PainelControleBO {
      * categoria do banco de dados.
      */
     public List<Categoria> buscarCategorias() {
-        categoriaDAO = new GenericDAO<>();
-        categoriasVO = new ArrayList<>(categoriaDAO.consultar(new Categoria()));
+        GenericDAO<Categoria> categoriaDAO = new GenericDAO<>();
+        ArrayList<Categoria> categoriasVO = new ArrayList<>(categoriaDAO.consultar(new Categoria()));
         return categoriasVO;
     }
 
@@ -94,9 +85,20 @@ public class PainelControleBO {
      * do banco de dados.
      */
     public List<Produto> buscarProdutos() {
-        produtoDAO = new GenericDAO<>();
-        produtosVO = new ArrayList<>(produtoDAO.consultar(new Produto()));
+        GenericDAO<Produto> produtoDAO = new GenericDAO<>();
+        ArrayList<Produto> produtosVO = new ArrayList<>(produtoDAO.consultar(new Produto()));
         return produtosVO;
+    }
+    
+    public Pessoafisica buscarPessoaFisica(Long idPessoa) {
+        GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
+        List<Pessoafisica> pessoaFisicaVO = pessoaFisicaDAO.consultar(new Pessoafisica());
+        for (Pessoafisica pessoaFisicaVO1 : pessoaFisicaVO) {
+            if (Objects.equals(pessoaFisicaVO1.getPessoa().getIdPessoa(), idPessoa)) {
+                return pessoaFisicaVO1;
+            }
+        }
+        return null;
     }
     
     /**
@@ -110,14 +112,33 @@ public class PainelControleBO {
      */
     public Boolean excluirFuncionario(Long idFuncionario) {
         try {
-            funcionarioDAO = new GenericDAO<>();
+            GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
+            GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
+            GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
+            GenericDAO<Contato> contatoDAO = new GenericDAO<>();
+            GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
             Funcionario funcionarioVO = new Funcionario();
+            Pessoa pessoaVO = new Pessoa();
+            Pessoafisica pessoaFisicaVO = new Pessoafisica();
+            Contato contatoVO = new Contato();
+            Endereco enderecoVO = new Endereco();
+            
             funcionarioVO = funcionarioDAO.consultar("idFuncionario", idFuncionario, funcionarioVO);
+            pessoaVO = pessoaDAO.consultar("idPessoa", funcionarioVO.getPessoa().getIdPessoa(), pessoaVO);
+            pessoaFisicaVO = buscarPessoaFisica(pessoaVO.getIdPessoa());
+            contatoVO = contatoDAO.consultar("idContato", funcionarioVO.getContato().getIdContato(), contatoVO);
+            enderecoVO = enderecoDAO.consultar("idEndereco", funcionarioVO.getEndereco().getIdEndereco(), enderecoVO);
+            
             if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este Funcionário?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-                if (funcionarioDAO.apagar(funcionarioVO)) {
+                try {
+                    funcionarioDAO.apagar(funcionarioVO);
+                    pessoaFisicaDAO.apagar(pessoaFisicaVO);
+                    pessoaDAO.apagar(pessoaVO);
+                    contatoDAO.apagar(contatoVO);
+                    enderecoDAO.apagar(enderecoVO);
                     JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso.", "Secesso", JOptionPane.INFORMATION_MESSAGE);
                     return true;
-                } else {
+                } catch (Exception e) {
                     return false;
                 }
             } else {
@@ -140,7 +161,7 @@ public class PainelControleBO {
      */
     public Boolean excluirCliente(Long idCliente) {
         try {
-            clienteDAO = new GenericDAO<>();
+            GenericDAO<Cliente> clienteDAO = new GenericDAO<>();
             Cliente clienteVO = new Cliente();
             clienteVO = clienteDAO.consultar("idCliente", idCliente, clienteVO);
             if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este Funcionário?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {

@@ -1,13 +1,20 @@
 package br.com.models.bo;
 
 import br.com.models.dao.GenericDAO;
+import br.com.models.vo.Contato;
+import br.com.models.vo.Endereco;
 import br.com.models.vo.Funcionario;
+import br.com.models.vo.Pessoa;
+import br.com.models.vo.Pessoafisica;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.HeadlessException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -24,62 +31,84 @@ import javax.swing.border.LineBorder;
 public class FuncionarioBO {
 
     /**
-     *
      * @see Método que inseri um objeto no banco de dados por meio da
      * GenericDAO.
-     *
+     * @param funcionario
      * @param nome
-     * @param cargo
-     * @param bairro
-     * @param senha
      * @param email
-     * @param usuario
      * @param telefone
-     * @param cpf
-     * @param complemento
-     * @param nascimento
-     * @param rg
      * @param celular
+     * @param cargo
+     * @param usuario
+     * @param senha
+     * @param cpf
+     * @param rg
+     * @param nascimento
      * @param endereco
-     * @param numero
-     * @param cidade
      * @param cep
+     * @param complemento
+     * @param numero
+     * @param bairro
+     * @param cidade
      * @param estado
-     *
-     * @return Funcionario inserido.
+     * @return true/false.
      */
-    public Funcionario inserirFuncionario(String nome, String cargo, String usuario, String senha, String email, String telefone, String celular, String cpf, String rg, String nascimento, String endereco, String cep, String complemento, String numero, String cidade, String bairro, String estado) {
+    public Boolean inserirFuncionario(String funcionario, String nome, String email, String telefone, String celular, String cargo, String usuario, String senha, String cpf, String rg, String nascimento, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado) {
         try {
             GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
+            GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
+            GenericDAO<Contato> contatoDAO = new GenericDAO<>();
+            GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
+            GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
             Funcionario funcionarioVO = new Funcionario();
+            Pessoa pessoaVO = new Pessoa();
+            Contato contatoVO = new Contato();
+            Endereco enderecoVO = new Endereco();
+            Pessoafisica pessoaFisicaVO = new Pessoafisica();
 
-            funcionarioVO.setNomeFuncionario(nome);
+            funcionarioVO.setNomeFuncionario(funcionario);
             funcionarioVO.setCargoFuncionario(cargo);
             funcionarioVO.setUsuarioFuncionario(usuario);
             funcionarioVO.setSenhaFuncionario(senha);
-            funcionarioVO.setEmailFuncionario(email);
-            funcionarioVO.setTelefoneFuncionario(telefone);
-            funcionarioVO.setCelularFuncionario(celular);
-            funcionarioVO.setCpfFuncionario(cpf);
-            funcionarioVO.setRgFuncionario(rg);
-            funcionarioVO.setNascimentoFuncionario(new SimpleDateFormat("dd/MM/yyyy").parse(nascimento));
-            funcionarioVO.setEnderecoFuncionario(endereco);
-            funcionarioVO.setCepFuncionario(cep);
-            funcionarioVO.setComplementoFuncionario(complemento);
-            funcionarioVO.setNumeroFuncionario(numero);
-            funcionarioVO.setCidadeFuncionario(cidade);
-            funcionarioVO.setBairroFuncionario(bairro);
-            funcionarioVO.setEstadoFuncionario(estado);
             funcionarioVO.setCriacaoFuncionario(new Date());
             funcionarioVO.setAtualizacaoFuncionario(new Date());
 
-            funcionarioVO = funcionarioDAO.inserir(funcionarioVO);
+            pessoaVO.setTipoPessoa("Fisica");
+            if (pessoaDAO.inserir(pessoaVO)) {
+                funcionarioVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
+            }
 
-            if (funcionarioVO != null) {
+            pessoaFisicaVO.setCpfPessoaFisica(cpf);
+            pessoaFisicaVO.setRgPessoaFisica(rg);
+            pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+            if (pessoaFisicaDAO.inserir(pessoaFisicaVO)) {
+                pessoaFisicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
+            }
+
+            contatoVO.setNomeContato(nome);
+            contatoVO.setEmailContato(email);
+            contatoVO.setTelefoneContato(telefone);
+            contatoVO.setCelularContato(celular);
+            if (contatoDAO.inserir(contatoVO)) {
+                funcionarioVO.setContato(contatoDAO.consultar("idContato", contatoVO.getIdContato(), contatoVO));
+            }
+
+            enderecoVO.setEnderecoEndereco(endereco);
+            enderecoVO.setCepEndereco(cep);
+            enderecoVO.setComplementoEndereco(complemento);
+            enderecoVO.setNumeroEndereco(numero);
+            enderecoVO.setCidadeEndereco(cidade);
+            enderecoVO.setBairroEndereco(bairro);
+            enderecoVO.setEstadoEndereco(estado);
+            if (enderecoDAO.inserir(enderecoVO)) {
+                funcionarioVO.setEndereco(enderecoDAO.consultar("idEndereco", enderecoVO.getIdEndereco(), enderecoVO));
+            }
+
+            if (funcionarioDAO.inserir(funcionarioVO)) {
                 JOptionPane.showMessageDialog(null, "Funcionário inserido com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                return funcionarioVO;
+                return true;
             } else {
-                return null;
+                return false;
             }
         } catch (ParseException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -88,79 +117,107 @@ public class FuncionarioBO {
     }
 
     /**
-     *
      * @see Método que inseri um objeto no banco de dados por meio da
      * GenericDAO.
-     *
      * @param idFuncionario
+     * @param idPessoaFisica
+     * @param idContato
+     * @param idEndereco
+     * @param funcionario
      * @param nome
-     * @param cargo
-     * @param bairro
-     * @param senha
      * @param email
-     * @param usuario
      * @param telefone
-     * @param cpf
-     * @param complemento
-     * @param nascimento
-     * @param rg
      * @param celular
+     * @param cargo
+     * @param usuario
+     * @param senha
+     * @param cpf
+     * @param rg
+     * @param nascimento
      * @param endereco
-     * @param numero
-     * @param cidade
      * @param cep
+     * @param complemento
+     * @param numero
+     * @param bairro
+     * @param cidade
      * @param estado
-     *
-     * @return Funcionario inserido.
+     * @return true/false.
      */
-    public Funcionario alterarFuncionario(Long idFuncionario, String nome, String cargo, String usuario, String senha, String email, String telefone, String celular, String cpf, String rg, String nascimento, String endereco, String cep, String complemento, String numero, String cidade, String bairro, String estado) {
+    public Boolean alterarFuncionario(Long idFuncionario, Long idPessoa, Long idContato, Long idEndereco, String funcionario, String nome, String email, String telefone, String celular, String cargo, String usuario, String senha, String cpf, String rg, String nascimento, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado) {
         try {
             GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
+            GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
+            GenericDAO<Contato> contatoDAO = new GenericDAO<>();
+            GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
+            GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
             Funcionario funcionarioVO = new Funcionario();
+            Pessoa pessoaVO = new Pessoa();
+            Contato contatoVO = new Contato();
+            Endereco enderecoVO = new Endereco();
+            Pessoafisica pessoaFisicaVO = new Pessoafisica();
 
             funcionarioVO = funcionarioDAO.consultar("idFuncionario", idFuncionario, funcionarioVO);
-
-            funcionarioVO.setNomeFuncionario(nome);
+            funcionarioVO.setNomeFuncionario(funcionario);
             funcionarioVO.setCargoFuncionario(cargo);
             funcionarioVO.setUsuarioFuncionario(usuario);
             funcionarioVO.setSenhaFuncionario(senha);
-            funcionarioVO.setEmailFuncionario(email);
-            funcionarioVO.setTelefoneFuncionario(telefone);
-            funcionarioVO.setCelularFuncionario(celular);
-            funcionarioVO.setCpfFuncionario(cpf);
-            funcionarioVO.setRgFuncionario(rg);
-            funcionarioVO.setNascimentoFuncionario(new SimpleDateFormat("dd/MM/yyyy").parse(nascimento));
-            funcionarioVO.setEnderecoFuncionario(endereco);
-            funcionarioVO.setCepFuncionario(cep);
-            funcionarioVO.setComplementoFuncionario(complemento);
-            funcionarioVO.setNumeroFuncionario(numero);
-            funcionarioVO.setCidadeFuncionario(cidade);
-            funcionarioVO.setBairroFuncionario(bairro);
-            funcionarioVO.setEstadoFuncionario(estado);
-            funcionarioVO.setCriacaoFuncionario(new Date());
             funcionarioVO.setAtualizacaoFuncionario(new Date());
 
-            funcionarioVO = funcionarioDAO.atualizar(funcionarioVO);
+            pessoaFisicaVO = buscarPessoaFisica(idPessoa);
+            pessoaFisicaVO.setCpfPessoaFisica(cpf);
+            pessoaFisicaVO.setRgPessoaFisica(rg);
+            pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("dd/MM/yyyy").parse(nascimento));
+            pessoaFisicaDAO.atualizar(pessoaFisicaVO);
 
-            if (funcionarioVO != null) {
+            contatoVO = contatoDAO.consultar("idContato", idContato, contatoVO);
+            contatoVO.setNomeContato(nome);
+            contatoVO.setEmailContato(email);
+            contatoVO.setTelefoneContato(telefone);
+            contatoVO.setCelularContato(celular);
+            if (contatoDAO.atualizar(contatoVO)) {
+                funcionarioVO.setContato(contatoVO);
+            }
+
+            enderecoVO = enderecoDAO.consultar("idEndereco", idEndereco, enderecoVO);
+            enderecoVO.setEnderecoEndereco(endereco);
+            enderecoVO.setCepEndereco(cep);
+            enderecoVO.setComplementoEndereco(complemento);
+            enderecoVO.setNumeroEndereco(numero);
+            enderecoVO.setCidadeEndereco(cidade);
+            enderecoVO.setBairroEndereco(bairro);
+            enderecoVO.setEstadoEndereco(estado);
+            if (enderecoDAO.atualizar(enderecoVO)) {
+                funcionarioVO.setEndereco(enderecoVO);
+            }
+
+            if (funcionarioDAO.atualizar(funcionarioVO)) {
                 JOptionPane.showMessageDialog(null, "Funcionário alterado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                return funcionarioVO;
+                return true;
             } else {
-                return null;
+                return false;
             }
         } catch (ParseException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
+    }
+
+    public Pessoafisica buscarPessoaFisica(Long idPessoa) {
+        GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
+        List<Pessoafisica> pessoaFisicaVO = pessoaFisicaDAO.consultar(new Pessoafisica());
+        for (Pessoafisica pessoaFisicaVO1 : pessoaFisicaVO) {
+            if (Objects.equals(pessoaFisicaVO1.getPessoa().getIdPessoa(), idPessoa)) {
+                return pessoaFisicaVO1;
+            }
+        }
+        return null;
     }
 
     /**
      *
      * @see Método que verifica se os elementos do JPanel são diferentes de
      * null, usado para verificar se os campos estão preenchidos pelo usuário.
-     *
      * @param panel
-     *
      * @return false caso pelo menos um componente possuir getText() == null.
      */
     public boolean validarCampos(JPanel panel) {

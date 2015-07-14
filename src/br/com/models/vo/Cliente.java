@@ -1,14 +1,16 @@
 package br.com.models.vo;
-// Generated 16/06/2015 14:56:33 by Hibernate Tools 4.3.1
+// Generated 19/06/2015 12:08:25 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,59 +26,27 @@ public class Cliente  implements java.io.Serializable {
 
 
      private Long idCliente;
+     private Contato contato;
+     private Endereco endereco;
+     private Pessoa pessoa;
      private String nomeCliente;
-     private String emailCliente;
-     private String telefoneCliente;
-     private String celularCliente;
-     private BigDecimal salarioCliente;
-     private BigDecimal limiteCliente;
-     private BigDecimal descontoCliente;
-     private String enderecoCliente;
-     private String cepCliente;
-     private String complementoCliente;
-     private String numeroCliente;
-     private String cidadeCliente;
-     private String bairroCliente;
-     private String estadoCliente;
-     private String pessoaCliente;
-     private String cpfCnpjCliente;
-     private String rgRazaoCliente;
-     private Date nascimentoCliente;
-     private String estadualCliente;
-     private String municipalCliente;
-     private String suframaCliente;
-     private String icmsCliente;
-     private Boolean publicidadeCliente;
+     private Long salarioCliente;
+     private Long limiteCliente;
+     private Long descontoCliente;
      private Date criacaoCliente;
      private Date atualizacaoCliente;
 
     public Cliente() {
     }
 
-    public Cliente(String nomeCliente, String emailCliente, String telefoneCliente, String celularCliente, BigDecimal salarioCliente, BigDecimal limiteCliente, BigDecimal descontoCliente, String enderecoCliente, String cepCliente, String complementoCliente, String numeroCliente, String cidadeCliente, String bairroCliente, String estadoCliente, String pessoaCliente, String cpfCnpjCliente, String rgRazaoCliente, Date nascimentoCliente, String estadualCliente, String municipalCliente, String suframaCliente, String icmsCliente, Boolean publicidadeCliente, Date criacaoCliente, Date atualizacaoCliente) {
+    public Cliente(Contato contato, Endereco endereco, Pessoa pessoa, String nomeCliente, Long salarioCliente, Long limiteCliente, Long descontoCliente, Date criacaoCliente, Date atualizacaoCliente) {
+       this.contato = contato;
+       this.endereco = endereco;
+       this.pessoa = pessoa;
        this.nomeCliente = nomeCliente;
-       this.emailCliente = emailCliente;
-       this.telefoneCliente = telefoneCliente;
-       this.celularCliente = celularCliente;
        this.salarioCliente = salarioCliente;
        this.limiteCliente = limiteCliente;
        this.descontoCliente = descontoCliente;
-       this.enderecoCliente = enderecoCliente;
-       this.cepCliente = cepCliente;
-       this.complementoCliente = complementoCliente;
-       this.numeroCliente = numeroCliente;
-       this.cidadeCliente = cidadeCliente;
-       this.bairroCliente = bairroCliente;
-       this.estadoCliente = estadoCliente;
-       this.pessoaCliente = pessoaCliente;
-       this.cpfCnpjCliente = cpfCnpjCliente;
-       this.rgRazaoCliente = rgRazaoCliente;
-       this.nascimentoCliente = nascimentoCliente;
-       this.estadualCliente = estadualCliente;
-       this.municipalCliente = municipalCliente;
-       this.suframaCliente = suframaCliente;
-       this.icmsCliente = icmsCliente;
-       this.publicidadeCliente = publicidadeCliente;
        this.criacaoCliente = criacaoCliente;
        this.atualizacaoCliente = atualizacaoCliente;
     }
@@ -93,6 +63,36 @@ public class Cliente  implements java.io.Serializable {
         this.idCliente = idCliente;
     }
 
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="contatoCliente")
+    public Contato getContato() {
+        return this.contato;
+    }
+    
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="enderecoCliente")
+    public Endereco getEndereco() {
+        return this.endereco;
+    }
+    
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="pessoaCliente")
+    public Pessoa getPessoa() {
+        return this.pessoa;
+    }
+    
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
     
     @Column(name="nomeCliente", length=50)
     public String getNomeCliente() {
@@ -104,223 +104,33 @@ public class Cliente  implements java.io.Serializable {
     }
 
     
-    @Column(name="emailCliente", length=50)
-    public String getEmailCliente() {
-        return this.emailCliente;
-    }
-    
-    public void setEmailCliente(String emailCliente) {
-        this.emailCliente = emailCliente;
-    }
-
-    
-    @Column(name="telefoneCliente", length=20)
-    public String getTelefoneCliente() {
-        return this.telefoneCliente;
-    }
-    
-    public void setTelefoneCliente(String telefoneCliente) {
-        this.telefoneCliente = telefoneCliente;
-    }
-
-    
-    @Column(name="celularCliente", length=20)
-    public String getCelularCliente() {
-        return this.celularCliente;
-    }
-    
-    public void setCelularCliente(String celularCliente) {
-        this.celularCliente = celularCliente;
-    }
-
-    
-    @Column(name="salarioCliente", precision=10)
-    public BigDecimal getSalarioCliente() {
+    @Column(name="salarioCliente", precision=10, scale=0)
+    public Long getSalarioCliente() {
         return this.salarioCliente;
     }
     
-    public void setSalarioCliente(BigDecimal salarioCliente) {
+    public void setSalarioCliente(Long salarioCliente) {
         this.salarioCliente = salarioCliente;
     }
 
     
-    @Column(name="limiteCliente", precision=10)
-    public BigDecimal getLimiteCliente() {
+    @Column(name="limiteCliente", precision=10, scale=0)
+    public Long getLimiteCliente() {
         return this.limiteCliente;
     }
     
-    public void setLimiteCliente(BigDecimal limiteCliente) {
+    public void setLimiteCliente(Long limiteCliente) {
         this.limiteCliente = limiteCliente;
     }
 
     
-    @Column(name="descontoCliente", precision=10)
-    public BigDecimal getDescontoCliente() {
+    @Column(name="descontoCliente", precision=10, scale=0)
+    public Long getDescontoCliente() {
         return this.descontoCliente;
     }
     
-    public void setDescontoCliente(BigDecimal descontoCliente) {
+    public void setDescontoCliente(Long descontoCliente) {
         this.descontoCliente = descontoCliente;
-    }
-
-    
-    @Column(name="enderecoCliente", length=100)
-    public String getEnderecoCliente() {
-        return this.enderecoCliente;
-    }
-    
-    public void setEnderecoCliente(String enderecoCliente) {
-        this.enderecoCliente = enderecoCliente;
-    }
-
-    
-    @Column(name="cepCliente", length=20)
-    public String getCepCliente() {
-        return this.cepCliente;
-    }
-    
-    public void setCepCliente(String cepCliente) {
-        this.cepCliente = cepCliente;
-    }
-
-    
-    @Column(name="complementoCliente", length=20)
-    public String getComplementoCliente() {
-        return this.complementoCliente;
-    }
-    
-    public void setComplementoCliente(String complementoCliente) {
-        this.complementoCliente = complementoCliente;
-    }
-
-    
-    @Column(name="numeroCliente", length=10)
-    public String getNumeroCliente() {
-        return this.numeroCliente;
-    }
-    
-    public void setNumeroCliente(String numeroCliente) {
-        this.numeroCliente = numeroCliente;
-    }
-
-    
-    @Column(name="cidadeCliente", length=20)
-    public String getCidadeCliente() {
-        return this.cidadeCliente;
-    }
-    
-    public void setCidadeCliente(String cidadeCliente) {
-        this.cidadeCliente = cidadeCliente;
-    }
-
-    
-    @Column(name="bairroCliente", length=20)
-    public String getBairroCliente() {
-        return this.bairroCliente;
-    }
-    
-    public void setBairroCliente(String bairroCliente) {
-        this.bairroCliente = bairroCliente;
-    }
-
-    
-    @Column(name="estadoCliente", length=20)
-    public String getEstadoCliente() {
-        return this.estadoCliente;
-    }
-    
-    public void setEstadoCliente(String estadoCliente) {
-        this.estadoCliente = estadoCliente;
-    }
-
-    
-    @Column(name="pessoaCliente", length=20)
-    public String getPessoaCliente() {
-        return this.pessoaCliente;
-    }
-    
-    public void setPessoaCliente(String pessoaCliente) {
-        this.pessoaCliente = pessoaCliente;
-    }
-
-    
-    @Column(name="cpfCnpjCliente", length=20)
-    public String getCpfCnpjCliente() {
-        return this.cpfCnpjCliente;
-    }
-    
-    public void setCpfCnpjCliente(String cpfCnpjCliente) {
-        this.cpfCnpjCliente = cpfCnpjCliente;
-    }
-
-    
-    @Column(name="rgRazaoCliente", length=20)
-    public String getRgRazaoCliente() {
-        return this.rgRazaoCliente;
-    }
-    
-    public void setRgRazaoCliente(String rgRazaoCliente) {
-        this.rgRazaoCliente = rgRazaoCliente;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name="nascimentoCliente", length=10)
-    public Date getNascimentoCliente() {
-        return this.nascimentoCliente;
-    }
-    
-    public void setNascimentoCliente(Date nascimentoCliente) {
-        this.nascimentoCliente = nascimentoCliente;
-    }
-
-    
-    @Column(name="estadualCliente", length=50)
-    public String getEstadualCliente() {
-        return this.estadualCliente;
-    }
-    
-    public void setEstadualCliente(String estadualCliente) {
-        this.estadualCliente = estadualCliente;
-    }
-
-    
-    @Column(name="municipalCliente", length=50)
-    public String getMunicipalCliente() {
-        return this.municipalCliente;
-    }
-    
-    public void setMunicipalCliente(String municipalCliente) {
-        this.municipalCliente = municipalCliente;
-    }
-
-    
-    @Column(name="suframaCliente", length=50)
-    public String getSuframaCliente() {
-        return this.suframaCliente;
-    }
-    
-    public void setSuframaCliente(String suframaCliente) {
-        this.suframaCliente = suframaCliente;
-    }
-
-    
-    @Column(name="icmsCliente", length=50)
-    public String getIcmsCliente() {
-        return this.icmsCliente;
-    }
-    
-    public void setIcmsCliente(String icmsCliente) {
-        this.icmsCliente = icmsCliente;
-    }
-
-    
-    @Column(name="publicidadeCliente")
-    public Boolean getPublicidadeCliente() {
-        return this.publicidadeCliente;
-    }
-    
-    public void setPublicidadeCliente(Boolean publicidadeCliente) {
-        this.publicidadeCliente = publicidadeCliente;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

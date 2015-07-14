@@ -1,5 +1,5 @@
 package br.com.models.vo;
-// Generated 16/06/2015 14:56:33 by Hibernate Tools 4.3.1
+// Generated 19/06/2015 12:08:25 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,26 +29,10 @@ public class Fornecedor  implements java.io.Serializable {
 
 
      private Long idFornecedor;
-     private String empresaFornecedor;
-     private String contatoFornecedor;
-     private String emailFornecedor;
-     private String telefoneFornecedor;
-     private String celularFornecedor;
-     private String enderecoFornecedor;
-     private String cepFornecedor;
-     private String complementoFornecedor;
-     private String numeroFornecedor;
-     private String cidadeFornecedor;
-     private String bairroFornecedor;
-     private String estadoFornecedor;
-     private String pessoaFornecedor;
-     private String cpfCnpjFornecedor;
-     private String rgRazaoFornecedor;
-     private Date nascimentoFornecedor;
-     private String estadualFornecedor;
-     private String municipalFornecedor;
-     private String suframaFornecedor;
-     private Boolean icmsFornecedor;
+     private Contato contato;
+     private Endereco endereco;
+     private Pessoa pessoa;
+     private String nomeFornecedor;
      private Date criacaoFornecedor;
      private Date atualizacaoFornecedor;
      private Set<Produto> produtos = new HashSet<Produto>(0);
@@ -54,27 +40,11 @@ public class Fornecedor  implements java.io.Serializable {
     public Fornecedor() {
     }
 
-    public Fornecedor(String empresaFornecedor, String contatoFornecedor, String emailFornecedor, String telefoneFornecedor, String celularFornecedor, String enderecoFornecedor, String cepFornecedor, String complementoFornecedor, String numeroFornecedor, String cidadeFornecedor, String bairroFornecedor, String estadoFornecedor, String pessoaFornecedor, String cpfCnpjFornecedor, String rgRazaoFornecedor, Date nascimentoFornecedor, String estadualFornecedor, String municipalFornecedor, String suframaFornecedor, Boolean icmsFornecedor, Date criacaoFornecedor, Date atualizacaoFornecedor, Set<Produto> produtos) {
-       this.empresaFornecedor = empresaFornecedor;
-       this.contatoFornecedor = contatoFornecedor;
-       this.emailFornecedor = emailFornecedor;
-       this.telefoneFornecedor = telefoneFornecedor;
-       this.celularFornecedor = celularFornecedor;
-       this.enderecoFornecedor = enderecoFornecedor;
-       this.cepFornecedor = cepFornecedor;
-       this.complementoFornecedor = complementoFornecedor;
-       this.numeroFornecedor = numeroFornecedor;
-       this.cidadeFornecedor = cidadeFornecedor;
-       this.bairroFornecedor = bairroFornecedor;
-       this.estadoFornecedor = estadoFornecedor;
-       this.pessoaFornecedor = pessoaFornecedor;
-       this.cpfCnpjFornecedor = cpfCnpjFornecedor;
-       this.rgRazaoFornecedor = rgRazaoFornecedor;
-       this.nascimentoFornecedor = nascimentoFornecedor;
-       this.estadualFornecedor = estadualFornecedor;
-       this.municipalFornecedor = municipalFornecedor;
-       this.suframaFornecedor = suframaFornecedor;
-       this.icmsFornecedor = icmsFornecedor;
+    public Fornecedor(Contato contato, Endereco endereco, Pessoa pessoa, String nomeFornecedor, Date criacaoFornecedor, Date atualizacaoFornecedor, Set<Produto> produtos) {
+       this.contato = contato;
+       this.endereco = endereco;
+       this.pessoa = pessoa;
+       this.nomeFornecedor = nomeFornecedor;
        this.criacaoFornecedor = criacaoFornecedor;
        this.atualizacaoFornecedor = atualizacaoFornecedor;
        this.produtos = produtos;
@@ -92,204 +62,44 @@ public class Fornecedor  implements java.io.Serializable {
         this.idFornecedor = idFornecedor;
     }
 
-    
-    @Column(name="empresaFornecedor", length=50)
-    public String getEmpresaFornecedor() {
-        return this.empresaFornecedor;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="contatoFornecedor")
+    public Contato getContato() {
+        return this.contato;
     }
     
-    public void setEmpresaFornecedor(String empresaFornecedor) {
-        this.empresaFornecedor = empresaFornecedor;
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="enderecoFornecedor")
+    public Endereco getEndereco() {
+        return this.endereco;
+    }
+    
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="pessoaFornecedor")
+    public Pessoa getPessoa() {
+        return this.pessoa;
+    }
+    
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     
-    @Column(name="contatoFornecedor", length=50)
-    public String getContatoFornecedor() {
-        return this.contatoFornecedor;
+    @Column(name="nomeFornecedor", length=50)
+    public String getNomeFornecedor() {
+        return this.nomeFornecedor;
     }
     
-    public void setContatoFornecedor(String contatoFornecedor) {
-        this.contatoFornecedor = contatoFornecedor;
-    }
-
-    
-    @Column(name="emailFornecedor", length=50)
-    public String getEmailFornecedor() {
-        return this.emailFornecedor;
-    }
-    
-    public void setEmailFornecedor(String emailFornecedor) {
-        this.emailFornecedor = emailFornecedor;
-    }
-
-    
-    @Column(name="telefoneFornecedor", length=50)
-    public String getTelefoneFornecedor() {
-        return this.telefoneFornecedor;
-    }
-    
-    public void setTelefoneFornecedor(String telefoneFornecedor) {
-        this.telefoneFornecedor = telefoneFornecedor;
-    }
-
-    
-    @Column(name="celularFornecedor", length=50)
-    public String getCelularFornecedor() {
-        return this.celularFornecedor;
-    }
-    
-    public void setCelularFornecedor(String celularFornecedor) {
-        this.celularFornecedor = celularFornecedor;
-    }
-
-    
-    @Column(name="enderecoFornecedor", length=100)
-    public String getEnderecoFornecedor() {
-        return this.enderecoFornecedor;
-    }
-    
-    public void setEnderecoFornecedor(String enderecoFornecedor) {
-        this.enderecoFornecedor = enderecoFornecedor;
-    }
-
-    
-    @Column(name="cepFornecedor", length=20)
-    public String getCepFornecedor() {
-        return this.cepFornecedor;
-    }
-    
-    public void setCepFornecedor(String cepFornecedor) {
-        this.cepFornecedor = cepFornecedor;
-    }
-
-    
-    @Column(name="complementoFornecedor", length=20)
-    public String getComplementoFornecedor() {
-        return this.complementoFornecedor;
-    }
-    
-    public void setComplementoFornecedor(String complementoFornecedor) {
-        this.complementoFornecedor = complementoFornecedor;
-    }
-
-    
-    @Column(name="numeroFornecedor", length=10)
-    public String getNumeroFornecedor() {
-        return this.numeroFornecedor;
-    }
-    
-    public void setNumeroFornecedor(String numeroFornecedor) {
-        this.numeroFornecedor = numeroFornecedor;
-    }
-
-    
-    @Column(name="cidadeFornecedor", length=20)
-    public String getCidadeFornecedor() {
-        return this.cidadeFornecedor;
-    }
-    
-    public void setCidadeFornecedor(String cidadeFornecedor) {
-        this.cidadeFornecedor = cidadeFornecedor;
-    }
-
-    
-    @Column(name="bairroFornecedor", length=20)
-    public String getBairroFornecedor() {
-        return this.bairroFornecedor;
-    }
-    
-    public void setBairroFornecedor(String bairroFornecedor) {
-        this.bairroFornecedor = bairroFornecedor;
-    }
-
-    
-    @Column(name="estadoFornecedor", length=20)
-    public String getEstadoFornecedor() {
-        return this.estadoFornecedor;
-    }
-    
-    public void setEstadoFornecedor(String estadoFornecedor) {
-        this.estadoFornecedor = estadoFornecedor;
-    }
-
-    
-    @Column(name="pessoaFornecedor", length=20)
-    public String getPessoaFornecedor() {
-        return this.pessoaFornecedor;
-    }
-    
-    public void setPessoaFornecedor(String pessoaFornecedor) {
-        this.pessoaFornecedor = pessoaFornecedor;
-    }
-
-    
-    @Column(name="cpfCnpjFornecedor", length=20)
-    public String getCpfCnpjFornecedor() {
-        return this.cpfCnpjFornecedor;
-    }
-    
-    public void setCpfCnpjFornecedor(String cpfCnpjFornecedor) {
-        this.cpfCnpjFornecedor = cpfCnpjFornecedor;
-    }
-
-    
-    @Column(name="rgRazaoFornecedor", length=20)
-    public String getRgRazaoFornecedor() {
-        return this.rgRazaoFornecedor;
-    }
-    
-    public void setRgRazaoFornecedor(String rgRazaoFornecedor) {
-        this.rgRazaoFornecedor = rgRazaoFornecedor;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name="nascimentoFornecedor", length=10)
-    public Date getNascimentoFornecedor() {
-        return this.nascimentoFornecedor;
-    }
-    
-    public void setNascimentoFornecedor(Date nascimentoFornecedor) {
-        this.nascimentoFornecedor = nascimentoFornecedor;
-    }
-
-    
-    @Column(name="estadualFornecedor", length=50)
-    public String getEstadualFornecedor() {
-        return this.estadualFornecedor;
-    }
-    
-    public void setEstadualFornecedor(String estadualFornecedor) {
-        this.estadualFornecedor = estadualFornecedor;
-    }
-
-    
-    @Column(name="municipalFornecedor", length=50)
-    public String getMunicipalFornecedor() {
-        return this.municipalFornecedor;
-    }
-    
-    public void setMunicipalFornecedor(String municipalFornecedor) {
-        this.municipalFornecedor = municipalFornecedor;
-    }
-
-    
-    @Column(name="suframaFornecedor", length=50)
-    public String getSuframaFornecedor() {
-        return this.suframaFornecedor;
-    }
-    
-    public void setSuframaFornecedor(String suframaFornecedor) {
-        this.suframaFornecedor = suframaFornecedor;
-    }
-
-    
-    @Column(name="icmsFornecedor")
-    public Boolean getIcmsFornecedor() {
-        return this.icmsFornecedor;
-    }
-    
-    public void setIcmsFornecedor(Boolean icmsFornecedor) {
-        this.icmsFornecedor = icmsFornecedor;
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

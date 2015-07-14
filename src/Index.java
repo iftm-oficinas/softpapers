@@ -5,7 +5,7 @@ import br.com.resources.views.ViewPrincipal;
  * @see Classe utilizada para iniciar o programa, seleciona o look and feal e
  * abre a tela principal.
  *
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * @author Marlon Andrel Coelho Freitas
  * @version 0.0000.00.00 Alfa
  */
 public class Index {

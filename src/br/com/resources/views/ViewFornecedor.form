@@ -99,7 +99,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="tfBairro" min="-2" pref="200" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -107,63 +107,64 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="tfEstado" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lbContato" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbOpcional1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbEmail" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfEmail" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tfTelefone" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="lbTelefone" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbCelular" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfCelular" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lbMaisEndereco" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbOpcional3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="lbEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tfCep" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="lbCep" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbBairro" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tfComplemento" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="lbComplemento" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbCidade" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbEstado" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbNumero" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfNumero" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbEmpresa" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfEmpresa" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="pnObrigatorio" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="tfEndereco" max="32767" attributes="0"/>
+                              <Component id="tfNomeFornecedor" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lbEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfEmail" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tfTelefone" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="lbTelefone" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lbCelular" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfCelular" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lbMaisEndereco" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lbOpcional3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="lbEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tfCep" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="lbCep" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbBairro" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tfComplemento" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="lbComplemento" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbCidade" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lbEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbNumero" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfNumero" min="-2" pref="200" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="lbNomeFornecedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lbContato" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lbOpcional1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="lbNomeContato" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfNomeContato" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="sprDireita" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -187,19 +188,19 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="pnObrigatorio" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="lbEmpresa" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfEmpresa" min="-2" pref="30" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="lbNomeFornecedor" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="tfNomeFornecedor" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbContato" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lbOpcional1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lbNomeContato" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="tfNomeContato" min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lbTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -211,7 +212,7 @@
                               <Component id="tfTelefone" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="tfCelular" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbMaisEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lbOpcional3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -266,63 +267,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="pnObrigatorio">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-          </Properties>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfNome" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="lbNome" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="lbNome" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tfNome" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="lbNome">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="12" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Nome do contato"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="tfNome">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="12" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Component class="javax.swing.JLabel" name="lbEmpresa">
+        <Component class="javax.swing.JLabel" name="lbNomeFornecedor">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="0"/>
@@ -330,10 +275,10 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Empresa"/>
+            <Property name="text" type="java.lang.String" value="Nome do fornecedor"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfEmpresa">
+        <Component class="javax.swing.JTextField" name="tfNomeFornecedor">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="0"/>
@@ -342,6 +287,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNomeFornecedorKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbContato">
           <Properties>
@@ -365,6 +313,30 @@
             <Property name="text" type="java.lang.String" value="(Opcional)"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="lbNomeContato">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="66" red="66" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Nome do contato"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfNomeContato">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="66" red="66" type="rgb"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNomeContatoKeyTyped"/>
+          </Events>
+        </Component>
         <Component class="javax.swing.JLabel" name="lbEmail">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -385,6 +357,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfEmailKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbTelefone">
           <Properties>
@@ -406,6 +381,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfTelefoneKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbCelular">
           <Properties>
@@ -427,6 +405,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCelularKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbMaisEndereco">
           <Properties>
@@ -470,6 +451,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfEnderecoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbCep">
           <Properties>
@@ -515,6 +499,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfComplementoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbNumero">
           <Properties>
@@ -560,6 +547,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfBairroKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbCidade">
           <Properties>
@@ -581,6 +571,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCidadeKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbEstado">
           <Properties>
@@ -602,6 +595,9 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfEstadoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="sprDireita">
           <Properties>
@@ -625,6 +621,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Pessoa F&#xed;sica"/>
           </Properties>
           <Events>
@@ -645,7 +642,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
-            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Pessoa Jur&#xed;dica "/>
           </Properties>
           <Events>
@@ -764,6 +760,9 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCpfCnpjKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbRgRazaoSocial">
               <Properties>
@@ -785,6 +784,9 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfRgRazaoSocialKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbNascimentoFundacao">
               <Properties>
@@ -880,6 +882,9 @@
                       <Color blue="66" green="66" red="66" type="rgb"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfEstadualKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbMunicipal">
                   <Properties>
@@ -901,6 +906,9 @@
                       <Color blue="66" green="66" red="66" type="rgb"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfMunicipalKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbSuframa">
                   <Properties>
@@ -922,6 +930,9 @@
                       <Color blue="66" green="66" red="66" type="rgb"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfSuframaKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rbIcms">
                   <Properties>
@@ -970,9 +981,6 @@
               <Image iconType="3" name="/br/com/resources/imagens/btnCadastrarDOWN.png"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

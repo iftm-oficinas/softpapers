@@ -2,6 +2,7 @@ package br.com.resources.views;
 
 import br.com.models.bo.FuncionarioBO;
 import br.com.models.vo.Funcionario;
+import br.com.models.vo.Pessoafisica;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
@@ -35,29 +36,33 @@ public class ViewFuncionario extends javax.swing.JDialog {
         initComponents();
         this.viewPainelControle = viewPainelControle;
         this.funcionarioVO = funcionario;
+        funcionarioBO = new FuncionarioBO();
+        this.pessoaFisicaVO = funcionarioBO.buscarPessoaFisica(funcionarioVO.getPessoa().getIdPessoa());
         btnCadastrar.setVisible(false);
         lbTitulo.setText("Alterar Funcionário");
-        tfNome.setText(funcionario.getNomeFuncionario());
-        tfEmail.setText(funcionario.getEmailFuncionario());
-        tfTelefone.setText(funcionario.getTelefoneFuncionario());
-        tfCelular.setText(funcionario.getCelularFuncionario());
+        tfNomeFuncionario.setText(funcionario.getNomeFuncionario());
+        tfNomeContato.setText(funcionario.getContato().getNomeContato());
+        tfEmail.setText(funcionario.getContato().getEmailContato());
+        tfTelefone.setText(funcionario.getContato().getTelefoneContato());
+        tfCelular.setText(funcionario.getContato().getCelularContato());
         tfCargo.setText(funcionario.getCargoFuncionario());
         tfUsuario.setText(funcionario.getUsuarioFuncionario());
         pfSenha.setText(funcionario.getSenhaFuncionario());
-        tfCpf.setText(funcionario.getCpfFuncionario());
-        tfRg.setText(funcionario.getRgFuncionario());
-        tfNascimento.setText(new SimpleDateFormat("dd/MM/yyyy").format(funcionario.getNascimentoFuncionario()));
-        tfEndereco.setText(funcionario.getEnderecoFuncionario());
-        tfCep.setText(funcionario.getCepFuncionario());
-        tfComplemento.setText(funcionario.getComplementoFuncionario());
-        tfNumero.setText(funcionario.getNumeroFuncionario());
-        tfBairro.setText(funcionario.getBairroFuncionario());
-        tfCidade.setText(funcionario.getCidadeFuncionario());
-        tfEstado.setText(funcionario.getEstadoFuncionario());
+        tfCpf.setText(pessoaFisicaVO.getCpfPessoaFisica());
+        tfRg.setText(pessoaFisicaVO.getRgPessoaFisica());
+        tfNascimento.setText(new SimpleDateFormat("dd/MM/yyyy").format(pessoaFisicaVO.getNascimentoPessoaFisica()));
+        tfEndereco.setText(funcionario.getEndereco().getEnderecoEndereco());
+        tfCep.setText(funcionario.getEndereco().getCepEndereco());
+        tfComplemento.setText(funcionario.getEndereco().getComplementoEndereco());
+        tfNumero.setText(funcionario.getEndereco().getNumeroEndereco());
+        tfBairro.setText(funcionario.getEndereco().getBairroEndereco());
+        tfCidade.setText(funcionario.getEndereco().getCidadeEndereco());
+        tfEstado.setText(funcionario.getEndereco().getEstadoEndereco());
         if (!alterar) {
             lbTitulo.setText("Funcionário");
             btnAlterarFuncionario.setVisible(false);
-            tfNome.setEditable(false);
+            tfNomeFuncionario.setEditable(false);
+            tfNomeContato.setEditable(false);
             tfEmail.setEditable(false);
             tfTelefone.setEditable(false);
             tfCelular.setEditable(false);
@@ -84,21 +89,28 @@ public class ViewFuncionario extends javax.swing.JDialog {
         pnTitulo = new javax.swing.JPanel();
         lbTitulo = new javax.swing.JLabel();
         pnCorpo = new javax.swing.JPanel();
-        lbFuncionario = new javax.swing.JLabel();
-        lbCargo = new javax.swing.JLabel();
-        tfCargo = new javax.swing.JTextField();
-        lbUsuario = new javax.swing.JLabel();
-        tfUsuario = new javax.swing.JTextField();
-        lbSenha = new javax.swing.JLabel();
-        pfSenha = new javax.swing.JPasswordField();
+        lbNomeFuncionario = new javax.swing.JLabel();
+        tfNomeFuncionario = new javax.swing.JTextField();
         lbContato = new javax.swing.JLabel();
+        lbOpcional1 = new javax.swing.JLabel();
+        lbNomeContato = new javax.swing.JLabel();
+        tfNomeContato = new javax.swing.JTextField();
         lbEmail = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
         lbTelefone = new javax.swing.JLabel();
         tfTelefone = new javax.swing.JTextField();
         lbCelular = new javax.swing.JLabel();
         tfCelular = new javax.swing.JTextField();
+        lbFuncionario = new javax.swing.JLabel();
+        lbOpcional2 = new javax.swing.JLabel();
+        lbCargo = new javax.swing.JLabel();
+        tfCargo = new javax.swing.JTextField();
+        lbUsuario = new javax.swing.JLabel();
+        tfUsuario = new javax.swing.JTextField();
+        lbSenha = new javax.swing.JLabel();
+        pfSenha = new javax.swing.JPasswordField();
         lbPessoaFisica = new javax.swing.JLabel();
+        lbOpcional3 = new javax.swing.JLabel();
         lbCpf = new javax.swing.JLabel();
         tfCpf = new javax.swing.JTextField();
         lbRg = new javax.swing.JLabel();
@@ -106,6 +118,7 @@ public class ViewFuncionario extends javax.swing.JDialog {
         lbNascimento = new javax.swing.JLabel();
         tfNascimento = new javax.swing.JTextField();
         lbMaisEndereco = new javax.swing.JLabel();
+        lbOpcional4 = new javax.swing.JLabel();
         lbEndereco = new javax.swing.JLabel();
         tfEndereco = new javax.swing.JTextField();
         lbCep = new javax.swing.JLabel();
@@ -122,8 +135,6 @@ public class ViewFuncionario extends javax.swing.JDialog {
         tfEstado = new javax.swing.JTextField();
         sprRodape = new javax.swing.JSeparator();
         btnCadastrar = new javax.swing.JButton();
-        lbNome = new javax.swing.JLabel();
-        tfNome = new javax.swing.JTextField();
         btnAlterarFuncionario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -155,49 +166,37 @@ public class ViewFuncionario extends javax.swing.JDialog {
 
         pnCorpo.setBackground(new java.awt.Color(255, 255, 255));
 
-        lbFuncionario.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        lbFuncionario.setForeground(new java.awt.Color(0, 102, 205));
-        lbFuncionario.setText("funcionário");
+        lbNomeFuncionario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbNomeFuncionario.setForeground(new java.awt.Color(102, 102, 102));
+        lbNomeFuncionario.setText("Nome do funcionario");
 
-        lbCargo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbCargo.setForeground(new java.awt.Color(102, 102, 102));
-        lbCargo.setText("Cargo");
-
-        tfCargo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfCargo.setForeground(new java.awt.Color(102, 102, 102));
-        tfCargo.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfNomeFuncionario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfNomeFuncionario.setForeground(new java.awt.Color(102, 102, 102));
+        tfNomeFuncionario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfCargoKeyTyped(evt);
-            }
-        });
-
-        lbUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbUsuario.setForeground(new java.awt.Color(102, 102, 102));
-        lbUsuario.setText("Usuário");
-
-        tfUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfUsuario.setForeground(new java.awt.Color(102, 102, 102));
-        tfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfUsuarioKeyTyped(evt);
-            }
-        });
-
-        lbSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbSenha.setForeground(new java.awt.Color(102, 102, 102));
-        lbSenha.setText("Senha");
-
-        pfSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        pfSenha.setForeground(new java.awt.Color(102, 102, 102));
-        pfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                pfSenhaKeyTyped(evt);
+                tfNomeFuncionarioKeyTyped(evt);
             }
         });
 
         lbContato.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lbContato.setForeground(new java.awt.Color(0, 102, 205));
         lbContato.setText("contato");
+
+        lbOpcional1.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        lbOpcional1.setForeground(new java.awt.Color(102, 102, 102));
+        lbOpcional1.setText("(Opcional)");
+
+        lbNomeContato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbNomeContato.setForeground(new java.awt.Color(102, 102, 102));
+        lbNomeContato.setText("Nome do contato");
+
+        tfNomeContato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfNomeContato.setForeground(new java.awt.Color(102, 102, 102));
+        tfNomeContato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNomeContatoKeyTyped(evt);
+            }
+        });
 
         lbEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbEmail.setForeground(new java.awt.Color(102, 102, 102));
@@ -235,9 +234,57 @@ public class ViewFuncionario extends javax.swing.JDialog {
             }
         });
 
+        lbFuncionario.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        lbFuncionario.setForeground(new java.awt.Color(0, 102, 205));
+        lbFuncionario.setText("funcionário");
+
+        lbOpcional2.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        lbOpcional2.setForeground(new java.awt.Color(102, 102, 102));
+        lbOpcional2.setText("(Opcional)");
+
+        lbCargo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbCargo.setForeground(new java.awt.Color(102, 102, 102));
+        lbCargo.setText("Cargo");
+
+        tfCargo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfCargo.setForeground(new java.awt.Color(102, 102, 102));
+        tfCargo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCargoKeyTyped(evt);
+            }
+        });
+
+        lbUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbUsuario.setForeground(new java.awt.Color(102, 102, 102));
+        lbUsuario.setText("Usuário");
+
+        tfUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfUsuario.setForeground(new java.awt.Color(102, 102, 102));
+        tfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfUsuarioKeyTyped(evt);
+            }
+        });
+
+        lbSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lbSenha.setForeground(new java.awt.Color(102, 102, 102));
+        lbSenha.setText("Senha");
+
+        pfSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        pfSenha.setForeground(new java.awt.Color(102, 102, 102));
+        pfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pfSenhaKeyTyped(evt);
+            }
+        });
+
         lbPessoaFisica.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lbPessoaFisica.setForeground(new java.awt.Color(0, 102, 205));
         lbPessoaFisica.setText("pessoa física");
+
+        lbOpcional3.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        lbOpcional3.setForeground(new java.awt.Color(102, 102, 102));
+        lbOpcional3.setText("(Opcional)");
 
         lbCpf.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbCpf.setForeground(new java.awt.Color(102, 102, 102));
@@ -278,6 +325,10 @@ public class ViewFuncionario extends javax.swing.JDialog {
         lbMaisEndereco.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         lbMaisEndereco.setForeground(new java.awt.Color(0, 102, 205));
         lbMaisEndereco.setText("endereço");
+
+        lbOpcional4.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        lbOpcional4.setForeground(new java.awt.Color(102, 102, 102));
+        lbOpcional4.setText("(Opcional)");
 
         lbEndereco.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbEndereco.setForeground(new java.awt.Color(102, 102, 102));
@@ -378,18 +429,6 @@ public class ViewFuncionario extends javax.swing.JDialog {
             }
         });
 
-        lbNome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbNome.setForeground(new java.awt.Color(102, 102, 102));
-        lbNome.setText("Nome");
-
-        tfNome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfNome.setForeground(new java.awt.Color(102, 102, 102));
-        tfNome.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfNomeKeyTyped(evt);
-            }
-        });
-
         btnAlterarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
         btnAlterarFuncionario.setBorder(null);
         btnAlterarFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -418,9 +457,15 @@ public class ViewFuncionario extends javax.swing.JDialog {
                                 .addComponent(btnCadastrar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAlterarFuncionario))
-                            .addComponent(lbMaisEndereco)
+                            .addGroup(pnCorpoLayout.createSequentialGroup()
+                                .addComponent(lbMaisEndereco)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbOpcional4))
                             .addComponent(lbCpf)
-                            .addComponent(lbPessoaFisica))
+                            .addGroup(pnCorpoLayout.createSequentialGroup()
+                                .addComponent(lbPessoaFisica)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbOpcional3)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfRg, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -450,7 +495,8 @@ public class ViewFuncionario extends javax.swing.JDialog {
                         .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tfNome)
+                    .addComponent(tfNomeContato)
+                    .addComponent(tfNomeFuncionario)
                     .addGroup(pnCorpoLayout.createSequentialGroup()
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbEndereco)
@@ -469,7 +515,10 @@ public class ViewFuncionario extends javax.swing.JDialog {
                                     .addComponent(lbEstado)
                                     .addComponent(lbNumero)
                                     .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lbFuncionario)
+                            .addGroup(pnCorpoLayout.createSequentialGroup()
+                                .addComponent(lbFuncionario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbOpcional2))
                             .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCorpoLayout.createSequentialGroup()
                                     .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -483,8 +532,12 @@ public class ViewFuncionario extends javax.swing.JDialog {
                                     .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lbCelular)
                                         .addComponent(tfCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(lbContato))
-                            .addComponent(lbNome))
+                                .addGroup(pnCorpoLayout.createSequentialGroup()
+                                    .addComponent(lbContato)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lbOpcional1)))
+                            .addComponent(lbNomeContato)
+                            .addComponent(lbNomeFuncionario))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -492,11 +545,17 @@ public class ViewFuncionario extends javax.swing.JDialog {
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCorpoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbContato)
+                .addComponent(lbNomeFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbNome)
+                .addComponent(tfNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbContato)
+                    .addComponent(lbOpcional1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbNomeContato)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfNomeContato, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbEmail)
@@ -507,8 +566,10 @@ public class ViewFuncionario extends javax.swing.JDialog {
                     .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lbFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbFuncionario)
+                    .addComponent(lbOpcional2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbUsuario)
@@ -520,8 +581,10 @@ public class ViewFuncionario extends javax.swing.JDialog {
                         .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lbPessoaFisica)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbPessoaFisica)
+                    .addComponent(lbOpcional3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCpf)
@@ -532,8 +595,10 @@ public class ViewFuncionario extends javax.swing.JDialog {
                     .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfRg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lbMaisEndereco)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbMaisEndereco)
+                    .addComponent(lbOpcional4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbEndereco)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -558,7 +623,7 @@ public class ViewFuncionario extends javax.swing.JDialog {
                     .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sprRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -586,17 +651,24 @@ public class ViewFuncionario extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNomeKeyTyped
+    /**
+     *
+     * @see Conjunto de Métodos que recebem o evento KeyTyped do teclado para
+     * validar a entrada de valores nos campos de texto.
+     *
+     * @param evt
+     */
+    private void tfNomeContatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNomeContatoKeyTyped
         if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
             String caracteres = " aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZçÇáÁàÀãÃâÂéÉèÈêÊíÍìÌîÎóÓòÒõÕôÔúÚùÙûÛ";
-            if (!caracteres.contains(evt.getKeyChar() + "") || tfNome.getText().length() > 49) {
+            if (!caracteres.contains(evt.getKeyChar() + "") || tfNomeContato.getText().length() > 49) {
                 evt.consume();
             }
         }
-    }//GEN-LAST:event_tfNomeKeyTyped
+    }//GEN-LAST:event_tfNomeContatoKeyTyped
 
     private void tfEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmailKeyTyped
-        if (tfEmail.getText().length() > 49) {
+        if (tfEmail.getText().length() > 29) {
             evt.consume();
         }
     }//GEN-LAST:event_tfEmailKeyTyped
@@ -644,13 +716,13 @@ public class ViewFuncionario extends javax.swing.JDialog {
     }//GEN-LAST:event_tfCargoKeyTyped
 
     private void tfUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUsuarioKeyTyped
-        if (tfUsuario.getText().length() > 49) {
+        if (tfUsuario.getText().length() > 29) {
             evt.consume();
         }
     }//GEN-LAST:event_tfUsuarioKeyTyped
 
     private void pfSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfSenhaKeyTyped
-        if (new String(pfSenha.getPassword()).length() > 49) {
+        if (new String(pfSenha.getPassword()).length() > 29) {
             evt.consume();
         }
     }//GEN-LAST:event_pfSenhaKeyTyped
@@ -742,8 +814,7 @@ public class ViewFuncionario extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         funcionarioBO = new FuncionarioBO();
         if (funcionarioBO.validarCampos(pnCorpo)) {
-            funcionarioVO = funcionarioBO.inserirFuncionario(tfNome.getText(), tfCargo.getText(), tfUsuario.getText(), new String(pfSenha.getPassword()), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfCidade.getText(), tfBairro.getText(), tfEstado.getText());
-            if (funcionarioVO != null) {
+            if (funcionarioBO.inserirFuncionario(tfNomeFuncionario.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCargo.getText(), tfUsuario.getText(), new String(pfSenha.getPassword()), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
             }
@@ -757,8 +828,7 @@ public class ViewFuncionario extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         funcionarioBO = new FuncionarioBO();
         if (funcionarioBO.validarCampos(pnCorpo)) {
-            funcionarioVO = funcionarioBO.alterarFuncionario(funcionarioVO.getIdFuncionario(), tfNome.getText(), tfCargo.getText(), tfUsuario.getText(), new String(pfSenha.getPassword()), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfCidade.getText(), tfBairro.getText(), tfEstado.getText());
-            if (funcionarioVO != null) {
+            if (funcionarioBO.alterarFuncionario(funcionarioVO.getIdFuncionario(), funcionarioVO.getPessoa().getIdPessoa(), funcionarioVO.getContato().getIdContato(), funcionarioVO.getEndereco().getIdEndereco(), tfNomeFuncionario.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCargo.getText(), tfUsuario.getText(), new String(pfSenha.getPassword()), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
             }
@@ -767,11 +837,21 @@ public class ViewFuncionario extends javax.swing.JDialog {
         btnAlterarFuncionario.setEnabled(true);
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
+    private void tfNomeFuncionarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNomeFuncionarioKeyTyped
+        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+            String caracteres = " aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZçÇáÁàÀãÃâÂéÉèÈêÊíÍìÌîÎóÓòÒõÕôÔúÚùÙûÛ";
+            if (!caracteres.contains(evt.getKeyChar() + "") || tfNomeFuncionario.getText().length() > 49) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_tfNomeFuncionarioKeyTyped
+
     //Declaração de variáveis(View).
     private final ViewPainelControle viewPainelControle;
 
     //Declaração de variáveis(Value Object).
     private Funcionario funcionarioVO;
+    private Pessoafisica pessoaFisicaVO;
 
     //Declaração de variáveis(Business Object).
     private FuncionarioBO funcionarioBO;
@@ -793,8 +873,13 @@ public class ViewFuncionario extends javax.swing.JDialog {
     private javax.swing.JLabel lbFuncionario;
     private javax.swing.JLabel lbMaisEndereco;
     private javax.swing.JLabel lbNascimento;
-    private javax.swing.JLabel lbNome;
+    private javax.swing.JLabel lbNomeContato;
+    private javax.swing.JLabel lbNomeFuncionario;
     private javax.swing.JLabel lbNumero;
+    private javax.swing.JLabel lbOpcional1;
+    private javax.swing.JLabel lbOpcional2;
+    private javax.swing.JLabel lbOpcional3;
+    private javax.swing.JLabel lbOpcional4;
     private javax.swing.JLabel lbPessoaFisica;
     private javax.swing.JLabel lbRg;
     private javax.swing.JLabel lbSenha;
@@ -816,7 +901,8 @@ public class ViewFuncionario extends javax.swing.JDialog {
     private javax.swing.JTextField tfEndereco;
     private javax.swing.JTextField tfEstado;
     private javax.swing.JTextField tfNascimento;
-    private javax.swing.JTextField tfNome;
+    private javax.swing.JTextField tfNomeContato;
+    private javax.swing.JTextField tfNomeFuncionario;
     private javax.swing.JTextField tfNumero;
     private javax.swing.JTextField tfRg;
     private javax.swing.JTextField tfTelefone;

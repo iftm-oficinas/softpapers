@@ -31,16 +31,16 @@ public class GenericDAO<T> {
      *
      * @return T obj
      */
-    public T inserir(T obj) {
+    public Boolean inserir(T obj) {
         try {
             session.beginTransaction();
             session.persist(obj);
             session.getTransaction().commit();
-            return obj;
+            return true;
         } catch (Exception e) {
             session.getTransaction().rollback();
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
-            return null;
+            return false;
         }
     }
 
@@ -52,16 +52,16 @@ public class GenericDAO<T> {
      *
      * @return T obj
      */
-    public T atualizar(T obj) {
+    public Boolean atualizar(T obj) {
         try {
             session.beginTransaction();
             session.saveOrUpdate(obj);
             session.getTransaction().commit();
-            return obj;
+            return true;
         } catch (Exception e) {
             session.getTransaction().rollback();
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
-            return null;
+            return false;
         }
     }
 

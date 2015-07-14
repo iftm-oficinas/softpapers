@@ -1,81 +1,33 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/06/2015 14:56:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19/06/2015 12:08:28 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.models.vo.Cliente" table="cliente" catalog="dbloja" optimistic-lock="version">
         <id name="idCliente" type="java.lang.Long">
             <column name="idCliente" />
             <generator class="identity" />
         </id>
+        <many-to-one name="contato" class="br.com.models.vo.Contato" fetch="select">
+            <column name="contatoCliente" />
+        </many-to-one>
+        <many-to-one name="endereco" class="br.com.models.vo.Endereco" fetch="select">
+            <column name="enderecoCliente" />
+        </many-to-one>
+        <many-to-one name="pessoa" class="br.com.models.vo.Pessoa" fetch="select">
+            <column name="pessoaCliente" />
+        </many-to-one>
         <property name="nomeCliente" type="string">
             <column name="nomeCliente" length="50" />
         </property>
-        <property name="emailCliente" type="string">
-            <column name="emailCliente" length="50" />
+        <property name="salarioCliente" type="java.lang.Long">
+            <column name="salarioCliente" precision="10" scale="0" />
         </property>
-        <property name="telefoneCliente" type="string">
-            <column name="telefoneCliente" length="20" />
+        <property name="limiteCliente" type="java.lang.Long">
+            <column name="limiteCliente" precision="10" scale="0" />
         </property>
-        <property name="celularCliente" type="string">
-            <column name="celularCliente" length="20" />
-        </property>
-        <property name="salarioCliente" type="big_decimal">
-            <column name="salarioCliente" precision="10" />
-        </property>
-        <property name="limiteCliente" type="big_decimal">
-            <column name="limiteCliente" precision="10" />
-        </property>
-        <property name="descontoCliente" type="big_decimal">
-            <column name="descontoCliente" precision="10" />
-        </property>
-        <property name="enderecoCliente" type="string">
-            <column name="enderecoCliente" length="100" />
-        </property>
-        <property name="cepCliente" type="string">
-            <column name="cepCliente" length="20" />
-        </property>
-        <property name="complementoCliente" type="string">
-            <column name="complementoCliente" length="20" />
-        </property>
-        <property name="numeroCliente" type="string">
-            <column name="numeroCliente" length="10" />
-        </property>
-        <property name="cidadeCliente" type="string">
-            <column name="cidadeCliente" length="20" />
-        </property>
-        <property name="bairroCliente" type="string">
-            <column name="bairroCliente" length="20" />
-        </property>
-        <property name="estadoCliente" type="string">
-            <column name="estadoCliente" length="20" />
-        </property>
-        <property name="pessoaCliente" type="string">
-            <column name="pessoaCliente" length="20" />
-        </property>
-        <property name="cpfCnpjCliente" type="string">
-            <column name="cpfCnpjCliente" length="20" />
-        </property>
-        <property name="rgRazaoCliente" type="string">
-            <column name="rgRazaoCliente" length="20" />
-        </property>
-        <property name="nascimentoCliente" type="date">
-            <column name="nascimentoCliente" length="10" />
-        </property>
-        <property name="estadualCliente" type="string">
-            <column name="estadualCliente" length="50" />
-        </property>
-        <property name="municipalCliente" type="string">
-            <column name="municipalCliente" length="50" />
-        </property>
-        <property name="suframaCliente" type="string">
-            <column name="suframaCliente" length="50" />
-        </property>
-        <property name="icmsCliente" type="string">
-            <column name="icmsCliente" length="50" />
-        </property>
-        <property name="publicidadeCliente" type="java.lang.Boolean">
-            <column name="publicidadeCliente" />
+        <property name="descontoCliente" type="java.lang.Long">
+            <column name="descontoCliente" precision="10" scale="0" />
         </property>
         <property name="criacaoCliente" type="timestamp">
             <column name="criacaoCliente" length="19" />
