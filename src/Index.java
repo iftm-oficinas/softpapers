@@ -1,5 +1,4 @@
 
-import br.com.resources.views.ViewAcesso;
 import br.com.resources.views.ViewPrincipal;
 
 /**
@@ -23,9 +22,8 @@ public class Index {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ViewPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         ViewPrincipal viewPrincipal = new ViewPrincipal();
         viewPrincipal.setVisible(true);
     }
-
 }

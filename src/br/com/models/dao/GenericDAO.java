@@ -28,7 +28,8 @@ public class GenericDAO<T> {
         return c.list();
     }
 
-    public T consultarById(String campo, Long valor, T obj) {
+    //consulta pelo id.
+    public T consultar(String campo, Long valor, T obj) {
         Criteria c = session.createCriteria(obj.getClass());
         c.add(Restrictions.eq(campo, valor));
         if (c.list() == null) {
@@ -38,7 +39,8 @@ public class GenericDAO<T> {
         }
     }
 
-    public T consultarDoisCampos(String campo1, String valor1, String campo2, String valor2, T obj) {
+    //consulta de dois campos.
+    public T consultar(String campo1, String valor1, String campo2, String valor2, T obj) {
         Criteria c = session.createCriteria(obj.getClass());
         c.add(Restrictions.eq(campo1, valor1));
         c.add(Restrictions.eq(campo2, valor2));
@@ -49,7 +51,8 @@ public class GenericDAO<T> {
         }
     }
 
-    public T consultarLastResult(String campo, T obj) {
+    //consulta do ultimo resulado.
+    public T consultar(String campo, T obj) {
         Criteria c = session.createCriteria(obj.getClass());
         c.addOrder(Order.desc(campo));
         c.setMaxResults(1);

@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.models.bo;
 
-/**
- *
- * @author Familia
- */
+import br.com.models.dao.GenericDAO;
+import br.com.models.vo.Usuario;
+
 public class AcessoBO {
-    
+    private Usuario usuario;
+    private GenericDAO usuarioDAO;
+
+    public Usuario verificarUsuario(String email, String senha){
+        usuario = (Usuario) usuarioDAO.consultar("emailUsuario", email, "senhaUsuario", senha, usuario);
+        return usuario;
+    }
 }
