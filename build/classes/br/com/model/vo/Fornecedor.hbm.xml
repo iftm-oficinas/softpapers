@@ -1,25 +1,34 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 07/05/2015 21:01:15 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09/05/2015 14:52:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.model.vo.Fornecedor" table="fornecedor" catalog="dbloja" optimistic-lock="version">
-        <id name="idFornecedor" type="int">
-            <column name="id_fornecedor" />
-            <generator class="assigned" />
+        <id name="idFornecedor" type="java.lang.Long">
+            <column name="idFornecedor" />
+            <generator class="identity" />
         </id>
         <property name="nomeFornecedor" type="string">
             <column name="nomeFornecedor" length="30" not-null="true" />
         </property>
-        <property name="empresa" type="string">
-            <column name="empresa" length="30" not-null="true" />
+        <property name="telefoneFornecedor" type="string">
+            <column name="telefoneFornecedor" length="15" />
         </property>
-        <property name="telefone" type="string">
-            <column name="telefone" length="15" not-null="true" />
+        <property name="dataCriacao" type="timestamp">
+            <column name="dataCriacao" length="19" />
         </property>
+        <property name="dataAtualizacao" type="timestamp">
+            <column name="dataAtualizacao" length="19" />
+        </property>
+        <set name="produtos" table="produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fornecedorProduto" />
+            </key>
+            <one-to-many class="br.com.model.vo.Produto" />
+        </set>
         <set name="pedidofornecedors" table="pedidofornecedor" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="id_fornecedor" not-null="true" />
+                <column name="fornecedorPedidoFornecedor" />
             </key>
             <one-to-many class="br.com.model.vo.Pedidofornecedor" />
         </set>

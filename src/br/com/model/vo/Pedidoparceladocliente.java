@@ -1,11 +1,13 @@
 package br.com.model.vo;
-// Generated 07/05/2015 21:01:14 by Hibernate Tools 4.3.1
+// Generated 09/05/2015 14:52:35 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,41 +25,43 @@ import javax.persistence.TemporalType;
 public class Pedidoparceladocliente  implements java.io.Serializable {
 
 
-     private int idPedidoParceladoCliente;
+     private Integer idPedidoParceladoCliente;
      private Pedidocliente pedidocliente;
-     private Date dtVenciemento;
-     private Integer statusPedidoParcelado;
+     private Date dataVencimento;
+     private Integer status;
+     private Date dataCriacao;
+     private Date dataAtualizacao;
 
     public Pedidoparceladocliente() {
     }
 
 	
-    public Pedidoparceladocliente(int idPedidoParceladoCliente, Pedidocliente pedidocliente, Date dtVenciemento) {
-        this.idPedidoParceladoCliente = idPedidoParceladoCliente;
+    public Pedidoparceladocliente(Pedidocliente pedidocliente, Date dataVencimento) {
         this.pedidocliente = pedidocliente;
-        this.dtVenciemento = dtVenciemento;
+        this.dataVencimento = dataVencimento;
     }
-    public Pedidoparceladocliente(int idPedidoParceladoCliente, Pedidocliente pedidocliente, Date dtVenciemento, Integer statusPedidoParcelado) {
-       this.idPedidoParceladoCliente = idPedidoParceladoCliente;
+    public Pedidoparceladocliente(Pedidocliente pedidocliente, Date dataVencimento, Integer status, Date dataCriacao, Date dataAtualizacao) {
        this.pedidocliente = pedidocliente;
-       this.dtVenciemento = dtVenciemento;
-       this.statusPedidoParcelado = statusPedidoParcelado;
+       this.dataVencimento = dataVencimento;
+       this.status = status;
+       this.dataCriacao = dataCriacao;
+       this.dataAtualizacao = dataAtualizacao;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="id_pedidoParceladoCliente", unique=true, nullable=false)
-    public int getIdPedidoParceladoCliente() {
+    @Column(name="idPedidoParceladoCliente", unique=true, nullable=false)
+    public Integer getIdPedidoParceladoCliente() {
         return this.idPedidoParceladoCliente;
     }
     
-    public void setIdPedidoParceladoCliente(int idPedidoParceladoCliente) {
+    public void setIdPedidoParceladoCliente(Integer idPedidoParceladoCliente) {
         this.idPedidoParceladoCliente = idPedidoParceladoCliente;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_pedidoCliente", nullable=false)
+    @JoinColumn(name="pedidoCliente", nullable=false)
     public Pedidocliente getPedidocliente() {
         return this.pedidocliente;
     }
@@ -67,23 +71,43 @@ public class Pedidoparceladocliente  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="dtVenciemento", nullable=false, length=10)
-    public Date getDtVenciemento() {
-        return this.dtVenciemento;
+    @Column(name="dataVencimento", nullable=false, length=10)
+    public Date getDataVencimento() {
+        return this.dataVencimento;
     }
     
-    public void setDtVenciemento(Date dtVenciemento) {
-        this.dtVenciemento = dtVenciemento;
+    public void setDataVencimento(Date dataVencimento) {
+        this.dataVencimento = dataVencimento;
     }
 
     
-    @Column(name="statusPedidoParcelado")
-    public Integer getStatusPedidoParcelado() {
-        return this.statusPedidoParcelado;
+    @Column(name="status")
+    public Integer getStatus() {
+        return this.status;
     }
     
-    public void setStatusPedidoParcelado(Integer statusPedidoParcelado) {
-        this.statusPedidoParcelado = statusPedidoParcelado;
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="dataCriacao", length=19)
+    public Date getDataCriacao() {
+        return this.dataCriacao;
+    }
+    
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="dataAtualizacao", length=19)
+    public Date getDataAtualizacao() {
+        return this.dataAtualizacao;
+    }
+    
+    public void setDataAtualizacao(Date dataAtualizacao) {
+        this.dataAtualizacao = dataAtualizacao;
     }
 
 

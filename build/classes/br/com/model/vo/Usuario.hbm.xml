@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09/05/2015 14:52:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.model.vo.Usuario" table="usuario" catalog="dbloja" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Long">
+            <column name="idUsuario" />
+            <generator class="identity" />
+        </id>
+        <property name="nomeUsuario" type="string">
+            <column name="nomeUsuario" length="30" not-null="true" />
+        </property>
+        <property name="cpfUsuario" type="string">
+            <column name="cpfUsuario" length="15" not-null="true" />
+        </property>
+        <property name="emailUsuario" type="string">
+            <column name="emailUsuario" length="20" unique="true" />
+        </property>
+        <property name="senhaUsuario" type="string">
+            <column name="senhaUsuario" length="20" />
+        </property>
+        <property name="enderecoUsuario" type="string">
+            <column name="enderecoUsuario" length="50" />
+        </property>
+        <property name="dataCriacao" type="timestamp">
+            <column name="dataCriacao" length="19" />
+        </property>
+        <property name="dataAtualizacao" type="timestamp">
+            <column name="dataAtualizacao" length="19" />
+        </property>
+        <set name="pedidofornecedors" table="pedidofornecedor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuarioPedidoFornecedor" not-null="true" />
+            </key>
+            <one-to-many class="br.com.model.vo.Pedidofornecedor" />
+        </set>
+        <set name="pedidoclientes" table="pedidocliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuarioPedidoCliente" not-null="true" />
+            </key>
+            <one-to-many class="br.com.model.vo.Pedidocliente" />
+        </set>
+    </class>
+</hibernate-mapping>

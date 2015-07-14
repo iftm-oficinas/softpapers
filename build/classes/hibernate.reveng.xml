@@ -2,15 +2,15 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="dbloja"/>
-  <table-filter match-name="categoria"/>
-  <table-filter match-name="produto"/>
-  <table-filter match-name="fornecedor"/>
-  <table-filter match-name="vendedor"/>
   <table-filter match-name="pedidoparceladocliente"/>
-  <table-filter match-name="itempedido"/>
-  <table-filter match-name="pedidocliente"/>
-  <table-filter match-name="tipopagamento"/>
-  <table-filter match-name="cliente"/>
-  <table-filter match-name="pedidoparceladofornecedor"/>
+  <table-filter match-name="formapagamento"/>
+  <table-filter match-name="fornecedor"/>
+  <table-filter match-name="item"/>
   <table-filter match-name="pedidofornecedor"/>
+  <table-filter match-name="produto"/>
+  <table-filter match-name="categoria"/>
+  <table-filter match-name="pedidoparceladofornecedor"/>
+  <table-filter match-name="pedidocliente"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="cliente"/>
 </hibernate-reverse-engineering>

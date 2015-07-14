@@ -1,34 +1,34 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 07/05/2015 21:01:15 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09/05/2015 14:52:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.model.vo.Pedidocliente" table="pedidocliente" catalog="dbloja" optimistic-lock="version">
-        <id name="idPedidoCliente" type="int">
-            <column name="id_pedidoCliente" />
-            <generator class="assigned" />
+        <id name="idPedidoCliente" type="java.lang.Long">
+            <column name="idPedidoCliente" />
+            <generator class="identity" />
         </id>
         <many-to-one name="cliente" class="br.com.model.vo.Cliente" fetch="select">
-            <column name="id_cliente" />
+            <column name="clientePedidoCliente" />
         </many-to-one>
-        <many-to-one name="itempedido" class="br.com.model.vo.Itempedido" fetch="select">
-            <column name="id_item" not-null="true" />
+        <many-to-one name="formapagamento" class="br.com.model.vo.Formapagamento" fetch="select">
+            <column name="formaPagamento" not-null="true" />
         </many-to-one>
-        <many-to-one name="tipopagamento" class="br.com.model.vo.Tipopagamento" fetch="select">
-            <column name="id_tipoPagamento" not-null="true" />
+        <many-to-one name="item" class="br.com.model.vo.Item" fetch="select">
+            <column name="itemPedidoCliente" not-null="true" />
         </many-to-one>
-        <many-to-one name="vendedor" class="br.com.model.vo.Vendedor" fetch="select">
-            <column name="id_vendedor" not-null="true" />
+        <many-to-one name="usuario" class="br.com.model.vo.Usuario" fetch="select">
+            <column name="usuarioPedidoCliente" not-null="true" />
         </many-to-one>
-        <property name="valorTotal" type="big_decimal">
-            <column name="valorTotal" precision="10" not-null="true" />
+        <property name="dataCriacao" type="timestamp">
+            <column name="dataCriacao" length="19" />
         </property>
-        <property name="statusPedido" type="int">
-            <column name="statusPedido" not-null="true" />
+        <property name="dataAtualizacao" type="timestamp">
+            <column name="dataAtualizacao" length="19" />
         </property>
         <set name="pedidoparceladoclientes" table="pedidoparceladocliente" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="id_pedidoCliente" not-null="true" />
+                <column name="pedidoCliente" not-null="true" />
             </key>
             <one-to-many class="br.com.model.vo.Pedidoparceladocliente" />
         </set>

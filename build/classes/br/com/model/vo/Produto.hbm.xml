@@ -1,30 +1,39 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 07/05/2015 21:01:15 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09/05/2015 14:52:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.model.vo.Produto" table="produto" catalog="dbloja" optimistic-lock="version">
-        <id name="idProduto" type="int">
-            <column name="id_produto" />
-            <generator class="assigned" />
+        <id name="idProduto" type="java.lang.Long">
+            <column name="idProduto" />
+            <generator class="identity" />
         </id>
         <many-to-one name="categoria" class="br.com.model.vo.Categoria" fetch="select">
-            <column name="id_categoria" not-null="true" />
+            <column name="categoriaProduto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="fornecedor" class="br.com.model.vo.Fornecedor" fetch="select">
+            <column name="fornecedorProduto" />
         </many-to-one>
         <property name="nomeProduto" type="string">
             <column name="nomeProduto" length="30" not-null="true" />
         </property>
-        <property name="quantidadeMinima" type="int">
-            <column name="quantidadeMinima" not-null="true" />
+        <property name="valorProduto" type="big_decimal">
+            <column name="valorProduto" precision="10" />
         </property>
-        <property name="valorCusto" type="big_decimal">
-            <column name="valorCusto" precision="10" not-null="true" />
+        <property name="quantidadeMinimaProduto" type="java.lang.Integer">
+            <column name="quantidadeMinimaProduto" />
         </property>
-        <set name="itempedidos" table="itempedido" inverse="true" lazy="true" fetch="select">
+        <property name="dataCriacao" type="timestamp">
+            <column name="dataCriacao" length="19" />
+        </property>
+        <property name="dataAtualizacao" type="timestamp">
+            <column name="dataAtualizacao" length="19" />
+        </property>
+        <set name="items" table="item" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="id_produto" not-null="true" />
+                <column name="itemProduto" not-null="true" />
             </key>
-            <one-to-many class="br.com.model.vo.Itempedido" />
+            <one-to-many class="br.com.model.vo.Item" />
         </set>
     </class>
 </hibernate-mapping>
