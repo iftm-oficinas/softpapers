@@ -10,6 +10,7 @@ import br.com.models.vo.Pessoajuridica;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.HeadlessException;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,29 +44,35 @@ public class ClienteBO {
      * @param desconto
      * @param endereco
      * @param cep
-     * @param complemento
+     * @param cidade
      * @param numero
      * @param bairro
-     * @param cidade
+     * @param complemento
      * @param estado
-     * @param pessoa
-     * @param cpfCnpj
-     * @param rgRazao
-     * @param nascimento
      * @param estadual
+     * @param razao
+     * @param fantasia
+     * @param nascimento
+     * @param pessoa
+     * @param cpf
      * @param municipal
+     * @param taxa
+     * @param rg
+     * @param cnpj
      * @param suframa
+     * @param simples
      * @param icms
+     * @param fundacao
      * @return true/false.
      */
-    public Boolean inserirCliente(String cliente, String nome, String email, String telefone, String celular, String salario, String limite, String desconto, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado, Boolean pessoa, String cpfCnpj, String rgRazao, String nascimento, String estadual, String municipal, String suframa, Boolean icms) {
+    public Boolean inserirCliente(String cliente, String nome, String email, String telefone, String celular, String salario, String limite, String desconto, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado, Boolean pessoa, String cpf, String rg, String nascimento, String razao, String fantasia, String cnpj, String estadual, String municipal, String suframa, Boolean simples, Boolean taxa, Boolean icms, String fundacao) {
         try {
             GenericDAO<Cliente> clienteDAO = new GenericDAO<>();
             Cliente clienteVO = new Cliente();
             clienteVO.setNomeCliente(cliente);
-            clienteVO.setSalarioCliente(new Long(salario));
-            clienteVO.setLimiteCliente(new Long(limite));
-            clienteVO.setDescontoCliente(new Long(desconto));
+            clienteVO.setSalarioCliente(new BigDecimal(salario));
+            clienteVO.setLimiteCliente(new BigDecimal(limite));
+            clienteVO.setDescontoCliente(new BigDecimal(desconto));
             clienteVO.setCriacaoCliente(new Date());
             clienteVO.setAtualizacaoCliente(new Date());
 
@@ -73,33 +80,44 @@ public class ClienteBO {
                 GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
                 Pessoa pessoaVO = new Pessoa();
                 pessoaVO.setTipoPessoa("Fisica");
+                pessoaVO.setCriacaoPessoa(new Date());
+                pessoaVO.setAtualizacaoPessoa(new Date());
                 if (pessoaDAO.inserir(pessoaVO)) {
                     clienteVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
                 }
                 Pessoafisica pessoaFisicaVO = new Pessoafisica();
                 GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
-                pessoaFisicaVO.setCpfPessoaFisica(cpfCnpj);
-                pessoaFisicaVO.setRgPessoaFisica(rgRazao);
+                pessoaFisicaVO.setCpfPessoaFisica(cpf);
+                pessoaFisicaVO.setRgPessoaFisica(rg);
                 pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
                 pessoaFisicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
+                pessoaFisicaVO.setCriacaoPessoaFisica(new Date());
+                pessoaFisicaVO.setAtualizacaoPessoaFisica(new Date());
                 pessoaFisicaDAO.inserir(pessoaFisicaVO);
             } else {
                 GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
                 Pessoa pessoaVO = new Pessoa();
                 pessoaVO.setTipoPessoa("Juridica");
+                pessoaVO.setCriacaoPessoa(new Date());
+                pessoaVO.setAtualizacaoPessoa(new Date());
                 if (pessoaDAO.inserir(pessoaVO)) {
                     clienteVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
                 }
                 Pessoajuridica pessoaJuridicaVO = new Pessoajuridica();
                 GenericDAO<Pessoajuridica> pessoaJuridicaDAO = new GenericDAO<>();
-                pessoaJuridicaVO.setCnpjPessoaJuridica(cpfCnpj);
-                pessoaJuridicaVO.setRazaoSocialPessoaJuridica(rgRazao);
-                pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+                pessoaJuridicaVO.setRazaoSocialPessoaJuridica(razao);
+                pessoaJuridicaVO.setNomeFantasiaPessoaJuridica(fantasia);
+                pessoaJuridicaVO.setCnpjPessoaJuridica(cnpj);
                 pessoaJuridicaVO.setEstadualPessoaJuridica(estadual);
                 pessoaJuridicaVO.setMunicipalPessoaJuridica(municipal);
                 pessoaJuridicaVO.setSuframaPessoaJuridica(suframa);
+                pessoaJuridicaVO.setTributoSimplesPessoaJuridica(simples);
+                pessoaJuridicaVO.setImportacaoPessoaJuridica(taxa);
                 pessoaJuridicaVO.setIcmsPessoaJuridica(icms);
+                pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(fundacao));
                 pessoaJuridicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
+                pessoaJuridicaVO.setCriacaoPessoaJuridica(new Date());
+                pessoaJuridicaVO.setAtualizacaoPessoaJuridica(new Date());
                 pessoaJuridicaDAO.inserir(pessoaJuridicaVO);
             }
 
@@ -109,7 +127,9 @@ public class ClienteBO {
             contatoVO.setEmailContato(email);
             contatoVO.setTelefoneContato(telefone);
             contatoVO.setCelularContato(celular);
-            if (contatoDAO.inserir(contatoVO)) {
+            contatoVO.setCriacaoContato(new Date());
+            contatoVO.setAtualizacaoContato(new Date());
+            if (contatoDAO.atualizar(contatoVO)) {
                 clienteVO.setContato(contatoDAO.consultar("idContato", contatoVO.getIdContato(), contatoVO));
             }
 
@@ -122,7 +142,9 @@ public class ClienteBO {
             enderecoVO.setCidadeEndereco(cidade);
             enderecoVO.setBairroEndereco(bairro);
             enderecoVO.setEstadoEndereco(estado);
-            if (enderecoDAO.inserir(enderecoVO)) {
+            enderecoVO.setCriacaoEndereco(new Date());
+            enderecoVO.setAtualizacaoEndereco(new Date());
+            if (enderecoDAO.atualizar(enderecoVO)) {
                 clienteVO.setEndereco(enderecoDAO.consultar("idEndereco", enderecoVO.getIdEndereco(), enderecoVO));
             }
 
@@ -139,12 +161,17 @@ public class ClienteBO {
     }
 
     /**
-     * @param idCliente
-     * @param idPessoa
-     * @param idContato
-     * @param idEndereco
      * @see Método que inseri um objeto no banco de dados por meio da
      * GenericDAO.
+     * @param idCliente
+     * @param cpf
+     * @param fantasia
+     * @param cnpj
+     * @param rg
+     * @param fundacao
+     * @param razao
+     * @param taxa
+     * @param simples
      * @param cliente
      * @param nome
      * @param email
@@ -161,8 +188,6 @@ public class ClienteBO {
      * @param cidade
      * @param estado
      * @param pessoa
-     * @param cpfCnpj
-     * @param rgRazao
      * @param nascimento
      * @param estadual
      * @param municipal
@@ -170,52 +195,54 @@ public class ClienteBO {
      * @param icms
      * @return true/false.
      */
-    public Boolean alterarCliente(Long idCliente, Long idPessoa, Long idContato, Long idEndereco, String cliente, String nome, String email, String telefone, String celular, String salario, String limite, String desconto, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado, Boolean pessoa, String cpfCnpj, String rgRazao, String nascimento, String estadual, String municipal, String suframa, Boolean icms) {
+    public Boolean alterarCliente(Long idCliente, String cliente, String nome, String email, String telefone, String celular, String salario, String limite, String desconto, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado, Boolean pessoa, String cpf, String rg, String nascimento, String razao, String fantasia, String cnpj, String estadual, String municipal, String suframa, Boolean simples, Boolean taxa, Boolean icms, String fundacao) {
         try {
             GenericDAO<Cliente> clienteDAO = new GenericDAO<>();
             Cliente clienteVO = clienteDAO.consultar("idCliente", idCliente, new Cliente());
             clienteVO.setNomeCliente(cliente);
-            clienteVO.setSalarioCliente(new Long(salario));
-            clienteVO.setLimiteCliente(new Long(limite));
-            clienteVO.setDescontoCliente(new Long(desconto));
+            clienteVO.setSalarioCliente(new BigDecimal(salario));
+            clienteVO.setLimiteCliente(new BigDecimal(limite));
+            clienteVO.setDescontoCliente(new BigDecimal(desconto));
             clienteVO.setAtualizacaoCliente(new Date());
 
             if (pessoa) {
-                GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
-                Pessoa pessoaVO = pessoaDAO.consultar("idPessoa", idPessoa, new Pessoa());
                 GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
-                Pessoafisica pessoaFisicaVO = buscarPessoaFisica(idPessoa);
-                pessoaFisicaVO.setCpfPessoaFisica(cpfCnpj);
-                pessoaFisicaVO.setRgPessoaFisica(rgRazao);
+                Pessoafisica pessoaFisicaVO = buscarPessoaFisica(clienteVO.getPessoa().getIdPessoa());
+                pessoaFisicaVO.setCpfPessoaFisica(cpf);
+                pessoaFisicaVO.setRgPessoaFisica(rg);
                 pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
-                pessoaFisicaDAO.inserir(pessoaFisicaVO);
+                pessoaFisicaVO.setAtualizacaoPessoaFisica(new Date());
+                pessoaFisicaDAO.atualizar(pessoaFisicaVO);
             } else {
-                GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
-                Pessoa pessoaVO = pessoaDAO.consultar("idPessoa", idPessoa, new Pessoa());
                 GenericDAO<Pessoajuridica> pessoaJuridicaDAO = new GenericDAO<>();
-                Pessoajuridica pessoaJuridicaVO = buscarPessoaJuridica(idPessoa);
-                pessoaJuridicaVO.setCnpjPessoaJuridica(cpfCnpj);
-                pessoaJuridicaVO.setRazaoSocialPessoaJuridica(rgRazao);
-                pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+                Pessoajuridica pessoaJuridicaVO = buscarPessoaJuridica(clienteVO.getPessoa().getIdPessoa());
+                pessoaJuridicaVO.setRazaoSocialPessoaJuridica(razao);
+                pessoaJuridicaVO.setNomeFantasiaPessoaJuridica(fantasia);
+                pessoaJuridicaVO.setCnpjPessoaJuridica(cnpj);
                 pessoaJuridicaVO.setEstadualPessoaJuridica(estadual);
                 pessoaJuridicaVO.setMunicipalPessoaJuridica(municipal);
                 pessoaJuridicaVO.setSuframaPessoaJuridica(suframa);
+                pessoaJuridicaVO.setTributoSimplesPessoaJuridica(simples);
+                pessoaJuridicaVO.setImportacaoPessoaJuridica(taxa);
                 pessoaJuridicaVO.setIcmsPessoaJuridica(icms);
-                pessoaJuridicaDAO.inserir(pessoaJuridicaVO);
+                pessoaJuridicaVO.setFundacaoPessoaJuridica(new SimpleDateFormat("yyyy/MM/dd").parse(fundacao));
+                pessoaJuridicaVO.setAtualizacaoPessoaJuridica(new Date());
+                pessoaJuridicaDAO.atualizar(pessoaJuridicaVO);
             }
 
             GenericDAO<Contato> contatoDAO = new GenericDAO<>();
-            Contato contatoVO = contatoDAO.consultar("idContato", idContato, new Contato());
+            Contato contatoVO = contatoDAO.consultar("idContato", clienteVO.getContato().getIdContato(), new Contato());
             contatoVO.setNomeContato(nome);
             contatoVO.setEmailContato(email);
             contatoVO.setTelefoneContato(telefone);
             contatoVO.setCelularContato(celular);
-            if (contatoDAO.inserir(contatoVO)) {
+            contatoVO.setAtualizacaoContato(new Date());
+            if (contatoDAO.atualizar(contatoVO)) {
                 clienteVO.setContato(contatoVO);
             }
-
+            
             GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
-            Endereco enderecoVO = enderecoDAO.consultar("idEndereco", idEndereco, new Endereco());
+            Endereco enderecoVO = enderecoDAO.consultar("idEndereco", clienteVO.getEndereco().getIdEndereco(), new Endereco());
             enderecoVO.setEnderecoEndereco(endereco);
             enderecoVO.setCepEndereco(cep);
             enderecoVO.setComplementoEndereco(complemento);
@@ -223,11 +250,12 @@ public class ClienteBO {
             enderecoVO.setCidadeEndereco(cidade);
             enderecoVO.setBairroEndereco(bairro);
             enderecoVO.setEstadoEndereco(estado);
-            if (enderecoDAO.inserir(enderecoVO)) {
+            enderecoVO.setAtualizacaoEndereco(new Date());
+            if (enderecoDAO.atualizar(enderecoVO)) {
                 clienteVO.setEndereco(enderecoVO);
             }
 
-            if (clienteDAO.inserir(clienteVO)) {
+            if (clienteDAO.atualizar(clienteVO)) {
                 JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {

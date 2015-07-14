@@ -1,7 +1,8 @@
 package br.com.models.vo;
-// Generated 19/06/2015 12:08:25 by Hibernate Tools 4.3.1
+// Generated 21/06/2015 16:38:22 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,16 +31,16 @@ public class Cliente  implements java.io.Serializable {
      private Endereco endereco;
      private Pessoa pessoa;
      private String nomeCliente;
-     private Long salarioCliente;
-     private Long limiteCliente;
-     private Long descontoCliente;
+     private BigDecimal salarioCliente;
+     private BigDecimal limiteCliente;
+     private BigDecimal descontoCliente;
      private Date criacaoCliente;
      private Date atualizacaoCliente;
 
     public Cliente() {
     }
 
-    public Cliente(Contato contato, Endereco endereco, Pessoa pessoa, String nomeCliente, Long salarioCliente, Long limiteCliente, Long descontoCliente, Date criacaoCliente, Date atualizacaoCliente) {
+    public Cliente(Contato contato, Endereco endereco, Pessoa pessoa, String nomeCliente, BigDecimal salarioCliente, BigDecimal limiteCliente, BigDecimal descontoCliente, Date criacaoCliente, Date atualizacaoCliente) {
        this.contato = contato;
        this.endereco = endereco;
        this.pessoa = pessoa;
@@ -104,32 +105,32 @@ public class Cliente  implements java.io.Serializable {
     }
 
     
-    @Column(name="salarioCliente", precision=10, scale=0)
-    public Long getSalarioCliente() {
+    @Column(name="salarioCliente", precision=10)
+    public BigDecimal getSalarioCliente() {
         return this.salarioCliente;
     }
     
-    public void setSalarioCliente(Long salarioCliente) {
+    public void setSalarioCliente(BigDecimal salarioCliente) {
         this.salarioCliente = salarioCliente;
     }
 
     
-    @Column(name="limiteCliente", precision=10, scale=0)
-    public Long getLimiteCliente() {
+    @Column(name="limiteCliente", precision=10)
+    public BigDecimal getLimiteCliente() {
         return this.limiteCliente;
     }
     
-    public void setLimiteCliente(Long limiteCliente) {
+    public void setLimiteCliente(BigDecimal limiteCliente) {
         this.limiteCliente = limiteCliente;
     }
 
     
-    @Column(name="descontoCliente", precision=10, scale=0)
-    public Long getDescontoCliente() {
+    @Column(name="descontoCliente", precision=10)
+    public BigDecimal getDescontoCliente() {
         return this.descontoCliente;
     }
     
-    public void setDescontoCliente(Long descontoCliente) {
+    public void setDescontoCliente(BigDecimal descontoCliente) {
         this.descontoCliente = descontoCliente;
     }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19/06/2015 12:08:28 by Hibernate Tools 4.3.1 -->
+<!-- Generated 21/06/2015 16:38:24 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.models.vo.Pessoafisica" table="pessoafisica" catalog="dbloja" optimistic-lock="version">
         <id name="idPessoaFisica" type="java.lang.Long">
@@ -19,6 +19,12 @@
         </property>
         <property name="nascimentoPessoaFisica" type="date">
             <column name="nascimentoPessoaFisica" length="10" />
+        </property>
+        <property name="criacaoPessoaFisica" type="timestamp">
+            <column name="criacaoPessoaFisica" length="19" />
+        </property>
+        <property name="atualizacaoPessoaFisica" type="timestamp">
+            <column name="atualizacaoPessoaFisica" length="19" />
         </property>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package br.com.models.vo;
-// Generated 19/06/2015 12:08:25 by Hibernate Tools 4.3.1
+// Generated 21/06/2015 16:38:22 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -27,26 +27,36 @@ public class Pessoajuridica  implements java.io.Serializable {
 
      private Long idPessoaJuridica;
      private Pessoa pessoa;
-     private String cnpjPessoaJuridica;
      private String razaoSocialPessoaJuridica;
-     private Date fundacaoPessoaJuridica;
+     private String nomeFantasiaPessoaJuridica;
+     private String cnpjPessoaJuridica;
      private String estadualPessoaJuridica;
      private String municipalPessoaJuridica;
      private String suframaPessoaJuridica;
+     private Boolean tributoSimplesPessoaJuridica;
+     private Boolean importacaoPessoaJuridica;
      private Boolean icmsPessoaJuridica;
+     private Date fundacaoPessoaJuridica;
+     private Date criacaoPessoaJuridica;
+     private Date atualizacaoPessoaJuridica;
 
     public Pessoajuridica() {
     }
 
-    public Pessoajuridica(Pessoa pessoa, String cnpjPessoaJuridica, String razaoSocialPessoaJuridica, Date fundacaoPessoaJuridica, String estadualPessoaJuridica, String municipalPessoaJuridica, String suframaPessoaJuridica, Boolean icmsPessoaJuridica) {
+    public Pessoajuridica(Pessoa pessoa, String razaoSocialPessoaJuridica, String nomeFantasiaPessoaJuridica, String cnpjPessoaJuridica, String estadualPessoaJuridica, String municipalPessoaJuridica, String suframaPessoaJuridica, Boolean tributoSimplesPessoaJuridica, Boolean importacaoPessoaJuridica, Boolean icmsPessoaJuridica, Date fundacaoPessoaJuridica, Date criacaoPessoaJuridica, Date atualizacaoPessoaJuridica) {
        this.pessoa = pessoa;
-       this.cnpjPessoaJuridica = cnpjPessoaJuridica;
        this.razaoSocialPessoaJuridica = razaoSocialPessoaJuridica;
-       this.fundacaoPessoaJuridica = fundacaoPessoaJuridica;
+       this.nomeFantasiaPessoaJuridica = nomeFantasiaPessoaJuridica;
+       this.cnpjPessoaJuridica = cnpjPessoaJuridica;
        this.estadualPessoaJuridica = estadualPessoaJuridica;
        this.municipalPessoaJuridica = municipalPessoaJuridica;
        this.suframaPessoaJuridica = suframaPessoaJuridica;
+       this.tributoSimplesPessoaJuridica = tributoSimplesPessoaJuridica;
+       this.importacaoPessoaJuridica = importacaoPessoaJuridica;
        this.icmsPessoaJuridica = icmsPessoaJuridica;
+       this.fundacaoPessoaJuridica = fundacaoPessoaJuridica;
+       this.criacaoPessoaJuridica = criacaoPessoaJuridica;
+       this.atualizacaoPessoaJuridica = atualizacaoPessoaJuridica;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -72,6 +82,26 @@ public class Pessoajuridica  implements java.io.Serializable {
     }
 
     
+    @Column(name="razaoSocialPessoaJuridica", length=50)
+    public String getRazaoSocialPessoaJuridica() {
+        return this.razaoSocialPessoaJuridica;
+    }
+    
+    public void setRazaoSocialPessoaJuridica(String razaoSocialPessoaJuridica) {
+        this.razaoSocialPessoaJuridica = razaoSocialPessoaJuridica;
+    }
+
+    
+    @Column(name="nomeFantasiaPessoaJuridica", length=50)
+    public String getNomeFantasiaPessoaJuridica() {
+        return this.nomeFantasiaPessoaJuridica;
+    }
+    
+    public void setNomeFantasiaPessoaJuridica(String nomeFantasiaPessoaJuridica) {
+        this.nomeFantasiaPessoaJuridica = nomeFantasiaPessoaJuridica;
+    }
+
+    
     @Column(name="cnpjPessoaJuridica", length=20)
     public String getCnpjPessoaJuridica() {
         return this.cnpjPessoaJuridica;
@@ -82,13 +112,63 @@ public class Pessoajuridica  implements java.io.Serializable {
     }
 
     
-    @Column(name="razaoSocialPessoaJuridica", length=20)
-    public String getRazaoSocialPessoaJuridica() {
-        return this.razaoSocialPessoaJuridica;
+    @Column(name="estadualPessoaJuridica", length=20)
+    public String getEstadualPessoaJuridica() {
+        return this.estadualPessoaJuridica;
     }
     
-    public void setRazaoSocialPessoaJuridica(String razaoSocialPessoaJuridica) {
-        this.razaoSocialPessoaJuridica = razaoSocialPessoaJuridica;
+    public void setEstadualPessoaJuridica(String estadualPessoaJuridica) {
+        this.estadualPessoaJuridica = estadualPessoaJuridica;
+    }
+
+    
+    @Column(name="municipalPessoaJuridica", length=20)
+    public String getMunicipalPessoaJuridica() {
+        return this.municipalPessoaJuridica;
+    }
+    
+    public void setMunicipalPessoaJuridica(String municipalPessoaJuridica) {
+        this.municipalPessoaJuridica = municipalPessoaJuridica;
+    }
+
+    
+    @Column(name="suframaPessoaJuridica", length=20)
+    public String getSuframaPessoaJuridica() {
+        return this.suframaPessoaJuridica;
+    }
+    
+    public void setSuframaPessoaJuridica(String suframaPessoaJuridica) {
+        this.suframaPessoaJuridica = suframaPessoaJuridica;
+    }
+
+    
+    @Column(name="tributoSimplesPessoaJuridica")
+    public Boolean getTributoSimplesPessoaJuridica() {
+        return this.tributoSimplesPessoaJuridica;
+    }
+    
+    public void setTributoSimplesPessoaJuridica(Boolean tributoSimplesPessoaJuridica) {
+        this.tributoSimplesPessoaJuridica = tributoSimplesPessoaJuridica;
+    }
+
+    
+    @Column(name="importacaoPessoaJuridica")
+    public Boolean getImportacaoPessoaJuridica() {
+        return this.importacaoPessoaJuridica;
+    }
+    
+    public void setImportacaoPessoaJuridica(Boolean importacaoPessoaJuridica) {
+        this.importacaoPessoaJuridica = importacaoPessoaJuridica;
+    }
+
+    
+    @Column(name="icmsPessoaJuridica")
+    public Boolean getIcmsPessoaJuridica() {
+        return this.icmsPessoaJuridica;
+    }
+    
+    public void setIcmsPessoaJuridica(Boolean icmsPessoaJuridica) {
+        this.icmsPessoaJuridica = icmsPessoaJuridica;
     }
 
     @Temporal(TemporalType.DATE)
@@ -101,44 +181,24 @@ public class Pessoajuridica  implements java.io.Serializable {
         this.fundacaoPessoaJuridica = fundacaoPessoaJuridica;
     }
 
-    
-    @Column(name="estadualPessoaJuridica", length=45)
-    public String getEstadualPessoaJuridica() {
-        return this.estadualPessoaJuridica;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="criacaoPessoaJuridica", length=19)
+    public Date getCriacaoPessoaJuridica() {
+        return this.criacaoPessoaJuridica;
     }
     
-    public void setEstadualPessoaJuridica(String estadualPessoaJuridica) {
-        this.estadualPessoaJuridica = estadualPessoaJuridica;
-    }
-
-    
-    @Column(name="municipalPessoaJuridica", length=45)
-    public String getMunicipalPessoaJuridica() {
-        return this.municipalPessoaJuridica;
-    }
-    
-    public void setMunicipalPessoaJuridica(String municipalPessoaJuridica) {
-        this.municipalPessoaJuridica = municipalPessoaJuridica;
+    public void setCriacaoPessoaJuridica(Date criacaoPessoaJuridica) {
+        this.criacaoPessoaJuridica = criacaoPessoaJuridica;
     }
 
-    
-    @Column(name="suframaPessoaJuridica", length=45)
-    public String getSuframaPessoaJuridica() {
-        return this.suframaPessoaJuridica;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="atualizacaoPessoaJuridica", length=19)
+    public Date getAtualizacaoPessoaJuridica() {
+        return this.atualizacaoPessoaJuridica;
     }
     
-    public void setSuframaPessoaJuridica(String suframaPessoaJuridica) {
-        this.suframaPessoaJuridica = suframaPessoaJuridica;
-    }
-
-    
-    @Column(name="icmsPessoaJuridica")
-    public Boolean getIcmsPessoaJuridica() {
-        return this.icmsPessoaJuridica;
-    }
-    
-    public void setIcmsPessoaJuridica(Boolean icmsPessoaJuridica) {
-        this.icmsPessoaJuridica = icmsPessoaJuridica;
+    public void setAtualizacaoPessoaJuridica(Date atualizacaoPessoaJuridica) {
+        this.atualizacaoPessoaJuridica = atualizacaoPessoaJuridica;
     }
 
 

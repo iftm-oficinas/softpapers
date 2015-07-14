@@ -33,9 +33,10 @@ public class ViewCategoria extends javax.swing.JDialog {
         pnCorpo = new javax.swing.JPanel();
         pnObrigatorio = new javax.swing.JPanel();
         lbDescricao = new javax.swing.JLabel();
-        tfDescricao = new javax.swing.JTextField();
+        tfDescricao = new javax.swing.JFormattedTextField();
         sprRodape = new javax.swing.JSeparator();
         btnCadastrar = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Categoria");
@@ -72,13 +73,13 @@ public class ViewCategoria extends javax.swing.JDialog {
         lbDescricao.setForeground(new java.awt.Color(102, 102, 102));
         lbDescricao.setText("Descrição");
 
-        tfDescricao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfDescricao.setForeground(new java.awt.Color(102, 102, 102));
-        tfDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfDescricaoKeyTyped(evt);
-            }
-        });
+        try {
+            tfDescricao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("**************************************************")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfDescricao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout pnObrigatorioLayout = new javax.swing.GroupLayout(pnObrigatorio);
         pnObrigatorio.setLayout(pnObrigatorioLayout);
@@ -87,9 +88,11 @@ public class ViewCategoria extends javax.swing.JDialog {
             .addGroup(pnObrigatorioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnObrigatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbDescricao)
-                    .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnObrigatorioLayout.createSequentialGroup()
+                        .addComponent(lbDescricao)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(tfDescricao))
+                .addContainerGap())
         );
         pnObrigatorioLayout.setVerticalGroup(
             pnObrigatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,6 +119,19 @@ public class ViewCategoria extends javax.swing.JDialog {
             }
         });
 
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarUP.png"))); // NOI18N
+        btnAlterar.setBorder(null);
+        btnAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlterar.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterar.setFocusable(false);
+        btnAlterar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnCorpoLayout = new javax.swing.GroupLayout(pnCorpo);
         pnCorpo.setLayout(pnCorpoLayout);
         pnCorpoLayout.setHorizontalGroup(
@@ -123,7 +139,9 @@ public class ViewCategoria extends javax.swing.JDialog {
             .addGroup(pnCorpoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnCadastrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAlterar)
+                .addContainerGap(388, Short.MAX_VALUE))
             .addComponent(pnObrigatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(sprRodape)
         );
@@ -134,7 +152,9 @@ public class ViewCategoria extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(sprRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCadastrar)
+                .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnAlterar))
                 .addContainerGap())
         );
 
@@ -157,33 +177,26 @@ public class ViewCategoria extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     *
-     * @see Método que recebe o evento KeyTyped do teclado para validar entrada
-     * de dados nos campos.
-     *
-     * @param evt
-     */
-    private void tfDescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDescricaoKeyTyped
-        if (tfDescricao.getText().length() > 49) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_tfDescricaoKeyTyped
-
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         btnCadastrar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        if(categoriaBO.inserirCategoria(tfDescricao.getText())) {
+        categoriaBO = new CategoriaBO();
+        if (categoriaBO.inserirCategoria(tfDescricao.getText())) {
             this.dispose();
         }
         this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
     //Declaração de variáveis(Business Object).
     private CategoriaBO categoriaBO;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JLabel lbDescricao;
     private javax.swing.JLabel lbTitulo;
@@ -191,6 +204,6 @@ public class ViewCategoria extends javax.swing.JDialog {
     private javax.swing.JPanel pnObrigatorio;
     private javax.swing.JPanel pnTitulo;
     private javax.swing.JSeparator sprRodape;
-    private javax.swing.JTextField tfDescricao;
+    private javax.swing.JFormattedTextField tfDescricao;
     // End of variables declaration//GEN-END:variables
 }

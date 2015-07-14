@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19/06/2015 12:08:28 by Hibernate Tools 4.3.1 -->
+<!-- Generated 21/06/2015 16:38:24 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.models.vo.Cliente" table="cliente" catalog="dbloja" optimistic-lock="version">
         <id name="idCliente" type="java.lang.Long">
@@ -20,14 +20,14 @@
         <property name="nomeCliente" type="string">
             <column name="nomeCliente" length="50" />
         </property>
-        <property name="salarioCliente" type="java.lang.Long">
-            <column name="salarioCliente" precision="10" scale="0" />
+        <property name="salarioCliente" type="big_decimal">
+            <column name="salarioCliente" precision="10" />
         </property>
-        <property name="limiteCliente" type="java.lang.Long">
-            <column name="limiteCliente" precision="10" scale="0" />
+        <property name="limiteCliente" type="big_decimal">
+            <column name="limiteCliente" precision="10" />
         </property>
-        <property name="descontoCliente" type="java.lang.Long">
-            <column name="descontoCliente" precision="10" scale="0" />
+        <property name="descontoCliente" type="big_decimal">
+            <column name="descontoCliente" precision="10" />
         </property>
         <property name="criacaoCliente" type="timestamp">
             <column name="criacaoCliente" length="19" />

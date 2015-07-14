@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19/06/2015 12:08:28 by Hibernate Tools 4.3.1 -->
+<!-- Generated 21/06/2015 16:38:24 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.models.vo.Contato" table="contato" catalog="dbloja" optimistic-lock="version">
         <id name="idContato" type="java.lang.Long">
@@ -15,10 +15,16 @@
             <column name="emailContato" length="30" />
         </property>
         <property name="telefoneContato" type="string">
-            <column name="telefoneContato" length="15" />
+            <column name="telefoneContato" length="20" />
         </property>
         <property name="celularContato" type="string">
-            <column name="celularContato" length="15" />
+            <column name="celularContato" length="20" />
+        </property>
+        <property name="criacaoContato" type="timestamp">
+            <column name="criacaoContato" length="19" />
+        </property>
+        <property name="atualizacaoContato" type="timestamp">
+            <column name="atualizacaoContato" length="19" />
         </property>
         <set name="fornecedors" table="fornecedor" inverse="true" lazy="true" fetch="select">
             <key>

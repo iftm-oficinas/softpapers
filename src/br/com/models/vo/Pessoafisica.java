@@ -1,5 +1,5 @@
 package br.com.models.vo;
-// Generated 19/06/2015 12:08:25 by Hibernate Tools 4.3.1
+// Generated 21/06/2015 16:38:22 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -30,15 +30,19 @@ public class Pessoafisica  implements java.io.Serializable {
      private String cpfPessoaFisica;
      private String rgPessoaFisica;
      private Date nascimentoPessoaFisica;
+     private Date criacaoPessoaFisica;
+     private Date atualizacaoPessoaFisica;
 
     public Pessoafisica() {
     }
 
-    public Pessoafisica(Pessoa pessoa, String cpfPessoaFisica, String rgPessoaFisica, Date nascimentoPessoaFisica) {
+    public Pessoafisica(Pessoa pessoa, String cpfPessoaFisica, String rgPessoaFisica, Date nascimentoPessoaFisica, Date criacaoPessoaFisica, Date atualizacaoPessoaFisica) {
        this.pessoa = pessoa;
        this.cpfPessoaFisica = cpfPessoaFisica;
        this.rgPessoaFisica = rgPessoaFisica;
        this.nascimentoPessoaFisica = nascimentoPessoaFisica;
+       this.criacaoPessoaFisica = criacaoPessoaFisica;
+       this.atualizacaoPessoaFisica = atualizacaoPessoaFisica;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -91,6 +95,26 @@ public class Pessoafisica  implements java.io.Serializable {
     
     public void setNascimentoPessoaFisica(Date nascimentoPessoaFisica) {
         this.nascimentoPessoaFisica = nascimentoPessoaFisica;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="criacaoPessoaFisica", length=19)
+    public Date getCriacaoPessoaFisica() {
+        return this.criacaoPessoaFisica;
+    }
+    
+    public void setCriacaoPessoaFisica(Date criacaoPessoaFisica) {
+        this.criacaoPessoaFisica = criacaoPessoaFisica;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="atualizacaoPessoaFisica", length=19)
+    public Date getAtualizacaoPessoaFisica() {
+        return this.atualizacaoPessoaFisica;
+    }
+    
+    public void setAtualizacaoPessoaFisica(Date atualizacaoPessoaFisica) {
+        this.atualizacaoPessoaFisica = atualizacaoPessoaFisica;
     }
 
 

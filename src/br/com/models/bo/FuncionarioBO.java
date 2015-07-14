@@ -55,42 +55,47 @@ public class FuncionarioBO {
     public Boolean inserirFuncionario(String funcionario, String nome, String email, String telefone, String celular, String cargo, String usuario, String senha, String cpf, String rg, String nascimento, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado) {
         try {
             GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
-            GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
-            GenericDAO<Contato> contatoDAO = new GenericDAO<>();
-            GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
-            GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
             Funcionario funcionarioVO = new Funcionario();
-            Pessoa pessoaVO = new Pessoa();
-            Contato contatoVO = new Contato();
-            Endereco enderecoVO = new Endereco();
-            Pessoafisica pessoaFisicaVO = new Pessoafisica();
-
             funcionarioVO.setNomeFuncionario(funcionario);
             funcionarioVO.setCargoFuncionario(cargo);
             funcionarioVO.setUsuarioFuncionario(usuario);
             funcionarioVO.setSenhaFuncionario(senha);
             funcionarioVO.setCriacaoFuncionario(new Date());
             funcionarioVO.setAtualizacaoFuncionario(new Date());
-
+            
+            GenericDAO<Pessoa> pessoaDAO = new GenericDAO<>();
+            Pessoa pessoaVO = new Pessoa();
             pessoaVO.setTipoPessoa("Fisica");
+            pessoaVO.setCriacaoPessoa(new Date());
+            pessoaVO.setAtualizacaoPessoa(new Date());
             if (pessoaDAO.inserir(pessoaVO)) {
                 funcionarioVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
             }
-
+            
+            GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
+            Pessoafisica pessoaFisicaVO = new Pessoafisica();
             pessoaFisicaVO.setCpfPessoaFisica(cpf);
             pessoaFisicaVO.setRgPessoaFisica(rg);
             pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("yyyy/MM/dd").parse(nascimento));
+            pessoaFisicaVO.setCriacaoPessoaFisica(new Date());
+            pessoaFisicaVO.setAtualizacaoPessoaFisica(new Date());
             pessoaFisicaVO.setPessoa(pessoaDAO.consultar("idPessoa", pessoaVO.getIdPessoa(), pessoaVO));
             pessoaFisicaDAO.inserir(pessoaFisicaVO);
-
+            
+            GenericDAO<Contato> contatoDAO = new GenericDAO<>();
+            Contato contatoVO = new Contato();
             contatoVO.setNomeContato(nome);
             contatoVO.setEmailContato(email);
             contatoVO.setTelefoneContato(telefone);
             contatoVO.setCelularContato(celular);
+            contatoVO.setCriacaoContato(new Date());
+            contatoVO.setAtualizacaoContato(new Date());
             if (contatoDAO.inserir(contatoVO)) {
                 funcionarioVO.setContato(contatoDAO.consultar("idContato", contatoVO.getIdContato(), contatoVO));
             }
-
+            
+            GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
+            Endereco enderecoVO = new Endereco();
             enderecoVO.setEnderecoEndereco(endereco);
             enderecoVO.setCepEndereco(cep);
             enderecoVO.setComplementoEndereco(complemento);
@@ -98,6 +103,8 @@ public class FuncionarioBO {
             enderecoVO.setCidadeEndereco(cidade);
             enderecoVO.setBairroEndereco(bairro);
             enderecoVO.setEstadoEndereco(estado);
+            enderecoVO.setCriacaoEndereco(new Date());
+            enderecoVO.setAtualizacaoEndereco(new Date());
             if (enderecoDAO.inserir(enderecoVO)) {
                 funcionarioVO.setEndereco(enderecoDAO.consultar("idEndereco", enderecoVO.getIdEndereco(), enderecoVO));
             }
@@ -144,36 +151,34 @@ public class FuncionarioBO {
     public Boolean alterarFuncionario(Long idFuncionario, Long idPessoa, Long idContato, Long idEndereco, String funcionario, String nome, String email, String telefone, String celular, String cargo, String usuario, String senha, String cpf, String rg, String nascimento, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado) {
         try {
             GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
-            GenericDAO<Contato> contatoDAO = new GenericDAO<>();
-            GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
-            GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
-            Funcionario funcionarioVO = new Funcionario();
-            Contato contatoVO = new Contato();
-            Endereco enderecoVO = new Endereco();
-
-            Pessoafisica pessoaFisicaVO = buscarPessoaFisica(idPessoa);
-            pessoaFisicaVO.setCpfPessoaFisica(cpf);
-            pessoaFisicaVO.setRgPessoaFisica(rg);
-            pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("dd/MM/yyyy").parse(nascimento));
-            pessoaFisicaDAO.atualizar(pessoaFisicaVO);
-
-            funcionarioVO = funcionarioDAO.consultar("idFuncionario", idFuncionario, funcionarioVO);
+            Funcionario funcionarioVO = funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario());
             funcionarioVO.setNomeFuncionario(funcionario);
             funcionarioVO.setCargoFuncionario(cargo);
             funcionarioVO.setUsuarioFuncionario(usuario);
             funcionarioVO.setSenhaFuncionario(senha);
             funcionarioVO.setAtualizacaoFuncionario(new Date());
+            
+            GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
+            Pessoafisica pessoaFisicaVO = buscarPessoaFisica(idPessoa);
+            pessoaFisicaVO.setCpfPessoaFisica(cpf);
+            pessoaFisicaVO.setRgPessoaFisica(rg);
+            pessoaFisicaVO.setNascimentoPessoaFisica(new SimpleDateFormat("dd/MM/yyyy").parse(nascimento));
+            pessoaFisicaVO.setAtualizacaoPessoaFisica(new Date());
+            pessoaFisicaDAO.atualizar(pessoaFisicaVO);
 
-            contatoVO = contatoDAO.consultar("idContato", idContato, contatoVO);
+            GenericDAO<Contato> contatoDAO = new GenericDAO<>();
+            Contato contatoVO = contatoDAO.consultar("idContato", idContato, new Contato());
             contatoVO.setNomeContato(nome);
             contatoVO.setEmailContato(email);
             contatoVO.setTelefoneContato(telefone);
             contatoVO.setCelularContato(celular);
+            contatoVO.setAtualizacaoContato(new Date());
             if (contatoDAO.atualizar(contatoVO)) {
                 funcionarioVO.setContato(contatoVO);
             }
-
-            enderecoVO = enderecoDAO.consultar("idEndereco", idEndereco, enderecoVO);
+            
+            GenericDAO<Endereco> enderecoDAO = new GenericDAO<>();
+            Endereco enderecoVO = enderecoDAO.consultar("idEndereco", idEndereco, new Endereco());
             enderecoVO.setEnderecoEndereco(endereco);
             enderecoVO.setCepEndereco(cep);
             enderecoVO.setComplementoEndereco(complemento);
@@ -181,6 +186,7 @@ public class FuncionarioBO {
             enderecoVO.setCidadeEndereco(cidade);
             enderecoVO.setBairroEndereco(bairro);
             enderecoVO.setEstadoEndereco(estado);
+            enderecoVO.setAtualizacaoEndereco(new Date());
             if (enderecoDAO.atualizar(enderecoVO)) {
                 funcionarioVO.setEndereco(enderecoVO);
             }

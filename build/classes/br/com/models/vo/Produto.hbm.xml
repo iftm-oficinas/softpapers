@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19/06/2015 12:08:28 by Hibernate Tools 4.3.1 -->
+<!-- Generated 21/06/2015 16:38:24 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.models.vo.Produto" table="produto" catalog="dbloja" optimistic-lock="version">
         <id name="idProduto" type="java.lang.Long">
@@ -18,21 +18,21 @@
             <column name="descricaoProduto" length="50" />
         </property>
         <property name="codigoProduto" type="string">
-            <column name="codigoProduto" length="50" />
+            <column name="codigoProduto" length="20" />
         </property>
-        <property name="custoProduto" type="java.lang.Long">
-            <column name="custoProduto" precision="10" scale="0" />
+        <property name="custoProduto" type="big_decimal">
+            <column name="custoProduto" precision="10" />
         </property>
-        <property name="vendaProduto" type="java.lang.Long">
-            <column name="vendaProduto" precision="10" scale="0" />
+        <property name="vendaProduto" type="big_decimal">
+            <column name="vendaProduto" precision="10" />
         </property>
-        <property name="minimoProduto" type="java.lang.Integer">
+        <property name="minimoProduto" type="java.lang.Long">
             <column name="minimoProduto" />
         </property>
-        <property name="maximoProduto" type="java.lang.Integer">
+        <property name="maximoProduto" type="java.lang.Long">
             <column name="maximoProduto" />
         </property>
-        <property name="estoqueProduto" type="java.lang.Integer">
+        <property name="estoqueProduto" type="java.lang.Long">
             <column name="estoqueProduto" />
         </property>
         <property name="criacaoProduto" type="timestamp">

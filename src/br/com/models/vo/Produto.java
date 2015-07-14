@@ -1,7 +1,8 @@
 package br.com.models.vo;
-// Generated 19/06/2015 12:08:25 by Hibernate Tools 4.3.1
+// Generated 21/06/2015 16:38:22 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,18 +31,18 @@ public class Produto  implements java.io.Serializable {
      private Fornecedor fornecedor;
      private String descricaoProduto;
      private String codigoProduto;
-     private Long custoProduto;
-     private Long vendaProduto;
-     private Integer minimoProduto;
-     private Integer maximoProduto;
-     private Integer estoqueProduto;
+     private BigDecimal custoProduto;
+     private BigDecimal vendaProduto;
+     private Long minimoProduto;
+     private Long maximoProduto;
+     private Long estoqueProduto;
      private Date criacaoProduto;
      private Date atualizacaoProduto;
 
     public Produto() {
     }
 
-    public Produto(Categoria categoria, Fornecedor fornecedor, String descricaoProduto, String codigoProduto, Long custoProduto, Long vendaProduto, Integer minimoProduto, Integer maximoProduto, Integer estoqueProduto, Date criacaoProduto, Date atualizacaoProduto) {
+    public Produto(Categoria categoria, Fornecedor fornecedor, String descricaoProduto, String codigoProduto, BigDecimal custoProduto, BigDecimal vendaProduto, Long minimoProduto, Long maximoProduto, Long estoqueProduto, Date criacaoProduto, Date atualizacaoProduto) {
        this.categoria = categoria;
        this.fornecedor = fornecedor;
        this.descricaoProduto = descricaoProduto;
@@ -98,7 +99,7 @@ public class Produto  implements java.io.Serializable {
     }
 
     
-    @Column(name="codigoProduto", length=50)
+    @Column(name="codigoProduto", length=20)
     public String getCodigoProduto() {
         return this.codigoProduto;
     }
@@ -108,52 +109,52 @@ public class Produto  implements java.io.Serializable {
     }
 
     
-    @Column(name="custoProduto", precision=10, scale=0)
-    public Long getCustoProduto() {
+    @Column(name="custoProduto", precision=10)
+    public BigDecimal getCustoProduto() {
         return this.custoProduto;
     }
     
-    public void setCustoProduto(Long custoProduto) {
+    public void setCustoProduto(BigDecimal custoProduto) {
         this.custoProduto = custoProduto;
     }
 
     
-    @Column(name="vendaProduto", precision=10, scale=0)
-    public Long getVendaProduto() {
+    @Column(name="vendaProduto", precision=10)
+    public BigDecimal getVendaProduto() {
         return this.vendaProduto;
     }
     
-    public void setVendaProduto(Long vendaProduto) {
+    public void setVendaProduto(BigDecimal vendaProduto) {
         this.vendaProduto = vendaProduto;
     }
 
     
     @Column(name="minimoProduto")
-    public Integer getMinimoProduto() {
+    public Long getMinimoProduto() {
         return this.minimoProduto;
     }
     
-    public void setMinimoProduto(Integer minimoProduto) {
+    public void setMinimoProduto(Long minimoProduto) {
         this.minimoProduto = minimoProduto;
     }
 
     
     @Column(name="maximoProduto")
-    public Integer getMaximoProduto() {
+    public Long getMaximoProduto() {
         return this.maximoProduto;
     }
     
-    public void setMaximoProduto(Integer maximoProduto) {
+    public void setMaximoProduto(Long maximoProduto) {
         this.maximoProduto = maximoProduto;
     }
 
     
     @Column(name="estoqueProduto")
-    public Integer getEstoqueProduto() {
+    public Long getEstoqueProduto() {
         return this.estoqueProduto;
     }
     
-    public void setEstoqueProduto(Integer estoqueProduto) {
+    public void setEstoqueProduto(Long estoqueProduto) {
         this.estoqueProduto = estoqueProduto;
     }
 
