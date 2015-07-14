@@ -1,5 +1,6 @@
 
 import br.com.resources.views.ViewPrincipal;
+import java.util.ArrayList;
 
 /**
  * @see Classe utilizada para iniciar o programa, seleciona o look and feal e
@@ -27,8 +28,16 @@ public class Index {
             java.util.logging.Logger.getLogger(ViewPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
+        //teste restricões...
+//        String x = "0123456789abcdefghijklmnopqrstuvwxyz";
+//        if (x.contains("r")) {
+//            System.out.println("ok");
+//        } else {
+//            System.out.println("no");
+//        }
+
         //Instancia o ViewPrincipal para setar sua visibilidade como verdadeira.
-        ViewPrincipal viewPrincipal = new ViewPrincipal();
-        viewPrincipal.setVisible(true);
+//        ViewPrincipal viewPrincipal = new ViewPrincipal();
+//        viewPrincipal.setVisible(true);
     }
 }

@@ -1,6 +1,7 @@
 package br.com.models.dao;
 
 import br.com.models.util.HibernateUtil;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;

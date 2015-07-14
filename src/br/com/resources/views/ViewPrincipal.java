@@ -100,7 +100,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup = new javax.swing.ButtonGroup();
         pnMenu = new javax.swing.JPanel();
         btnVisaoGeral = new javax.swing.JToggleButton();
         btnVendas = new javax.swing.JToggleButton();
@@ -124,7 +124,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         pnMenu.setBackground(new java.awt.Color(51, 51, 51));
 
-        buttonGroup1.add(btnVisaoGeral);
+        buttonGroup.add(btnVisaoGeral);
         btnVisaoGeral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVsaoGeralUP.png"))); // NOI18N
         btnVisaoGeral.setBorder(null);
         btnVisaoGeral.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -138,7 +138,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(btnVendas);
+        buttonGroup.add(btnVendas);
         btnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVendasUP.png"))); // NOI18N
         btnVendas.setBorder(null);
         btnVendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -152,7 +152,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(btnEstoque);
+        buttonGroup.add(btnEstoque);
         btnEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnEstoqueUP.png"))); // NOI18N
         btnEstoque.setBorder(null);
         btnEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -166,7 +166,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(btnFinanceiro);
+        buttonGroup.add(btnFinanceiro);
         btnFinanceiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinanceiroUP.png"))); // NOI18N
         btnFinanceiro.setBorder(null);
         btnFinanceiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -180,7 +180,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(btnRelatorios);
+        buttonGroup.add(btnRelatorios);
         btnRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnRelatoriosUP.png"))); // NOI18N
         btnRelatorios.setBorder(null);
         btnRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -194,7 +194,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(btnPainelControle);
+        buttonGroup.add(btnPainelControle);
         btnPainelControle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnPainelControleUP.png"))); // NOI18N
         btnPainelControle.setBorder(null);
         btnPainelControle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -489,7 +489,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JToggleButton btnVendas;
     private javax.swing.JToggleButton btnVisaoGeral;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JDesktopPane dpnCorpo;
     private javax.swing.JLabel lbFundoDireita;
     private javax.swing.JLabel lbFundoEsquerda;

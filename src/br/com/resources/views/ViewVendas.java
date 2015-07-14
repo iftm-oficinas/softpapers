@@ -1,26 +1,49 @@
 package br.com.resources.views;
 
+/**
+ *
+ * @see Classe visual. JInternalFrame que tem como objetivo simular um ponto de
+ * venda, responsável por listar e gerenciar todas as vendas(cadastrar, alterar,
+ * excluir). Podendo tambem transformar um orçamento em um pedido de venda ou um
+ * pedido de venda em uma venda(finalizar).
+ *
+ * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ */
 public class ViewVendas extends javax.swing.JInternalFrame {
 
+    /**
+     * 
+     * @see Construtor padrão.
+     */
     public ViewVendas() {
         initComponents();
     }
-    
-    public ViewVendas(ViewPrincipal viewPrincipal){
+
+    /**
+     *
+     * @see Construtor usado quando classe é instanciada na ViewPrincipal,
+     * recebe a viewPrincipal como pai e organiza esse JInternalFrame dentro do
+     * JFrame principal.
+     *
+     * @param viewPrincipal
+     */
+    public ViewVendas(ViewPrincipal viewPrincipal) {
+        //Esconde barra de título padrão do JInternalFrama.
         setRootPaneCheckingEnabled(false);
         javax.swing.plaf.InternalFrameUI frame = this.getUI();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) frame).setNorthPane(null);
-        
+
+        //Inicialização dos componentes padrões do JFrame.
         initComponents();
         this.viewPrincipal = viewPrincipal;
     }
-    
+
+    //Componentes padrões do JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         spnCorpo = new javax.swing.JScrollPane();
         pnCorpo = new javax.swing.JPanel();
-        lbVendas = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -28,32 +51,20 @@ public class ViewVendas extends javax.swing.JInternalFrame {
         setTitle("Vendas");
         setFrameIcon(null);
 
-        spnCorpo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        spnCorpo.setBorder(null);
 
         pnCorpo.setBackground(new java.awt.Color(255, 255, 255));
-
-        lbVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/2.Vendas.png"))); // NOI18N
-        lbVendas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbVendasMouseClicked(evt);
-            }
-        });
+        pnCorpo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout pnCorpoLayout = new javax.swing.GroupLayout(pnCorpo);
         pnCorpo.setLayout(pnCorpoLayout);
         pnCorpoLayout.setHorizontalGroup(
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCorpoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbVendas)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 404, Short.MAX_VALUE)
         );
         pnCorpoLayout.setVerticalGroup(
             pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCorpoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbVendas)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
         spnCorpo.setViewportView(pnCorpo);
@@ -62,26 +73,21 @@ public class ViewVendas extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spnCorpo)
+            .addComponent(spnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spnCorpo)
+            .addComponent(spnCorpo, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lbVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVendasMouseClicked
-        viewNovaVenda = new ViewNovaVenda(viewPrincipal, true);
-        viewNovaVenda.setVisible(true);
-    }//GEN-LAST:event_lbVendasMouseClicked
-
+    //Declaração de variáveis(View).
     private ViewPrincipal viewPrincipal;
-    private ViewNovaVenda viewNovaVenda;
-    
+    private ViewVenda viewVenda;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lbVendas;
     private javax.swing.JPanel pnCorpo;
     private javax.swing.JScrollPane spnCorpo;
     // End of variables declaration//GEN-END:variables

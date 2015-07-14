@@ -1,30 +1,53 @@
 package br.com.resources.views;
 
+/**
+ *
+ * @see Classe visual. JInternalFrame que tem como objetivo controlar e
+ * gerenciar os registros dos produtos e os pedidos de compras, composto pelas
+ * funcionalidades de Inventário(lista de produto e suas quantidades),
+ * Compras(lista de pedidos de compras), Lançamentos(histórico de etidade de
+ * produtos).
+ *
+ * @author Familia
+ */
 public class ViewEstoque extends javax.swing.JInternalFrame {
 
+    /**
+     * 
+     * @see Construtor padrão.
+     */
     public ViewEstoque() {
         initComponents();
     }
 
+    /**
+     *
+     * @see Construtor usado quando classe é instanciada na ViewPrincipal,
+     * recebe a viewPrincipal como pai e organiza esse JInternalFrame dentro do
+     * JFrame principal.
+     *
+     * @param viewPrincipal
+     */
     public ViewEstoque(ViewPrincipal viewPrincipal) {
+        //Esconde barra de título padrão do JInternalFrama.
         setRootPaneCheckingEnabled(false);
         javax.swing.plaf.InternalFrameUI frame = this.getUI();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) frame).setNorthPane(null);
 
+        //Inicialização dos componentes padrões do JFrame.
         initComponents();
         this.viewPrincipal = viewPrincipal;
     }
 
+    //Componentes padrões do JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
         spnCorpo = new javax.swing.JScrollPane();
         tpnCorpo = new javax.swing.JTabbedPane();
         pnInventario = new javax.swing.JPanel();
-        lbInventario = new javax.swing.JLabel();
         pnCompras = new javax.swing.JPanel();
-        lbCompras = new javax.swing.JLabel();
+        pnLancamentos = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -39,54 +62,48 @@ public class ViewEstoque extends javax.swing.JInternalFrame {
 
         pnInventario.setBackground(new java.awt.Color(255, 255, 255));
 
-        lbInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/3.EstoqueInventario.png"))); // NOI18N
-
         javax.swing.GroupLayout pnInventarioLayout = new javax.swing.GroupLayout(pnInventario);
         pnInventario.setLayout(pnInventarioLayout);
         pnInventarioLayout.setHorizontalGroup(
             pnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnInventarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbInventario)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 354, Short.MAX_VALUE)
         );
         pnInventarioLayout.setVerticalGroup(
             pnInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnInventarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbInventario)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 335, Short.MAX_VALUE)
         );
 
-        tpnCorpo.addTab("Inventário", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/inventario.png")), pnInventario); // NOI18N
+        tpnCorpo.addTab("Inventário     ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/inventario.png")), pnInventario); // NOI18N
 
         pnCompras.setBackground(new java.awt.Color(255, 255, 255));
-
-        lbCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/3.EstoqueCompras.png"))); // NOI18N
-        lbCompras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbComprasMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnComprasLayout = new javax.swing.GroupLayout(pnCompras);
         pnCompras.setLayout(pnComprasLayout);
         pnComprasLayout.setHorizontalGroup(
             pnComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnComprasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbCompras)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 354, Short.MAX_VALUE)
         );
         pnComprasLayout.setVerticalGroup(
             pnComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnComprasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbCompras)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 335, Short.MAX_VALUE)
         );
 
-        tpnCorpo.addTab("Compras  ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/compras.png")), pnCompras); // NOI18N
+        tpnCorpo.addTab("Compras       ", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/compras.png")), pnCompras); // NOI18N
+
+        pnLancamentos.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnLancamentosLayout = new javax.swing.GroupLayout(pnLancamentos);
+        pnLancamentos.setLayout(pnLancamentosLayout);
+        pnLancamentosLayout.setHorizontalGroup(
+            pnLancamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 354, Short.MAX_VALUE)
+        );
+        pnLancamentosLayout.setVerticalGroup(
+            pnLancamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 335, Short.MAX_VALUE)
+        );
+
+        tpnCorpo.addTab("Lançamentos", new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/lancamentos.png")), pnLancamentos); // NOI18N
 
         spnCorpo.setViewportView(tpnCorpo);
 
@@ -104,20 +121,14 @@ public class ViewEstoque extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lbComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbComprasMouseClicked
-        viewNovaCompra = new ViewNovaCompra(viewPrincipal, true);
-        viewNovaCompra.setVisible(true);
-    }//GEN-LAST:event_lbComprasMouseClicked
-
+    //Declaração de variáveis(View).
     private ViewPrincipal viewPrincipal;
-    private ViewNovaCompra viewNovaCompra;
+    private ViewCompra viewCompra;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbCompras;
-    private javax.swing.JLabel lbInventario;
     private javax.swing.JPanel pnCompras;
     private javax.swing.JPanel pnInventario;
+    private javax.swing.JPanel pnLancamentos;
     private javax.swing.JScrollPane spnCorpo;
     private javax.swing.JTabbedPane tpnCorpo;
     // End of variables declaration//GEN-END:variables
