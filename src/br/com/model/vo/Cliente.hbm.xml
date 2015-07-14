@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07/05/2015 20:54:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.model.vo.Cliente" table="cliente" catalog="dbloja" optimistic-lock="version">
+        <id name="idCliente" type="int">
+            <column name="id_cliente" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomeCliente" type="string">
+            <column name="nomeCliente" length="30" not-null="true" />
+        </property>
+        <property name="sexo" type="string">
+            <column name="sexo" length="1" />
+        </property>
+        <property name="cpf" type="string">
+            <column name="cpf" length="15" not-null="true" />
+        </property>
+        <property name="rg" type="string">
+            <column name="rg" length="15" />
+        </property>
+        <property name="endereco" type="string">
+            <column name="endereco" length="50" not-null="true" />
+        </property>
+        <property name="telefone" type="string">
+            <column name="telefone" length="15" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="20" />
+        </property>
+        <set name="pedidoclientes" table="pedidocliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" />
+            </key>
+            <one-to-many class="br.com.model.vo.Pedidocliente" />
+        </set>
+    </class>
+</hibernate-mapping>

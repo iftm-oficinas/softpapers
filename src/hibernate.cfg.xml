@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dbloja?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">admwindows</property>
+    <mapping resource="br/com/model/vo/Categoria.hbm.xml"/>
+    <mapping resource="br/com/model/vo/Pedidoparceladocliente.hbm.xml"/>
+    <mapping resource="br/com/model/vo/Pedidocliente.hbm.xml"/>
+    <mapping resource="br/com/model/vo/Pedidofornecedor.hbm.xml"/>
+    <mapping resource="br/com/model/vo/Vendedor.hbm.xml"/>
+    <mapping resource="br/com/model/vo/Tipopagamento.hbm.xml"/>
+    <mapping resource="br/com/model/vo/Produto.hbm.xml"/>
+    <mapping resource="br/com/model/vo/Itempedido.hbm.xml"/>
+    <mapping resource="br/com/model/vo/Pedidoparceladofornecedor.hbm.xml"/>
+    <mapping resource="br/com/model/vo/Fornecedor.hbm.xml"/>
+    <mapping resource="br/com/model/vo/Cliente.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

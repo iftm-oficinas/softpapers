@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07/05/2015 20:54:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.model.vo.Pedidocliente" table="pedidocliente" catalog="dbloja" optimistic-lock="version">
+        <id name="idPedidoCliente" type="int">
+            <column name="id_pedidoCliente" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="cliente" class="br.com.model.vo.Cliente" fetch="select">
+            <column name="id_cliente" />
+        </many-to-one>
+        <many-to-one name="itempedido" class="br.com.model.vo.Itempedido" fetch="select">
+            <column name="id_item" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipopagamento" class="br.com.model.vo.Tipopagamento" fetch="select">
+            <column name="id_tipoPagamento" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vendedor" class="br.com.model.vo.Vendedor" fetch="select">
+            <column name="id_vendedor" not-null="true" />
+        </many-to-one>
+        <property name="valorTotal" type="big_decimal">
+            <column name="valorTotal" precision="10" not-null="true" />
+        </property>
+        <property name="statusPedido" type="int">
+            <column name="statusPedido" not-null="true" />
+        </property>
+        <set name="pedidoparceladoclientes" table="pedidoparceladocliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_pedidoCliente" not-null="true" />
+            </key>
+            <one-to-many class="br.com.model.vo.Pedidoparceladocliente" />
+        </set>
+    </class>
+</hibernate-mapping>

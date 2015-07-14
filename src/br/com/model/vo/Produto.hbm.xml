@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07/05/2015 20:54:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.model.vo.Produto" table="produto" catalog="dbloja" optimistic-lock="version">
+        <id name="idProduto" type="int">
+            <column name="id_produto" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categoria" class="br.com.model.vo.Categoria" fetch="select">
+            <column name="id_categoria" not-null="true" />
+        </many-to-one>
+        <property name="nomeProduto" type="string">
+            <column name="nomeProduto" length="30" not-null="true" />
+        </property>
+        <property name="quantidadeMinima" type="int">
+            <column name="quantidadeMinima" not-null="true" />
+        </property>
+        <property name="valorCusto" type="big_decimal">
+            <column name="valorCusto" precision="10" not-null="true" />
+        </property>
+        <set name="itempedidos" table="itempedido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_produto" not-null="true" />
+            </key>
+            <one-to-many class="br.com.model.vo.Itempedido" />
+        </set>
+    </class>
+</hibernate-mapping>

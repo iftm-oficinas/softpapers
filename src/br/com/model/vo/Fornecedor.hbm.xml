@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07/05/2015 20:54:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.model.vo.Fornecedor" table="fornecedor" catalog="dbloja" optimistic-lock="version">
+        <id name="idFornecedor" type="int">
+            <column name="id_fornecedor" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomeFornecedor" type="string">
+            <column name="nomeFornecedor" length="30" not-null="true" />
+        </property>
+        <property name="empresa" type="string">
+            <column name="empresa" length="30" not-null="true" />
+        </property>
+        <property name="telefone" type="string">
+            <column name="telefone" length="15" not-null="true" />
+        </property>
+        <set name="pedidofornecedors" table="pedidofornecedor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_fornecedor" not-null="true" />
+            </key>
+            <one-to-many class="br.com.model.vo.Pedidofornecedor" />
+        </set>
+    </class>
+</hibernate-mapping>
