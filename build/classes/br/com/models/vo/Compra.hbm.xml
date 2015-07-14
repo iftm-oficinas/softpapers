@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/06/2015 14:14:06 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Compra" table="compra" catalog="dbloja" optimistic-lock="version">
+        <id name="idCompra" type="java.lang.Long">
+            <column name="idCompra" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="fornecedor" class="br.com.models.vo.Fornecedor" fetch="select">
+            <column name="fornecedorCompra" />
+        </many-to-one>
+        <many-to-one name="funcionario" class="br.com.models.vo.Funcionario" fetch="select">
+            <column name="funcionarioCompra" />
+        </many-to-one>
+        <many-to-one name="item" class="br.com.models.vo.Item" fetch="select">
+            <column name="itemCompra" />
+        </many-to-one>
+        <property name="valorCompra" type="big_decimal">
+            <column name="valorCompra" precision="10" />
+        </property>
+        <property name="parcelasCompra" type="java.lang.Integer">
+            <column name="parcelasCompra" />
+        </property>
+        <property name="vencimentoCompra" type="date">
+            <column name="vencimentoCompra" length="10" />
+        </property>
+        <property name="criacaoCompra" type="timestamp">
+            <column name="criacaoCompra" length="19" />
+        </property>
+        <property name="atualizacaoCompra" type="timestamp">
+            <column name="atualizacaoCompra" length="19" />
+        </property>
+        <set name="pagamentos" table="pagamento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="compraPagamento" />
+            </key>
+            <one-to-many class="br.com.models.vo.Pagamento" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/06/2015 14:14:06 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Venda" table="venda" catalog="dbloja" optimistic-lock="version">
+        <id name="idVenda" type="java.lang.Long">
+            <column name="idVenda" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="br.com.models.vo.Cliente" fetch="select">
+            <column name="clienteVenda" />
+        </many-to-one>
+        <many-to-one name="funcionario" class="br.com.models.vo.Funcionario" fetch="select">
+            <column name="funcionarioVenda" />
+        </many-to-one>
+        <many-to-one name="item" class="br.com.models.vo.Item" fetch="select">
+            <column name="itemVenda" />
+        </many-to-one>
+        <property name="valorVenda" type="big_decimal">
+            <column name="valorVenda" precision="10" />
+        </property>
+        <property name="parcelasVenda" type="java.lang.Integer">
+            <column name="parcelasVenda" />
+        </property>
+        <property name="vencimentoVenda" type="date">
+            <column name="vencimentoVenda" length="10" />
+        </property>
+        <property name="criacaoVenda" type="timestamp">
+            <column name="criacaoVenda" length="19" />
+        </property>
+        <property name="atualizacaoVenda" type="timestamp">
+            <column name="atualizacaoVenda" length="19" />
+        </property>
+        <set name="recebimentos" table="recebimento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vendaRecebimento" />
+            </key>
+            <one-to-many class="br.com.models.vo.Recebimento" />
+        </set>
+    </class>
+</hibernate-mapping>

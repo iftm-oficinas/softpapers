@@ -1,9 +1,11 @@
 package br.com.models.vo;
-// Generated 23/06/2015 19:20:00 by Hibernate Tools 4.3.1
+// Generated 24/06/2015 14:14:02 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,11 +41,12 @@ public class Produto  implements java.io.Serializable {
      private Long estoqueProduto;
      private Date criacaoProduto;
      private Date atualizacaoProduto;
+     private Set<Item> items = new HashSet<Item>(0);
 
     public Produto() {
     }
 
-    public Produto(Categoria categoria, Fornecedor fornecedor, String descricaoProduto, String codigoProduto, BigDecimal custoProduto, BigDecimal vendaProduto, Long minimoProduto, Long maximoProduto, Long estoqueProduto, Date criacaoProduto, Date atualizacaoProduto) {
+    public Produto(Categoria categoria, Fornecedor fornecedor, String descricaoProduto, String codigoProduto, BigDecimal custoProduto, BigDecimal vendaProduto, Long minimoProduto, Long maximoProduto, Long estoqueProduto, Date criacaoProduto, Date atualizacaoProduto, Set<Item> items) {
        this.categoria = categoria;
        this.fornecedor = fornecedor;
        this.descricaoProduto = descricaoProduto;
@@ -54,6 +58,7 @@ public class Produto  implements java.io.Serializable {
        this.estoqueProduto = estoqueProduto;
        this.criacaoProduto = criacaoProduto;
        this.atualizacaoProduto = atualizacaoProduto;
+       this.items = items;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -176,6 +181,15 @@ public class Produto  implements java.io.Serializable {
     
     public void setAtualizacaoProduto(Date atualizacaoProduto) {
         this.atualizacaoProduto = atualizacaoProduto;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="produto")
+    public Set<Item> getItems() {
+        return this.items;
+    }
+    
+    public void setItems(Set<Item> items) {
+        this.items = items;
     }
 
 

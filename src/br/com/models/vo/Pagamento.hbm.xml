@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/06/2015 14:14:06 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Pagamento" table="pagamento" catalog="dbloja" optimistic-lock="version">
+        <id name="idPagamento" type="java.lang.Long">
+            <column name="idPagamento" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="compra" class="br.com.models.vo.Compra" fetch="select">
+            <column name="compraPagamento" />
+        </many-to-one>
+        <many-to-one name="funcionario" class="br.com.models.vo.Funcionario" fetch="select">
+            <column name="funcionarioPagamento" />
+        </many-to-one>
+        <many-to-one name="lancamento" class="br.com.models.vo.Lancamento" fetch="select">
+            <column name="lancamentoPagamento" />
+        </many-to-one>
+        <property name="descricaoPagamento" type="string">
+            <column name="descricaoPagamento" length="50" />
+        </property>
+        <property name="valorPagamento" type="big_decimal">
+            <column name="valorPagamento" precision="10" />
+        </property>
+        <property name="dataPagamento" type="date">
+            <column name="dataPagamento" length="10" />
+        </property>
+        <property name="statusPagamento" type="java.lang.Boolean">
+            <column name="statusPagamento" />
+        </property>
+        <property name="criacaoPagamento" type="timestamp">
+            <column name="criacaoPagamento" length="19" />
+        </property>
+        <property name="atualizacaoPagamento" type="timestamp">
+            <column name="atualizacaoPagamento" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

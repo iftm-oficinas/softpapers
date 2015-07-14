@@ -1,5 +1,8 @@
 package br.com.resources.views;
 
+import br.com.models.bo.VendaBO;
+import br.com.models.tabelas.TableModelVenda;
+
 /**
  * @see Classe visual. JInternalFrame que tem como objetivo simular um ponto de
  * venda, responsável por listar e gerenciar todas as vendas(cadastrar, alterar,
@@ -31,6 +34,33 @@ public class ViewVendas extends javax.swing.JInternalFrame {
         //Inicialização dos componentes padrões do JFrame.
         initComponents();
         this.viewPrincipal = viewPrincipal;
+        
+        //Carrega todas os modelos de tabelas.
+        atualizarTabelas();
+    }
+
+    /**
+     * @see Método que Instancia a classe PainelControleBO para realizar buscas
+     * de Objetos de valores que compoem os modelos de tabelas.
+     */
+    public final void atualizarTabelas() {
+        //Inicialização dos modelos de tabelas.
+        vendaBO = new VendaBO();
+        tabelaVenda = new TableModelVenda(vendaBO.buscarVendas());
+
+        //Definindo modelo de tabelas para as tabelas.
+        tbVendas.setModel(tabelaVenda);
+
+        //Definir tabelas como sem seleção.
+        tbVendas.clearSelection();
+
+        //Definindo botões Aleterar e Excluir como não habilitado.
+        btnVisualizarVenda.setEnabled(false);
+        btnAlterarVenda.setEnabled(false);
+        btnExcluirVenda.setEnabled(false);
+
+        //Definindo lbResultados
+        lbResultadosVenda.setText(tbVendas.getModel().getRowCount() + " resultados, mostrando todos.");
     }
 
     //Componentes padrões do JFrame
@@ -39,7 +69,6 @@ public class ViewVendas extends javax.swing.JInternalFrame {
 
         pnCorpo = new javax.swing.JPanel();
         btnNovaVenda = new javax.swing.JButton();
-        btnFinalizarVenda = new javax.swing.JButton();
         btnVisualizarVenda = new javax.swing.JButton();
         btnAlterarVenda = new javax.swing.JButton();
         btnExcluirVenda = new javax.swing.JButton();
@@ -71,22 +100,11 @@ public class ViewVendas extends javax.swing.JInternalFrame {
             }
         });
 
-        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarVendaUP.png"))); // NOI18N
-        btnFinalizarVenda.setBorder(null);
-        btnFinalizarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnFinalizarVenda.setFocusable(false);
-        btnFinalizarVenda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarVendaDOWN.png"))); // NOI18N
-        btnFinalizarVenda.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnFinalizarVendaDOWN.png"))); // NOI18N
-        btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFinalizarVendaActionPerformed(evt);
-            }
-        });
-
         btnVisualizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarUP.png"))); // NOI18N
         btnVisualizarVenda.setBorder(null);
         btnVisualizarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVisualizarVenda.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
+        btnVisualizarVenda.setEnabled(false);
         btnVisualizarVenda.setFocusable(false);
         btnVisualizarVenda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
         btnVisualizarVenda.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnVisualizarDOWN.png"))); // NOI18N
@@ -100,6 +118,7 @@ public class ViewVendas extends javax.swing.JInternalFrame {
         btnAlterarVenda.setBorder(null);
         btnAlterarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAlterarVenda.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
+        btnAlterarVenda.setEnabled(false);
         btnAlterarVenda.setFocusable(false);
         btnAlterarVenda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
         btnAlterarVenda.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnAlterarDOWN.png"))); // NOI18N
@@ -113,6 +132,7 @@ public class ViewVendas extends javax.swing.JInternalFrame {
         btnExcluirVenda.setBorder(null);
         btnExcluirVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExcluirVenda.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
+        btnExcluirVenda.setEnabled(false);
         btnExcluirVenda.setFocusable(false);
         btnExcluirVenda.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
         btnExcluirVenda.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnExcluirDOWN.png"))); // NOI18N
@@ -202,15 +222,13 @@ public class ViewVendas extends javax.swing.JInternalFrame {
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnCorpoLayout.createSequentialGroup()
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spnVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
+                            .addComponent(spnVendas)
                             .addGroup(pnCorpoLayout.createSequentialGroup()
                                 .addComponent(lbResultadosVenda)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(pnCorpoLayout.createSequentialGroup()
                         .addComponent(btnNovaVenda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFinalizarVenda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnVisualizarVenda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -230,8 +248,7 @@ public class ViewVendas extends javax.swing.JInternalFrame {
                         .addComponent(btnAlterarVenda)
                         .addComponent(btnExcluirVenda))
                     .addComponent(pnBuscarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVisualizarVenda)
-                    .addComponent(btnFinalizarVenda))
+                    .addComponent(btnVisualizarVenda))
                 .addGap(18, 18, 18)
                 .addComponent(lbResultadosVenda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -262,34 +279,49 @@ public class ViewVendas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbVendasMouseClicked
 
     private void btnNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaVendaActionPerformed
-        // TODO add your handling code here:
+        viewVenda = new ViewVenda(viewPrincipal, true, viewPrincipal, this);
+        viewVenda.setVisible(true);
     }//GEN-LAST:event_btnNovaVendaActionPerformed
 
-    private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFinalizarVendaActionPerformed
-
     private void btnVisualizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarVendaActionPerformed
-        // TODO add your handling code here:
+        if (tbVendas.getSelectedRow() != -1) {
+            TableModelVenda modelo = (TableModelVenda) tbVendas.getModel();
+            viewVenda = new ViewVenda(viewPrincipal, true, viewPrincipal, this, modelo.getVenda(tbVendas.getSelectedRow()), false);
+            viewVenda.setVisible(true);
+        }
     }//GEN-LAST:event_btnVisualizarVendaActionPerformed
 
     private void btnAlterarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarVendaActionPerformed
-        // TODO add your handling code here:
+        if (tbVendas.getSelectedRow() != -1) {
+            TableModelVenda modelo = (TableModelVenda) tbVendas.getModel();
+            viewVenda = new ViewVenda(viewPrincipal, true, viewPrincipal, this, modelo.getVenda(tbVendas.getSelectedRow()), true);
+            viewVenda.setVisible(true);
+        }
     }//GEN-LAST:event_btnAlterarVendaActionPerformed
 
     private void btnExcluirVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirVendaActionPerformed
-        // TODO add your handling code here:
+        if (tbVendas.getSelectedRow() != -1) {
+            TableModelVenda modelo = (TableModelVenda) tbVendas.getModel();
+            if (vendaBO.excluirVenda(modelo.getVenda(tbVendas.getSelectedRow()).getIdVenda())) {
+                atualizarTabelas();
+            }
+        }
     }//GEN-LAST:event_btnExcluirVendaActionPerformed
 
     //Declaração de variáveis(View).
     private ViewPrincipal viewPrincipal;
     private ViewVenda viewVenda;
 
+    //Declaração de variáveis(Business Object).
+    private VendaBO vendaBO;
+
+    //Declaração de variáveis(Tabelas).
+    private TableModelVenda tabelaVenda;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarVenda;
     private javax.swing.JButton btnBuscarFuncionario;
     private javax.swing.JButton btnExcluirVenda;
-    private javax.swing.JButton btnFinalizarVenda;
     private javax.swing.JButton btnNovaVenda;
     private javax.swing.JButton btnVisualizarVenda;
     private javax.swing.JLabel lbResultadosVenda;

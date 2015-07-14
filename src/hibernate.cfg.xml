@@ -7,15 +7,22 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dbloja?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">admwindows</property>
-    <mapping resource="br/com/models/vo/Categoria.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Cliente.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Fornecedor.hbm.xml"/>
     <mapping resource="br/com/models/vo/Pessoa.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Pessoafisica.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Cliente.hbm.xml"/>
     <mapping resource="br/com/models/vo/Endereco.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Produto.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Pessoajuridica.hbm.xml"/>
-    <mapping resource="br/com/models/vo/Contato.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Categoria.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Extrato.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Pessoafisica.hbm.xml"/>
     <mapping resource="br/com/models/vo/Funcionario.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Recebimento.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Compra.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Contato.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Lancamento.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Produto.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Pagamento.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Fornecedor.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Venda.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Pessoajuridica.hbm.xml"/>
+    <mapping resource="br/com/models/vo/Item.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

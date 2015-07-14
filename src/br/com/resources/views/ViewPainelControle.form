@@ -1787,7 +1787,7 @@
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbCategoriasMouseClicked"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="cabecalho = tbProdutos.getTableHeader();&#xa;cabecalho.setFont(new Font(&quot;Arial&quot;, Font.PLAIN, 12));&#xa;cabecalho.setForeground(new Color(102,102,102));"/>
+                        <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="cabecalho = tbCategorias.getTableHeader();&#xa;cabecalho.setFont(new Font(&quot;Arial&quot;, Font.PLAIN, 12));&#xa;cabecalho.setForeground(new Color(102,102,102));"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>

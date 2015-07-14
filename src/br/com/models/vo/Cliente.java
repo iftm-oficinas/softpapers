@@ -1,9 +1,11 @@
 package br.com.models.vo;
-// Generated 23/06/2015 19:20:00 by Hibernate Tools 4.3.1
+// Generated 24/06/2015 14:14:02 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,11 +39,12 @@ public class Cliente  implements java.io.Serializable {
      private BigDecimal descontoCliente;
      private Date criacaoCliente;
      private Date atualizacaoCliente;
+     private Set<Venda> vendas = new HashSet<Venda>(0);
 
     public Cliente() {
     }
 
-    public Cliente(Contato contato, Endereco endereco, Pessoa pessoa, String nomeCliente, BigDecimal salarioCliente, BigDecimal limiteCliente, BigDecimal descontoCliente, Date criacaoCliente, Date atualizacaoCliente) {
+    public Cliente(Contato contato, Endereco endereco, Pessoa pessoa, String nomeCliente, BigDecimal salarioCliente, BigDecimal limiteCliente, BigDecimal descontoCliente, Date criacaoCliente, Date atualizacaoCliente, Set<Venda> vendas) {
        this.contato = contato;
        this.endereco = endereco;
        this.pessoa = pessoa;
@@ -50,6 +54,7 @@ public class Cliente  implements java.io.Serializable {
        this.descontoCliente = descontoCliente;
        this.criacaoCliente = criacaoCliente;
        this.atualizacaoCliente = atualizacaoCliente;
+       this.vendas = vendas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -152,6 +157,15 @@ public class Cliente  implements java.io.Serializable {
     
     public void setAtualizacaoCliente(Date atualizacaoCliente) {
         this.atualizacaoCliente = atualizacaoCliente;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
+    public Set<Venda> getVendas() {
+        return this.vendas;
+    }
+    
+    public void setVendas(Set<Venda> vendas) {
+        this.vendas = vendas;
     }
 
 

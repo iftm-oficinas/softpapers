@@ -114,7 +114,7 @@ public class TableModelCategoria extends AbstractTableModel {
      * como parâmetro.
      * @param categoria
      */
-    public void addProduto(Categoria categoria) {
+    public void addCategoria(Categoria categoria) {
         linhas.add(categoria);
         int ultimoIndice = getRowCount() - 1;
         fireTableRowsInserted(ultimoIndice, ultimoIndice);
@@ -125,7 +125,7 @@ public class TableModelCategoria extends AbstractTableModel {
      * recebida como parâmetro.
      * @param categorias
      */
-    public void addListaProdutos(List<Categoria> categorias) {
+    public void addListaCategorias(List<Categoria> categorias) {
         int indice = getRowCount();
         linhas.addAll(categorias);
         fireTableRowsInserted(indice, indice + categorias.size());
@@ -136,7 +136,7 @@ public class TableModelCategoria extends AbstractTableModel {
      * parâmetro.
      * @param rowIndex numero da linha da tabela.
      */
-    public void removeProduto(int rowIndex) {
+    public void removeCategoria(int rowIndex) {
         linhas.remove(rowIndex);
         fireTableRowsDeleted(rowIndex, rowIndex);
     }

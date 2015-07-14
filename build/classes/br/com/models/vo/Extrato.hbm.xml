@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/06/2015 14:14:06 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Extrato" table="extrato" catalog="dbloja" optimistic-lock="version">
+        <id name="idExtrato" type="java.lang.Long">
+            <column name="idExtrato" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="lancamento" class="br.com.models.vo.Lancamento" fetch="select">
+            <column name="lancamentoExtrato" />
+        </many-to-one>
+        <property name="valorExtarto" type="big_decimal">
+            <column name="valorExtarto" precision="10" />
+        </property>
+        <property name="saldoExtrato" type="big_decimal">
+            <column name="saldoExtrato" precision="10" />
+        </property>
+        <property name="criacaoExtrato" type="timestamp">
+            <column name="criacaoExtrato" length="19" />
+        </property>
+        <property name="atualizacaoExtrato" type="timestamp">
+            <column name="atualizacaoExtrato" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,5 +1,5 @@
 package br.com.models.vo;
-// Generated 23/06/2015 19:20:00 by Hibernate Tools 4.3.1
+// Generated 24/06/2015 14:14:02 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -35,18 +35,20 @@ public class Fornecedor  implements java.io.Serializable {
      private String nomeFornecedor;
      private Date criacaoFornecedor;
      private Date atualizacaoFornecedor;
+     private Set<Compra> compras = new HashSet<Compra>(0);
      private Set<Produto> produtos = new HashSet<Produto>(0);
 
     public Fornecedor() {
     }
 
-    public Fornecedor(Contato contato, Endereco endereco, Pessoa pessoa, String nomeFornecedor, Date criacaoFornecedor, Date atualizacaoFornecedor, Set<Produto> produtos) {
+    public Fornecedor(Contato contato, Endereco endereco, Pessoa pessoa, String nomeFornecedor, Date criacaoFornecedor, Date atualizacaoFornecedor, Set<Compra> compras, Set<Produto> produtos) {
        this.contato = contato;
        this.endereco = endereco;
        this.pessoa = pessoa;
        this.nomeFornecedor = nomeFornecedor;
        this.criacaoFornecedor = criacaoFornecedor;
        this.atualizacaoFornecedor = atualizacaoFornecedor;
+       this.compras = compras;
        this.produtos = produtos;
     }
    
@@ -120,6 +122,15 @@ public class Fornecedor  implements java.io.Serializable {
     
     public void setAtualizacaoFornecedor(Date atualizacaoFornecedor) {
         this.atualizacaoFornecedor = atualizacaoFornecedor;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="fornecedor")
+    public Set<Compra> getCompras() {
+        return this.compras;
+    }
+    
+    public void setCompras(Set<Compra> compras) {
+        this.compras = compras;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="fornecedor")

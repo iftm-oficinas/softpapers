@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/06/2015 14:14:06 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Lancamento" table="lancamento" catalog="dbloja" optimistic-lock="version">
+        <id name="idLancamento" type="java.lang.Long">
+            <column name="idLancamento" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoLancamento" type="string">
+            <column name="tipoLancamento" length="50" />
+        </property>
+        <property name="criacaoLancamento" type="timestamp">
+            <column name="criacaoLancamento" length="19" />
+        </property>
+        <property name="atualizacaLancamento" type="timestamp">
+            <column name="atualizacaLancamento" length="19" />
+        </property>
+        <set name="pagamentos" table="pagamento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="lancamentoPagamento" />
+            </key>
+            <one-to-many class="br.com.models.vo.Pagamento" />
+        </set>
+        <set name="recebimentos" table="recebimento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="lancamentoRecebimento" />
+            </key>
+            <one-to-many class="br.com.models.vo.Recebimento" />
+        </set>
+        <set name="extratos" table="extrato" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="lancamentoExtrato" />
+            </key>
+            <one-to-many class="br.com.models.vo.Extrato" />
+        </set>
+    </class>
+</hibernate-mapping>

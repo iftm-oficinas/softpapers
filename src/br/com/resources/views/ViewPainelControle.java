@@ -993,7 +993,7 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
             tbCategorias.getColumnModel().getColumn(6).setHeaderValue("Criação");
             tbCategorias.getColumnModel().getColumn(7).setHeaderValue("Atualização");
         }
-        cabecalho = tbProdutos.getTableHeader();
+        cabecalho = tbCategorias.getTableHeader();
         cabecalho.setFont(new Font("Arial", Font.PLAIN, 12));
         cabecalho.setForeground(new Color(102,102,102));
 
@@ -1276,19 +1276,6 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
 
     /**
-     * @see Método que responde ao clique do JTable(tbCategorias) e se possuir
-     * uma linha selecionada habilita os JButton.
-     * @param evt
-     */
-    private void tbCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCategoriasMouseClicked
-        if (tbCategorias.getSelectedRow() != -1) {
-            btnVisualizarCategoria.setEnabled(true);
-            btnAlterarCategoria.setEnabled(true);
-            btnExcluirCategoria.setEnabled(true);
-        }
-    }//GEN-LAST:event_tbCategoriasMouseClicked
-
-    /**
      * @see Método que responde ao clique do JButton. Instancia com o construtor
      * padrão e define como visível a ViewCategoria.
      * @param evt
@@ -1381,6 +1368,19 @@ public class ViewPainelControle extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnExcluirProdutoActionPerformed
+
+    /**
+     * @see Método que responde ao clique do JTable(tbCategorias) e se possuir
+     * uma linha selecionada habilita os JButton.
+     * @param evt
+     */
+    private void tbCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCategoriasMouseClicked
+        if (tbCategorias.getSelectedRow() != -1) {
+            btnVisualizarCategoria.setEnabled(true);
+            btnAlterarCategoria.setEnabled(true);
+            btnExcluirCategoria.setEnabled(true);
+        }
+    }//GEN-LAST:event_tbCategoriasMouseClicked
 
     //Declaração de variáveis(View).
     private ViewPrincipal viewPrincipal;

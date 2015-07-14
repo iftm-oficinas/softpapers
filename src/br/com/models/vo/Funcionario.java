@@ -1,8 +1,10 @@
 package br.com.models.vo;
-// Generated 23/06/2015 19:20:00 by Hibernate Tools 4.3.1
+// Generated 24/06/2015 14:14:02 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,11 +38,15 @@ public class Funcionario  implements java.io.Serializable {
      private String senhaFuncionario;
      private Date criacaoFuncionario;
      private Date atualizacaoFuncionario;
+     private Set<Recebimento> recebimentos = new HashSet<Recebimento>(0);
+     private Set<Compra> compras = new HashSet<Compra>(0);
+     private Set<Venda> vendas = new HashSet<Venda>(0);
+     private Set<Pagamento> pagamentos = new HashSet<Pagamento>(0);
 
     public Funcionario() {
     }
 
-    public Funcionario(Contato contato, Endereco endereco, Pessoa pessoa, String nomeFuncionario, String cargoFuncionario, String usuarioFuncionario, String senhaFuncionario, Date criacaoFuncionario, Date atualizacaoFuncionario) {
+    public Funcionario(Contato contato, Endereco endereco, Pessoa pessoa, String nomeFuncionario, String cargoFuncionario, String usuarioFuncionario, String senhaFuncionario, Date criacaoFuncionario, Date atualizacaoFuncionario, Set<Recebimento> recebimentos, Set<Compra> compras, Set<Venda> vendas, Set<Pagamento> pagamentos) {
        this.contato = contato;
        this.endereco = endereco;
        this.pessoa = pessoa;
@@ -49,6 +56,10 @@ public class Funcionario  implements java.io.Serializable {
        this.senhaFuncionario = senhaFuncionario;
        this.criacaoFuncionario = criacaoFuncionario;
        this.atualizacaoFuncionario = atualizacaoFuncionario;
+       this.recebimentos = recebimentos;
+       this.compras = compras;
+       this.vendas = vendas;
+       this.pagamentos = pagamentos;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -151,6 +162,42 @@ public class Funcionario  implements java.io.Serializable {
     
     public void setAtualizacaoFuncionario(Date atualizacaoFuncionario) {
         this.atualizacaoFuncionario = atualizacaoFuncionario;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="funcionario")
+    public Set<Recebimento> getRecebimentos() {
+        return this.recebimentos;
+    }
+    
+    public void setRecebimentos(Set<Recebimento> recebimentos) {
+        this.recebimentos = recebimentos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="funcionario")
+    public Set<Compra> getCompras() {
+        return this.compras;
+    }
+    
+    public void setCompras(Set<Compra> compras) {
+        this.compras = compras;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="funcionario")
+    public Set<Venda> getVendas() {
+        return this.vendas;
+    }
+    
+    public void setVendas(Set<Venda> vendas) {
+        this.vendas = vendas;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="funcionario")
+    public Set<Pagamento> getPagamentos() {
+        return this.pagamentos;
+    }
+    
+    public void setPagamentos(Set<Pagamento> pagamentos) {
+        this.pagamentos = pagamentos;
     }
 
 

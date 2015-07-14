@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/06/2015 14:14:06 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Recebimento" table="recebimento" catalog="dbloja" optimistic-lock="version">
+        <id name="idRecebimento" type="java.lang.Long">
+            <column name="idRecebimento" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="funcionario" class="br.com.models.vo.Funcionario" fetch="select">
+            <column name="funcionarioRecebimento" />
+        </many-to-one>
+        <many-to-one name="lancamento" class="br.com.models.vo.Lancamento" fetch="select">
+            <column name="lancamentoRecebimento" />
+        </many-to-one>
+        <many-to-one name="venda" class="br.com.models.vo.Venda" fetch="select">
+            <column name="vendaRecebimento" />
+        </many-to-one>
+        <property name="descricaoRecebimento" type="string">
+            <column name="descricaoRecebimento" length="50" />
+        </property>
+        <property name="valorRecebimento" type="big_decimal">
+            <column name="valorRecebimento" precision="10" />
+        </property>
+        <property name="dataRecebimento" type="date">
+            <column name="dataRecebimento" length="10" />
+        </property>
+        <property name="statusRecebimento" type="java.lang.Boolean">
+            <column name="statusRecebimento" />
+        </property>
+        <property name="criacaoRecebimento" type="timestamp">
+            <column name="criacaoRecebimento" length="19" />
+        </property>
+        <property name="atualizacaoRecebimento" type="timestamp">
+            <column name="atualizacaoRecebimento" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>
