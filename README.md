@@ -1,6 +1,6 @@
 #Softpapers - PHP APPLICATION
 
-######Documentação OFICINAS I
+####Documentação OFICINAS I
 
 ######RESPONSÁVEIS PELO PROJETO
 Bruna Danieli Ribeiro Gonçalves, Marlon Andrel Coelho Freitas.
@@ -30,7 +30,7 @@ Restringir e validar o acesso do usuário ao programa e disponibilizar pequenas 
 do software.
 - Realizar Acesso (será implementado).
 
-#####Visão Geral
+######Visão Geral
 Apresenta um pequeno resumo da saúde de sua empresa, demonstrando o lucro decorrente em forma gráfica e suas últimas contas a
 pagar e receber.
 - Visualizar resumo do faturamento (talvez seja implementado).
@@ -145,9 +145,9 @@ interno.
 - Painel de controle: Visualize as principais informações de seu negócio de forma rápida. Com o painel de controle você tem 
 sempre a mão informações importante para a tomada de decisão na sua empresa.
 
-######CRONOGRAMA
+#####CRONOGRAMA
 
-#####Planejamento de atividades a serem executadas pelo grupo.
+Planejamento de atividades a serem executadas pelo grupo.
 
 05/05 - Criar banco de dados (Mysql - Utilizando DER);
 
