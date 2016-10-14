@@ -1,4 +1,4 @@
-#Softpapers - PHP APPLICATION
+#Softpapers - JAVA APPLICATION
 
 Sistema em ambiente Desktop, desenvolvido na plataforma JAVA utilizando o padrão de arquitetura MVC. O software é encarregado do gerenciamento, controle e administração da papelaria e de suas funcionalidades. Planejado, desenvolvido e apresentado na disciplina de Oficinas I no curso de Análise e Desenvolvimento de Sistema do Instituto Federal de Educação, Ciência e Tecnologia do Triângulo Mineiro.
 
