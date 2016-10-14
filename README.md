@@ -131,7 +131,7 @@ Objetivo de gerenciar todos os cadastros do sistema;
 - Preparado para a Nota Fiscal Paulista (SP).
 - Gerenciamento do processo de TEF (Transferência Eletrônica de Fundos).
 
-######VALOR AGREGADO
+#####VALOR AGREGADO
 - Facilidade na gestão financeira: Veja em tempo real a saúde financeira da sua empresa, acompanhe diariamente toda situação
 financeira e saiba quando suas contas estão próximas do vencimento.
 - Poupe tempo nas vendas: Módulo de Frente de Caixa rápido e intuitivo. Com o Ponto De Venda você economiza tempo no atendimento
