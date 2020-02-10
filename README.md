@@ -1,23 +1,23 @@
-#Softpapers - JAVA APPLICATION
+# Softpapers - JAVA APPLICATION
 
 Sistema em ambiente Desktop, desenvolvido na plataforma JAVA utilizando o padrão de arquitetura MVC. O software é encarregado do gerenciamento, controle e administração da papelaria e de suas funcionalidades. Planejado, desenvolvido e apresentado na disciplina de Oficinas I no curso de Análise e Desenvolvimento de Sistema do Instituto Federal de Educação, Ciência e Tecnologia do Triângulo Mineiro.
 
-####Documentação OFICINAS I
+#### Documentação OFICINAS I
 
-######RESPONSÁVEIS PELO PROJETO
+###### RESPONSÁVEIS PELO PROJETO
 Bruna Danieli Ribeiro Gonçalves, Marlon Andrel Coelho Freitas.
 
-######NOME DO SISTEMA A SER DESENVOLVIDO
+###### NOME DO SISTEMA A SER DESENVOLVIDO
 Softpapers automação de papelarias.
 
-######NECESSIDADE DA EMPRESA
+###### NECESSIDADE DA EMPRESA
 Observando a maneira como são gerenciados os processos de uma papelaria, foi perceptível a dificuldade
 de controlar estoques, vendas, finanças ou quaisquer atividades em geral. Visando aperfeiçoar as tarefas mais demoradas, com
 mais agilidade e praticidade surge à ideia de um software contendo todas as operações de frente de loja e retaguarda, desde o
 atendimento ao cliente, cadastro de produtos, fornecedores, etc. até a geração de relatórios de vendas, gastos e a integração
 de boletos, notas fiscais, códigos de barras e afins.
 
-######REQUISITOS DO NEGÓCIO
+###### REQUISITOS DO NEGÓCIO
 O software deverá possuir um único ambiente em Desktop, desenvolvido na plataforma JAVA utilizando o
 padrão de arquitetura MVC (composta por classes Models, Views e Controllers onde para as classes Models serão utilizados os
 Values Objects, Business Objects, Data Access Objects e arquivos de configuração do Hibernate e JPA). O software será 
@@ -25,21 +25,21 @@ encarregado do gerenciamento, controle e administração da papelaria e de suas 
 controle financeiro e gestão do caixa, cadastro de funcionários, clientes, fornecedores e produtos, e pela emissão de
 relatórios de clientes, faturamentos por clientes, lançamentos no caixa, análise de despesas, centros de custos, etc.
 
-#####REQUISITOS FUNCIONAIS
+##### REQUISITOS FUNCIONAIS
 
-######Acesso
+###### Acesso
 Restringir e validar o acesso do usuário ao programa e disponibilizar pequenas descrições das funcionalidades, página inicial
 do software.
 - Realizar Acesso (será implementado).
 
-######Visão Geral
+###### Visão Geral
 Apresenta um pequeno resumo da saúde de sua empresa, demonstrando o lucro decorrente em forma gráfica e suas últimas contas a
 pagar e receber.
 - Visualizar resumo do faturamento (talvez seja implementado).
 - Visualizar resumo das contas a pagar (talvez seja implementado).
 - Visualizar resumo das contas a receber (talvez seja implementado).
 
-######Vendas
+###### Vendas
 Em um só local todos os recursos necessários para você organizar e acompanhar todas as vendas da sua empresa. Simula um ponto
 de venda, capaz de emitir e importar uma Nota Fiscal de venda, emitir boletos, realizar vendas, etc.
 - Visualizar vendas (será implementado).
@@ -51,7 +51,7 @@ de venda, capaz de emitir e importar uma Nota Fiscal de venda, emitir boletos, r
 - Gerar nota fiscal de venda (não será implementado).
 - Visualizar histórico de vendas (não será implementado).
 
-######Estoque
+###### Estoque
 Objetivo de controlar e gerenciar os registros dos produtos e os pedidos de compras, assim como gerar Nota Fiscal de compra e
 acompanhar seus lançamentos.
 - Visualizar inventário (será implementado).
@@ -64,7 +64,7 @@ acompanhar seus lançamentos.
 - Visualizar lançamentos (talvez seja implementado).
 - Visualizar histórico de compras (não será implementado).
 
-######Financeiro
+###### Financeiro
 Gestão financeira do seu negócio em um único local, com o objetivo de controlar e gerenciar todos os registros das contas a
 pagar, receber e o saldo, assim como listar todas as alterações.
 - Visualizar extrato (talvez seja implementado).
@@ -80,7 +80,7 @@ pagar, receber e o saldo, assim como listar todas as alterações.
 - Excluir recebimento (talvez seja implementado).
 - Visualizar histórico financeiro (não será implementado).
 
-######Relatórios
+###### Relatórios
 Os relatórios do sistema. 
 - Demonstrativo de Resultados (DRE) (não será implementado).
 - Análise de despesas (não será implementado).
@@ -92,7 +92,7 @@ Os relatórios do sistema.
 - Fluxo de caixa mensal (não será implementado).
 - Fluxo de caixa anual (não será implementado).
 
-######Painel de Controle
+###### Painel de Controle
 Objetivo de gerenciar todos os cadastros do sistema;
 - Visualizar usuários (será implementado).
 - Cadastrar novo usuário (será implementado).
@@ -115,7 +115,7 @@ Objetivo de gerenciar todos os cadastros do sistema;
 - Alterar produto (será implementado).
 - Excluir produto (será implementado).
 
-#####REQUISITOS NÃO FUNCIONAIS (não serão implementados)
+##### REQUISITOS NÃO FUNCIONAIS (não serão implementados)
 - Sistema de fácil aprendizado.
 - Possibilidade de personalização das telas por usuário e/ou grupos de usuários.
 - Frente de loja totalmente intuitivo integrado as principais Impressoras de Cupom Fiscal do mercado.
@@ -133,7 +133,7 @@ Objetivo de gerenciar todos os cadastros do sistema;
 - Preparado para a Nota Fiscal Paulista (SP).
 - Gerenciamento do processo de TEF (Transferência Eletrônica de Fundos).
 
-#####VALOR AGREGADO
+##### VALOR AGREGADO
 - Facilidade na gestão financeira: Veja em tempo real a saúde financeira da sua empresa, acompanhe diariamente toda situação
 financeira e saiba quando suas contas estão próximas do vencimento.
 - Poupe tempo nas vendas: Módulo de Frente de Caixa rápido e intuitivo. Com o Ponto De Venda você economiza tempo no atendimento
@@ -147,7 +147,7 @@ interno.
 - Painel de controle: Visualize as principais informações de seu negócio de forma rápida. Com o painel de controle você tem 
 sempre a mão informações importante para a tomada de decisão na sua empresa.
 
-#####CRONOGRAMA
+##### CRONOGRAMA
 
 Planejamento de atividades a serem executadas pelo grupo.
 
